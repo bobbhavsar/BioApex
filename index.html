@@ -184,7 +184,6 @@
           <div>
             <div class="flex items-center gap-1.5">
               <span class="font-black text-white text-base tracking-tight">USABO<span class="text-emerald-300">guide</span></span>
-              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">IBO / USABO</span>
             </div>
             <span class="block text-[10px] text-slate-400 font-medium">USABO · IBO exam prep</span>
           </div>
@@ -211,9 +210,6 @@
         <button data-nav="textbooks" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition flex items-center gap-2">
           <span>📚</span> Sourced Textbooks
         </button>
-        <button id="open-publish-modal-btn" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 transition flex items-center gap-1.5">
-          <span>🚀</span> Publish & Run App
-        </button>
       </nav>
 
       <!-- User Progress & Metrics -->
@@ -237,9 +233,9 @@
         </div>
 
         <!-- Finalist Readiness Meter -->
-        <div class="hidden lg:flex items-center gap-2 bg-emerald-950/40 border border-emerald-800/50 px-3 py-1.5 rounded-xl text-xs font-semibold text-emerald-300">
+        <div class="hidden lg:flex items-center gap-2 bg-emerald-950/40 border border-emerald-800/50 px-3 py-1.5 rounded-xl text-xs font-semibold text-emerald-300 whitespace-nowrap">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span id="user-readiness">15% Finalist Ready</span>
+          <span id="user-readiness">0% Finalist Ready</span>
         </div>
       </div>
 
@@ -277,65 +273,6 @@
     </div>
   </footer>
 
-  <!-- Independent Run & Cloud Publishing Modal -->
-  <div id="publish-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-2xl w-full p-6 shadow-2xl space-y-5 text-slate-200">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <div class="flex items-center gap-2.5">
-          <span class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">🚀</span>
-          <div>
-            <h3 class="text-base font-bold text-white">Run & Publish USABOguide Independently</h3>
-            <p class="text-xs text-slate-400">Run locally anytime on your Mac or deploy live to the cloud for free</p>
-          </div>
-        </div>
-        <button id="close-publish-modal-btn" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-bold">✕</button>
-      </div>
-
-      <div class="space-y-4 text-xs max-h-[70vh] overflow-y-auto pr-1">
-        <!-- 1. Local One-Click Mac Launcher -->
-        <div class="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-indigo-300 text-sm">Option 1: One-Click Mac Launcher (Offline)</span>
-            <span class="px-2 py-0.5 rounded text-[10px] bg-indigo-500/20 text-indigo-300 font-bold">Easiest</span>
-          </div>
-          <p class="text-slate-300">Double-click the created executable in Finder to launch the app independently anytime:</p>
-          <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800 font-mono text-[11px] text-emerald-300 flex items-center justify-between">
-            <span>/Users/tejasbhavsar/.gemini/antigravity/scratch/usabo-mastery-app/start.command</span>
-          </div>
-          <p class="text-[11px] text-slate-400">💡 You can drag `start.command` directly to your Mac Dock or Desktop for 1-click access without touching a terminal.</p>
-        </div>
-
-        <!-- 2. PWA Desktop Installation -->
-        <div class="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-cyan-300 text-sm">Option 2: Install as a Desktop / iPad App (PWA)</span>
-            <span class="px-2 py-0.5 rounded text-[10px] bg-cyan-500/20 text-cyan-300 font-bold">Native Window</span>
-          </div>
-          <p class="text-slate-300">In Google Chrome, Brave, or Safari (macOS Sonoma+):</p>
-          <ul class="list-disc list-inside space-y-1 text-slate-400">
-            <li><strong>Chrome/Brave</strong>: Click the <strong>Install</strong> icon in the address bar (or Menu → Save and Share → Install USABOguide).</li>
-            <li><strong>Safari</strong>: Click <code class="bg-slate-900 px-1 py-0.5 rounded">File → Add to Dock</code>.</li>
-            <li>Works 100% offline via the registered service worker!</li>
-          </ul>
-        </div>
-
-        <!-- 3. Free Web Cloud Hosting -->
-        <div class="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-emerald-300 text-sm">Option 3: Free Web Hosting (Vercel / GitHub Pages)</span>
-            <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">Public URL</span>
-          </div>
-          <p class="text-slate-300">To get a live public link you can access on your phone or tablet anywhere:</p>
-          <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800 font-mono text-[11px] text-slate-300 space-y-1">
-            <div class="text-slate-400"># Deploy with Vercel in 30 seconds:</div>
-            <div class="text-amber-300">cd /Users/tejasbhavsar/.gemini/antigravity/scratch/usabo-mastery-app</div>
-            <div class="text-emerald-300">npx vercel</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- App Bootstrap -->
   <script type="module">
     // Automatic Cache-Buster & PWA Cache Clear
@@ -359,21 +296,6 @@
         }).catch(err => console.log('SW registration note:', err));
       }
 
-      // Modal handling
-      const modal = document.getElementById('publish-modal');
-      const openBtn = document.getElementById('open-publish-modal-btn');
-      const closeBtn = document.getElementById('close-publish-modal-btn');
-      if (openBtn && modal) {
-        openBtn.addEventListener('click', () => modal.classList.remove('hidden'));
-      }
-      if (closeBtn && modal) {
-        closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
-      }
-      if (modal) {
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) modal.classList.add('hidden');
-        });
-      }
     }
 
     if (document.readyState === 'loading') {

@@ -144,29 +144,12 @@ function recordCheckpointResult(key, correct) {
   return firstSolve;
 }
 
-// Readiness blends coverage, checkpoint accuracy and quiz accuracy.
+// Finalist readiness is simply XP earned against the last rank (IBO Gold),
+// so the header number always moves with the XP counter beside it.
 function computeReadiness() {
-  const totalModules = Math.max(TRACK_MODULES.length, 1);
-  const coverage = userState.completedModules.length / totalModules;
-
-  const checkpointRecords = Object.values(userState.checkpointResults || {});
-  const solved = checkpointRecords.filter(r => r.solved).length;
-  const firstTry = checkpointRecords.filter(r => r.firstTry).length;
-  const checkpointAcc = checkpointRecords.length
-    ? (0.5 * solved + 0.5 * firstTry) / checkpointRecords.length
-    : 0;
-
-  const quizRecords = Object.values(userState.quizScores || {});
-  const quizTotal = quizRecords.reduce((a, r) => a + (r.total || 0), 0);
-  const quizCorrect = quizRecords.reduce((a, r) => a + (r.correct || 0), 0);
-  const quizAcc = quizTotal ? quizCorrect / quizTotal : 0;
-
-  return {
-    pct: Math.round(100 * (0.6 * coverage + 0.25 * checkpointAcc + 0.15 * quizAcc)),
-    coverage: Math.round(coverage * 100),
-    checkpoint: Math.round(checkpointAcc * 100),
-    quiz: Math.round(quizAcc * 100)
-  };
+  const target = RANK_TIERS[RANK_TIERS.length - 1].minXp;
+  const pct = target > 0 ? Math.max(0, Math.min(100, Math.round((userState.xp / target) * 100))) : 0;
+  return { pct, xp: userState.xp, target };
 }
 
 function loadState() {
@@ -322,7 +305,7 @@ function renderNavigation() {
   if (readinessEl) {
     const readiness = computeReadiness();
     readinessEl.textContent = `${readiness.pct}% Finalist Ready`;
-    readinessEl.title = `Module coverage ${readiness.coverage}% \u00b7 Checkpoint accuracy ${readiness.checkpoint}% \u00b7 Quiz accuracy ${readiness.quiz}%`;
+    readinessEl.title = `${readiness.xp} / ${readiness.target} XP \u2014 100% at IBO Gold Medalist`;
   }
 
   // Update rank badge
