@@ -1,0 +1,8 @@
+# Verification screenshots and scratch output
+.check/
+*.log
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+node_modules/

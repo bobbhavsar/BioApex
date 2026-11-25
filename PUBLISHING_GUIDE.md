@@ -1,6 +1,6 @@
-# BioApex • Independent Running & Cloud Publishing Guide
+# USABOguide • Independent Running & Cloud Publishing Guide
 
-You can run **BioApex** 100% independently from Google Antigravity, both locally on your computer and hosted live on the web for free.
+You can run **USABOguide** 100% independently from Google Antigravity, both locally on your computer and hosted live on the web for free.
 
 ---
 
@@ -25,13 +25,13 @@ Then visit `http://localhost:3456`.
 
 ## Option 2: Install as a Native Standalone Desktop / iPad / Mobile App (PWA)
 
-BioApex is built with a **Progressive Web App (PWA)** manifest and offline service worker:
+USABOguide is built with a **Progressive Web App (PWA)** manifest and offline service worker:
 1. Open `http://localhost:3456` in **Google Chrome** or **Brave** or **Safari** (macOS Sonoma+).
 2. Look at the right side of the address bar:
-   - In Chrome/Brave: Click the **Install** icon (a screen with a down arrow) or go to `Menu (⋮) → Save and Share → Install BioApex`.
+   - In Chrome/Brave: Click the **Install** icon (a screen with a down arrow) or go to `Menu (⋮) → Save and Share → Install USABOguide`.
    - In Safari (macOS Sonoma+): Click `File → Add to Dock`.
    - On iPad/iPhone: Tap the Share button $\to$ `Add to Home Screen`.
-3. BioApex will now open in its own dedicated, borderless app window and work completely offline without needing any browser tabs or terminal commands.
+3. USABOguide will now open in its own dedicated, borderless app window and work completely offline without needing any browser tabs or terminal commands.
 
 ---
 
@@ -56,7 +56,7 @@ BioApex is built with a **Progressive Web App (PWA)** manifest and offline servi
    cd /Users/tejasbhavsar/.gemini/antigravity/scratch/usabo-mastery-app
    git init
    git add .
-   git commit -m "Initial commit of BioApex Olympiad platform"
+   git commit -m "Initial commit of USABOguide Olympiad platform"
    git branch -M main
    git remote add origin https://github.com/<your-username>/bioapex-olympiad.git
    git push -u origin main

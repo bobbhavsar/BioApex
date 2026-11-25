@@ -1,14 +1,14 @@
 {
-  "name": "BioApex - USABO Finalist & IBO Gold Academy",
-  "short_name": "BioApex",
-  "description": "Interactive USABO Top 20 Finalist and IBO Olympiad Training Platform",
+  "name": "USABOguide - USABO Finalist & IBO Training",
+  "short_name": "USABOguide",
+  "description": "Interactive USABO Finalist and IBO olympiad training: 49 nodes, seven unit tests, recall decks and perturbation labs.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#020617",
   "theme_color": "#4f46e5",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%234f46e5'/><text x='50' y='68' font-size='50' font-weight='bold' fill='white' text-anchor='middle'>Ω</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236366f1'/><stop offset='55%' stop-color='%234338ca'/><stop offset='100%' stop-color='%2310b981'/></linearGradient></defs><rect width='40' height='40' rx='11' fill='url(%23g)'/><g fill='none' stroke='white' stroke-linecap='round'><path d='M14 9c12 3.6 12 7.4 0 11' stroke-width='2.2'/><path d='M26 9c-12 3.6-12 7.4 0 11' stroke-width='2.2' opacity='.6'/><path d='M14 20c12 3.6 12 7.4 0 11' stroke-width='2.2'/><path d='M26 20c-12 3.6-12 7.4 0 11' stroke-width='2.2' opacity='.6'/><path d='M15.6 13.4h8.8M15.6 26.6h8.8' stroke-width='1.5' opacity='.85'/></g></svg>",
       "sizes": "192x192 512x512",
       "type": "image/svg+xml"
     }

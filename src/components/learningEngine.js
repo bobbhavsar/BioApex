@@ -213,6 +213,126 @@ export const WHAT_IF_EXPERIMENTS = {
         feedback: "Magnificent! A brief diauxic lag phase occurs while lacZ and lacY mRNAs are synthesized, followed by exponential lactose utilization."
       }
     ]
+  },
+  'cell-5-checkpoints-apoptosis': {
+    scenario: "A colorectal tumour cell has lost both p53 alleles but retains functional pRb and an intact spindle checkpoint.",
+    options: [
+      {
+        action: "Irradiate the cell with DNA-damaging radiation",
+        prediction: "No G1 arrest: the cell enters S phase with broken DNA, accumulates mutations, and survives far longer than a p53-wild-type cell.",
+        feedback: "Correct! ATM/ATR signalling cannot raise p21 without p53, so the G1/S brake is gone. This is why p53 loss makes tumours resistant to radiation and to many DNA-damaging drugs, and why they depend on the mitotic checkpoint instead."
+      },
+      {
+        action: "Treat with a microtubule poison such as paclitaxel",
+        prediction: "Cells arrest in mitosis and die, because the spindle assembly checkpoint does not require p53.",
+        feedback: "Exactly! Taxanes still work in p53-null tumours: unattached kinetochores keep the checkpoint on, and prolonged arrest triggers mitotic catastrophe. p53 mutation does not confer taxane resistance."
+      }
+    ]
+  },
+  'cell-10-membranes-transport': {
+    scenario: "A neuron with a resting potential of -70 mV is exposed to 1 mM ouabain, a specific inhibitor of the Na+/K+ ATPase.",
+    options: [
+      {
+        action: "Pump blocked, gradients left to run down",
+        prediction: "Na+ accumulates inside and K+ is lost, the membrane depolarises, and the cell eventually swells as Cl- and water follow.",
+        feedback: "Correct! The pump exports 3 Na+ and imports 2 K+, which builds both gradients and contributes about -4 mV directly. Without it, E_K collapses toward threshold and Na+ loading drives osmotic swelling."
+      },
+      {
+        action: "Only the electrogenic contribution is removed",
+        prediction: "Resting potential depolarises from about -70 to -66 mV at first, before the gradients themselves decay.",
+        feedback: "Right — the pump is electrogenic because it moves 3 Na+ out for every 2 K+ in, so blocking it produces an immediate small depolarisation, then a slower, larger collapse as gradients run down."
+      }
+    ]
+  },
+  'plant-2-photochemistry': {
+    scenario: "A C3 leaf is sealed in a chamber at 21% O2 but only 0.01% CO2, under bright light.",
+    options: [
+      {
+        action: "Rubisco encounters O2 at its active site",
+        prediction: "Photorespiration consumes O2 and releases CO2, wasting ATP and NADPH, so net carbon gain falls and may go negative.",
+        feedback: "Correct! Rubisco is a bifunctional enzyme: the CO2/O2 ratio decides whether RuBP is carboxylated or oxygenated. In low CO2 and high O2 the oxygenase reaction dominates, and the salvage pathway costs energy while losing fixed carbon."
+      },
+      {
+        action: "Compensate by concentrating CO2 around Rubisco (C4 or CAM design)",
+        prediction: "PEP carboxylase fixes CO2 into a C4 acid first, so Rubisco sees a high CO2/O2 ratio and photorespiration is suppressed.",
+        feedback: "Exactly! C4 plants separate the two carboxylations in space (mesophyll then bundle sheath), CAM separates them in time (night then day). Both raise the CO2 concentration at Rubisco, which is why C4 grasses dominate hot, bright habitats."
+      }
+    ]
+  },
+  'animal-1-neuro': {
+    scenario: "A squid giant axon is bathed in artificial seawater. You can change the external solution.",
+    options: [
+      {
+        action: "Raise external K+ tenfold (5 to 50 mM)",
+        prediction: "Resting potential rises toward the new K+ equilibrium potential (about -85 to -30 mV), Na+ channels inactivate, and the axon becomes inexcitable.",
+        feedback: "Correct! The resting potential tracks E_K because the membrane is K+-permeable at rest. Hyperkalaemia therefore depolarises cells and produces conduction block — the mechanism behind cardiac arrest in renal failure."
+      },
+      {
+        action: "Apply tetrodotoxin (TTX)",
+        prediction: "Action potentials disappear, but the resting potential is unchanged.",
+        feedback: "Exactly! TTX plugs the outer pore of voltage-gated Na+ channels, so the upstroke is abolished. The resting potential is set by K+ leak channels, which TTX does not touch."
+      }
+    ]
+  },
+  'animal-3-renal': {
+    scenario: "A patient in acute heart failure with oedema is given intravenous furosemide.",
+    options: [
+      {
+        action: "Block NKCC2 in the thick ascending limb",
+        prediction: "The medullary osmotic gradient is destroyed, urine becomes isosmotic, and Na+, K+, Cl-, Ca2+ and Mg2+ excretion all rise sharply.",
+        feedback: "Correct! The Na+/K+/2Cl- cotransporter both dilutes the tubular fluid and adds solute to the interstitium, so blocking it abolishes the gradient that the collecting duct depends on. That is why loop diuretics are the most powerful class — and why they cause hypokalaemia and hypocalcaemia."
+      },
+      {
+        action: "Instead block V2 receptors with a vaptan",
+        prediction: "Water reabsorption in the collecting duct falls and dilute urine is produced, but the medullary gradient itself survives.",
+        feedback: "Right! V2 antagonism prevents aquaporin-2 insertion, so the concentrated medulla can no longer draw water. Sodium handling is largely unaffected, which is why vaptans are used for hyponatraemia rather than for diuresis."
+      }
+    ]
+  },
+  'animal-8-endocrine': {
+    scenario: "A patient with primary hypothyroidism starts daily levothyroxine (T4).",
+    options: [
+      {
+        action: "Plasma T4 rises into the normal range",
+        prediction: "TSH falls back toward normal because T3 (converted in the pituitary) inhibits TRH and TSH secretion.",
+        feedback: "Correct! The hypothalamic-pituitary-thyroid axis is a negative feedback loop, and the pituitary converts T4 to T3 locally. TSH is therefore the most sensitive marker of whether replacement is adequate."
+      },
+      {
+        action: "The dose is stopped for three weeks",
+        prediction: "T4 and T3 fall, TSH rises, and the thyroid enlarges if it is still functional.",
+        feedback: "Exactly! Loss of negative feedback raises TRH and TSH, which stimulates both hormone synthesis and thyroid growth (goitre). This is the same loop that makes untreated Hashimoto thyroiditis produce an enlarged gland."
+      }
+    ]
+  },
+  'genetics-2-popgen': {
+    scenario: "Ten seeds from a mainland population of 100,000 colonise an isolated island. The island population then stays isolated for 200 generations.",
+    options: [
+      {
+        action: "Ignore selection and mutation entirely",
+        prediction: "Allele frequencies on the island drift far from the mainland, rare alleles are lost, and heterozygosity falls as 1/(2Ne) per generation.",
+        feedback: "Correct! With an effective size near ten, drift dominates. This founder effect explains why island populations often look genetically distinct and why rare alleles disappear even without any selection at all."
+      },
+      {
+        action: "Add one migrant per generation",
+        prediction: "Differentiation settles at an equilibrium Fst of about 1/(4Nm + 1) \u2248 0.2 \u2014 reduced, but not eliminated.",
+        feedback: "Exactly! Nm = 1 limits divergence, but it does not make the populations identical: Fst \u2248 0.2 still means a fifth of the variation is between populations. Complete homogenisation needs Nm of roughly 10 or more."
+      }
+    ]
+  },
+  'animal-6-immunity': {
+    scenario: "A child receives a booster dose of the same vaccine six months after the first.",
+    options: [
+      {
+        action: "Second exposure to the same antigen",
+        prediction: "Antibody rises within 2-3 days instead of 1-2 weeks, reaches a higher peak, and is dominated by high-affinity IgG.",
+        feedback: "Correct! Memory B cells have already class-switched and affinity-matured, so the secondary response is faster, larger and of higher quality. That is the entire purpose of a booster."
+      },
+      {
+        action: "Transfer only serum from an immune donor instead",
+        prediction: "Protection is immediate but short-lived, because no memory cells are transferred and antibody is cleared over weeks.",
+        feedback: "Right! Passive immunity acts at once but leaves no immunological memory, which is why it is used for post-exposure prophylaxis (rabies, tetanus, snake antivenom) and not for long-term protection."
+      }
+    ]
   }
 };
 
