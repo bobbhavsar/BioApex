@@ -1,0 +1,9 @@
+{
+  "name": "usabo-mastery-app",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Interactive USABO Finalist (Top 20) & IBO Gold Training Platform",
+  "scripts": {
+    "start": "python3 -m http.server 3456"
+  }
+}
