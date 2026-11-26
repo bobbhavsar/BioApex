@@ -5,6 +5,43 @@
 
 const MATH_PLACEHOLDER = /@@M(\d+)@@/g;
 
+// Some lesson and quiz sources lost backslashes on their LaTeX commands (a JS
+// template literal turns "\\alpha" into "alpha"). Repair a formula before
+// KaTeX sees it: collapse doubled escapes, restore known commands, and escape
+// underscores that have nothing to subscript (genotype notation like A_B_).
+const LATEX_COMMANDS = [
+  'alpha', 'beta', 'gamma', 'delta', 'kappa', 'lambda', 'sigma', 'omega', 'theta',
+  'mu', 'nu', 'rho', 'tau', 'phi', 'chi', 'psi', 'pi', 'eta', 'epsilon', 'varepsilon',
+  'Delta', 'Sigma', 'Omega', 'Phi', 'Psi', 'Gamma', 'Lambda', 'Theta',
+  'times', 'cdot', 'dfrac', 'frac', 'sqrt', 'mathrm', 'operatorname', 'bar', 'hat',
+  'overline', 'underline', 'leq', 'geq', 'neq', 'approx', 'rightarrow', 'leftarrow',
+  'infty', 'propto', 'partial', 'quad', 'qquad', 'text', 'circ', 'sum', 'int', 'prime', 'ast'
+].sort((a, b) => b.length - a.length);
+const BARE_COMMAND = new RegExp(`(^|[^\\\\A-Za-z])(${LATEX_COMMANDS.join('|')})(?![a-z])`, 'g');
+
+const CONTROL_ESCAPES = { '\u0007': '\\a', '\b': '\\b', '\u000b': '\\v', '\f': '\\f', '\r': '\\r' };
+
+export function repairLatex(tex) {
+  // A single "\\f" in a template literal is a form feed by the time it gets here;
+  // put the backslash+letter spelling back before the other repairs run.
+  let out = String(tex).replace(/[\u0007\b\u000b\f\r]/g, ch => CONTROL_ESCAPES[ch] || ch);
+  let previous;
+  // Collapse any run of escaped backslashes down to a single TeX backslash.
+  do {
+    previous = out;
+    out = out.replace(/\\{2,}([A-Za-z]+)/g, '\\$1');
+  } while (out !== previous);
+  // Leave the inside of \text{...} alone: prose there is not a command name.
+  const spans = [];
+  out = out.replace(/\\+text\{[^{}]*\}/g, (m) => {
+    spans.push(m);
+    return `\u0000${spans.length - 1}\u0000`;
+  });
+  out = out.replace(BARE_COMMAND, (_, pre, cmd) => `${pre}\\${cmd}`);
+  out = out.replace(/([A-Za-z0-9}])(_)(?=[^A-Za-z0-9{\\]|$)/g, '$1\\_');
+  return out.replace(/\u0000(\d+)\u0000/g, (_, i) => spans[Number(i)]);
+}
+
 function formatInline(text) {
   return text
     .replace(/\*\*([^*]+)\*\*/g, '<strong class="font-semibold text-white">$1</strong>')
@@ -25,7 +62,9 @@ export function formatLessonContent(content) {
   if (!content) return '';
   const math = [];
   const protect = (match, display) => {
-    math.push({ html: match, display });
+    const inner = display ? match.slice(2, -2) : match.slice(1, -1);
+    const fixed = `${display ? '$$' : '$'}${repairLatex(inner)}${display ? '$$' : '$'}`;
+    math.push({ html: fixed, display });
     return `@@M${math.length - 1}@@`;
   };
 
@@ -48,14 +87,14 @@ export function formatLessonContent(content) {
       out.push(mathBlock(math[Number(onlyMath[1])].html));
       return;
     }
-    out.push(`<p class="text-[13.5px] leading-7 text-slate-300">${formatInline(joined)}</p>`);
+    out.push(`<p class="text-[13.5px] leading-7 text-slate-300 break-words">${formatInline(joined)}</p>`);
   };
 
   const flushList = () => {
     if (!listItems.length) return;
     const cls = listType === 'ol'
-      ? 'my-3 space-y-1.5 pl-5 list-decimal marker:text-indigo-400 marker:font-bold text-[13.5px] leading-7 text-slate-300'
-      : 'my-3 space-y-1.5 text-[13.5px] leading-7 text-slate-300';
+      ? 'my-3 space-y-1.5 pl-5 list-decimal marker:text-indigo-400 marker:font-bold text-[13.5px] leading-7 text-slate-300 min-w-0'
+      : 'my-3 space-y-1.5 text-[13.5px] leading-7 text-slate-300 min-w-0';
     out.push(`<${listType} class="${cls}">${listItems.join('')}</${listType}>`);
     listItems = [];
     listType = null;
@@ -74,7 +113,8 @@ export function formatLessonContent(content) {
     }
 
     const bullet = line.match(/^(\s*)[-\u2022]\s+(.*)$/);
-    const numbered = line.match(/^\s{0,3}\d+\.\s+(.*)$/);
+    // Allow any indent: numbered sub-lists sit under bullets (e.g. 4 spaces).
+    const numbered = line.match(/^(\s*)\d+\.\s+(.*)$/);
     const heading = line.match(/^#{2,4}\s+(.*)$/);
 
     // A formula on its own line becomes its own block, not part of a paragraph.
@@ -93,7 +133,7 @@ export function formatLessonContent(content) {
       }
       const nested = bullet[1].length > 0;
       listItems.push(
-        `<li class="flex gap-2 ${nested ? 'ml-5 text-slate-400' : ''}"><span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full ${nested ? 'bg-slate-600' : 'bg-indigo-400'}"></span><span>${formatInline(bullet[2])}</span></li>`
+        `<li class="flex gap-2 ${nested ? 'ml-5 text-slate-400' : ''}"><span class="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full ${nested ? 'bg-slate-600' : 'bg-indigo-400'}"></span><span class="min-w-0 flex-1 break-words">${formatInline(bullet[2])}</span></li>`
       );
       continue;
     }
@@ -104,7 +144,8 @@ export function formatLessonContent(content) {
         flushList();
         listType = 'ol';
       }
-      listItems.push(`<li class="pl-1">${formatInline(numbered[1])}</li>`);
+      // Indented numbered items are a sub-list under the preceding bullet.
+      listItems.push(`<li class="pl-1 ${numbered[1].length >= 2 ? 'ml-5' : ''} break-words">${formatInline(numbered[2])}</li>`);
       continue;
     }
 
@@ -126,7 +167,11 @@ export function formatLessonContent(content) {
   }
 
   closeBlocks();
-  return out.join('\n').replace(MATH_PLACEHOLDER, (_, i) => math[Number(i)].html);
+  return out.join('\n').replace(MATH_PLACEHOLDER, (_, i) => {
+    const m = math[Number(i)];
+    // Display math rendered outside a dedicated block still needs to be able to scroll.
+    return m.display ? `<span class="block overflow-x-auto">${m.html}</span>` : m.html;
+  });
 }
 
 /** Pull the bolded key terms out of a section — used as a self-check checklist. */

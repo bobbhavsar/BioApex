@@ -1114,7 +1114,7 @@ function renderLessonFigure(moduleId, stepIndex) {
       <figcaption class="px-4 py-3 space-y-1.5 border-t border-slate-800">
         <p class="text-[12px] leading-relaxed text-slate-300">${fig.caption}</p>
         <p class="text-[10px] tracking-wide text-slate-500">
-          <a href="${fig.page}" target="_blank" rel="noopener" class="underline decoration-dotted underline-offset-2 hover:text-amber-400">${fig.credit}</a>
+          <a href="${fig.page}" target="_blank" rel="noopener" class="underline decoration-dotted underline-offset-2 hover:\\text-amber-400">${fig.credit}</a>
           <span class="mx-1.5">·</span>
           <a href="${fig.article}" target="_blank" rel="noopener" class="hover:text-amber-400">source</a>
         </p>
@@ -1127,9 +1127,9 @@ function renderLessonFigure(moduleId, stepIndex) {
 function renderLearnTabContent(section, mod, stepIndex) {
   // Structured rendering: bullets, numbered steps, display math and bold key terms.
   return `
-    <div class="space-y-4">
+    <div class="space-y-4 min-w-0">
       ${renderLessonFigure(mod.id, stepIndex)}
-      <div class="anim-fade-up">${formatLessonContent(section.content)}</div>
+      <div class="anim-fade-up min-w-0 break-words">${formatLessonContent(section.content)}</div>
 
       ${mod.keyFormulas && mod.keyFormulas.length > 0 ? `
         <div class="mt-5 pt-4 border-t border-slate-800/60">

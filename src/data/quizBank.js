@@ -214,11 +214,11 @@ What is the correct gene order, the map distance between the two outer genes, an
    The allele that is switched relative to the other two is **$ec$**!
    Therefore, the gene order is: **$sc - ec - cv$**.
 4. **Distances, with each single-crossover class assigned to its correct interval:**
-   - Crossover between $sc$ and $ec$ gives the $sc + +$ (168) and $+ \, ec \, cv$ (172) classes: $(340 + 2)/2000 = 17.1\text{ cM}$.
-   - Crossover between $ec$ and $cv$ gives the $+ \, + \, cv$ (18) and $sc \, ec \, +$ (20) classes: $(38 + 2)/2000 = 2.0\text{ cM}$.
-5. **Total map distance:** $17.1 + 2.0 = \mathbf{19.1\text{ cM}}$, with the map reading $sc$ --17.1-- $ec$ --2.0-- $cv$.
+   - Crossover between $sc$ and $ec$ gives the $sc + +$ (168) and $+ \, ec \, cv$ (172) classes: $(340 + 2)/2000 = 17.1\\text{ cM}$.
+   - Crossover between $ec$ and $cv$ gives the $+ \, + \, cv$ (18) and $sc \, ec \, +$ (20) classes: $(38 + 2)/2000 = 2.0\\text{ cM}$.
+5. **Total map distance:** $17.1 + 2.0 = \mathbf{19.1\\text{ cM}}$, with the map reading $sc$ --17.1-- $ec$ --2.0-- $cv$.
 6. **Interference:**
-   - Expected DCO $= 0.171 \times 0.020 \times 2000 = 6.8$.
+   - Expected DCO $= 0.171 \\times 0.020 \\times 2000 = 6.8$.
    - Coefficient of coincidence $= 2/6.8 = 0.29$.
    - Interference $I = 1 - 0.29 = \mathbf{0.71}$: a crossover in the $sc$–$ec$ interval strongly suppresses a second crossover nearby.
 

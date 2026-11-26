@@ -676,14 +676,14 @@ Trap: the power stroke is driven by phosphate release, not ATP binding; ATP bind
 - **Single-Stranded Binding Protein (SSB)**: Cooperative tetramers coat ssDNA, preventing reannealing, secondary structure formation, and nuclease degradation.
 - **Primase (DnaG)**: Synthesizes short RNA primers ($\\\\sim$10–12 nt in E. coli, $\\\\sim$8–10 nt in eukaryotes) on the lagging strand template to provide a free 3'-OH for DNA polymerase.
 - **DNA Pol III Holoenzyme** (E. coli): The replicative polymerase.
-  - **$\\\\alpha$-subunit**: 5'$\\\\to$3' polymerase activity.
-  - **$\\\\epsilon$-subunit**: 3'$\\\\to$5' proofreading exonuclease activity (removes misincorporated bases immediately).
-  - **$\\\\beta$-sliding clamp (processivity factor)**: Ring-shaped dimer that encircles DNA and tethers Pol III to the template, conferring processivity of $\\\\gt 500{,}000$ nt before dissociation.
-  - **$\\\\gamma$-complex (clamp loader)**: ATP-dependent; opens the $\\\\beta$-clamp ring and loads it onto primed template DNA at each new Okazaki fragment.
+  - **$\\alpha$-subunit**: 5'$\\\\to$3' polymerase activity.
+  - **$\\epsilon$-subunit**: 3'$\\\\to$5' proofreading exonuclease activity (removes misincorporated bases immediately).
+  - **$\\beta$-sliding clamp (processivity factor)**: Ring-shaped dimer that encircles DNA and tethers Pol III to the template, conferring processivity of $\\\\gt 500{,}000$ nt before dissociation.
+  - **$\\gamma$-complex (clamp loader)**: ATP-dependent; opens the $\\beta$-clamp ring and loads it onto primed template DNA at each new Okazaki fragment.
 - **Lagging Strand Synthesis**: Okazaki fragments ($\\\\sim$1000–2000 nt in prokaryotes; $\\\\sim$100–200 nt in eukaryotes). After each fragment is completed:
   1. **DNA Pol I** (5'$\\\\to$3' exonuclease + polymerase): Removes the RNA primer via nick translation, replacing it with DNA.
   2. **DNA Ligase**: Seals the remaining nick by forming a phosphodiester bond (uses NAD$^+$ in E. coli; ATP in eukaryotes and T4 phage).
-- **Eukaryotic Replication Fork Differences**: DNA Pol $\\\\alpha$/primase (initiates), Pol $\\\\epsilon$ (leading strand), Pol $\\\\delta$ (lagging strand), PCNA sliding clamp (homotrimer), RFC clamp loader, CMG helicase (Cdc45-MCM2-7-GINS, translocates 3'$\\\\to$5' on the leading strand template).`
+- **Eukaryotic Replication Fork Differences**: DNA Pol $\\alpha$/primase (initiates), Pol $\\epsilon$ (leading strand), Pol $\\delta$ (lagging strand), PCNA sliding clamp (homotrimer), RFC clamp loader, CMG helicase (Cdc45-MCM2-7-GINS, translocates 3'$\\\\to$5' on the leading strand template).`
       },
       {
         heading: "2. DNA Repair: Proofreading, Mismatch Repair, BER & NER",
@@ -694,10 +694,10 @@ Trap: the power stroke is driven by phosphate release, not ATP binding; ATP bind
   - MutS recruits **MutL** (homodimer), forming a ternary sliding complex.
   - **MutH** (endonuclease, E. coli-specific) nicks the unmethylated (newly synthesized) strand at hemimethylated **GATC** sites (Dam methylase methylates adenine).
   - Exonuclease degrades the nicked strand past the mismatch, and Pol III resynthesizes.
-  - Eukaryotes: MSH2/MSH6 (MutS$\\\\alpha$, recognizes single-base mismatches) or MSH2/MSH3 (MutS$\\\\beta$, recognizes IDLs). MLH1/PMS2 (MutL$\\\\alpha$). No MutH homolog; strand discrimination uses pre-existing nicks or PCNA orientation. **Lynch syndrome**: germline mutations in MLH1/MSH2 cause hereditary nonpolyposis colorectal cancer (HNPCC) due to microsatellite instability.
+  - Eukaryotes: MSH2/MSH6 (MutS$\\alpha$, recognizes single-base mismatches) or MSH2/MSH3 (MutS$\\beta$, recognizes IDLs). MLH1/PMS2 (MutL$\\alpha$). No MutH homolog; strand discrimination uses pre-existing nicks or PCNA orientation. **Lynch syndrome**: germline mutations in MLH1/MSH2 cause hereditary nonpolyposis colorectal cancer (HNPCC) due to microsatellite instability.
 - **Base Excision Repair (BER)**: Corrects small, non-helix-distorting base lesions (oxidation: 8-oxoguanine; deamination: uracil from cytosine deamination).
   - **DNA glycosylase** (e.g., Uracil-DNA Glycosylase / UNG) cleaves the N-glycosidic bond, creating an **AP (apurinic/apyrimidinic) site**.
-  - **AP Endonuclease (APE1)** nicks the backbone 5' to the AP site. Repair synthesis by Pol $\\\\beta$ and ligation.
+  - **AP Endonuclease (APE1)** nicks the backbone 5' to the AP site. Repair synthesis by Pol $\\beta$ and ligation.
 - **Nucleotide Excision Repair (NER)**: Corrects bulky, helix-distorting lesions (UV-induced cyclobutane pyrimidine dimers (CPDs), 6-4 photoproducts, benzo[a]pyrene adducts).
   - In E. coli: **UvrABC excinuclease** recognizes distortion, makes dual incisions (8 nt 5' and 4–5 nt 3' of lesion), and helicase UvrD removes the 12–13 nt oligonucleotide. Pol I fills; ligase seals.
   - In humans: **XP (xeroderma pigmentosum)** proteins (XPA–XPG). XPC-RAD23B recognizes distortion; TFIIH (XPB and XPD helicases) unwinds. XPG cuts 3'; ERCC1-XPF cuts 5'. Removes $\\\\sim$24–32 nt segment. Mutations in any XP gene cause extreme UV sensitivity and $\\\\gt$1000-fold elevated skin cancer risk.`
@@ -726,7 +726,7 @@ Trap: the power stroke is driven by phosphate release, not ATP binding; ATP bind
 - **Aminoacyl-tRNA Synthetases**: 20 enzymes, each charging a specific tRNA with its cognate amino acid in a two-step reaction:
   1. Amino acid + ATP $\\\\to$ aminoacyl-AMP + PP$_i$ (adenylation).
   2. Aminoacyl-AMP + tRNA $\\\\to$ aminoacyl-tRNA + AMP.
-  - Class I synthetases: Charge the 2'-OH of terminal adenosine (monomers, Rossmann fold). Class II: Charge the 3'-OH (dimers/tetramers, anti-parallel $\\\\beta$-sheet).
+  - Class I synthetases: Charge the 2'-OH of terminal adenosine (monomers, Rossmann fold). Class II: Charge the 3'-OH (dimers/tetramers, anti-parallel $\\beta$-sheet).
   - Proofreading: Editing site hydrolyzes mischarged amino acids (e.g., IleRS editing site rejects Val-tRNA$^{Ile}$).
 - **Wobble Base Pairing** (Crick, 1966): Position 3 of the codon (5' of the anticodon) tolerates non-Watson-Crick pairing. Inosine (I) at anticodon position 1 can pair with U, C, or A at codon position 3. Explains why fewer than 61 tRNAs suffice for all sense codons.
 - **Initiation (Prokaryotic)**: 30S binds mRNA; 16S rRNA anti-Shine-Dalgarno sequence (3'-AUUCCUCCACUAG-5') base-pairs with the Shine-Dalgarno sequence (5'-AGGAGG-3') upstream of AUG. fMet-tRNA$^{fMet}$ (formylmethionine) is delivered by **IF2-GTP** to the P-site. 50S joins; IF1 and IF3 are ejected.
@@ -759,8 +759,8 @@ Trap: the power stroke is driven by phosphate release, not ATP binding; ATP bind
       {
         heading: "1. Prokaryotic Cell Architecture: Gram-Positive vs. Gram-Negative",
         content: `The bacterial cell envelope is the primary target of antibiotics and the basis of Gram staining:
-- **Peptidoglycan (Murein)**: A rigid mesh polymer of alternating **N-acetylglucosamine (NAG)** and **N-acetylmuramic acid (NAM)** linked by $\\\\beta$-1,4 glycosidic bonds. NAM carries a tetrapeptide side chain (L-Ala–D-Glu–meso-DAP/L-Lys–D-Ala). Cross-links between adjacent glycan chains occur via peptide bonds between the 3rd amino acid of one chain and the 4th (D-Ala) of another (direct in Gram-negatives; via pentaglycine bridge in *Staphylococcus aureus* Gram-positives).
-  - **Lysozyme** cleaves the $\\\\beta$-1,4 bond between NAM and NAG. **Penicillin** inhibits transpeptidase (PBP, penicillin-binding protein), blocking cross-link formation.
+- **Peptidoglycan (Murein)**: A rigid mesh polymer of alternating **N-acetylglucosamine (NAG)** and **N-acetylmuramic acid (NAM)** linked by $\\beta$-1,4 glycosidic bonds. NAM carries a tetrapeptide side chain (L-Ala–D-Glu–meso-DAP/L-Lys–D-Ala). Cross-links between adjacent glycan chains occur via peptide bonds between the 3rd amino acid of one chain and the 4th (D-Ala) of another (direct in Gram-negatives; via pentaglycine bridge in *Staphylococcus aureus* Gram-positives).
+  - **Lysozyme** cleaves the $\\beta$-1,4 bond between NAM and NAG. **Penicillin** inhibits transpeptidase (PBP, penicillin-binding protein), blocking cross-link formation.
 - **Gram-Positive Envelope**:
   - Thick peptidoglycan layer ($\\\\sim$20–80 nm, up to 40 layers).
   - **Teichoic acids** (wall teichoic acid anchored to PG; lipoteichoic acid anchored to cytoplasmic membrane): Negatively charged polymers of glycerol phosphate or ribitol phosphate. Functions: cation homeostasis ($Mg^{2+}$ binding), cell wall rigidity, antigenic determinant.
@@ -771,7 +771,7 @@ Trap: the power stroke is driven by phosphate release, not ATP binding; ATP bind
     - **Lipid A** (endotoxin): Glucosamine disaccharide with 6 fatty acyl chains. Triggers TLR4-mediated innate immune activation; responsible for septic shock (fever, hypotension, DIC).
     - **Core oligosaccharide**: Short chain of sugars including KDO (3-deoxy-D-manno-octulosonic acid).
     - **O-antigen**: Highly variable repeating oligosaccharide units; basis of serotyping.
-  - **Porins**: Trimeric $\\\\beta$-barrel transmembrane proteins forming water-filled channels for passive diffusion of hydrophilic solutes $\\\\lt 600$ Da.
+  - **Porins**: Trimeric $\\beta$-barrel transmembrane proteins forming water-filled channels for passive diffusion of hydrophilic solutes $\\\\lt 600$ Da.
   - **Braun's lipoprotein**: Covalently links OM to PG.
   - Crystal violet washes out during ethanol decolorization; counterstain safranin $\\\\to$ **pink/red** stain.`
       },
@@ -783,9 +783,9 @@ Trap: the power stroke is driven by phosphate release, not ATP binding; ATP bind
   - **Stator units**: **MotA/MotB** complexes (11–13 stator units per motor) anchored to the peptidoglycan. MotA is a proton channel; each proton transit through MotA drives a conformational change that exerts torque on the FliG ring.
   - **Rod**: Rigid shaft passing through the basal body rings.
   - **Hook**: A flexible universal joint ($\\\\sim$55 nm, composed of FlgE subunits).
-  - **Filament**: Long helical structure ($\\\\sim$5–10 $\\\\mu$m) composed of $\\\\sim$20{,}000 flagellin (FliC) subunits. Growth occurs at the distal tip, with FliC monomers exported through the hollow core via a Type III secretion system.
+  - **Filament**: Long helical structure ($\\\\sim$5–10 $\\mu$m) composed of $\\\\sim$20{,}000 flagellin (FliC) subunits. Growth occurs at the distal tip, with FliC monomers exported through the hollow core via a Type III secretion system.
 - **Rotation**: E. coli flagellar motor rotates at $\\\\sim$300 Hz, generating torque of $\\\\sim$4{,}600 pN·nm. Can switch direction:
-  - **Counterclockwise (CCW) rotation** (viewed from outside): Flagella form a coherent left-handed helical bundle $\\\\to$ **run** (smooth, directed swimming at $\\\\sim$25 $\\\\mu$m/s).
+  - **Counterclockwise (CCW) rotation** (viewed from outside): Flagella form a coherent left-handed helical bundle $\\\\to$ **run** (smooth, directed swimming at $\\\\sim$25 $\\mu$m/s).
   - **Clockwise (CW) rotation**: Bundle flies apart $\\\\to$ **tumble** (random reorientation).
 - **Chemotaxis Signal Transduction**:
   - Methyl-accepting chemotaxis proteins (MCPs, e.g., Tar for aspartate, Tsr for serine) form trimers of dimers in polar clusters.
@@ -811,7 +811,7 @@ Trap: the power stroke is driven by phosphate release, not ATP binding; ATP bind
   - **F' (F-prime)**: Imprecise excision of integrated F from Hfr $\\\\to$ F plasmid now carries adjacent chromosomal genes (sexduction). F' can transfer these genes at high frequency to recipients (merodiploids for complementation analysis).
 - **Transduction**:
   - **Generalized Transduction**: During lytic phage replication (e.g., P1 in E. coli), host DNA is fragmented. Occasionally, a phage head accidentally packages a random fragment of host DNA ($\\\\sim$100 kb for P1) instead of phage DNA. The resulting *transducing particle* injects host DNA into a new recipient, where it recombines into the chromosome. Any gene can be transferred; frequency $\\\\sim 10^{-6}$ per phage.
-  - **Specialized Transduction**: Restricted to temperate phages that integrate at specific chromosomal sites (e.g., $\\\\lambda$ phage integrates between *gal* and *bio* operons via integrase-mediated recombination between phage *attP* and bacterial *attB*). Aberrant excision produces a defective phage carrying adjacent chromosomal genes (*$\\\\lambda$dgal* or *$\\\\lambda$dbio*). Only genes flanking the prophage insertion site can be transduced.`
+  - **Specialized Transduction**: Restricted to temperate phages that integrate at specific chromosomal sites (e.g., $\\lambda$ phage integrates between *gal* and *bio* operons via integrase-mediated recombination between phage *attP* and bacterial *attB*). Aberrant excision produces a defective phage carrying adjacent chromosomal genes (*$\\lambda$dgal* or *$\\lambda$dbio*). Only genes flanking the prophage insertion site can be transduced.`
       },
       {
         heading: "4. Virology & Baltimore Classification",
@@ -820,17 +820,17 @@ Trap: the power stroke is driven by phosphate release, not ATP binding; ATP bind
   - **Icosahedral Capsid Geometry**: **Triangulation number (T-number)** = $h^2 + hk + k^2$ (where $h$, $k$ are non-negative integers). Determines the number of capsomers: 60T subunits total, 12 pentamers + $10(T-1)$ hexamers. T=1: 60 subunits (smallest, e.g., satellite tobacco necrosis virus). T=3: 180 subunits (e.g., tomato bushy stunt virus). T=25: adenovirus.
 - **Baltimore Classification (7 Groups)**:
   - **Group I: dsDNA** (e.g., Herpesvirus, Adenovirus, Bacteriophage T4). Replication uses host or viral DNA-dependent DNA polymerase.
-  - **Group II: ssDNA** (e.g., Parvovirus [−sense], $\\\\phi$X174 [+sense], M13). Convert to dsDNA replicative form before transcription.
+  - **Group II: ssDNA** (e.g., Parvovirus [−sense], $\\phi$X174 [+sense], M13). Convert to dsDNA replicative form before transcription.
   - **Group III: dsRNA** (e.g., Reovirus, Rotavirus). Segmented genomes. Viral RNA-dependent RNA polymerase (RdRp) transcribes −sense strand of each segment into +sense mRNA.
   - **Group IV: (+)ssRNA** (e.g., Poliovirus, SARS-CoV-2, TMV). Genome directly serves as mRNA; translated immediately upon entry. Encodes RdRp for replication via (−)ssRNA intermediate.
   - **Group V: (−)ssRNA** (e.g., Influenza, Ebola, Rabies). Genome is anti-sense; must carry RdRp within the virion to transcribe (+)sense mRNA.
   - **Group VI: (+)ssRNA-RT (Retroviruses)** (e.g., HIV, HTLV). Diploid (+)ssRNA genome. **Reverse transcriptase (RT)** synthesizes dsDNA copy (cDNA) in cytoplasm. **Integrase** inserts dsDNA (provirus) into host chromosome. Proviral DNA is transcribed by host RNA Pol II to produce genomic RNA and mRNAs.
   - **Group VII: dsDNA-RT (Pararetroviruses)** (e.g., Hepatitis B, Cauliflower Mosaic Virus). dsDNA genome with RNA intermediate. Host RNA Pol II transcribes a pregenomic RNA (pgRNA); viral RT reverse-transcribes pgRNA back to dsDNA within the capsid.
-- **Bacteriophage $\\\\lambda$ Lysis-Lysogeny Decision**:
+- **Bacteriophage $\\lambda$ Lysis-Lysogeny Decision**:
   - **Lytic pathway**: Activated by **Cro protein** binding to operator $O_R$ (preferentially $O_{R3}$ first), repressing *cI* transcription.
-  - **Lysogenic pathway**: **cI Repressor** (also called $\\\\lambda$ repressor) binds cooperatively to $O_{R1}$ and $O_{R2}$, repressing lytic genes ($cro$, replication, lysis) while positively autoregulating its own transcription from $P_{RM}$.
+  - **Lysogenic pathway**: **cI Repressor** (also called $\\lambda$ repressor) binds cooperatively to $O_{R1}$ and $O_{R2}$, repressing lytic genes ($cro$, replication, lysis) while positively autoregulating its own transcription from $P_{RM}$.
   - **Prophage induction**: DNA damage $\\\\to$ RecA stimulates autocleavage of cI repressor (similar to LexA cleavage in SOS response) $\\\\to$ derepression of lytic genes $\\\\to$ excision and lytic replication.
-- **Prions**: Infectious proteinaceous particles lacking nucleic acid. PrP$^C$ (normal, $\\\\alpha$-helix-rich cellular prion protein, GPI-anchored) undergoes conformational conversion to PrP$^{Sc}$ (pathogenic, $\\\\beta$-sheet-rich, protease-resistant, amyloid-forming). PrP$^{Sc}$ acts as a template, catalyzing autocatalytic conversion of PrP$^C$ $\\\\to$ PrP$^{Sc}$. Causes transmissible spongiform encephalopathies: Creutzfeldt-Jakob disease (CJD), bovine spongiform encephalopathy (BSE / mad cow), scrapie (sheep), kuru (human, ritualistic cannibalism).`
+- **Prions**: Infectious proteinaceous particles lacking nucleic acid. PrP$^C$ (normal, $\\alpha$-helix-rich cellular prion protein, GPI-anchored) undergoes conformational conversion to PrP$^{Sc}$ (pathogenic, $\\beta$-sheet-rich, protease-resistant, amyloid-forming). PrP$^{Sc}$ acts as a template, catalyzing autocatalytic conversion of PrP$^C$ $\\\\to$ PrP$^{Sc}$. Causes transmissible spongiform encephalopathies: Creutzfeldt-Jakob disease (CJD), bovine spongiform encephalopathy (BSE / mad cow), scrapie (sheep), kuru (human, ritualistic cannibalism).`
       }
     ]
   },
@@ -861,16 +861,16 @@ Trap: the power stroke is driven by phosphate release, not ATP binding; ATP bind
   - **Isoschizomers**: Different enzymes recognizing the same sequence (e.g., HpaII and MspI both recognize CCGG but differ in methylation sensitivity). **Neoschizomers** cut at different positions within the same site.
 - **Plasmid Vectors**: Small, circular, autonomously replicating dsDNA.
   - **Origin of replication (ori)**: e.g., pUC ori (high copy, $\\\\sim$500–700 copies/cell), pBR322 ori ($\\\\sim$15–20 copies/cell), pSC101 ori ($\\\\sim$5 copies/cell).
-  - **Selectable marker**: Antibiotic resistance gene (e.g., $amp^R$ / $\\\\beta$-lactamase, $kan^R$ / aminoglycoside phosphotransferase).
-  - **Multiple Cloning Site (MCS / polylinker)**: Clustered unique restriction sites for insert cloning. Located within the **lacZ$\\\\alpha$** gene fragment.
+  - **Selectable marker**: Antibiotic resistance gene (e.g., $amp^R$ / $\\beta$-lactamase, $kan^R$ / aminoglycoside phosphotransferase).
+  - **Multiple Cloning Site (MCS / polylinker)**: Clustered unique restriction sites for insert cloning. Located within the **lacZ$\\alpha$** gene fragment.
   - **Blue-White Screening (Insertional Inactivation)**:
-    - Vector carries lacZ$\\\\alpha$ fragment; host strain carries lacZ$\\\\Delta$M15 deletion. Together they reconstitute functional $\\\\beta$-galactosidase via **$\\\\alpha$-complementation**.
-    - Insertion of foreign DNA into the MCS disrupts lacZ$\\\\alpha$ $\\\\to$ no $\\\\alpha$-complementation $\\\\to$ no functional $\\\\beta$-galactosidase.
-    - On plates with IPTG (inducer) and **X-gal** (chromogenic substrate: 5-bromo-4-chloro-3-indolyl-$\\\\beta$-D-galactopyranoside): $\\\\beta$-galactosidase cleaves X-gal $\\\\to$ blue precipitate. Recombinants (insert present) form **white colonies**; non-recombinants (self-ligated vector) form **blue colonies**.
+    - Vector carries lacZ$\\alpha$ fragment; host strain carries lacZ$\\Delta$M15 deletion. Together they reconstitute functional $\\beta$-galactosidase via **$\\alpha$-complementation**.
+    - Insertion of foreign DNA into the MCS disrupts lacZ$\\alpha$ $\\\\to$ no $\\alpha$-complementation $\\\\to$ no functional $\\beta$-galactosidase.
+    - On plates with IPTG (inducer) and **X-gal** (chromogenic substrate: 5-bromo-4-chloro-3-indolyl-$\\beta$-D-galactopyranoside): $\\beta$-galactosidase cleaves X-gal $\\\\to$ blue precipitate. Recombinants (insert present) form **white colonies**; non-recombinants (self-ligated vector) form **blue colonies**.
 - **cDNA vs. Genomic Libraries**:
   - **cDNA library**: Reverse transcriptase converts mRNA $\\\\to$ cDNA (represents only expressed genes in that tissue/condition; lacks introns, promoters, enhancers). Requires oligo(dT) priming from poly(A) tail or random hexamer priming.
   - **Genomic library**: Complete genome fragmented by partial restriction digest or mechanical shearing. Cloned into high-capacity vectors (BACs: $\\\\sim$100–300 kb inserts; YACs: $\\\\sim$200–2000 kb inserts; cosmids: $\\\\sim$35–45 kb; fosmids: $\\\\sim$40 kb).
-  - **Library coverage formula**: $N = \\\\frac{\\\\ln(1-P)}{\\\\ln(1-f)}$ where $P$ = probability of any given sequence being represented, $f$ = fractional proportion of genome per clone.`
+  - **Library coverage formula**: $N = \\frac{\\\\ln(1-P)}{\\\\ln(1-f)}$ where $P$ = probability of any given sequence being represented, $f$ = fractional proportion of genome per clone.`
       },
       {
         heading: "2. PCR & Quantitative PCR",
@@ -880,18 +880,18 @@ Trap: the power stroke is driven by phosphate release, not ATP binding; ATP bind
   1. **Denaturation**: 94–98°C, $\\\\sim$30 s. Melts dsDNA template into ssDNA.
   2. **Annealing**: 50–65°C (depends on primer $T_m$), $\\\\sim$30 s. Primers hybridize to complementary template strands.
   3. **Extension**: 72°C, $\\\\sim$1 min/kb. Taq extends primers in the 5'$\\\\to$3' direction, incorporating dNTPs.
-  - After $n$ cycles: Theoretical yield $= 2^n$ copies (e.g., 30 cycles $= 2^{30} \\\\approx 10^9$ copies). In practice, amplification efficiency $E$ ranges from 0.7 to 1.0 per cycle; actual yield $= (1+E)^n$.
+  - After $n$ cycles: Theoretical yield $= 2^n$ copies (e.g., 30 cycles $= 2^{30} \\approx 10^9$ copies). In practice, amplification efficiency $E$ ranges from 0.7 to 1.0 per cycle; actual yield $= (1+E)^n$.
 - **Primer Design Rules**:
   - Length: 18–25 nt. $T_m$: 55–65°C. GC content: 40–60%. Avoid self-complementarity, hairpins, primer-dimers.
-  - **Wallace Rule** (short oligos $\\\\leq$ 20 nt): $T_m = 4(G+C) + 2(A+T)$ °C.
-  - **Nearest-Neighbor Method** (more accurate): $T_m = \\\\frac{\\\\Delta H}{\\\\Delta S + R \\\\ln(C_T/4)} - 273.15$ where $\\\\Delta H$ and $\\\\Delta S$ are enthalpy and entropy sums of nearest-neighbor dinucleotide stacking parameters, $R = 1.987$ cal/(mol·K), and $C_T$ = total strand concentration.
+  - **Wallace Rule** (short oligos $\\leq$ 20 nt): $T_m = 4(G+C) + 2(A+T)$ °C.
+  - **Nearest-Neighbor Method** (more accurate): $T_m = \\frac{\\Delta H}{\\Delta S + R \\\\ln(C_T/4)} - 273.15$ where $\\Delta H$ and $\\Delta S$ are enthalpy and entropy sums of nearest-neighbor dinucleotide stacking parameters, $R = 1.987$ cal/(mol·K), and $C_T$ = total strand concentration.
 - **RT-qPCR (Reverse Transcription Quantitative PCR)**:
   - Reverse transcriptase converts mRNA to cDNA; followed by real-time quantitative PCR.
   - **Detection chemistries**:
     - **SYBR Green**: Intercalating fluorescent dye that binds dsDNA nonspecifically. Cheap but detects all dsDNA (including primer-dimers and nonspecific products). Melt curve analysis required for specificity validation.
     - **TaqMan (Hydrolysis Probe)**: Sequence-specific probe with 5' fluorescent reporter and 3' quencher. During extension, Taq's 5'$\\\\to$3' exonuclease activity cleaves the probe, separating reporter from quencher $\\\\to$ fluorescence signal. Highly specific.
   - **$C_t$ (Threshold Cycle)**: Cycle number at which fluorescence exceeds background threshold. Lower $C_t$ = more starting template.
-  - **$\\\\Delta\\\\Delta C_t$ Method** for relative quantification: Fold change $= 2^{-\\\\Delta\\\\Delta C_t}$, where $\\\\Delta\\\\Delta C_t = (C_{t,\\\\text{target}} - C_{t,\\\\text{ref}})_{\\\\text{treated}} - (C_{t,\\\\text{target}} - C_{t,\\\\text{ref}})_{\\\\text{control}}$. Assumes amplification efficiency $= 100\\\\%$ for both target and reference genes.`
+  - **$\\Delta\\Delta C_t$ Method** for relative quantification: Fold change $= 2^{-\\Delta\\Delta C_t}$, where $\\Delta\\Delta C_t = (C_{t,\\\\text{target}} - C_{t,\\\\text{ref}})_{\\\\text{treated}} - (C_{t,\\\\text{target}} - C_{t,\\\\text{ref}})_{\\\\text{control}}$. Assumes amplification efficiency $= 100\\\\%$ for both target and reference genes.`
       },
       {
         heading: "3. Electrophoresis & Blotting Techniques",
@@ -899,12 +899,12 @@ Trap: the power stroke is driven by phosphate release, not ATP binding; ATP bind
 - **Agarose Gel Electrophoresis (DNA/RNA)**:
   - Agarose concentration: 0.5–2.0% (lower % resolves larger fragments: 0.5% for 1–30 kb; 2% for 100 bp–2 kb).
   - DNA is uniformly negatively charged (phosphodiester backbone) $\\\\to$ migrates toward the anode (+). Migration rate is inversely proportional to $\\\\log_{10}$(molecular weight) for linear dsDNA.
-  - **Ethidium bromide (EtBr)**: Classic intercalating fluorescent stain. Inserts between stacked base pairs, fluoresces under UV ($\\\\lambda_{ex}$ = 302 nm, $\\\\lambda_{em}$ = 590 nm). Being replaced by safer alternatives (SYBR Safe, GelRed).
+  - **Ethidium bromide (EtBr)**: Classic intercalating fluorescent stain. Inserts between stacked base pairs, fluoresces under UV ($\\lambda_{ex}$ = 302 nm, $\\lambda_{em}$ = 590 nm). Being replaced by safer alternatives (SYBR Safe, GelRed).
   - **Supercoiled plasmid migration**: On standard agarose gels, supercoiled (Form I) migrates fastest (compact), relaxed circular (Form II, nicked) migrates slowest, and linearized (Form III) migrates at a rate proportional to its size.
   - **Pulsed-Field Gel Electrophoresis (PFGE)**: Alternating electric field directions. Resolves very large DNA molecules (50 kb – 10 Mb) that cannot migrate through standard agarose (too large to reptate through pores at a constant field angle). Used for bacterial genome fingerprinting (epidemiological typing).
 - **SDS-PAGE (Proteins)**:
   - Sodium dodecyl sulfate (SDS) denatures proteins and coats them uniformly with negative charge ($\\\\sim$1.4 g SDS/g protein), masking intrinsic charge differences. Migration depends solely on molecular weight.
-  - Polyacrylamide percentage: 7.5–15% (higher % for smaller proteins). Stained with Coomassie Brilliant Blue (detection limit $\\\\sim$0.1 $\\\\mu$g) or silver stain (detection limit $\\\\sim$1 ng).
+  - Polyacrylamide percentage: 7.5–15% (higher % for smaller proteins). Stained with Coomassie Brilliant Blue (detection limit $\\\\sim$0.1 $\\mu$g) or silver stain (detection limit $\\\\sim$1 ng).
   - **Native PAGE**: No SDS; proteins migrate based on charge, size, and shape (retains native conformation and enzyme activity).
 - **Blotting Techniques**:
   - **Southern Blot** (Edwin Southern, 1975): DNA separated by gel electrophoresis $\\\\to$ transferred to nitrocellulose/nylon membrane $\\\\to$ hybridized with labeled DNA probe (radioactive $^{32}$P or non-radioactive DIG/biotin). Detects specific DNA sequences, restriction fragment length polymorphisms (RFLPs), transgene integration.
@@ -1087,7 +1087,7 @@ Trap: correlation is not causation, but more subtly, a significant interaction i
     sections: [
       {
         heading: "1. Epistasis Topologies & Modified 9:3:3:1 Ratios",
-        content: `Epistasis occurs when the phenotypic expression of one gene locus masks or alters the phenotypic expression of an independent unlinked locus. In an $AaBb \times AaBb$ dihybrid cross:
+        content: `Epistasis occurs when the phenotypic expression of one gene locus masks or alters the phenotypic expression of an independent unlinked locus. In an $AaBb \\times AaBb$ dihybrid cross:
 - **Standard Dihybrid Ratio**: $9\,(A\_B\_) : 3\,(A\_bb) : 3\,(aaB\_) : 1\,(aabb)$.
 - **Recessive Epistasis (9:3:4)**: Homozygous recessive genotype $aa$ masks the phenotypic expression of alleles at locus $B$.
   - *Example*: Labrador coat color. Genotype $ee$ (recessive locus for pigment deposition) produces yellow labs regardless of whether the pigment locus is black ($B\_$) or brown ($bb$).
@@ -1107,7 +1107,7 @@ Trap: correlation is not causation, but more subtly, a significant interaction i
   - *Incomplete Penetrance*: Polydactyly may exhibit $70\%$ penetrance (an individual carrying the dominant allele has a $30\%$ chance of displaying completely normal digits).
 - **Expressivity**: The degree or severity with which a particular genotype is expressed phenotypically in a single individual (e.g., variable expression of neurofibromatosis type 1 café-au-lait spots and neurofibromas).
 - **Recessive Lethal Alleles**: Alleles essential for survival that cause embryonic death when homozygous.
-  - *Classic Example*: Yellow coat color in mice (*Agouti* locus, $A^y$). Crossing two yellow mice ($A^y A \times A^y A$) yields a **2 yellow : 1 agouti** phenotypic ratio among surviving offspring because homozygous $A^y A^y$ embryos die *in utero*.`
+  - *Classic Example*: Yellow coat color in mice (*Agouti* locus, $A^y$). Crossing two yellow mice ($A^y A \\times A^y A$) yields a **2 yellow : 1 agouti** phenotypic ratio among surviving offspring because homozygous $A^y A^y$ embryos die *in utero*.`
       },
       {
         heading: "3. Dosage Compensation, XIST & Genomic Imprinting",
@@ -1128,7 +1128,7 @@ Trap: correlation is not causation, but more subtly, a significant interaction i
         heading: "4. Quantitative Genetics & Heritability Partitioning",
         content: `Polygenic traits exhibiting continuous variation across a population:
 - **Phenotypic Variance ($V_P$) Decomposition**:
-  $$V_P = V_G + V_E + V_{G \times E}$$
+  $$V_P = V_G + V_E + V_{G \\times E}$$
   Genetic variance ($V_G$) decomposes into:
   $$V_G = V_A + V_D + V_I$$
   - $V_A$: Additive genetic variance (variance due to additive effect of individual alleles; directly responds to natural or artificial selection).
@@ -1139,9 +1139,9 @@ Trap: correlation is not causation, but more subtly, a significant interaction i
   - **Narrow-Sense Heritability ($h^2 = V_A / V_P$)**: Proportion of phenotypic variance attributable *strictly to additive genetic variance*. Governs resemblance between parents and offspring.
 - **The Breeder's Equation**:
   $$R = h^2 S$$
-  - $S$: **Selection Differential** ($S = \bar{x}_{\text{parents}} - \bar{x}_{\text{population}}$).
-  - $R$: **Response to Selection** ($R = \bar{x}_{\text{offspring}} - \bar{x}_{\text{population}}$).
-  - If narrow-sense heritability $h^2 = 0.60$ and parents selected for body mass average $10\text{ g}$ heavier than the population mean ($S = 10$), the expected gain in offspring is $R = 0.60 \times 10 = 6\text{ g}$!`
+  - $S$: **Selection Differential** ($S = \\bar{x}_{\\text{parents}} - \\bar{x}_{\\text{population}}$).
+  - $R$: **Response to Selection** ($R = \\bar{x}_{\\text{offspring}} - \\bar{x}_{\\text{population}}$).
+  - If narrow-sense heritability $h^2 = 0.60$ and parents selected for body mass average $10\\text{ g}$ heavier than the population mean ($S = 10$), the expected gain in offspring is $R = 0.60 \\times 10 = 6\\text{ g}$!`
       }
     ]
   },
@@ -1292,25 +1292,25 @@ $$Z = \\log_{10} \\left( \\frac{L(\\theta)}{L(0.5)} \\right) = \\log_{10} \\left
         heading: "1. Prokaryotic Operon Logic: Lac & Trp Systems",
         content: `Prokaryotes organize functionally related genes into polycistronic transcription units (**operons**):
 - **The *Lac* Operon (Inducible Catabolic System)**:
-  - Structural genes: *lacZ* ($\beta$-galactosidase), *lacY* (lactose permease), *lacA* (thiogalactoside transacetylase).
+  - Structural genes: *lacZ* ($\\beta$-galactosidase), *lacY* (lactose permease), *lacA* (thiogalactoside transacetylase).
   - **Negative Control**: In the absence of lactose, homotetrameric **LacI repressor** binds tightly to the **operator ($lacO$)**, physically blocking RNA polymerase promoter clearance.
-  - **Induction**: $\beta$-galactosidase catalyzes a side reaction converting lactose into **allolactose** (the physiological inducer). Allolactose binds LacI $\to$ allosteric conformational shift $\to$ LacI dissociates from operator.
+  - **Induction**: $\\beta$-galactosidase catalyzes a side reaction converting lactose into **allolactose** (the physiological inducer). Allolactose binds LacI $\to$ allosteric conformational shift $\to$ LacI dissociates from operator.
   - **Positive Control & Catabolite Repression**:
     - High Glucose: Low cAMP. Inactive **Catabolite Activator Protein (CAP / CRP)** cannot bind. Only basal transcription occurs even if lactose is present.
-    - Low Glucose: Adenylyl cyclase is active $\to \\uparrow cAMP \to$ **cAMP-CAP complex** binds the CAP site upstream of promoter, bending DNA $90^\circ$ and recruiting RNA polymerase holoenzyme.
+    - Low Glucose: Adenylyl cyclase is active $\to \\uparrow cAMP \to$ **cAMP-CAP complex** binds the CAP site upstream of promoter, bending DNA $90^\\circ$ and recruiting RNA polymerase holoenzyme.
     - Full transcription requires **BOTH**: Presence of lactose (repressor off) AND Absence of glucose (cAMP-CAP bound).
 - **The *Trp* Operon (Repressible Anabolic System & Attenuation)**:
   - Repressor: TrpR is an aporepressor. High **tryptophan** acts as a **corepressor**, binding TrpR to form an active repressor that binds the operator.
   - **Attenuation Mechanics**:
     - The leader region (*trpL*) contains 4 RNA segments that can form alternative secondary structures: **1-2 hairpin** (transcription pause), **2-3 hairpin** (anti-terminator), or **3-4 hairpin** (Rho-independent intrinsic terminator followed by poly-U tract).
     - *TrpL* contains two adjacent Trp codons (UGG UGG).
-    - *Low Tryptophan*: Ribosome translating *trpL* stalls at Trp codons due to lack of $Trp\text{-tRNA}^{\text{Trp}}$. Ribosome covers segment 1; segment 2 pairs with segment 3 (**2-3 anti-terminator hairpin**). The terminator cannot form $\to$ RNA polymerase transcribes the structural genes.
+    - *Low Tryptophan*: Ribosome translating *trpL* stalls at Trp codons due to lack of $Trp\\text{-tRNA}^{\\text{Trp}}$. Ribosome covers segment 1; segment 2 pairs with segment 3 (**2-3 anti-terminator hairpin**). The terminator cannot form $\to$ RNA polymerase transcribes the structural genes.
     - *High Tryptophan*: Ribosome translates through Trp codons without stalling to stop codon, covering segments 1 and 2. This frees segment 3 to pair with segment 4 (**3-4 terminator hairpin**) $\to$ RNA polymerase dissociates *before* transcribing structural genes!`
       },
       {
         heading: "2. Eukaryotic Chromatin Dynamics & Epigenetic Codes",
         content: `Chromatin architecture dictates transcriptional accessibility:
-- **Nucleosome Structure**: Octamer of two copies each of core histones ($H2A, H2B, H3, H4$) wrapped by $147\text{ bp}$ of DNA in 1.65 left-handed superhelical turns. Histone $H1$ acts as linker histone.
+- **Nucleosome Structure**: Octamer of two copies each of core histones ($H2A, H2B, H3, H4$) wrapped by $147\\text{ bp}$ of DNA in 1.65 left-handed superhelical turns. Histone $H1$ acts as linker histone.
 - **Histone Post-Translational Modifications (The Histone Code)**:
   - **Acetylation**: Catalyzed by **Histone Acetyltransferases (HATs)** on conserved lysine residues (e.g., H3K9ac, H3K14ac). Neutralizes the positive charge of lysine, eliminating electrostatic attraction to the negatively charged DNA phosphate backbone $\to$ opens chromatin (**euchromatin**) and recruits bromodomain-containing transcription factors. Reversed by **Histone Deacetylases (HDACs)**.
   - **Methylation**: Catalyzed by Histone Methyltransferases (HMTs) on lysine and arginine residues. Does not alter electrical charge!
@@ -1326,8 +1326,8 @@ $$Z = \\log_{10} \\left( \\frac{L(\\theta)}{L(0.5)} \\right) = \\log_{10} \\left
       {
         heading: "3. Eukaryotic Transcriptional Complex Assembly",
         content: `Combinatorial control and remote regulatory elements:
-- **Promoter Architecture**: Core promoter contains **TATA Box** (at $-30\text{ bp}$), Initiator (Inr), and Downstream Promoter Element (DPE).
-  - **TFIID** (containing **TBP - TATA-Binding Protein**) binds the minor groove of the TATA box, sharply bending DNA by $80^\circ$.
+- **Promoter Architecture**: Core promoter contains **TATA Box** (at $-30\\text{ bp}$), Initiator (Inr), and Downstream Promoter Element (DPE).
+  - **TFIID** (containing **TBP - TATA-Binding Protein**) binds the minor groove of the TATA box, sharply bending DNA by $80^\\circ$.
   - Sequential recruitment of TFIIA, TFIIB, TFIIF, RNA Polymerase II, TFIIE, and **TFIIH**.
   - **TFIIH Functions**: Contains a DNA helicase to melt the promoter into an open bubble, and a cyclin-dependent kinase (**CDK7**) that phosphorylates the C-Terminal Domain (CTD) of RNA Pol II at **Ser5**, triggering promoter clearance.
 - **Enhancers, Silencers & The Mediator Complex**:
@@ -1341,7 +1341,7 @@ $$Z = \\log_{10} \\left( \\frac{L(\\theta)}{L(0.5)} \\right) = \\log_{10} \\left
         content: `Fine-tuning gene expression post-transcriptionally:
 - **microRNA (miRNA) Biogenesis & Silencing**:
   1. Primary microRNAs (**pri-miRNAs**) with stem-loop hairpins transcribed by RNA Pol II.
-  2. Nuclear processing by microprocessor complex (**Drosha** RNase III and **Pasha / DGCR8**) cleaves flanking single-stranded ends, liberating a $\sim 70\text{-nt}$ precursor miRNA (**pre-miRNA**).
+  2. Nuclear processing by microprocessor complex (**Drosha** RNase III and **Pasha / DGCR8**) cleaves flanking single-stranded ends, liberating a $\sim 70\\text{-nt}$ precursor miRNA (**pre-miRNA**).
   3. Exported to cytoplasm by **Exportin-5** and Ran-GTP.
   4. Cytoplasmic cleavage by **Dicer** RNase III removes hairpin loop, producing a 21-25 nucleotide double-stranded miRNA duplex.
   5. The guide strand is loaded into the **RNA-Induced Silencing Complex (RISC)** containing an **Argonaute protein (Ago2)**; passenger strand is degraded.
@@ -1530,18 +1530,18 @@ Trap: hybrid sterility and hybrid inviability are different barriers, and F1 ver
 - **Tracheids**: Found in all vascular plants (only conduit type in gymnosperms). Spindle-shaped cells with overlapping tapered ends and bordered pits. Resistant to freeze-thaw-induced cavitation but exhibit high hydraulic resistance.
 - **Vessel Elements**: Found predominantly in angiosperms and gnetophytes. Shorter, wider cells stacked end-to-end to form continuous hollow pipes (**vessels**). End walls feature open **perforation plates** (simple or scalariform).
 - **Hagen-Poiseuille Law**: Volume flow rate through a cylindrical pipe:
-$$Q = \frac{\pi r^4 \Delta P}{8 \eta L}$$
+$$Q = \\frac{\\pi r^4 \\Delta P}{8 \\eta L}$$
 Because flow scales with the fourth power of radius ($r^4$), doubling conduit radius increases conductance by **16-fold**! However, wider vessels are exponentially more susceptible to acoustic cavitation and runaway embolism under negative tension ($P_{50}$).`
       },
       {
         heading: "3. Phloem Translocation & Münch Pressure-Flow",
         content: `Transport of photoassimilates (sucrose, amino acids, signaling molecules) occurs within the phloem:
 - **Sieve Element-Companion Cell Complex (SE-CC)**: Sieve tube elements lose their nucleus, vacuole, and ribosomes at maturity, retaining modified plastids and mitochondria. Connected by sieve plates with large callose-lined sieve pores. Metabolically sustained by adjacent **companion cells** via branched plasmodesmata.
-- **P-Protein (Phloem Protein / Forisomes)**: In angiosperms, injury causes rapid surging of P-protein bodies and callose synthesis ($\beta$-1,3-glucan) to plug sieve plate pores and prevent sap loss.
+- **P-Protein (Phloem Protein / Forisomes)**: In angiosperms, injury causes rapid surging of P-protein bodies and callose synthesis ($\\beta$-1,3-glucan) to plug sieve plate pores and prevent sap loss.
 - **Phloem Loading (Source)**:
-  - *Apoplastic Loading*: Sucrose exits mesophyll into apoplast via SWEET uniporters, then actively pumped into SE-CC via **$\text{SUT1/SUC2}$ ($H^+/\text{sucrose}$ symporters)** driven by plasma membrane $H^+\text{-ATPases}$.
+  - *Apoplastic Loading*: Sucrose exits mesophyll into apoplast via SWEET uniporters, then actively pumped into SE-CC via **$\\text{SUT1/SUC2}$ ($H^+/\\text{sucrose}$ symporters)** driven by plasma membrane $H^+\\text{-ATPases}$.
   - *Symplastic Polymer Trapping*: Sucrose diffuses through intermediary cells where galactinol synthase and raffinose synthase convert it into raffinose and stachyose (larger oligosaccharides unable to diffuse backward through narrow plasmodesmata).
-- **Münch Pressure-Flow Hypothesis**: High sucrose concentration at source lowers solute potential ($\Psi_s$), drawing water in from adjacent xylem $\to$ generates high hydrostatic turgor pressure ($\Psi_p$). At sink, sucrose is unloaded and consumed/stored, water exits into xylem, lowering turgor pressure. This **hydrostatic pressure gradient ($\Delta \Psi_p$)** drives bulk mass flow from source to sink.`
+- **Münch Pressure-Flow Hypothesis**: High sucrose concentration at source lowers solute potential ($\\Psi_s$), drawing water in from adjacent xylem $\to$ generates high hydrostatic turgor pressure ($\\Psi_p$). At sink, sucrose is unloaded and consumed/stored, water exits into xylem, lowering turgor pressure. This **hydrostatic pressure gradient ($\\Delta \\Psi_p$)** drives bulk mass flow from source to sink.`
       },
       {
         heading: "4. Secondary Growth: Vascular & Cork Cambia",
@@ -1581,7 +1581,7 @@ Because flow scales with the fourth power of radius ($r^4$), doubling conduit ra
 $$\\Psi_w = \\Psi_s + \\Psi_p + \\Psi_g$$
 - $\\Psi_s$ (solute/osmotic potential): Zero for pure water, negative in solution.
 - $\\Psi_p$ (hydrostatic pressure potential): Positive in turgid cells (turgor pressure); **negative (tension)** inside xylem conduits under transpiration!
-- $\\Psi_g$ (gravitational potential): $+0.01\\text{ MPa per meter}$ of elevation ($0.1\\text{ bar/m}$). For a 100-meter redwood (*Sequoia sempervirens*), $\\Psi_g = +1.0\\text{ MPa}$, setting a physical biophysical limit on maximum tree height ($\sim 122-130\\text{ m}$).
+- $\\Psi_g$ (gravitational potential): $+0.01\\text{ MPa per meter}$ of elevation ($0.1\\text{ bar m}^{-1}$). For a 100-meter redwood (*Sequoia sempervirens*), $\\Psi_g = +1.0\\text{ MPa}$, setting a physical biophysical limit on maximum tree height ($\sim 122-130\\text{ m}$).
 - **The Scholander Pressure Bomb**:
   - A excised leafy twig is sealed in a steel chamber with the cut petiole exposed to atmosphere.
   - Pressurized nitrogen gas is applied to the chamber until the xylem sap meniscus just returns to the cut surface.
@@ -1824,7 +1824,7 @@ Trap: salt stress is not just "too much Na$^+$"; the osmotic component reduces g
         heading: "2. Chemiosmotic Polar Auxin Transport (PAT)",
         content: `Unidirectional polar transport of auxin (basipetal in shoots, acropetal in root stele, basipetal in root epidermis):
 - The cell wall apoplast is maintained at **acidic pH $\\approx 5.5$** by plasma membrane $H^+\\text{-ATPases}$.
-- At pH 5.5, $\\approx 17\\%$ of indole-3-acetic acid ($pK_a = 4.75$) is protonated (uncharged $\\text{IAAH}$) and diffuses passively across the plasma membrane. The anionic form ($\text{IAA}^-$) is imported via **AUX1 / LAX** $H^+\\text{-symporters}$.
+- At pH 5.5, $\\approx 17\\%$ of indole-3-acetic acid ($pK_a = 4.75$) is protonated (uncharged $\\text{IAAH}$) and diffuses passively across the plasma membrane. The anionic form ($\\text{IAA}^-$) is imported via **AUX1 / LAX** $H^+\\text{-symporters}$.
 - Inside the neutral cytosol (**pH $\\approx 7.0$**), virtually all auxin dissociates into anionic $\\text{IAA}^-$ ($> 99.4\\%$).
 - Lipophilic $\\text{IAA}^-$ cannot cross the hydrophobic lipid bilayer on its own and is trapped inside the cell (*ion trapping*).
 - Efflux occurs exclusively through asymmetric, localized **PIN-FORMED (PIN)** efflux carrier proteins located at the basal (bottom) plasma membrane of stele cells.
@@ -2239,9 +2239,9 @@ $$J_v = K_f [ (P_c - P_i) - \\sigma (\\pi_c - \\pi_i) ]$$
 - $K_f$: Capillary hydraulic filtration coefficient (high in fenestrated renal glomeruli, low in blood-brain barrier).
 - $\\sigma$: Osmotic reflection coefficient for plasma proteins ($0 \\le \\sigma \\le 1$; $\\sigma \\approx 1.0$ in continuous capillaries).
 - $P_c$: Capillary hydrostatic pressure ($\sim 35\\text{ mmHg}$ at arteriolar end, dropping to $15\\text{ mmHg}$ at venular end).
-- $P_i$: Interstitial hydrostatic pressure ($\approx -2$ to $0\\text{ mmHg}$).
-- $\\pi_c$: Capillary plasma oncotic pressure ($\approx 25-28\\text{ mmHg}$, primarily albumin).
-- $\\pi_i$: Interstitial fluid oncotic pressure ($\approx 1-3\\text{ mmHg}$).
+- $P_i$: Interstitial hydrostatic pressure ($\\approx -2$ to $0\\text{ mmHg}$).
+- $\\pi_c$: Capillary plasma oncotic pressure ($\\approx 25-28\\text{ mmHg}$, primarily albumin).
+- $\\pi_i$: Interstitial fluid oncotic pressure ($\\approx 1-3\\text{ mmHg}$).
 - **Net filtration** occurs at arteriolar end ($+10\\text{ mmHg}$); **net reabsorption** occurs at venular end ($-8\\text{ mmHg}$). Slight excess fluid filtered ($2-4\\text{ L/day}$) is returned to circulation via the **lymphatic system**!`
       }
     ]
@@ -2270,8 +2270,8 @@ $$J_v = K_f [ (P_c - P_i) - \\sigma (\\pi_c - \\pi_i) ]$$
         content: `Respiratory structures across animal phyla optimize the parameters of Fick's Law:
 - **Fish Gill Countercurrent Exchange**:
   - Water flows across secondary lamellae in the exact *opposite direction* to capillary blood flow.
-  - A partial pressure gradient ($\Delta P_{\text{O}_2}$) is maintained along the *entire length* of the capillary bed.
-  - Allows blood $P_{\text{O}_2}$ to reach up to **$80-90\%$ of the oxygen saturation** of incoming water!
+  - A partial pressure gradient ($\\Delta P_{\\text{O}_2}$) is maintained along the *entire length* of the capillary bed.
+  - Allows blood $P_{\\text{O}_2}$ to reach up to **$80-90\%$ of the oxygen saturation** of incoming water!
   - Concurrent flow would reach equilibrium at only $50\%$, wasting the oxygen content of the water.
 - **Avian Crosscurrent & Unidirectional Flow**:
   - Birds possess rigid, non-collapsible lungs with continuous parallel tubules called **parabronchi** connected to anterior and posterior **air sacs**.
@@ -2280,13 +2280,13 @@ $$J_v = K_f [ (P_c - P_i) - \\sigma (\\pi_c - \\pi_i) ]$$
     - *Exhalation 1*: Air passes through parabronchi where gas exchange occurs.
     - *Inhalation 2*: Deoxygenated air enters anterior air sacs.
     - *Exhalation 2*: Air exits via trachea.
-  - Flow across parabronchial capillaries is **crosscurrent**: blood $P_{\text{O}_2}$ leaving the parabronchus can exceed the $P_{\text{O}_2}$ of exhaled gas, enabling flight at extreme altitudes (e.g., Bar-headed geese over the Himalayas at $> 8,000\text{ m}$).`
+  - Flow across parabronchial capillaries is **crosscurrent**: blood $P_{\\text{O}_2}$ leaving the parabronchus can exceed the $P_{\\text{O}_2}$ of exhaled gas, enabling flight at extreme altitudes (e.g., Bar-headed geese over the Himalayas at $> 8,000\\text{ m}$).`
       },
       {
         heading: "2. Mammalian Pulmonary Mechanics & Surfactant",
         content: `Inspiration and expiration dynamics governed by pressure gradients:
-- **Pleural Pressures**: At Functional Residual Capacity (FRC), inward elastic recoil of the lung matches outward elastic recoil of the chest wall, creating a negative intrapleural pressure ($-5\text{ cm } H_2O$).
-- **Inspiration**: Contraction of diaphragm and external intercostals expands thoracic cavity $\to$ intrapleural pressure drops to $-8\text{ cm } H_2O \to$ alveolar pressure drops below atmospheric ($-1\text{ cm } H_2O$) $\to$ air flows in.
+- **Pleural Pressures**: At Functional Residual Capacity (FRC), inward elastic recoil of the lung matches outward elastic recoil of the chest wall, creating a negative intrapleural pressure ($-5\\text{ cm } H_2O$).
+- **Inspiration**: Contraction of diaphragm and external intercostals expands thoracic cavity $\to$ intrapleural pressure drops to $-8\\text{ cm } H_2O \to$ alveolar pressure drops below atmospheric ($-1\\text{ cm } H_2O$) $\to$ air flows in.
 - **Compliance & Laplace's Law**:
   $$P = \frac{2T}{r}$$
   - Without surfactant, smaller alveoli (smaller radius $r$) would generate much higher internal collapsing pressures than larger alveoli, causing air to empty into larger alveoli and collapsing smaller ones (**atelectasis**).
@@ -2295,18 +2295,18 @@ $$J_v = K_f [ (P_c - P_i) - \\sigma (\\pi_c - \\pi_i) ]$$
       },
       {
         heading: "3. Oxygen-Hemoglobin Dissociation & The Bohr Effect",
-        content: `Hemoglobin ($HbA$, $\alpha_2\beta_2$) cooperatively binds up to four $O_2$ molecules, generating a sigmoidal binding curve:
-- **$P_{50}$ Parameter**: The partial pressure of oxygen at which hemoglobin is $50\%$ saturated (normal arterial $P_{50} \approx 26.6\text{ mmHg}$).
+        content: `Hemoglobin ($HbA$, $\\alpha_2\\beta_2$) cooperatively binds up to four $O_2$ molecules, generating a sigmoidal binding curve:
+- **$P_{50}$ Parameter**: The partial pressure of oxygen at which hemoglobin is $50\%$ saturated (normal arterial $P_{50} \\approx 26.6\\text{ mmHg}$).
 - **Right Shift (Decreased $O_2$ Affinity / Enhanced Tissue Delivery)**:
   - Higher $P_{50}$: Hemoglobin releases oxygen more readily to metabolically active tissues.
   - Triggers (**CADET face right**):
-    1. **$\\uparrow \text{CO}_2$** (hypercapnia).
-    2. **$\\uparrow \text{Acidity / } [\text{H}^+]$** (decreased pH) = **The Bohr Effect**. $H^+$ protonates histidine residues (His146 on $\beta$-chains), forming salt bridges that stabilize the low-affinity Tense (T) state.
-    3. **$\\uparrow 2,3\text{-Bisphosphoglycerate (2,3-BPG)}$**: Synthesized via the Rapoport-Luebering shunt in erythrocytes. Binds the central cavity between $\beta$-subunits with positively charged residues (Lys82, His2, His143).
-    4. **$\\uparrow \text{Exercise / } \\uparrow \text{Temperature}$**.
+    1. **$\\uparrow \\text{CO}_2$** (hypercapnia).
+    2. **$\\uparrow \\text{Acidity / } [\\text{H}^+]$** (decreased pH) = **The Bohr Effect**. $H^+$ protonates histidine residues (His146 on $\\beta$-chains), forming salt bridges that stabilize the low-affinity Tense (T) state.
+    3. **$\\uparrow 2,3\\text{-Bisphosphoglycerate (2,3-BPG)}$**: Synthesized via the Rapoport-Luebering shunt in erythrocytes. Binds the central cavity between $\\beta$-subunits with positively charged residues (Lys82, His2, His143).
+    4. **$\\uparrow \\text{Exercise / } \\uparrow \\text{Temperature}$**.
 - **Left Shift (Increased $O_2$ Affinity)**:
-  - Lower $P_{50}$: Binds $O_2$ tightly. Caused by $\\downarrow [H^+]$ (alkalosis), $\\downarrow P_{\text{CO}_2}$, $\\downarrow \text{temp}$, $\\downarrow 2,3\text{-BPG}$.
-  - **Fetal Hemoglobin ($HbF$, $\alpha_2\gamma_2$)**: $\gamma$-chains replace His143 with neutral serine, slashing 2,3-BPG binding affinity! Therefore, $HbF$ has a much higher oxygen affinity than maternal $HbA$, driving transplacental oxygen transfer.`
+  - Lower $P_{50}$: Binds $O_2$ tightly. Caused by $\\downarrow [H^+]$ (alkalosis), $\\downarrow P_{\\text{CO}_2}$, $\\downarrow \\text{temp}$, $\\downarrow 2,3\\text{-BPG}$.
+  - **Fetal Hemoglobin ($HbF$, $\\alpha_2\\gamma_2$)**: $\\gamma$-chains replace His143 with neutral serine, slashing 2,3-BPG binding affinity! Therefore, $HbF$ has a much higher oxygen affinity than maternal $HbA$, driving transplacental oxygen transfer.`
       },
       {
         heading: "4. Carbon Dioxide Carriage & Ventilatory Control",
@@ -2319,7 +2319,7 @@ $$J_v = K_f [ (P_c - P_i) - \\sigma (\\pi_c - \\pi_i) ]$$
 - **The Haldane Effect**: Deoxygenation of hemoglobin increases its capacity to carry $CO_2$ (deoxyhemoglobin is a better proton buffer and forms carbamino compounds more readily than oxyhemoglobin).
 - **Chemical Control of Breathing**:
   - **Central Chemoreceptors (Ventral Medulla)**: Sense $[H^+]$ in cerebrospinal fluid (CSF). $CO_2$ freely crosses blood-brain barrier and forms $H^+$ via CSF carbonic anhydrase; dominant driver of resting ventilation!
-  - **Peripheral Chemoreceptors (Carotid and Aortic Bodies)**: Glomus cells sense arterial **hypoxia** ($P_{\text{O}_2} < 60\text{ mmHg}$), hypercapnia, and metabolic acidosis ($H^+$ directly from blood). Hypoxia closes background $K^+$ channels $\to$ depolarization $\to Ca^{2+}$ influx $\to$ dopamine release onto sinus nerve (CN IX).`
+  - **Peripheral Chemoreceptors (Carotid and Aortic Bodies)**: Glomus cells sense arterial **hypoxia** ($P_{\\text{O}_2} < 60\\text{ mmHg}$), hypercapnia, and metabolic acidosis ($H^+$ directly from blood). Hypoxia closes background $K^+$ channels $\to$ depolarization $\to Ca^{2+}$ influx $\to$ dopamine release onto sinus nerve (CN IX).`
       }
     ]
   },
@@ -2435,13 +2435,13 @@ Normal values: $\\text{pH} = 7.40$, $[HCO_3^-] = 24\\text{ mEq/L}$, $P_{\\text{C
 - **Cell Types**: Mucous neck cells (mucus + $HCO_3^-$ mucosal barrier), Chief cells (pepsinogen), Enterochromaffin-like (ECL) cells (histamine), D cells (somatostatin), G cells (gastrin).
 - **Parietal Cell Secretion of Hydrochloric Acid ($HCl$)**:
   - Intracellular carbonic anhydrase (CA) hydrates $CO_2$ to generate $H^+$ and $HCO_3^-$.
-  - Apical **$H^+/K^+\text{-ATPase}$ (Proton Pump)** actively exports $H^+$ into the lumen in exchange for $K^+$ at a concentration gradient of $1 : 1,000,000$ (luminal pH $\approx 1.0$).
+  - Apical **$H^+/K^+\\text{-ATPase}$ (Proton Pump)** actively exports $H^+$ into the lumen in exchange for $K^+$ at a concentration gradient of $1 : 1,000,000$ (luminal pH $\\approx 1.0$).
   - Basolateral **$HCO_3^-/Cl^-$ antiporter (AE2)** extrudes $HCO_3^-$ into blood, generating the post-prandial **alkaline tide** while importing $Cl^-$, which exits into the lumen via apical $Cl^-$ channels (CFTR / Clic6).
 - **Three Positive Regulators**:
-  1. **Gastrin** (binds $CCK_B$ receptors $\to G_{\alpha q} \to IP_3/Ca^{2+}$).
-  2. **Acetylcholine** (vagus nerve via $M_3$ receptors $\to G_{\alpha q} \to IP_3/Ca^{2+}$).
-  3. **Histamine** (paracrine from ECL cells binds $H_2$ receptors $\to G_{\alpha s} \to cAMP \to PKA$). Histamine potentiates gastrin and ACh signaling!
-- **Negative Regulator**: **Somatostatin** from D cells binds $SSTR2$ ($G_{\alpha i} \to \\downarrow cAMP$), directly suppressing parietal and G cells.`
+  1. **Gastrin** (binds $CCK_B$ receptors $\to G_{\\alpha q} \to IP_3/Ca^{2+}$).
+  2. **Acetylcholine** (vagus nerve via $M_3$ receptors $\to G_{\\alpha q} \to IP_3/Ca^{2+}$).
+  3. **Histamine** (paracrine from ECL cells binds $H_2$ receptors $\to G_{\\alpha s} \to cAMP \to PKA$). Histamine potentiates gastrin and ACh signaling!
+- **Negative Regulator**: **Somatostatin** from D cells binds $SSTR2$ ($G_{\\alpha i} \to \\downarrow cAMP$), directly suppressing parietal and G cells.`
       },
       {
         heading: "3. Pancreatic Zymogen Activation & Nutrient Absorption",
@@ -2452,10 +2452,10 @@ Normal values: $\\text{pH} = 7.40$, $[HCO_3^-] = 24\\text{ mEq/L}$, $P_{\\text{C
   - Proelastase $\to$ Elastase.
   - Procarboxypeptidase A & B $\to$ Carboxypeptidase A & B (exopeptidases removing C-terminal amino acids).
 - **Carbohydrate Absorption**:
-  - Apical: **SGLT1** ($2 Na^+ : 1 \text{ glucose/galactose}$ secondary active symport). **GLUT5** (facilitated diffusion of fructose).
+  - Apical: **SGLT1** ($2 Na^+ : 1 \\text{ glucose/galactose}$ secondary active symport). **GLUT5** (facilitated diffusion of fructose).
   - Basolateral: **GLUT2** transports glucose, galactose, and fructose into interstitial fluid and portal capillaries.
 - **Lipid Digestion & Chylomicrons**:
-  - Liver bile salts emulsify dietary triglycerides into mixed **micelles** ($4-7\text{ nm}$).
+  - Liver bile salts emulsify dietary triglycerides into mixed **micelles** ($4-7\\text{ nm}$).
   - Pancreatic lipase and **colipase** hydrolyze triglycerides into 2-monoglycerides and free fatty acids.
   - Lipids diffuse across apical membrane; re-esterified to triglycerides in smooth ER.
   - Packaged with apolipoproteins (ApoB-48), phospholipids, and cholesterol into **Chylomicrons**.
@@ -2464,10 +2464,10 @@ Normal values: $\\text{pH} = 7.40$, $[HCO_3^-] = 24\\text{ mEq/L}$, $P_{\\text{C
       {
         heading: "4. Gastrointestinal Endocrinology & Enterohepatic Circulation",
         content: `Peptide hormones coordinating gastrointestinal transit and metabolism:
-- **Gastrin** (G cells of antrum): Stimulated by peptide fragments, stomach distension, and vagal GRP (gastrin-releasing peptide). Drives parietal $HCl$ secretion and gastric mucosal growth. Inhibited by luminal $\text{pH} < 2.0$ via somatostatin.
+- **Gastrin** (G cells of antrum): Stimulated by peptide fragments, stomach distension, and vagal GRP (gastrin-releasing peptide). Drives parietal $HCl$ secretion and gastric mucosal growth. Inhibited by luminal $\\text{pH} < 2.0$ via somatostatin.
 - **Cholecystokinin (CCK)** (I cells of duodenum/jejunum): Stimulated by fatty acids and amino acids. Causes **gallbladder contraction**, relaxes **Sphincter of Oddi**, stimulates pancreatic acinar enzyme secretion, and slows gastric emptying.
-- **Secretin** (S cells of duodenum): Stimulated by acidic chyme ($\text{pH} < 4.5$). Stimulates pancreatic ductal cells to secrete massive watery **$\text{HCO}_3^-$** via CFTR and $Cl^-/HCO_3^-$ exchangers, neutralizing duodenal acid.
-- **Incretins (GIP and GLP-1)** (K cells and L cells): Stimulate glucose-dependent insulin secretion from pancreatic $\beta$-cells *before* blood glucose rises (feedforward control).
+- **Secretin** (S cells of duodenum): Stimulated by acidic chyme ($\\text{pH} < 4.5$). Stimulates pancreatic ductal cells to secrete massive watery **$\\text{HCO}_3^-$** via CFTR and $Cl^-/HCO_3^-$ exchangers, neutralizing duodenal acid.
+- **Incretins (GIP and GLP-1)** (K cells and L cells): Stimulate glucose-dependent insulin secretion from pancreatic $\\beta$-cells *before* blood glucose rises (feedforward control).
 - **Enterohepatic Circulation of Bile Salts**:
   - $> 95\%$ of bile acids (cholic, chenodeoxycholic acid conjugated to glycine/taurine) are actively reabsorbed in the **terminal ileum** via the **ASBT ($Na^+$-dependent bile salt transporter)**.
   - Returned to liver via portal vein and re-secreted into bile, cycling 4-12 times daily. Resection of terminal ileum causes severe bile acid malabsorption and steatorrhea.`
@@ -2496,12 +2496,12 @@ Normal values: $\\text{pH} = 7.40$, $[HCO_3^-] = 24\\text{ mEq/L}$, $P_{\\text{C
         content: `Hormones fall into distinct structural classes governing their transport and signaling:
 - **1. Peptides & Proteins** (e.g., Insulin, Glucagon, ACTH, PTH):
   - Synthesized as preprohormones in rough ER $\to$ signal sequence cleaved to prohormone $\to$ packaged in secretory vesicles in Golgi $\to$ mature hormone stored until exocytosis.
-  - Hydrophilic; circulate freely dissolved in plasma; short half-life ($t_{1/2} \approx 2-30\text{ minutes}$). Bind cell-surface GPCRs or RTKs.
+  - Hydrophilic; circulate freely dissolved in plasma; short half-life ($t_{1/2} \\approx 2-30\\text{ minutes}$). Bind cell-surface GPCRs or RTKs.
 - **2. Steroid Hormones** (e.g., Cortisol, Aldosterone, Testosterone, Estradiol):
   - Synthesized on-demand from **cholesterol** in adrenal cortex, gonads, and placenta (rate-limiting step: **StAR protein** transporting cholesterol into inner mitochondrial membrane where CYP11A1 / cholesterol side-chain cleavage enzyme converts it to pregnenolone).
-  - Lipophilic; diffuse across membranes immediately; circulate bound to plasma carriers (**CBG, SHBG, Albumin**); long half-life ($t_{1/2} \approx 1-2\text{ hours}$). Bind intracellular nuclear receptors that dimerize, bind **Hormone Response Elements (HREs)** on DNA via zinc-finger motifs, and modulate transcription.
+  - Lipophilic; diffuse across membranes immediately; circulate bound to plasma carriers (**CBG, SHBG, Albumin**); long half-life ($t_{1/2} \\approx 1-2\\text{ hours}$). Bind intracellular nuclear receptors that dimerize, bind **Hormone Response Elements (HREs)** on DNA via zinc-finger motifs, and modulate transcription.
 - **3. Amine Hormones** (derived from Tyrosine):
-  - *Catecholamines* (Epinephrine, Norepinephrine, Dopamine): Water-soluble; circulate free; bind surface GPCRs ($\alpha_1, \alpha_2, \beta_1, \beta_2$).
+  - *Catecholamines* (Epinephrine, Norepinephrine, Dopamine): Water-soluble; circulate free; bind surface GPCRs ($\\alpha_1, \\alpha_2, \\beta_1, \\beta_2$).
   - *Thyroid Hormones* ($T_3, T_4$): Iodinated diphenyl ethers; lipophilic; circulate $> 99.9\%$ bound to **Thyroxine-Binding Globulin (TBG)**; bind intracellular nuclear thyroid hormone receptors (TRs).`
       },
       {
@@ -2526,8 +2526,8 @@ Normal values: $\\text{pH} = 7.40$, $[HCO_3^-] = 24\\text{ mEq/L}$, $P_{\\text{C
         heading: "3. The Adrenal Gland & The RAAS Axis",
         content: `Adrenal functional zoning and blood pressure regulation:
 - **Adrenal Cortex (Mesoderm)**: Three distinct concentric zones (**GFR = Salt, Sugar, Sex**):
-  1. **Zona Glomerulosa** (outer $15\%$): Lacks $17\alpha$-hydroxylase. Synthesizes **Aldosterone** (mineralocorticoid) driven by Angiotensin II and hyperkalemia ($K^+$).
-  2. **Zona Fasciculata** (middle $75\%$): Synthesizes **Cortisol** (glucocorticoid) driven by ACTH. Cortisol stimulates gluconeogenesis, lipolysis, protein catabolism, and suppresses immune responses by inhibiting $PLA_2$, $COX-2$, and $NF-\kappa B$.
+  1. **Zona Glomerulosa** (outer $15\%$): Lacks $17\\alpha$-hydroxylase. Synthesizes **Aldosterone** (mineralocorticoid) driven by Angiotensin II and hyperkalemia ($K^+$).
+  2. **Zona Fasciculata** (middle $75\%$): Synthesizes **Cortisol** (glucocorticoid) driven by ACTH. Cortisol stimulates gluconeogenesis, lipolysis, protein catabolism, and suppresses immune responses by inhibiting $PLA_2$, $COX-2$, and $NF-\\kappa B$.
   3. **Zona Reticularis** (inner $10\%$): Synthesizes adrenal androgens (**DHEA, Androstenedione**).
 - **Adrenal Medulla (Neural Crest)**: Chromaffin cells act as modified postganglionic sympathetic neurons, secreting **Epinephrine ($80\%$)** and **Norepinephrine ($20\%$)** driven by preganglionic acetylcholine.
 - **The Renin-Angiotensin-Aldosterone System (RAAS)**:
@@ -2535,21 +2535,21 @@ Normal values: $\\text{pH} = 7.40$, $[HCO_3^-] = 24\\text{ mEq/L}$, $P_{\\text{C
   2. Renin cleaves hepatic **Angiotensinogen** into decapeptide **Angiotensin I**.
   3. **Angiotensin-Converting Enzyme (ACE)** (primarily on pulmonary vascular endothelium) cleaves Ang I to octapeptide **Angiotensin II**.
   4. Angiotensin II actions: Potent systemic arteriolar vasoconstriction; stimulates hypothalamic thirst and ADH release; binds $AT_1$ receptors in zona glomerulosa to stimulate **Aldosterone** release.
-  5. Aldosterone binds mineralocorticoid receptors in renal cortical collecting duct principal cells $\to$ upregulates apical **ENaC** ($Na^+$ channels) and basolateral **$Na^+/K^+\text{-ATPase}$**, driving $Na^+$ reabsorption, water retention, and $K^+/H^+$ excretion.`
+  5. Aldosterone binds mineralocorticoid receptors in renal cortical collecting duct principal cells $\to$ upregulates apical **ENaC** ($Na^+$ channels) and basolateral **$Na^+/K^+\\text{-ATPase}$**, driving $Na^+$ reabsorption, water retention, and $K^+/H^+$ excretion.`
       },
       {
         heading: "4. Calcium Homeostasis & Pancreatic Islet Dynamics",
         content: `Endocrine control of blood calcium and blood glucose:
-- **Calcium Homeostasis** (Normal serum ionized $Ca^{2+} \approx 1.1-1.3\text{ mmol/L}$):
+- **Calcium Homeostasis** (Normal serum ionized $Ca^{2+} \\approx 1.1-1.3\\text{ mmol/L}$):
   - **Parathyroid Hormone (PTH)**: Secreted by parathyroid chief cells when **Calcium-Sensing Receptors (CaSR)** detect low ionized $Ca^{2+}$.
     - *Bone*: Binds osteoblasts $\to$ upregulates **RANKL** while suppressing Osteoprotegerin (OPG) $\to$ RANKL binds RANK on osteoclast precursors $\to$ osteoclast activation and bone resorption.
-    - *Kidney*: Stimulates $Ca^{2+}$ reabsorption in distal convoluted tubule; inhibits phosphate reabsorption in proximal tubule (phosphaturic effect); activates **$1\alpha$-hydroxylase (CYP27B1)** converting calcidiol ($25\text{-OH } D_3$) into active **Calcitriol ($1,25\text{-(OH)}_2 D_3$)**.
+    - *Kidney*: Stimulates $Ca^{2+}$ reabsorption in distal convoluted tubule; inhibits phosphate reabsorption in proximal tubule (phosphaturic effect); activates **$1\\alpha$-hydroxylase (CYP27B1)** converting calcidiol ($25\\text{-OH } D_3$) into active **Calcitriol ($1,25\\text{-(OH)}_2 D_3$)**.
     - *Intestine*: Calcitriol upregulates apical **TRPV6** channels, cytosolic **calbindin-D9k**, and basolateral **PMCA1b**, stimulating intestinal calcium and phosphate absorption.
   - **Calcitonin**: Secreted by parafollicular C cells of thyroid in response to hypercalcemia; directly inhibits osteoclastic bone resorption.
 - **Pancreatic Islet Endocrine Physiology**:
-  - **$\beta$-Cells (Insulin)**: High blood glucose enters via **GLUT2** (rodents) / **GLUT1** (humans) $\to$ glucokinase glycolysis $\to \\uparrow [ATP]/[ADP] \to$ **closes ATP-sensitive $K^+$ channels ($K_{\text{ATP}}$)** $\to$ membrane depolarization $\to$ opens voltage-gated $Ca^{2+}$ channels $\to Ca^{2+}$ influx triggers **insulin exocytosis**!
+  - **$\\beta$-Cells (Insulin)**: High blood glucose enters via **GLUT2** (rodents) / **GLUT1** (humans) $\to$ glucokinase glycolysis $\to \\uparrow [ATP]/[ADP] \to$ **closes ATP-sensitive $K^+$ channels ($K_{\\text{ATP}}$)** $\to$ membrane depolarization $\to$ opens voltage-gated $Ca^{2+}$ channels $\to Ca^{2+}$ influx triggers **insulin exocytosis**!
   - Insulin binds receptor tyrosine kinase (IR) $\to$ IRS1/2 $\to$ PI3K $\to$ Akt $\to$ translocation of **GLUT4** vesicles to plasma membrane in skeletal muscle and adipose tissue; stimulates glycogen synthesis and lipogenesis.
-  - **$\alpha$-Cells (Glucagon)**: Secreted during hypoglycemia; acts via GPCR-$G_{\alpha s}-cAMP-PKA$ in liver to stimulate glycogenolysis and gluconeogenesis.`
+  - **$\\alpha$-Cells (Glucagon)**: Secreted during hypoglycemia; acts via GPCR-$G_{\\alpha s}-cAMP-PKA$ in liver to stimulate glycogenolysis and gluconeogenesis.`
       }
     ]
   },
@@ -2646,7 +2646,7 @@ Trap: calcium and phosphate are regulated by different but interacting hormones 
     - *TLR3* (endosomal): Recognizes viral **double-stranded RNA (dsRNA)**.
     - *TLR7/8* (endosomal): Recognizes single-stranded RNA (ssRNA).
     - *TLR9* (endosomal): Recognizes unmethylated **CpG DNA motifs**.
-  - Signal transduction via **MyD88** or **TRIF** activates **NF-$\kappa$B** and **IRF3/7**, driving pro-inflammatory cytokines ($TNF-\alpha, IL-1\beta, IL-6$) and Type I interferons ($IFN-\alpha/\beta$).
+  - Signal transduction via **MyD88** or **TRIF** activates **$\\text{NF-}\\kappa\\text{B}$** and **IRF3/7**, driving pro-inflammatory cytokines ($\\text{TNF-}\\alpha$, $\\text{IL-}1\\beta$, $\\text{IL-}6$) and Type I interferons ($\\text{IFN-}\\alpha/\\beta$).
 - **The Complement Cascade**:
   - Three distinct triggering pathways:
     1. **Classical Pathway**: $C1qrs$ binds antibody-antigen complexes ($IgM$ pentamer or clustered $IgG$).
@@ -2661,8 +2661,8 @@ Trap: calcium and phosphate are regulated by different but interacting hormones 
         heading: "2. V(D)J Somatic Recombination & B-Cell Diversification",
         content: `Generating an immense repertoire of $B$-cell receptors ($BCR$) and $T$-cell receptors ($TCR$) from limited germline genes:
 - **V(D)J Recombination**:
-  - Immunoglobulin Heavy chain ($IgH$) and $TCR\beta$ loci contain **Variable (V)**, **Diversity (D)**, and **Joining (J)** gene segments.
-  - Light chain ($Ig\kappa, Ig\lambda$) and $TCR\alpha$ loci contain only V and J segments.
+  - Immunoglobulin Heavy chain ($IgH$) and $TCR\\beta$ loci contain **Variable (V)**, **Diversity (D)**, and **Joining (J)** gene segments.
+  - Light chain ($Ig\\kappa, Ig\\lambda$) and $TCR\\alpha$ loci contain only V and J segments.
   - **RAG1 and RAG2 Endonucleases**: Recognize conserved **Recombination Signal Sequences (RSS)** with 12-bp and 23-bp spacers (*12/23 Rule* ensures $V$ joins only to $D$, and $D$ to $J$). RAG cleaves double-stranded DNA, forming DNA hairpin intermediates.
   - **Junctional Diversity**: Hairpins are nicked asymmetrically by **Artemis endonuclease**, generating **P-nucleotides** (palindromic). **Terminal Deoxynucleotidyl Transferase (TdT)** randomly inserts non-templated **N-nucleotides** before DNA ligase IV joins the coding ends.
 - **Somatic Hypermutation & Class Switch Recombination**:
@@ -2675,28 +2675,28 @@ Trap: calcium and phosphate are regulated by different but interacting hormones 
         heading: "3. MHC Restriction: Class I vs. Class II Antigen Presentation",
         content: `T cells recognize antigens only when presented as peptide fragments within Major Histocompatibility Complex molecules:
 - **MHC Class I Pathway (Endogenous Antigens)**:
-  - Present on **all nucleated cells**; presents peptides (8-10 amino acids) to **$\text{CD8}^+$ Cytotoxic T Lymphocytes (CTLs)**.
-  - Structure: Heterodimer of a polymorphic $\alpha$-chain ($\alpha_1, \alpha_2, \alpha_3$) non-covalently paired with invariant **$\beta_2$-microglobulin**.
+  - Present on **all nucleated cells**; presents peptides (8-10 amino acids) to **$\\text{CD8}^+$ Cytotoxic T Lymphocytes (CTLs)**.
+  - Structure: Heterodimer of a polymorphic $\\alpha$-chain ($\\alpha_1, \\alpha_2, \\alpha_3$) non-covalently paired with invariant **$\\beta_2$-microglobulin**.
   - Mechanism: Cytosolic viral or tumor proteins are degraded by the **immunoproteasome**. Peptides are pumped into the ER lumen by **TAP1/TAP2 transporters**. Chaperones (calreticulin, tapasin) load peptide into MHC I groove; transported via Golgi to cell surface.
   - CTL killing: CTL releases **perforin** (forms membrane pore) and **granzymes** (serine proteases cleaving procaspases and Bid, inducing apoptosis), or engages **FasL** with target cell Fas.
 - **MHC Class II Pathway (Exogenous Antigens)**:
-  - Restricted to **Professional Antigen-Presenting Cells (APCs)**: Dendritic cells, Macrophages, and B lymphocytes. Presents longer peptides (13-25 amino acids) to **$\text{CD4}^+$ T Helper cells**.
-  - Structure: Heterodimer of two transmembrane chains: $\alpha$ ($\alpha_1, \alpha_2$) and $\beta$ ($\beta_1, \beta_2$).
+  - Restricted to **Professional Antigen-Presenting Cells (APCs)**: Dendritic cells, Macrophages, and B lymphocytes. Presents longer peptides (13-25 amino acids) to **$\\text{CD4}^+$ T Helper cells**.
+  - Structure: Heterodimer of two transmembrane chains: $\\alpha$ ($\\alpha_1, \\alpha_2$) and $\\beta$ ($\\beta_1, \\beta_2$).
   - Mechanism: Extracellular antigens endocytosed into acidic endolysosomes. MHC II synthesized in ER associates with the **Invariant Chain (Ii / CD74)** to prevent premature peptide binding. In endosome, cathepsins cleave Ii leaving a small peptide remnant (**CLIP**). **HLA-DM** catalyzes exchange of CLIP for foreign antigenic peptide; complex delivered to cell surface.`
       },
       {
         heading: "4. T-Helper Subsets & Gell-Coombs Hypersensitivity",
         content: `CD4+ T cell specialization and clinical immunopathology:
-- **$\text{CD4}^+$ T-Helper Lineage Commitment**:
-  - **Th1**: Induced by $IL-12$ and $IFN-\gamma$; master transcription factor **T-bet**. Secretes $IFN-\gamma$; activates macrophages against intracellular pathogens (e.g., *Mycobacterium*).
+- **$\\text{CD4}^+$ T-Helper Lineage Commitment**:
+  - **Th1**: Induced by $IL-12$ and $IFN-\\gamma$; master transcription factor **T-bet**. Secretes $IFN-\\gamma$; activates macrophages against intracellular pathogens (e.g., *Mycobacterium*).
   - **Th2**: Induced by $IL-4$; master transcription factor **GATA3**. Secretes $IL-4, IL-5, IL-13$; drives eosinophils, mast cells, and $IgE$ class switching against helminth parasites.
-  - **Th17**: Induced by $TGF-\beta, IL-6, IL-23$; master transcription factor **ROR$\gamma t$**. Secretes $IL-17$; recruits neutrophils for extracellular fungal/bacterial defense.
-  - **Treg (Regulatory T cell)**: Induced by $TGF-\beta$; master transcription factor **FoxP3**. Secretes $IL-10$ and $TGF-\beta$; suppresses autoreactive immune responses (loss causes IPEX syndrome).
+  - **Th17**: Induced by $TGF-\\beta, IL-6, IL-23$; master transcription factor **ROR$\\gamma t$**. Secretes $IL-17$; recruits neutrophils for extracellular fungal/bacterial defense.
+  - **Treg (Regulatory T cell)**: Induced by $TGF-\\beta$; master transcription factor **FoxP3**. Secretes $IL-10$ and $TGF-\\beta$; suppresses autoreactive immune responses (loss causes IPEX syndrome).
 - **Gell and Coombs Hypersensitivity Classification**:
-  - **Type I (Immediate / Anaphylactic)**: Antigen crosslinks allergen-specific **$IgE$** bound to $Fc\epsilon RI$ on mast cells $\to$ degranulation of histamine, leukotrienes, prostaglandins (e.g., anaphylaxis, asthma).
+  - **Type I (Immediate / Anaphylactic)**: Antigen crosslinks allergen-specific **$IgE$** bound to $Fc\\epsilon RI$ on mast cells $\to$ degranulation of histamine, leukotrienes, prostaglandins (e.g., anaphylaxis, asthma).
   - **Type II (Antibody-Mediated Cytotoxic)**: $IgG$ or $IgM$ binds cell surface antigens $\to$ complement activation or ADCC (e.g., Rh disease / erythroblastosis fetalis, Goodpasture syndrome).
   - **Type III (Immune Complex-Mediated)**: Circulating antigen-antibody complexes deposit in microvasculature, activating complement and neutrophils (e.g., Systemic Lupus Erythematosus, post-streptococcal glomerulonephritis).
-  - **Type IV (Delayed-Type Hypersensitivity, DTH)**: Cell-mediated; sensitized Th1 cells release $IFN-\gamma$, recruiting and activating macrophages 24-72 hours post-exposure (e.g., tuberculin PPD skin test, poison ivy contact dermatitis).`
+  - **Type IV (Delayed-Type Hypersensitivity, DTH)**: Cell-mediated; sensitized Th1 cells release $IFN-\\gamma$, recruiting and activating macrophages 24-72 hours post-exposure (e.g., tuberculin PPD skin test, poison ivy contact dermatitis).`
       }
     ]
   },
@@ -2727,7 +2727,7 @@ Trap: calcium and phosphate are regulated by different but interacting hormones 
   - Spermatogenesis: Spermatogonium ($2n$) $\to$ primary spermatocyte ($2n$) $\to$ Meiosis I $\to$ 2 secondary spermatocytes ($1n$) $\to$ Meiosis II $\to$ 4 spermatids ($1n$) $\to$ spermiogenesis (acrosome formation, mitochondrial sheath, flagellum) $\to$ spermatozoa.
 - **Female Ovarian & Uterine Cycles**:
   - **Follicular Phase**: FSH stimulates cohort of primordial follicles. Dominant follicle secretes rising **Estradiol**.
-  - **Biphasic Estradiol Feedback**: Low/moderate estradiol exerts *negative feedback* on GnRH/LH/FSH. Sustained high estradiol ($> 200\text{ pg/mL}$ for $> 36\text{ hours}$) switches to **positive feedback**, triggering the massive **LH Surge**!
+  - **Biphasic Estradiol Feedback**: Low/moderate estradiol exerts *negative feedback* on GnRH/LH/FSH. Sustained high estradiol ($> 200\\text{ pg/mL}$ for $> 36\\text{ hours}$) switches to **positive feedback**, triggering the massive **LH Surge**!
   - **Ovulation**: LH surge resumes Meiosis I in primary oocyte (arrested in prophase I since fetal life), arresting in **metaphase II** as a secondary oocyte, and ruptures the Graafian follicle.
   - **Luteal Phase**: Ruptured follicle transforms into **Corpus Luteum**, secreting massive **Progesterone** and estradiol, preparing secretory endometrium for implantation. If unfertilized, corpus luteum degenerates into corpus albicans; progesterone withdrawal triggers menstruation.`
       },
@@ -2738,7 +2738,7 @@ Trap: calcium and phosphate are regulated by different but interacting hormones 
 - **Acrosome Reaction**: Sperm binds glycoprotein **ZP3** on the egg's zona pellucida $\to Ca^{2+}$ influx $\to$ exocytosis of acrosomal enzymes (hyaluronidase, acrosin) to digest path through zona pellucida.
 - **Fusion**: Sperm protein **Izumo1** binds egg membrane receptor **Juno**, initiating gamete fusion.
 - **Blocks to Polyspermy**:
-  1. **Fast Block (External Fertilizers, e.g., Sea Urchin)**: Immediate influx of $Na^+$ depolarizes egg membrane from $-70\text{ mV}$ to $+20\text{ mV}$ within 1-3 seconds, preventing further sperm fusion (positively charged membrane repels sperm). Transient ($< 1\text{ minute}$).
+  1. **Fast Block (External Fertilizers, e.g., Sea Urchin)**: Immediate influx of $Na^+$ depolarizes egg membrane from $-70\\text{ mV}$ to $+20\\text{ mV}$ within 1-3 seconds, preventing further sperm fusion (positively charged membrane repels sperm). Transient ($< 1\\text{ minute}$).
   2. **Slow Block (Cortical Reaction, Universal)**: Sperm PLC-$\zeta$ hydrolyzes $PIP_2 \to IP_3 \to$ triggers a self-propagating **wave of intracellular free $Ca^{2+}$** sweeping from site of sperm entry. High $Ca^{2+}$ drives exocytosis of **cortical granules** releasing ovoperoxidase, proteases, and mucopolysaccharides. Proteases cleave ZP receptors (ZP2/ZP3), and water hydration lifts the zona pellucida away from the membrane, creating a hardened, impenetrable **Fertilization Envelope**.`
       },
       {
@@ -2862,11 +2862,11 @@ The behavior is dictated by the product **$r\\tau$**:
       {
         heading: "1. Primary Productivity Thermodynamics & Carbon Accounting",
         content: `Energy capture by autotrophs sets the thermodynamic ceiling for ecosystems:
-- **Gross Primary Productivity (GPP)**: Total rate at which primary producers convert solar energy into chemical bond energy via photosynthesis per unit area per unit time ($\text{g C}\cdot \text{m}^{-2}\cdot \text{yr}^{-1}$ or $\text{J}\cdot \text{m}^{-2}\cdot \text{yr}^{-1}$).
+- **Gross Primary Productivity (GPP)**: Total rate at which primary producers convert solar energy into chemical bond energy via photosynthesis per unit area per unit time ($\\text{g C}\\cdot \\text{m}^{-2}\\cdot \\text{yr}^{-1}$ or $\\text{J}\\cdot \\text{m}^{-2}\\cdot \\text{yr}^{-1}$).
 - **Net Primary Productivity (NPP)**: Energy remaining after autotrophic respiration ($R_a$):
   $$NPP = GPP - R_a$$
-  - Globally, terrestrial ecosystems contribute $\approx 55\%$ of total NPP; marine systems contribute $\approx 45\%$.
-  - Tropical rainforests and coral reefs exhibit the highest NPP per unit area ($> 2000\text{ g}\cdot \text{m}^{-2}\cdot \text{yr}^{-1}$); open oceans have low areal NPP but account for the largest total global productivity due to sheer vast surface area.
+  - Globally, terrestrial ecosystems contribute $\\approx 55\%$ of total NPP; marine systems contribute $\\approx 45\%$.
+  - Tropical rainforests and coral reefs exhibit the highest NPP per unit area ($> 2000\\text{ g}\\cdot \\text{m}^{-2}\\cdot \\text{yr}^{-1}$); open oceans have low areal NPP but account for the largest total global productivity due to sheer vast surface area.
 - **Net Ecosystem Productivity (NEP)**: Total carbon accumulation of the entire ecosystem:
   $$NEP = GPP - (R_a + R_h) = NPP - R_h$$
   - $R_h$: Heterotrophic respiration (microbial decomposition and herbivore/carnivore consumption).
@@ -2877,7 +2877,7 @@ The behavior is dictated by the product **$r\\tau$**:
         heading: "2. Trophic Dynamics & Ecological Transfer Efficiencies",
         content: `Energy transfer between trophic levels is governed by the Second Law of Thermodynamics:
 - **Lindeman's Efficiency ($E_T$)**: Ratio of production at trophic level $n$ to production at level $n-1$:
-  $$E_T = \frac{P_n}{P_{n-1}} = E_C \times E_A \times E_P \approx 10\% \quad (5-20\%)$$
+  $$E_T = \\frac{P_n}{P_{n-1}} = E_C \\times E_A \\times E_P \\approx 10\% \\quad (5-20\%)$$
   1. **Consumption Efficiency ($E_C = I_n / P_{n-1}$)**: Percentage of available prey biomass ingested by the predator. Low in forests ($< 5\%$ of wood/leaves consumed by herbivores; $95\%$ enters detrital food chain); high in marine phytoplankton systems ($> 50\%$).
   2. **Assimilation Efficiency ($E_A = A_n / I_n$)**: Percentage of ingested food absorbed across gut wall. Low for herbivores consuming fiber/lignin ($20-50\%$); high for carnivores ($80-90\%$).
   3. **Production Efficiency ($E_P = P_n / A_n$)**: Percentage of assimilated energy converted into new biomass (growth + reproduction).
@@ -2889,25 +2889,25 @@ The behavior is dictated by the product **$r\\tau$**:
         heading: "3. Global Biogeochemical Cycles: Carbon, Nitrogen & Phosphorus",
         content: `Nutrient cycles couple biological, geological, and atmospheric reservoirs:
 - **The Nitrogen Cycle**:
-  1. **Nitrogen Fixation**: Inert atmospheric $N_2$ triple bond broken by bacterial enzyme **Nitrogenase** ($16\text{ ATP}$ per $N_2$ fixed; irreversibly poisoned by $O_2$; protected by root nodule leghemoglobin in *Rhizobium*):
-     $$N_2 + 8 H^+ + 8 e^- + 16 \text{ ATP} \to 2 NH_3 + H_2 + 16 \text{ ADP} + 16 P_i$$
+  1. **Nitrogen Fixation**: Inert atmospheric $N_2$ triple bond broken by bacterial enzyme **Nitrogenase** ($16\\text{ ATP}$ per $N_2$ fixed; irreversibly poisoned by $O_2$; protected by root nodule leghemoglobin in *Rhizobium*):
+     $$N_2 + 8 H^+ + 8 e^- + 16 \\text{ ATP} \to 2 NH_3 + H_2 + 16 \\text{ ADP} + 16 P_i$$
   2. **Nitrification**: Obligate aerobic chemoautotrophic two-step oxidation:
      - *Step 1*: $NH_4^+ + 1.5 O_2 \to NO_2^- + H_2O + 2 H^+$ (catalyzed by *Nitrosomonas*).
      - *Step 2*: $NO_2^- + 0.5 O_2 \to NO_3^-$ (catalyzed by *Nitrobacter*).
   3. **Denitrification**: Facultative anaerobic respiration using nitrate as terminal electron acceptor:
-     $$NO_3^- \to NO_2^- \to NO \to N_2O \to N_2 \quad (\text{catalyzed by } Pseudomonas, \text{Paracoccus})$$
+     $$NO_3^- \to NO_2^- \to NO \to N_2O \to N_2 \\quad (\\text{catalyzed by } Pseudomonas, \\text{Paracoccus})$$
   4. **Anammox (Anaerobic Ammonium Oxidation)**: Occurs in specialized membrane-bound anammoxosomes in marine suboxic zones:
-     $$NH_4^+ + NO_2^- \to N_2 + 2 H_2O \quad (\text{accounts for up to } 50\% \text{ of oceanic } N_2 \text{ loss})$$
+     $$NH_4^+ + NO_2^- \to N_2 + 2 H_2O \\quad (\\text{accounts for up to } 50\% \\text{ of oceanic } N_2 \\text{ loss})$$
 - **The Phosphorus Cycle**: Lacks a gaseous atmospheric reservoir. Slow geological weathering of apatite rock releases orthophosphate ($H_2PO_4^- / HPO_4^{2-}$). Retained tightly in terrestrial biomass; lost to ocean sediments via marine sedimentation.
 - **Liebig's Law of the Minimum**: Growth of a population is controlled not by the total amount of resources available, but by the scarcest essential nutrient relative to demand (e.g., Phosphorus limits freshwater lakes; Nitrogen and Iron limit open oceans).`
       },
       {
         heading: "4. Terrestrial Biome Climate Envelopes",
         content: `Global biome distribution plotted on Whittaker's Mean Annual Temperature ($T$) vs Mean Annual Precipitation ($P$) coordinate plane:
-- **Tropical Rainforest**: High $T$ ($> 20^\circ\text{C}$), high $P$ ($> 2000\text{ mm}$). Highly weathered, nutrient-poor **oxisols** (intense leaching; nutrients held almost entirely in living biomass, not soil).
-- **Temperate Deciduous Forest**: Moderate seasonal $T$, moderate $P$ ($750-1500\text{ mm}$). Rich nutrient **alfisols** with deep leaf litter.
+- **Tropical Rainforest**: High $T$ ($> 20^\\circ\\text{C}$), high $P$ ($> 2000\\text{ mm}$). Highly weathered, nutrient-poor **oxisols** (intense leaching; nutrients held almost entirely in living biomass, not soil).
+- **Temperate Deciduous Forest**: Moderate seasonal $T$, moderate $P$ ($750-1500\\text{ mm}$). Rich nutrient **alfisols** with deep leaf litter.
 - **Boreal Forest (Taiga)**: Cold winters, short cool summers, low-moderate $P$. Coniferous gymnosperms (*Picea*, *Abies*, *Pinus*). Acidic, leached **spodosols** with thick needle humus and mycorrhizae.
-- **Tundra (Arctic & Alpine)**: Severe cold, low $P$ ($< 250\text{ mm}$). Characterized by **permafrost** (permanently frozen subsoil) restricting root penetration; dominated by dwarf shrubs, sedges, lichens; freeze-thaw solifluction polygon patterning.`
+- **Tundra (Arctic & Alpine)**: Severe cold, low $P$ ($< 250\\text{ mm}$). Characterized by **permafrost** (permanently frozen subsoil) restricting root penetration; dominated by dwarf shrubs, sedges, lichens; freeze-thaw solifluction polygon patterning.`
       }
     ]
   },
@@ -2943,7 +2943,7 @@ $$\frac{dP}{dt} = f a N P - q P \quad (\text{Predator})$$
   - Prey isocline ($dN/dt = 0$): $P = r / a$ (horizontal line in $N-P$ phase plane).
   - Predator isocline ($dP/dt = 0$): $N = q / (f a)$ (vertical line in $N-P$ phase plane).
 - **Phase-Plane Orbit**: Counterclockwise neutral cycle around the central equilibrium point $(N^*, P^*)$.
-  - Time-series: Predator population peaks **one quarter-cycle ($\pi/2$ phase lag)** behind the prey population (demonstrated empirically in Hudson's Bay Company snowshoe hare - lynx pelt records).`
+  - Time-series: Predator population peaks **one quarter-cycle ($\\pi/2$ phase lag)** behind the prey population (demonstrated empirically in Hudson's Bay Company snowshoe hare - lynx pelt records).`
       },
       {
         heading: "2. Holling's Functional Responses I, II & III",
@@ -2952,7 +2952,7 @@ $$\frac{dP}{dt} = f a N P - q P \quad (\text{Predator})$$
   $$N_e = a N$$
   - Assumes zero handling time. Seen in passive filter feeders (e.g., *Daphnia*, baleen whales).
 - **Type II Functional Response**: Decelerating consumption rate asymptotically approaching maximum saturation:
-  $$N_e = \frac{a N}{1 + a T_h N}$$
+  $$N_e = \\frac{a N}{1 + a T_h N}$$
   - $T_h$: **Handling time** (time spent capturing, subduing, chewing, and digesting prey).
   - At high prey density, handling time limits feeding rate. **Destabilizing** to prey populations because predation rate (percentage mortality $N_e / N$) decreases as prey density rises (**inverse density-dependent**).
 - **Type III Functional Response**: Sigmoidal S-shaped curve:
@@ -2968,15 +2968,15 @@ $$\frac{dP}{dt} = f a N P - q P \quad (\text{Predator})$$
         content: `Mathematical metrics capturing community structure:
 - **Species Richness ($S$)**: Total number of distinct species in a sample.
 - **Shannon-Wiener Diversity Index ($H'$)**:
-  $$H' = -\sum_{i=1}^S p_i \ln p_i$$
+  $$H' = -\\sum_{i=1}^S p_i \ln p_i$$
   - $p_i$: Relative abundance of species $i$ ($p_i = n_i / N$).
   - Higher $H'$ indicates greater diversity and uncertainty in predicting the species of a random individual.
   - Maximum possible diversity for $S$ species: $H'_{\max} = \ln S$ (occurs when all species are equally abundant).
 - **Pielou's Evenness ($J'$)**:
-  $$J' = \frac{H'}{H'_{\max}} = \frac{H'}{\ln S}$$
+  $$J' = \\frac{H'}{H'_{\max}} = \\frac{H'}{\ln S}$$
   - $J' = 1.0$ represents perfectly equitable abundances; values near $0$ indicate extreme ecological dominance by a single species.
 - **Simpson's Reciprocal Diversity Index ($1/D$)**:
-  $$D = \sum_{i=1}^S p_i^2 \implies \frac{1}{D} = \frac{1}{\sum p_i^2}$$
+  $$D = \\sum_{i=1}^S p_i^2 \implies \\frac{1}{D} = \\frac{1}{\\sum p_i^2}$$
   - $D$ represents the probability that two randomly selected individuals belong to the same species.`
       },
       {
@@ -2986,9 +2986,9 @@ $$\frac{dP}{dt} = f a N P - q P \quad (\text{Predator})$$
   - Balance between rate of **Immigration ($I$)** of new species from mainland pool ($P$) and rate of **Extinction ($E$)** of resident species:
     - Immigration curve decelerates downward as fewer immigrant individuals belong to unrepresented species.
     - Extinction curve accelerates upward as competition increases on the island.
-  - **Island Distance Effect**: Near islands have higher immigration rates than far islands $\to \hat{S}_{\text{near}} > \hat{S}_{\text{far}}$.
-  - **Island Size Effect**: Large islands support larger populations (lower extinction risk from drift/stochasticity) and offer more diverse microhabitats $\to \hat{S}_{\text{large}} > \hat{S}_{\text{small}}$.
-  - Ranking: $\hat{S}_{\text{Large, Near}} > \hat{S}_{\text{Large, Far}} > \hat{S}_{\text{Small, Near}} > \hat{S}_{\text{Small, Far}}$.
+  - **Island Distance Effect**: Near islands have higher immigration rates than far islands $\to \\hat{S}_{\\text{near}} > \\hat{S}_{\\text{far}}$.
+  - **Island Size Effect**: Large islands support larger populations (lower extinction risk from drift/stochasticity) and offer more diverse microhabitats $\to \\hat{S}_{\\text{large}} > \\hat{S}_{\\text{small}}$.
+  - Ranking: $\\hat{S}_{\\text{Large, Near}} > \\hat{S}_{\\text{Large, Far}} > \\hat{S}_{\\text{Small, Near}} > \\hat{S}_{\\text{Small, Far}}$.
 - **The Intermediate Disturbance Hypothesis (Connell)**:
   - *Low disturbance*: Highly competitive superior species competitively exclude inferior competitors $\to$ low species diversity.
   - *High disturbance*: Only highly tolerant or fast-reproducing r-selected species survive mortality events $\to$ low species diversity.
@@ -3182,17 +3182,17 @@ Trap: an offset that replaces an irreplaceable old-growth community with a plant
         heading: "3. Animal Communication: Honeybee Waggle Dance",
         content: `Karl von Frisch deciphered the symbolic communication dance of *Apis mellifera*:
 - Performed by successful forager honeybees on the vertical comb inside a dark hive to recruit nestmates to rich nectar/pollen sources:
-- **Round Dance**: Performed if food source is **close ($< 50-70\text{ m}$)**. Indicates food presence and floral scent, but does not provide directional orientation.
-- **Waggle Dance (Figure-Eight Dance)**: Performed if food source is **distant ($> 70-100\text{ m}$)**:
+- **Round Dance**: Performed if food source is **close ($< 50-70\\text{ m}$)**. Indicates food presence and floral scent, but does not provide directional orientation.
+- **Waggle Dance (Figure-Eight Dance)**: Performed if food source is **distant ($> 70-100\\text{ m}$)**:
   - Consists of a straight **waggle run** with abdomen vibrating, followed by alternating left and right semicircle returns.
-  - **Direction Encoding**: The angle of the waggle run relative to **straight up (vertical gravity)** equals the angle between the food source and the **current position of the sun**! (e.g., a waggle run $30^\circ$ to the right of vertical directs bees to fly $30^\circ$ to the right of the sun's azimuth).
-  - **Distance Encoding**: Duration of the waggle run is directly proportional to distance (approximately **1 second of waggle run $\approx 1000\text{ meters}$**).
+  - **Direction Encoding**: The angle of the waggle run relative to **straight up (vertical gravity)** equals the angle between the food source and the **current position of the sun**! (e.g., a waggle run $30^\\circ$ to the right of vertical directs bees to fly $30^\\circ$ to the right of the sun's azimuth).
+  - **Distance Encoding**: Duration of the waggle run is directly proportional to distance (approximately **1 second of waggle run $\\approx 1000\\text{ meters}$**).
   - **Resource Value**: Vigor and frequency of dancing reflect caloric sugar concentration.`
       },
       {
         heading: "4. Biological Rhythms & Circadian Clock Genetics",
-        content: `Endogenous biological timekeeping oscillating with a period of $\approx 24\text{ hours}$:
-- **Circadian Rhythms** persist under constant conditions (constant darkness, temperature compensation) and are synchronized (**entrained**) to the $24\text{-hr}$ day by environmental cues (**Zeitgebers**, primarily light).
+        content: `Endogenous biological timekeeping oscillating with a period of $\\approx 24\\text{ hours}$:
+- **Circadian Rhythms** persist under constant conditions (constant darkness, temperature compensation) and are synchronized (**entrained**) to the $24\\text{-hr}$ day by environmental cues (**Zeitgebers**, primarily light).
 - **Mammalian Master Clock**: The **Suprachiasmatic Nucleus (SCN)** of the anterior hypothalamus:
   - Receives light input directly from retinal ganglion cells expressing photopigment **Melanopsin** via the **Retinohypothalamic Tract (RHT)**.
   - Coordinates pineal gland secretion of **Melatonin** (secreted in darkness; suppressed by light).
