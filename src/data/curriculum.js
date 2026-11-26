@@ -1745,7 +1745,7 @@ Trap: salt stress is not just "too much Na$^+$"; the osmotic component reduces g
     keyFormulas: [
       { name: "Rubisco Carboxylation vs Oxygenation", latex: "\\text{Carboxylation: } \\text{RuBP} + \\text{CO}_2 + \\text{H}_2\\text{O} \\to 2 \\times 3\\text{-PGA}" },
       { name: "Rubisco Oxygenation Side Reaction", latex: "\\text{Oxygenation: } \\text{RuBP} + \\text{O}_2 \\to 3\\text{-PGA} + 2\\text{-phosphoglycolate}" },
-      { name: "Photorespiratory Salvage Stoichiometry", latex: "2 \\times 2\\text{-phosphoglycolate} \\to 1 \\times 3\\text{-PGA} + \\text{CO}_2 + \\text{NH}_3 \\text{ (25% fixed carbon lost)}" }
+      { name: "Photorespiratory Salvage Stoichiometry", latex: "2 \\times 2\\text{-phosphoglycolate} \\to 1 \\times 3\\text{-PGA} + \\text{CO}_2 + \\text{NH}_3 \\text{ (25\\% fixed carbon lost)}" }
     ],
     sections: [
       {
@@ -2340,7 +2340,7 @@ $$J_v = K_f [ (P_c - P_i) - \\sigma (\\pi_c - \\pi_i) ]$$
       { name: "Renal Clearance", latex: "C_x = \\frac{U_x \\times V}{P_x}" },
       { name: "Glomerular Filtration Rate (GFR)", latex: "GFR = C_{\\text{inulin}} = \\frac{U_{\\text{inulin}} \\times V}{P_{\\text{inulin}}}" },
       { name: "Renal Plasma & Blood Flow", latex: "RPF = C_{\\text{PAH}} = \\frac{U_{\\text{PAH}} \\times V}{P_{\\text{PAH}}}, \\quad RBF = \\frac{RPF}{1 - \\text{Hematocrit}}" },
-      { name: "Filtration Fraction (FF)", latex: "FF = \\frac{GFR}{RPF} \\approx 0.20 \\text{ (normal 20%)}" },
+      { name: "Filtration Fraction (FF)", latex: "FF = \\frac{GFR}{RPF} \\approx 0.20 \\text{ (normal 20\\%)}" },
       { name: "Serum Anion Gap", latex: "\\text{AG} = [\\text{Na}^+] - ([\\text{Cl}^-] + [\\text{HCO}_3^-]) \\text{ (Normal: } 10-12 \\text{ mEq/L)}" }
     ],
     sections: [
@@ -2409,7 +2409,7 @@ Normal values: $\\text{pH} = 7.40$, $[HCO_3^-] = 24\\text{ mEq/L}$, $P_{\\text{C
     interactiveTool: null,
     summary: "Deconstruct gastrointestinal physiology: comparative digestive architectures (ruminants, avians, hindgut fermenters), gastric HCl secretion via parietal cell H+/K+-ATPases, pancreatic zymogen activation cascades, brush border disaccharidases and peptidases, apical/basolateral enterocyte transport (SGLT1, GLUT5, GLUT2, chylomicron exocytosis into lacteals), and regulatory gastrointestinal endocrinology (gastrin, CCK, secretin, GIP, GLP-1).",
     keyFormulas: [
-      { name: "Parietal Cell Acid Secretion Net Reaction", latex: "\text{CO}_2 + \text{H}_2\text{O} \\xrightarrow{\text{CA}} \text{H}_2\text{CO}_3 \to \text{H}^+_{\text{lumen}} (\text{via } \text{H}^+/\text{K}^+\text{-ATPase}) + \text{HCO}_3^-_{\text{blood}} (\text{Alkaline tide})" }
+      { name: "Parietal Cell Acid Secretion Net Reaction", latex: "\\text{CO}_2 + \\text{H}_2\\text{O} \\overset{\\text{CA}}{\\longrightarrow} \\text{H}_2\\text{CO}_3 \\to \\text{H}^+_{\\text{lumen}} (\\text{via } \\text{H}^+/\\text{K}^+\\text{-ATPase}) + \\text{HCO}_{3,\\text{blood}}^{-} (\\text{Alkaline tide})" }
     ],
     sections: [
       {

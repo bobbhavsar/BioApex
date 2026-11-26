@@ -54,7 +54,8 @@ import {
   formatLessonContent,
   extractKeyTerms,
   toPlainText,
-  seededShuffle
+  seededShuffle,
+  repairLatex
 } from './components/lessonContent.js';
 
 // Modules that ship a canvas-based interactive model. Modules added later for
@@ -1140,7 +1141,7 @@ function renderLearnTabContent(section, mod, stepIndex) {
             ${mod.keyFormulas.slice(0, 4).map(f => `
               <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800/60 space-y-1">
                 <span class="text-[10px] font-semibold text-slate-400">${f.name}</span>
-                <div class="text-xs text-indigo-200 font-mono overflow-x-auto">$$${f.latex}$$</div>
+                <div class="text-xs text-indigo-200 font-mono overflow-x-auto">$$${repairLatex(f.latex)}$$</div>
               </div>
             `).join('')}
           </div>
@@ -1740,7 +1741,7 @@ function renderFullTextLessonView(container, moduleId) {
             ${mod.keyFormulas.map(f => `
               <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 space-y-1">
                 <span class="text-[11px] font-semibold text-slate-400 block">${f.name}</span>
-                <div class="text-xs text-indigo-200 font-mono overflow-x-auto py-1">$$${f.latex}$$</div>
+                <div class="text-xs text-indigo-200 font-mono overflow-x-auto py-1">$$${repairLatex(f.latex)}$$</div>
               </div>
             `).join('')}
           </div>
@@ -3107,20 +3108,20 @@ function renderQuizSummary(container, quiz, answers) {
 // ===================== EQUATION BANK VIEW =====================
 function renderEquationBankView(container) {
   const equations = [
-    { domain: "Cell Bio & Biochem", name: "Michaelis-Menten Kinetics", latex: "v_0 = \\\\frac{V_{\\\\max} [S]}{K_m + [S]}", notes: "Catalytic efficiency = kcat/Km. Diffusion limit \u2248 10\u2078 - 10\u2079 M\u207b\u00b9 s\u207b\u00b9." },
-    { domain: "Cell Bio & Biochem", name: "Lineweaver-Burk Double Reciprocal", latex: "\\\\frac{1}{v_0} = \\\\left( \\\\frac{K_m}{V_{\\\\max}} \\\\right) \\\\frac{1}{[S]} + \\\\frac{1}{V_{\\\\max}}", notes: "Slope = Km/Vmax; x-int = -1/Km; y-int = 1/Vmax." },
-    { domain: "Cell Bio & Biochem", name: "Mitchell Proton-Motive Force", latex: "\\\\Delta p = \\\\Delta \\\\Psi - \\\\frac{2.3 RT}{F} \\\\Delta \\\\text{pH} \\\\approx \\\\Delta \\\\Psi - 59.2 \\\\Delta \\\\text{pH}", notes: "In mitochondria, \u0394\u03a8 dominates (~80%). In thylakoids, \u0394pH dominates." },
-    { domain: "Plant Physiology", name: "Total Water Potential", latex: "\\\\Psi_w = \\\\Psi_s + \\\\Psi_p + \\\\Psi_g", notes: "Solute potential \u03a8s = -iCRT. Gravitational potential \u03a8g = +0.01 MPa/m." },
-    { domain: "Animal Physiology", name: "Goldman-Hodgkin-Katz (GHK) Voltage", latex: "V_m = \\\\frac{RT}{F} \\\\ln \\\\left( \\\\frac{P_{\\\\text{K}}[\\\\text{K}^+]_o + P_{\\\\text{Na}}[\\\\text{Na}^+]_o + P_{\\\\text{Cl}}[\\\\text{Cl}^-]_i}{P_{\\\\text{K}}[\\\\text{K}^+]_i + P_{\\\\text{Na}}[\\\\text{Na}^+]_i + P_{\\\\text{Cl}}[\\\\text{Cl}^-]_o} \\\\right)", notes: "Note [Cl\u207b] inverted due to negative valence." },
-    { domain: "Animal Physiology", name: "Starling Microvascular Filtration", latex: "J_v = K_f [ (P_c - P_i) - \\\\sigma (\\\\pi_c - \\\\pi_i) ]", notes: "\u03c3 is protein reflection coefficient; \u03c0 is colloid oncotic pressure." },
-    { domain: "Genetics & Evolution", name: "Genetic Interference", latex: "I = 1 - COC = 1 - \\\\frac{\\\\text{Observed DCO}}{\\\\text{Expected DCO}}", notes: "Expected DCO = (Dist 1) * (Dist 2) * Total N." },
+    { domain: "Cell Bio & Biochem", name: "Michaelis-Menten Kinetics", latex: "v_0 = \\frac{V_{\\max} [S]}{K_m + [S]}", notes: "Catalytic efficiency = kcat/Km. Diffusion limit \u2248 10\u2078 - 10\u2079 M\u207b\u00b9 s\u207b\u00b9." },
+    { domain: "Cell Bio & Biochem", name: "Lineweaver-Burk Double Reciprocal", latex: "\\frac{1}{v_0} = \\left( \\frac{K_m}{V_{\\max}} \\right) \\frac{1}{[S]} + \\frac{1}{V_{\\max}}", notes: "Slope = Km/Vmax; x-int = -1/Km; y-int = 1/Vmax." },
+    { domain: "Cell Bio & Biochem", name: "Mitchell Proton-Motive Force", latex: "\\Delta p = \\Delta \\Psi - \\frac{2.3 RT}{F} \\Delta \\text{pH} \\approx \\Delta \\Psi - 59.2 \\Delta \\text{pH}", notes: "In mitochondria, \u0394\u03a8 dominates (~80%). In thylakoids, \u0394pH dominates." },
+    { domain: "Plant Physiology", name: "Total Water Potential", latex: "\\Psi_w = \\Psi_s + \\Psi_p + \\Psi_g", notes: "Solute potential \u03a8s = -iCRT. Gravitational potential \u03a8g = +0.01 MPa/m." },
+    { domain: "Animal Physiology", name: "Goldman-Hodgkin-Katz (GHK) Voltage", latex: "V_m = \\frac{RT}{F} \\ln \\left( \\frac{P_{\\text{K}}[\\text{K}^+]_o + P_{\\text{Na}}[\\text{Na}^+]_o + P_{\\text{Cl}}[\\text{Cl}^-]_i}{P_{\\text{K}}[\\text{K}^+]_i + P_{\\text{Na}}[\\text{Na}^+]_i + P_{\\text{Cl}}[\\text{Cl}^-]_o} \\right)", notes: "Note [Cl\u207b] inverted due to negative valence." },
+    { domain: "Animal Physiology", name: "Starling Microvascular Filtration", latex: "J_v = K_f [ (P_c - P_i) - \\sigma (\\pi_c - \\pi_i) ]", notes: "\u03c3 is protein reflection coefficient; \u03c0 is colloid oncotic pressure." },
+    { domain: "Genetics & Evolution", name: "Genetic Interference", latex: "I = 1 - COC = 1 - \\frac{\\text{Observed DCO}}{\\text{Expected DCO}}", notes: "Expected DCO = (Dist 1) * (Dist 2) * Total N." },
     { domain: "Ethology & Ecology", name: "Hamilton's Rule for Kin Selection", latex: "r B > C", notes: "Hymenoptera full sisters r = 0.75; sister-brother r = 0.25." },
-    { domain: "Plant Physiology", name: "Hagen-Poiseuille Flow", latex: "Q = \\\\frac{\\\\pi r^4 \\\\Delta P}{8 \\\\eta L}", notes: "Conductance scales with r\u2074." },
-    { domain: "Animal Physiology", name: "Alveolar Gas Equation", latex: "P_A\\\\text{O}_2 = (P_{\\\\text{atm}} - P_{\\\\text{H}_2\\\\text{O}}) F_I\\\\text{O}_2 - \\\\frac{P_A\\\\text{CO}_2}{R}", notes: "Normal A-a gradient is 5-10 mmHg." },
-    { domain: "Animal Physiology", name: "Law of Laplace", latex: "P = \\\\frac{2 T}{r}", notes: "Surfactant (DPPC) reduces T as r decreases, preventing atelectasis." },
+    { domain: "Plant Physiology", name: "Hagen-Poiseuille Flow", latex: "Q = \\frac{\\pi r^4 \\Delta P}{8 \\eta L}", notes: "Conductance scales with r\u2074." },
+    { domain: "Animal Physiology", name: "Alveolar Gas Equation", latex: "P_A\\text{O}_2 = (P_{\\text{atm}} - P_{\\text{H}_2\\text{O}}) F_I\\text{O}_2 - \\frac{P_A\\text{CO}_2}{R}", notes: "Normal A-a gradient is 5-10 mmHg." },
+    { domain: "Animal Physiology", name: "Law of Laplace", latex: "P = \\frac{2 T}{r}", notes: "Surfactant (DPPC) reduces T as r decreases, preventing atelectasis." },
     { domain: "Genetics & Evolution", name: "Breeder's Equation", latex: "R = h^2 S", notes: "h\u00b2 is narrow-sense heritability (VA/VP)." },
-    { domain: "Ecology & Demography", name: "Shannon-Wiener Index", latex: "H' = -\\\\sum_{i=1}^S p_i \\\\ln p_i", notes: "Pielou's evenness J' = H' / ln S." },
-    { domain: "Ecology & Demography", name: "Lindeman's Trophic Efficiency", latex: "E_T = E_C \\\\times E_A \\\\times E_P \\\\approx 10\\\\%", notes: "Ectotherms ~10-40% EP; endotherms ~1-3%." }
+    { domain: "Ecology & Demography", name: "Shannon-Wiener Index", latex: "H' = -\\sum_{i=1}^S p_i \\ln p_i", notes: "Pielou's evenness J' = H' / ln S." },
+    { domain: "Ecology & Demography", name: "Lindeman's Trophic Efficiency", latex: "E_T = E_C \\times E_A \\times E_P \\approx 10\\%", notes: "Ectotherms ~10-40% EP; endotherms ~1-3%." }
   ];
 
   let html = `
@@ -3138,7 +3139,7 @@ function renderEquationBankView(container) {
               <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-indigo-300 font-semibold">${eq.domain}</span>
             </div>
             <div class="text-xs text-indigo-300 font-mono py-2 overflow-x-auto bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
-              $$${eq.latex}$$
+              $$${repairLatex(eq.latex)}$$
             </div>
             <p class="text-[11px] text-slate-400">${eq.notes}</p>
           </div>
