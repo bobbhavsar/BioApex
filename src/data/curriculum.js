@@ -11,6 +11,15 @@ export const DOMAINS = {
     icon: "dna",
     textbookSources: ["Alberts: Molecular Biology of the Cell (6th/7th Ed)", "Lehninger: Principles of Biochemistry (7th/8th Ed)", "Lodish: Molecular Cell Biology"]
   },
+  GENETICS: {
+    id: "genetics",
+    name: "Genetics & Molecular Evolution",
+    weight: "20%",
+    color: "#f59e0b", // Amber
+    bgGradient: "from-amber-900/60 to-yellow-900/40",
+    icon: "git-branch",
+    textbookSources: ["Pierce: Genetics - A Conceptual Approach (6th/7th Ed)", "Griffiths: Introduction to Genetic Analysis (11th/12th Ed)", "Futuyma: Evolution (4th/5th Ed)"]
+  },
   PLANT_BIO: {
     id: "plant_bio",
     name: "Plant Anatomy & Physiology",
@@ -28,15 +37,6 @@ export const DOMAINS = {
     bgGradient: "from-rose-900/60 to-red-900/40",
     icon: "heart-pulse",
     textbookSources: ["Vander's Human Physiology (15th/16th Ed)", "Guyton and Hall: Textbook of Medical Physiology (14th Ed)", "Costanzo: Physiology (6th/7th Ed)"]
-  },
-  GENETICS: {
-    id: "genetics",
-    name: "Genetics & Molecular Evolution",
-    weight: "20%",
-    color: "#f59e0b", // Amber
-    bgGradient: "from-amber-900/60 to-yellow-900/40",
-    icon: "git-branch",
-    textbookSources: ["Pierce: Genetics - A Conceptual Approach (6th/7th Ed)", "Griffiths: Introduction to Genetic Analysis (11th/12th Ed)", "Futuyma: Evolution (4th/5th Ed)"]
   },
   ECOLOGY: {
     id: "ecology",
@@ -65,10 +65,74 @@ export const DOMAINS = {
     icon: "network",
     textbookSources: ["Tree of Life Web Project", "Maddison & Schulz: Phylogenetics and Comparative Biology", "Brusca & Brusca: Invertebrates"]
   }
+
 };
 
 export const TRACK_MODULES = [
-  // ==================== DOMAIN 1: CELL BIOLOGY & BIOCHEMISTRY (20%) ====================
+  {
+    id: "cell-9-biomolecules",
+    domainId: "cell_bio",
+    title: "Chemical Basis of Life: Water, Macromolecules & Protein Folding",
+    subtitle: "Water potential, buffers, carbohydrate and lipid chemistry, protein structure and the energy carriers",
+    level: "USABO Finalist / IBO",
+    xp: 120,
+    estimatedMinutes: 22,
+    prerequisites: [],
+    sources: ["Lehninger Ch. 1-5", "Campbell Ch. 2-5", "Alberts MBoC Ch. 2"],
+    interactiveTool: null,
+    summary: "IBO Cell Biology opens with chemical components, and USABO tests them through quantitative water, buffer and protein-structure questions. This module builds the chemistry layer: hydrogen bonding and water potential, Henderson-Hasselbalch buffering, the four macromolecule classes and their glycosidic/ester/peptide/phosphodiester linkages, protein folding and denaturation, coenzymes, and the redox carriers ATP, NAD and NADP.",
+    keyFormulas: [
+      { name: "Henderson-Hasselbalch", latex: "pH = pK_a + \\log \\frac{[A^-]}{[HA]}" },
+      { name: "Van't Hoff Osmotic Pressure", latex: "\\pi = iCRT" },
+      { name: "ATP Hydrolysis Free Energy", latex: "\\Delta G^{\\circ \\prime} \\approx -30.5 \\text{ kJ/mol}" }
+    ],
+        sections: [
+      {
+        heading: "Water: dielectric screening, hydrogen bonding and the hydrophobic effect",
+        content: `Water is not a passive solvent; its structure sets the energy scale of every interaction inside a cell. Each molecule carries a dipole of $1.85\\ \\text{D}$, and the liquid is an average of ~3.4 hydrogen bonds per molecule with a bond energy near $20\\ \\text{kJ}\\,\\text{mol}^{-1}$ but cooperative network character, so the enthalpy of vaporisation is $40.7\\ \\text{kJ}\\,\\text{mol}^{-1}$.
+
+- **Dielectric screening.** Water's relative permittivity ($\\varepsilon_r \\approx 78.5$ at $25^\\circ\\text{C}$) weakens Coulomb attraction by roughly 80-fold. An ion pair that costs $\\sim 20\\ \\text{kJ}\\,\\text{mol}^{-1}$ to separate in bulk water costs hundreds inside a protein core ($\\varepsilon_r \\approx 4$); this is why buried salt bridges and metal sites are so strong, and why a charged residue placed in a lipid bilayer is destabilising.
+- **Hydrophobic effect.** Nonpolar surfaces do not attract each other; water loses configurational entropy when it must order around them. Association releases that ordered water, so $\\Delta G$ for burying a $\\text{CH}_2$ group is negative *despite* no favourable solute–solute enthalpy. Because the driving force is entropy, the effect strengthens with temperature up to $\\sim 60^\\circ\\text{C}$ — the opposite of a normal van der Waals attraction. It is the organising principle behind micelles (above the critical micelle concentration), bilayer assembly, protein cores, and the binding of most drugs.
+- **Colligative behaviour.** $\\pi = iMRT$; at $37^\\circ\\text{C}$ a $1\\ \\text{osmol}\\,\\text{L}^{-1}$ solution exerts $25.3\\ \\text{atm}$. Plasma at $290\\ \\text{mOsm}$ therefore holds back $\\sim 7.3\\ \\text{atm}$ ($5500\\ \\text{mmHg}$), which is why red cells need the Na$^+$/K$^+$ pump to avoid colloid-osmotic lysis. The van't Hoff factor $i$ is $\\approx 1.8$ for NaCl at physiological strength (ion pairing), not 2.
+- **Self-ionisation.** $K_w = 10^{-14}$ at $25^\\circ\\text{C}$ but $K_w$ rises with temperature (neutral pH of blood is ~6.8 at $37^\\circ\\text{C}$ — "neutral" is not pH 7 in a warm cell). Proton transfer is anomalously fast by the Grotthuss relay, which is why a proton injected into water is effectively buffered within microseconds.
+
+Exam discriminators: an osmole counts particles, an osmolarity ignores activity, and a tonicity compares only *non-permeating* solutes — urea raises osmolarity without changing tonicity.`
+      },
+      {
+        heading: "Buffers, pKa and integrated acid–base physiology",
+        content: `Buffering is the resistance of pH to added strong acid or base, and it is maximal when $pH = pK_a$; useful capacity spans roughly $pK_a \\pm 1$.
+
+$$pH = pK_a + \\log\\frac{[A^-]}{[HA]} \\qquad \\beta = \\frac{d[B]}{dpH}$$
+
+- **Side-chain pKa values that appear in olympiad problems:** Asp $\\approx 3.9$, Glu $\\approx 4.2$, His $\\approx 6.0$, Cys $\\approx 8.3$, Tyr $\\approx 10.1$, Lys $\\approx 10.5$, Arg $\\approx 12.5$; N-terminus $\\approx 8$–$9$, C-terminus $\\approx 2$–$3$. A neutral side chain gives $pI = (pK_{a1}+pK_{a2})/2$; an acidic side chain averages the two lowest pKas, a basic side chain the two highest. His is the workhorse general acid–base catalyst because its pKa sits near physiological pH *and* is tunable by the local electrostatic environment — the same reason a histidine in a catalytic triad can be both.
+- **Charge determines behaviour.** Net charge sets electrophoretic mobility and ion-exchange retention: pepsin ($pI \\approx 1$) is neutral in the stomach, lysozyme ($pI \\approx 11$) binds cation exchangers. Protein charge also drives Donnan swelling of the extracellular matrix.
+- **Open-system bicarbonate.** Physiological buffering cannot be read from a closed-form HH alone because CO$_2$ is volatile: $pH = 6.1 + \\log\\frac{[\\text{HCO}_3^-]}{0.03 \\times P_{CO_2}}$ with $[\\text{HCO}_3^-]$ in mM and $P_{CO_2}$ in mmHg. Respiratory acidosis raises $P_{CO_2}$ and lowers pH; metabolic acidosis lowers $[\\text{HCO}_3^-]$; renal compensation retains bicarbonate over 2–4 days, respiratory compensation changes ventilation within minutes. Protein and haemoglobin (the Bohr effect — deoxyHb binds H$^+$ better) supply most *non-bicarbonate* buffer, measured as base excess.
+- **Renal acid handling** is the only route for net H$^+$ excretion: carbonic anhydrase generates H$^+$ in the proximal tubule, NH$_4^+$ trapping in the thick ascending limb and collecting-duct H$^+$-ATPase are titratable, and every secreted H$^+$ regenerates one HCO$_3^-$.
+
+Trap: adding a weak acid to a buffer does not simply subtract concentration — use the ratio in HH, and remember $pH$ moves logarithmically while titration curves are plotted against equivalents of base.`
+      },
+      {
+        heading: "Protein folding: energy landscapes, chaperones and proteostasis",
+        content: `- **Hierarchy.** Primary sequence encodes secondary structure through backbone hydrogen bonding: the $\\alpha$-helix has 3.6 residues per turn, a 5.4 Å pitch (1.5 Å rise per residue) and an $i \\to i+4$ C=O···H–N bond; $\\beta$-strands pair into parallel or antiparallel sheets with pleated side chains alternating above and below the plane. Permitted backbone dihedrals are constrained on the Ramachandran plot ($\\phi$, $\\psi$), with glycine uniquely flexible and proline restricted (and able to adopt *cis* peptide bonds, slowing folding).
+- **Folding is a funnel, not a search.** Levinthal's paradox dissolves once folding is viewed as a biased energy landscape: local secondary structure forms in microseconds, molten-globule intermediates follow, and side-chain packing produces the native state. Anfinsen's ribonuclease experiment proved sequence sufficiency; the corollary is that *in vivo* folding still needs help because the cytosol is crowded ($\\sim 300\\ \\text{mg}\\,\\text{mL}^{-1}$ macromolecule) and aggregation is second-order in concentration.
+- **Chaperone machines.** Hsp70 with J-domain co-chaperones and nucleotide exchange factors binds exposed hydrophobic peptides in an ATP-driven cycle; Hsp60/GroEL forms an Anfinsen cage with GroES and uses ATP to discharge substrate; calnexin/calreticulin read N-glycan trimming as a folding timer. Failure triggers the unfolded protein response (IRE1, PERK, ATF6), then ERAD retrotranslocation and proteasomal degradation, then apoptosis.
+- **Stability and disease.** A typical globular protein is only $5$–$15\\ \\text{kcal}\\,\\text{mol}^{-1}$ more stable than its unfolded state, so a single mutation can shift the folded/unfolded ratio by orders of magnitude at $37^\\circ\\text{C}$. Amyloid and prion propagation are template-directed: the aggregate seeds conversion of native protein, which is why prion disease is infectious and why $\\text{A}\\beta$ oligomers are toxic in Alzheimer's.
+- **Disorder as function.** Intrinsically disordered regions lack a fixed structure but bind with high specificity and low affinity — ideal for signalling hubs, entropic springs (titin, elastin), and phase-separated condensates.
+
+Trap: disulphide bonds form in the ER (oxidising, PDI-catalysed) not the cytosol (reducing glutathione), so a cytosolic protein with engineered cysteines usually stays reduced.`
+      },
+      {
+        heading: "Nucleic acid and lipid chemistry that drives technique",
+        content: `- **DNA geometry.** B-DNA: 10.5 bp per turn, 3.4 Å rise, 34 Å pitch, 20 Å diameter, wide major groove (where most sequence-specific protein contacts occur) and narrow minor groove (where AT-tracts are read). A-form DNA and RNA–DNA hybrids are shorter and wider (11 bp/turn); Z-DNA is left-handed and favoured by alternating GC under negative supercoiling. Base stacking — not hydrogen bonding — dominates duplex stability; GC pairs contribute three H-bonds and extra stacking, raising $T_m$ by roughly $0.4$–$0.9^\\circ\\text{C}$ per % GC at fixed salt. Melting is monitored by the hyperchromic effect at 260 nm, and $T_m$ rises with monovalent cation concentration because cations shield backbone phosphates.
+- **RNA chemistry.** The 2′-OH makes RNA prone to alkaline hydrolysis and forces the A-form; it also allows tertiary contacts (tRNA's cloverleaf folding into an L, ribozymes, riboswitches) and 2′-O-methylation as a stability and immune-evasion mark. mRNA vaccines exploit modified nucleosides (m1Ψ) to evade innate RNA sensors.
+- **Membrane lipids.** Amphipathicity drives bilayer formation; fluidity falls with chain length and rises with cis unsaturation (each cis bond adds a kink that lowers $T_m$ by ~$10$–$20^\\circ\\text{C}$). Cholesterol is a bidirectional modulator: below $T_m$ it prevents tight packing (raising fluidity), above $T_m$ it orders acyl chains (lowering fluidity) and thickens the bilayer, broadening the transition. Sphingolipid/cholesterol "rafts" concentrate signalling proteins. Lipid asymmetry is functional: phosphatidylserine on the outer leaflet is an apoptosis signal read by annexin V.
+- **Permeability order** across a pure bilayer is $\\text{O}_2 > \\text{CO}_2 > \\text{ethanol} > \\text{water (slow, via aquaporins in vivo)} > \\text{glucose} > \\text{ions}$, which is why charged drugs need transporters and why liposome drug delivery must consider leakage.
+
+Trap: a higher $T_m$ means a *more* stable duplex, so a probe designed to discriminate a single mismatch should be run close to $T_m$, not far below it.`
+      }
+    ]
+  },
+
   {
     id: "cell-1-kinetics",
     domainId: "cell_bio",
@@ -131,6 +195,74 @@ Here, the second-order rate constant $\\frac{k_{cat}}{K_m}$ represents **catalyt
 - **Sequential Random (Ternary Complex)**: Either $A$ or $B$ can bind first.
 - **Ping-Pong (Double-Displacement)**: First substrate binds, transfers a chemical group to the enzyme forming a modified enzyme intermediate ($E^*$), and leaves as product $P$ before substrate $B$ binds!
   - Diagnostic: Lineweaver-Burk lines at different constant concentrations of second substrate are **strictly parallel**!`
+      }
+    ]
+  },
+
+  {
+    id: "cell-10-membranes-transport",
+    domainId: "cell_bio",
+    title: "Biological Membranes, Transport & Cell Junctions",
+    subtitle: "Fluid mosaic asymmetry, osmosis and tonicity, ATP-driven pumps and epithelial junctions",
+    level: "USABO Finalist / IBO",
+    xp: 130,
+    estimatedMinutes: 24,
+    prerequisites: [],
+    sources: ["Alberts MBoC Ch. 10-11", "Vander's Human Physiology Ch. 4-5", "Campbell Ch. 7"],
+    interactiveTool: null,
+    summary: "Transport through membranes is a named IBO Cell Biology heading. This module covers membrane asymmetry and fluidity, diffusion and osmosis with tonicity predictions, aquaporin kinetics, primary versus secondary active transport, the sodium-potassium ATPase stoichiometry, and the junctional and extracellular-matrix anatomy that turns cells into tissues.",
+    keyFormulas: [
+      { name: "Water Potential", latex: "\\Psi_w = \\Psi_s + \\Psi_p" },
+      { name: "Solute Potential", latex: "\\Psi_s = -iCRT" },
+      { name: "Diffusion (Fick's Law)", latex: "J = P \\cdot A \\cdot \\Delta C" }
+    ],
+        sections: [
+      {
+        heading: "Electrochemical potential, Nernst and the Goldman framework",
+        content: `Every transported solute moves down an electrochemical gradient that combines chemical and electrical work:
+
+$$\\Delta\\mu = RT\\ln\\frac{[X]_{in}}{[X]_{out}} + zF(V_{in}-V_{out})$$
+
+At equilibrium $\\Delta\\mu = 0$, giving the Nernst potential. At $37^\\circ\\text{C}$ the factor $2.303RT/F \\approx 61.5\\ \\text{mV}$, so $E_X = \\frac{61.5}{z}\\log_{10}\\frac{[X]_{out}}{[X]_{in}}$.
+
+- **Reference values** for a neuron: $E_K \\approx -90\\ \\text{mV}$, $E_{Na} \\approx +60\\ \\text{mV}$, $E_{Cl} \\approx -65\\ \\text{mV}$ (Cl$^-$ is near equilibrium at rest), $E_{Ca} \\approx +130\\ \\text{mV}$ (a $10^4$-fold gradient, which is why a single Ca$^{2+}$ channel opening is a large signal).
+- **Resting potential is a conductance-weighted average**, not a single Nernst potential. The Goldman–Hodgkin–Katz equation weights each ion by its permeability: with $P_{Na}/P_K \\approx 0.02$, $V_m$ sits close to $E_K$. Adding a little Na$^+$ permeability (as at a receptor) depolarises steeply because the driving force on Na$^+$ is large.
+- **Driving force** is $V_m - E_X$; the current is $I_X = g_X(V_m - E_X)$. A channel can be open with zero current at its reversal potential — this is how reversal potentials are measured, and why "channel open" does not mean "ion flows".
+- **Thermodynamic ceiling.** One ATP hydrolysis ($\\approx -50$ to $-60\\ \\text{kJ}\\,\\text{mol}^{-1}$ under cellular conditions) can pump at most $n$ charges against $\\Delta\\mu_{max} = \\Delta G/nF \\approx 520/n\\ \\text{mV}$ — hence the Na$^+$/K$^+$ pump's ~10:1 gradient and the Ca$^{2+}$ pump's $\\sim 10^4$ gradient are both near the same energy limit.
+- **Donnan effects.** Fixed intracellular anions (proteins, phosphates) create a Gibbs–Donnan distribution of permeant ions and an osmotic imbalance that must be offset by pump-driven Na$^+$ extrusion; block the pump with ouabain and cells swell and lyse.
+
+Trap: a *hyperpolarising* current through a Cl$^-$ channel happens when $E_{Cl}$ is more negative than $V_m$; the sign of the current is set by the driving force, not by the ion's charge alone.`
+      },
+      {
+        heading: "Channels, carriers and the kinetics of passive transport",
+        content: `- **Simple diffusion** obeys Fick's law, $J = -P\\Delta C$, where permeability $P = DK/\\Delta x$ combines diffusivity, partition coefficient and thickness. Only small uncharged species cross a pure bilayer at useful rates.
+- **Carriers** undergo a conformational cycle per transport event ($10^2$–$10^4\\ \\text{s}^{-1}$), so they saturate: $J = J_{max}\\frac{[S]}{K_t + [S]}$ with a *transport* $K_t$ that is not a binding constant. GLUT1 ($K_t \\approx 1$–$3\\ \\text{mM}$) keeps glucose uptake near $V_{max}$ at plasma concentrations; GLUT4 is stored in vesicles and translocated to the membrane by insulin — the molecular basis of insulin-stimulated glucose disposal. GLUT2 (liver, $\\beta$-cell) has a high $K_t$ and acts as a concentration sensor rather than a gate.
+- **Channels** pass $10^7$–$10^8$ ions $\\text{s}^{-1}$ with no per-ion conformational cycle, and they are gated rather than saturable at physiological concentrations. The K$^+$ selectivity filter (TVGYG signature) dehydrates K$^+$ and coordinates it by backbone carbonyls in four sites, excluding the smaller Na$^+$ because it cannot be adequately dehydrated — selectivity by *energetic matching*, not by pore size. Gating modes: voltage (S4 paddle), ligand (nAChR, GABA$_A$), mechanotransduction (Piezo1/2), temperature (TRP).
+- **Aquaporins** are pure water channels ($\\sim 3\\times10^9$ H$_2$O molecules $\\text{s}^{-1}$ per tetramer), blocked for protons by the NPA half-helices' dipole; AQP3/7 also carry glycerol. Vasopressin inserts AQP2 into the collecting duct apical membrane by exocytosis — the fastest known regulation of water permeability.
+- **Osmosis** is not a distinct force: water moves down its own chemical potential, lowered by solute. Reflection coefficient $\\sigma$ (1 for impermeant, 0 for freely permeant) determines effective osmotic pressure $\\pi_{eff} = \\sigma iRT\\Delta C$.
+
+Trap: channel vs carrier is diagnosed by turnover number and by whether the flux shows saturation at physiological substrate concentration, not by whether the protein is "a transporter".`
+      },
+      {
+        heading: "Primary active transport: ATPase families and strict stoichiometries",
+        content: `- **P-type ATPases** are phosphorylated on a conserved aspartate during their cycle (E1 $\\to$ E2). The Na$^+$/K$^+$-ATPase exports 3 Na$^+$ and imports 2 K$^+$ per ATP, so it is electrogenic (+1 net charge out) and contributes $\\sim -5\\ \\text{mV}$ to $V_m$; it consumes 20–30% of basal metabolic rate (up to 70% in neurons) and is inhibited by ouabain and cardiac glycosides, which raise intracellular Na$^+$, slow the Na$^+$/Ca$^{2+}$ exchanger, and thereby increase cardiac contractility. SERCA pumps 2 Ca$^{2+}$ per ATP into the SR; PMCA pumps 1 Ca$^{2+}$ per ATP and is calmodulin-activated. Gastric H$^+$/K$^+$-ATPase is the target of proton-pump inhibitors, which are irreversible covalent blockers.
+- **V-type ATPases** acidify lysosomes, endosomes and the plant vacuole; they are proton pumps that can run in reverse as ATP synthases in some organelles. **F-type** is the mitochondrial/chloroplast rotary machine. **ABC transporters** use ATP binding and hydrolysis on two nucleotide-binding domains to drive conformational changes in two transmembrane domains; they export substrates *out* of the cytosol (MDR1/P-glycoprotein, MRP, BCRP) and include CFTR — which is an ABC-family *channel*, not a pump, a favourite exam discrimination.
+- **Stoichiometry is the thermodynamics.** Net transport work per cycle must not exceed $\\Delta G_{ATP}$; with $3$ Na$^+$ out against a 10-fold gradient and $-70\\ \\text{mV}$, the work is $\\sim 3 \\times (6 + 7)\\ \\text{kJ} \\approx 39\\ \\text{kJ}$, comfortably inside the ATP budget, while a 100-fold Ca$^{2+}$ gradient over $+130\\ \\text{mV}$ uses nearly all of it.
+- **Plant and fungal cells** run on a plasma-membrane H$^+$-ATPase rather than a Na$^+$ pump, generating a proton-motive gradient that powers secondary symports — a key difference from animal physiology.
+
+Trap: oligomycin blocks the F$_o$ proton channel, not the ATP-binding site, and in coupled mitochondria it stops respiration indirectly by hyperpolarising $\\Delta p$; cyanide blocks cytochrome oxidase directly.`
+      },
+      {
+        heading: "Secondary active transport, epithelia and clinical correlation",
+        content: `Secondary transporters couple a favourable gradient (usually Na$^+$ or H$^+$) to an unfavourable one; they are obligate exchangers or symporters with fixed stoichiometry, so they can be electrogenic.
+
+- **SGLT1** (enterocyte, kidney) moves 2 Na$^+$ with 1 glucose, coupling the ~10-fold Na$^+$ gradient to a $\\sim 3000$-fold glucose accumulation; SGLT2 (kidney, 1:1) reabsorbs the bulk of filtered glucose, and GLUT2 then exits glucose across the basolateral membrane. Oral rehydration therapy works because luminal glucose drives Na$^+$ (and hence water) absorption through SGLT1.
+- **Exchangers:** Na$^+$/Ca$^{2+}$ (NCX, 3:1, electrogenic), Na$^+$/H$^+$ (NHE1, pH and volume control), Cl$^-$/HCO$_3^-$ (band 3, the chloride shift in red cells), and the dibasic amino acid antiporter mutated in cystinuria.
+- **Cotransporters and their drugs:** NKCC1/2 (loop diuretics — furosemide blocks NKCC2 in the thick ascending limb, abolishing the lumen-positive potential that drives Ca$^{2+}$ and Mg$^{2+}$ reabsorption), NCC (thiazides), ENaC (amiloride), CFTR (potentiators and correctors).
+- **Epithelial logic.** Apical and basolateral membranes carry *different* transporter sets, so net transport is vectorial: glucose is absorbed at the apical SGLT1 and exits basolaterally via GLUT2, and the tight junction provides both a fence (lipid/protein segregation) and a gate (paracellular conductance). Standing gradients — the lumen-positive potential in the TAL, the acid lumen in the collecting duct — are created by these asymmetric pumps and are as important as the transporters themselves.
+- **Disease logic.** Cholera toxin ADP-ribosylates G$_{\\alpha s}$, locking adenylyl cyclase on, opening CFTR and causing secretory diarrhoea that is treated with oral rehydration, not antibiotics alone. In cystic fibrosis, F508del-CFTR is retained by ER quality control and degraded (a trafficking defect), while other alleles gate poorly — two different pharmacologies, correctors versus potentiators. Proximal tubular dysfunction (Fanconi syndrome) wastes bicarbonate, glucose, phosphate and amino acids because one transporter set fails.
+
+Trap: ouabain inhibits the Na$^+$/K$^+$ pump and therefore *indirectly* reduces every Na$^+$-coupled symport — the primary lesion is not the symporter, and the downstream effect is a rise in intracellular Na$^+$ with a fall in intracellular K$^+$.`
       }
     ]
   },
@@ -203,6 +335,70 @@ $$\\Delta p = \\Delta \\Psi - \\frac{2.303 RT}{F} \\Delta \\text{pH}$$
 - **Complex IV inhibitor**: Cyanide ($CN^-$), Carbon monoxide ($CO$), Azide ($N_3^-$) (bind $Fe^{3+}$ or $Fe^{2+}$ of heme $a_3$). Completely halts respiration.
 - **ATP Synthase inhibitor**: Oligomycin (binds $F_o$ $c$-subunit, blocks $H^+$ channel). Oxygen consumption halts in coupled mitochondria due to back-pressure of high PMF!
 - **Uncouplers**: 2,4-Dinitrophenol (DNP), FCCP, UCP1 (Thermogenin). Dissipate $\\Delta p$ as heat without ATP synthesis. **Oxygen consumption accelerates to maximum rate**, independent of oligomycin or ADP availability!`
+      }
+    ]
+  },
+
+  {
+    id: "cell-12-metabolism",
+    domainId: "cell_bio",
+    title: "Central Metabolism: Glycolysis, TCA Cycle & Metabolic Integration",
+    subtitle: "Ten-step glycolysis, oxidative decarboxylation, beta-oxidation, urea cycle and gluconeogenesis",
+    level: "USABO Finalist / IBO",
+    xp: 160,
+    estimatedMinutes: 30,
+    prerequisites: ["cell-2-chemiosmosis"],
+    sources: ["Lehninger Ch. 14-23", "Campbell Ch. 9", "Alberts MBoC Ch. 13"],
+    interactiveTool: null,
+    summary: "IBO lists glycolysis, the citric acid cycle and oxidative phosphorylation as required cell metabolism, yet olympiad papers test them with carbon and ATP accounting. This module supplies the stoichiometry, the committed regulatory steps, reciprocal regulation of glycolysis and gluconeogenesis, and how lipid, amino acid and carbohydrate fuels join the same pathway.",
+    keyFormulas: [
+      { name: "Net Glycolysis Yield", latex: "\\text{Glucose} \\to 2\\ \\text{Pyruvate}: \\; 2\\ \\text{ATP} + 2\\ \\text{NADH} \\;(-2\\ \\text{from investment})" },
+      { name: "P/O Ratio", latex: "\\text{NADH} = 2.5\\ \\text{ATP}, \\quad \\text{FADH}_2 = 1.5\\ \\text{ATP}" },
+      { name: "Complete Oxidation Yield", latex: "\\text{Glucose} \\to 30-32\\ \\text{ATP} + 6\\ \\text{CO}_2" }
+    ],
+        sections: [
+      {
+        heading: "Glycolysis: regulation, substrate-level phosphorylation and fate of pyruvate",
+        content: `Glycolysis converts one glucose into two pyruvate with a net yield of 2 ATP (substrate-level phosphorylation) and 2 NADH, using two investment and two payoff phases.
+
+- **Hexokinase vs glucokinase.** Hexokinase (most tissues) has $K_m \\approx 0.1\\ \\text{mM}$ and is product-inhibited by glucose-6-phosphate; glucokinase (liver, $\\beta$-cell) has $K_m \\approx 10\\ \\text{mM}$, no product inhibition, and is restrained by glucokinase regulatory protein in the nucleus. This is why liver glucose uptake tracks plasma glucose and why glucokinase acts as the $\\beta$-cell sensor (a glucokinase mutation shifts the glucose threshold for insulin release).
+- **Phosphofructokinase-1 is the committed step** and the classic allosteric integrator: ATP and citrate inhibit (ATP binds an allosteric site, lowering affinity for fructose-6-phosphate), AMP, ADP and fructose-2,6-bisphosphate activate. F2,6BP is made by PFK-2 and destroyed by FBPase-2 — a single bifunctional enzyme whose kinase/phosphatase activity is switched by hormonal phosphorylation (glucagon $\\to$ cAMP $\\to$ PKA $\\to$ phosphatase on, so glycolysis off in liver; insulin reverses it).
+- **Payoff phase** generates ATP by direct phosphate transfer from 1,3-bisphosphoglycerate and phosphoenolpyruvate; the only oxidation is the glyceraldehyde-3-phosphate dehydrogenase step, which requires $NAD^+$ — the real reason lactate dehydrogenase exists.
+- **Pyruvate fates** are set by oxygen and tissue: pyruvate dehydrogenase (mitochondrial, needs CoA, NAD$^+$, thiamine pyrophosphate) gives acetyl-CoA; lactate dehydrogenase regenerates $NAD^+$ anaerobically (Cori cycle returns lactate to liver); pyruvate carboxylase (biotin-dependent) feeds gluconeogenesis; alanine aminotransferase shuttles amino groups. In tumours, aerobic glycolysis (Warburg) is driven by PI3K/Akt-mTOR, HIF-1$\\alpha$ and myc, not by defective mitochondria — most tumours still carry intact respiration.
+- **Arsenate** uncouples the GAPDH step (arsenolysis of 1,3-BPG) so ATP yield drops without blocking flux; **iodoacetate** blocks GAPDH directly; **2-deoxyglucose** traps glucose as 2-DG-6-phosphate and inhibits hexokinase.
+
+Trap: glycolysis nets 2 ATP and 2 NADH per glucose, but from glycogen the yield is 3 ATP because the hexokinase step is bypassed — a common off-by-one error.`
+      },
+      {
+        heading: "Pyruvate dehydrogenase, the TCA cycle and anaplerosis",
+        content: `The PDH complex (pyruvate dehydrogenase, dihydrolipoamide transacetylase, dihydrolipoamide dehydrogenase) is a massive multienzyme machine using five cofactors — thiamine pyrophosphate, lipoic acid, CoA, FAD and $NAD^+$ — which is why thiamine deficiency (beriberi, Wernicke) presents as a metabolic and neurological failure.
+
+- **Regulation** is by covalent modification: PDH kinase phosphorylates and inactivates E1, PDH phosphatase activates. Kinase is switched on by high ATP/NADH/acetyl-CoA (fed state $\\to$ PDH off in liver, on in heart), and by insulin via phosphatase activation. Arsenite binds lipoic acid and blocks the complex; mercury does the same.
+- **The TCA cycle** oxidises acetyl-CoA to $2CO_2$, yielding 3 NADH, 1 FADH$_2$, 1 GTP and reducing equivalents for the electron transport chain. Citrate synthase, isocitrate dehydrogenase (allosteric: ADP activates, ATP/NADH inhibit) and $\\alpha$-ketoglutarate dehydrogenase (inhibited by succinyl-CoA and NADH) are the regulated steps. The only substrate-level phosphorylation is succinyl-CoA synthetase (GTP/ATP).
+- **Anaplerosis and cataplerosis.** The cycle is a hub, not a closed loop: pyruvate carboxylase and glutamate dehydrogenase replenish oxaloacetate and $\\alpha$-ketoglutarate, and intermediates are drained for biosynthesis (citrate for fatty acids, $\\alpha$-KG for amino acids, succinyl-CoA for haem, oxaloacetate for gluconeogenesis). Without anaplerosis, acetyl-CoA alone cannot sustain flux — the classic "TCA needs a spark" argument.
+- **Isotope logic.** $^{13}$C-labelled substrates reveal which carbons appear in which position of citrate and glutamate, letting experiments demonstrate that the cycle runs in one direction and that PDH, not pyruvate carboxylase, supplies the acetyl unit for oxidation.
+- **Energy accounting.** Per acetyl-CoA, 3 NADH ($\\times 2.5$) + 1 FADH$_2$ ($\\times 1.5$) + 1 GTP $\\approx 10$ ATP; per glucose, 2 cytosolic NADH add ~3–5 ATP depending on the glycerol-phosphate vs malate–aspartate shuttle, so the textbook 30–32 ATP range is a shuttle-dependent number, not a constant.
+
+Trap: the TCA cycle does not consume oxygen directly; it stops under anoxia because NADH cannot be reoxidised, which is why flux is measured by oxygen consumption rather than by citrate production alone.`
+      },
+      {
+        heading: "Gluconeogenesis, glycogen and the Cori cycle",
+        content: `- **Gluconeogenesis** is glycolysis run backwards across three irreversible steps: pyruvate carboxylase (biotin, mitochondrial) $\\to$ PEPCK (cytosolic/mitochondrial), fructose-1,6-bisphosphatase, and glucose-6-phosphatase (ER lumen, liver and kidney only — the reason muscle cannot release free glucose). Four ATP equivalents (2 ATP, 2 GTP) plus 2 NADH are spent per glucose, which is why gluconeogenesis is favoured only when ATP and precursors are plentiful.
+- **Substrate supply:** lactate (Cori cycle), glycerol (from adipose lipolysis, entering as DHAP), alanine and glutamine (from muscle proteolysis), and propionate (from odd-chain fatty acids and rumen fermentation). Acetyl-CoA from even-chain fatty acids cannot be netted into glucose in animals, because pyruvate dehydrogenase is irreversible and isocitrate dehydrogenase/$\\alpha$-KGDH lose the carbons as CO$_2$ — the biochemical reason fat cannot become glucose, only ketones.
+- **Glycogen** is a branched polymer with $\\alpha$-1,4 chains and $\\alpha$-1,6 branch points, giving many non-reducing ends for rapid phosphorylase action. Glycogen synthase is activated by insulin via GSK3 inhibition; glycogen phosphorylase is activated by glucagon/epinephrine via PKA, and in muscle by AMP and Ca$^{2+}$ (energy-sensing, not hormonal). Von Gierke disease (glucose-6-phosphatase) causes severe fasting hypoglycaemia and hepatomegaly; McArdle disease (muscle phosphorylase) causes exercise intolerance with a flat lactate response.
+- **Hormonal logic in fasting:** glucagon/insulin ratio rises $\\to$ cAMP $\\to$ PKA $\\to$ glycogenolysis and gluconeogenesis on, glycolysis off via PFK-2 phosphorylation; simultaneously adipose lipolysis supplies fatty acids for hepatic ketogenesis, sparing glucose for the brain. Muscle lacks glucagon receptors, so its glycogen is for local use only.
+- **Cori cycle cost** is 6 ATP per glucose recycled (2 spent in muscle glycolysis to lactate, 4 in hepatic gluconeogenesis), which is why sustained anaerobiosis is metabolically expensive but protects the muscle from acid-driven failure.
+
+Trap: glycerol enters gluconeogenesis at DHAP (not as a three-carbon acid), so it is fully glucogenic, whereas odd-chain fatty acids contribute only their propionyl-CoA.`
+      },
+      {
+        heading: "Pentose phosphate pathway, fatty acid oxidation and nitrogen disposal",
+        content: `- **Pentose phosphate pathway** produces NADPH (for reductive biosynthesis and glutathione regeneration) and ribose-5-phosphate (for nucleotides). The oxidative phase is irreversible (glucose-6-phosphate dehydrogenase, the committed and rate-limiting step, inhibited by NADPH and activated by insulin), the non-oxidative phase reshuffles sugars via transketolase/transaldolase (thiamine-dependent). G6PD deficiency is X-linked; red cells cannot regenerate GSH, so oxidant drugs (primaquine, dapsone, fava beans) cause haemolytic anaemia with Heinz bodies.
+- **Fatty acid $\\beta$-oxidation** activates fatty acids to acyl-CoA (costing 2 ATP equivalents), shuttles them into mitochondria via the carnitine palmitoyltransferase system (CPT1 inhibited by malonyl-CoA, the master switch between fat synthesis and oxidation), and cleaves two carbons per cycle yielding 1 FADH$_2$, 1 NADH and 1 acetyl-CoA. Palmitate (C16) gives 8 acetyl-CoA and $\\approx 129$ ATP gross, ~106 net — the arithmetic depends on the activation and shuttle costs, so state your assumptions.
+- **Ketogenesis** in liver mitochondria (HMG-CoA synthase) produces acetoacetate and $\\beta$-hydroxybutyrate, exported to brain, heart and muscle; acetone is the volatile side product. Diabetic ketoacidosis combines insulin deficiency (unopposed lipolysis) with counter-regulatory hormone excess, producing an anion-gap acidosis.
+- **Nitrogen disposal** proceeds by transamination (alanine and aspartate aminotransferases, both PLP-dependent) and oxidative deamination (glutamate dehydrogenase, using $NAD^+$/NADP$^+$), then the urea cycle: carbamoyl phosphate synthetase I (mitochondrial, N-acetylglutamate-activated) condenses ammonia with bicarbonate, citrulline leaves for the cytosol, argininosuccinate synthetase and lyase add aspartate and release fumarate (linking to the TCA cycle), and arginase releases urea. Cost: 3 ATP per urea, one of which becomes AMP + PP$_i$. Fish excrete ammonia, birds and reptiles urate, mammals urea — the choice reflects water availability and toxicity.
+
+Trap: urea synthesis consumes bicarbonate and ATP, so hyperammonaemia and acidosis coexist; measuring urea alone underestimates nitrogen flux when the cycle is blocked (carbamoyl phosphate accumulates and spills into pyrimidine synthesis).`
       }
     ]
   },
@@ -314,6 +510,73 @@ $$\\Delta p = \\Delta \\Psi - \\frac{2.303 RT}{F} \\Delta \\text{pH}$$
   - Forms a parallel **four-helix bundle** (trans-SNARE complex or 'SNAREpin').
   - The mechanical zippering of the four-helix bundle pulls the two hydrophobic bilayers within 1.5 nm of each other, expelling water molecules and driving outer leaflet hemifusion, followed by full fusion pore opening.
 - **Disassembly**: Following fusion, the stable cis-SNARE complex in the target membrane is unwound by **NSF (an AAA+ ATPase)** and its adaptor **$\\alpha$-SNAP**, hydrolyzing ATP to restore free monomers for recycling.`
+      }
+    ]
+  },
+
+  {
+    id: "cell-11-cytoskeleton-motility",
+    domainId: "cell_bio",
+    title: "Cytoskeleton, Motor Proteins & Cell Motility",
+    subtitle: "Actin treadmilling, microtubule dynamic instability, kinesin/dynein and the 9+2 axoneme",
+    level: "USABO Finalist / IBO",
+    xp: 130,
+    estimatedMinutes: 22,
+    prerequisites: [],
+    sources: ["Alberts MBoC Ch. 16-17", "Lodish Molecular Cell Biology Ch. 17-18", "Campbell Ch. 6"],
+    interactiveTool: null,
+    summary: "The cytoskeleton is an explicit IBO Cell Biology topic and a favourite mechanism question. Learn the three filament systems, their nucleotide-dependent assembly, the polarity and duty ratio of each motor protein, how the mitotic spindle and the axoneme are built, and how defects produce disease.",
+    keyFormulas: [
+      { name: "Actin Critical Concentration", latex: "\\text{Net growth when } [G\\text{-actin}] > C_c" },
+      { name: "Axoneme Arrangement", latex: "9 + 2 \\; (9 \\text{doublets} + 2 \\text{central singlet pairs})" }
+    ],
+        sections: [
+      {
+        heading: "Actin: nucleotide-driven treadmilling, nucleators and the cortex",
+        content: `Actin is a 42 kDa ATPase that polymerises head-to-tail, giving a fast-growing barbed (+) end and a slow pointed (−) end. ATP-actin adds preferentially at the barbed end; hydrolysis to ADP-P$_i$ and then ADP occurs in the filament, and ADP-actin dissociates fastest, so at steady state subunits flux forward through the filament — **treadmilling** — at constant length.
+
+- **Critical concentration** $C_c$ is lower at the barbed end, and the difference sets the steady-state flux; profilin delivers ATP-actin to barbed ends, thymosin-$\\beta_4$ sequesters the monomer pool, and ADF/cofilin severs ADP-filaments to recycle subunits.
+- **Nucleators** bypass the slow trimer step: Arp2/3 creates a 70° branch off an existing filament (dendritic array in lamellipodia), formin processively elongates straight filaments (stress fibres, filopodia, cytokinetic ring). Spire and Cordón-bleu nucleate unbranched filaments. Rho-family GTPases set the geometry: RhoA $\\to$ formin/myosin II (stress fibres), Rac1 $\\to$ WAVE/Arp2/3 (lamellipodia), Cdc42 $\\to$ N-WASP/filopodia.
+- **Architecture** comes from crosslinkers: $\\alpha$-actinin bundles antiparallel filaments in the Z-disc, fascin makes tight parallel bundles in filopodia, filamin forms orthogonal networks that gel the cortex, and spectrin/anchorin tie the cortex to the membrane in red cells (mutations cause hereditary spherocytosis).
+- **Pharmacology** is examinable: cytochalasin caps barbed ends, latrunculin sequesters G-actin, phalloidin stabilises filaments (and is the standard fluorescent probe), jasplakinolide stabilises and nucleates.
+
+Trap: myosin II is a *plus-end-directed* motor that walks toward the barbed end, so in the contractile ring it pulls antiparallel filaments together — filament orientation, not motor direction, determines whether a network contracts or expands.`
+      },
+      {
+        heading: "Microtubules: dynamic instability, motors and the axoneme",
+        content: `Microtubules are hollow 25 nm tubes of 13 protofilaments built from $\\alpha/\\beta$-tubulin heterodimers; GTP bound to $\\beta$-tubulin is hydrolysed after incorporation, and the resulting GTP-cap model explains **dynamic instability** — stochastic switching between growth (rescue) and shrinkage (catastrophe).
+
+- **Nucleation** occurs at the centrosome/MTOC by $\\gamma$-tubulin ring complexes in most animal cells; plants and fungi use dispersed nucleation sites. Plus-end tracking proteins (EB1) and MAPs (tau, MAP2) stabilise subsets of microtubules, which is how a single tubulin pool builds both a stable axoneme and a rapidly remodelling spindle.
+- **Motors.** Kinesin-1 walks hand-over-hand with 8 nm steps, one ATP per step, toward the plus end (anterograde axonal transport); cytoplasmic dynein with dynactin moves toward the minus end (retrograde), and axonemal dynein generates ciliary sliding. Mitotic kinesins (Eg5/kinesin-5) slide antiparallel spindle microtubules apart; kinetochore motors plus depolymerisation power chromosome movement.
+- **Axoneme.** The 9+2 arrangement has nine outer doublets (A and B tubules), outer and inner dynein arms, radial spokes and nexin links; dynein sliding is converted into bending by the spokes and nexin restraint. Primary cilia lack the central pair and act as signalling antennae (Hedgehog via smoothened). Defective dynein arms cause primary ciliary dyskinesia, with *situs inversus* because nodal cilia fail to establish left–right asymmetry — hence Kartagener syndrome.
+- **Drugs that act on tubulin** are clinically central: colchicine and nocodazole prevent polymerisation (spindle arrest), paclitaxel stabilises and blocks dynamics, and vinca alkaloids depolymerise at high concentration but stabilise at low — a dose-dependent reversal worth remembering.
+
+Trap: microtubule depolymerisation does not stop transport instantly; plus-end-directed kinesin cargo can still move on remaining stable microtubules, so a "no movement" answer usually implies motor or ATP failure, not tubulin loss alone.`
+      },
+      {
+        heading: "Intermediate filaments: tensile strength and nuclear mechanics",
+        content: `Intermediate filaments (10 nm) differ fundamentally from actin and microtubules: they are **apolar** (no plus/minus ends), have no associated motors, and their subunits exchange slowly — their job is mechanical resilience, not transport.
+
+- **Assembly** proceeds from a coiled-coil dimer $\\to$ antiparallel tetramer $\\to$ eight-tetramer unit $\\to$ rope; because tetramers are antiparallel, the filament has no net polarity and can withstand tension in both directions.
+- **Family members and tissues:** keratins (epithelia; obligate type I/type II heterodimers), vimentin (mesenchyme, migrating cells), desmin (muscle Z-disc and costameres), neurofilaments (axonal calibre, the determinant of conduction velocity), lamins (nuclear lamina), GFAP (astrocytes).
+- **Anchorage** is the point of the system: desmosomes link keratin filaments through desmoplakin to cadherins at cell–cell junctions, hemidesmosomes link them through integrin $\\alpha_6\\beta_4$ to laminin-332 in the basal lamina, and the LINC complex (SUN + KASH/nesprin) connects the nuclear lamina to the cytoskeleton.
+- **Disease mappings** are a favourite exam item because they prove function: keratin 5/14 mutations cause epidermolysis bullosa simplex (blistering on friction), desmin mutations cause myopathy with protein aggregates, lamin A processing defects cause progeria (progerin accumulates because the farnesylated precursor is not cleaved), and GFAP mutations cause Alexander disease.
+- **Mechanotransduction:** nuclear stiffness set by lamins modulates YAP/TAZ localisation, so matrix rigidity changes transcription — a mechanochemical pathway, not just a structural one.
+
+Trap: because intermediate filaments are apolar, they cannot support directional motor transport; any answer attributing vesicle movement to intermediate filaments is wrong.`
+      },
+      {
+        heading: "Cell migration and the crossbridge cycle",
+        content: `**Migration** is a four-step cycle: (1) protrusion driven by actin polymerisation at the leading edge (lamellipodia from Arp2/3 branching, filopodia from formin bundles); (2) adhesion via integrin activation (talin, kindlin, vinculin) forming focal adhesions that transmit force to the matrix; (3) contraction by myosin II, which retracts the cell body; (4) rear release through calpain-mediated adhesion turnover. FAK and Src signal adhesion turnover, and Rho/Rac/Cdc42 coordinate the cycle. Mesenchymal migration is adhesion-dependent; amoeboid migration is not, which is why protease inhibitors often fail to block invasion.
+
+**Muscle contraction** is the specialised version of actomyosin. In the sarcomere, titin sets passive tension and centres the thick filament; the thin filament carries tropomyosin and the troponin complex (TnC binds Ca$^{2+}$, TnI inhibits, TnT anchors).
+
+- **Crossbridge cycle:** ATP binds myosin $\\to$ detachment; hydrolysis $\\to$ cocked head; phosphate release $\\to$ power stroke (the rate-limiting, force-generating step); ADP release $\\to$ tight binding; without ATP (rigor mortis) the head cannot detach.
+- **Regulation differs by muscle type.** Striated muscle is thin-filament regulated (Ca$^{2+}$–troponin moves tropomyosin); smooth muscle is thick-filament regulated (Ca$^{2+}$–calmodulin activates myosin light-chain kinase, with myosin phosphatase opposing it and a latch state for sustained tone at low ATP cost).
+- **Excitation–contraction coupling:** the T-tubule DHPR activates RyR1 in skeletal muscle by mechanical coupling; in cardiac muscle Ca$^{2+}$ entry triggers RyR2 Ca$^{2+}$-induced Ca$^{2+}$ release, which is why cardiac contractility depends on extracellular Ca$^{2+}$ and why digitalis works.
+- **Mechanics:** length–tension peaks at optimal actin–myosin overlap; force–velocity is hyperbolic (Hill); summation of twitches gives tetanus when stimuli arrive faster than relaxation; motor units are recruited in order of size (Henneman's principle), and fatigue reflects Pi/H$^+$ accumulation, impaired Ca$^{2+}$ handling and glycogen depletion rather than ATP running out.
+
+Trap: the power stroke is driven by phosphate release, not ATP binding; ATP binding causes *detachment*, so depleting ATP produces rigor, not relaxation.`
       }
     ]
   },
@@ -682,6 +945,619 @@ $$\\Delta p = \\Delta \\Psi - \\frac{2.303 RT}{F} \\Delta \\text{pH}$$
 
   // ==================== DOMAIN 2: PLANT ANATOMY & PHYSIOLOGY (15%) ====================
   {
+    id: "cell-13-bioinformatics",
+    domainId: "cell_bio",
+    title: "Bioinformatics: Sequence Analysis, BLAST & Genomics",
+    subtitle: "Databases, pairwise alignment, E-values, dN/dS and molecular clocks - now inside the IBO syllabus",
+    level: "USABO Finalist / IBO",
+    xp: 120,
+    estimatedMinutes: 20,
+    prerequisites: ["cell-6-molecular-genetics", "genetics-2-popgen"],
+    sources: ["IBO 2024 Practical: Bioinformatics (GenBank, BLAST, statistical ecology)", "Alberts MBoC Ch. 8-9", "NCBI Handbook", "Claverie & Notredame: Bioinformatics for Beginners"],
+    interactiveTool: null,
+    summary: "A bioinformatics practical has appeared at every IBO since 2019 and USABO added the area from 2025. This module covers the formats and databases, reading frames and ORFs, alignment scoring and E-values, BLAST variants, phylogenomic inference with bootstrap support, and the selection statistics (dN/dS) that turn sequences into evolutionary evidence.",
+    keyFormulas: [
+      { name: "Karlin-Altschul Expectation", latex: "E = K m n e^{-\\lambda S}" },
+      { name: "Synonymous/Nonsynonymous Ratio", latex: "\\omega = \\frac{d_N}{d_S}\\; (>1 \\text{ = positive selection, } <1 \\text{ = purifying})" },
+      { name: "Number of Reading Frames", latex: "3 \\text{ per strand} \\times 2 \\text{ strands} = 6" }
+    ],
+        sections: [
+      {
+        heading: "Sequence alignment: scoring, dynamic programming and significance",
+        content: `Alignment asks whether two sequences are homologous or merely similar; the statistics matter as much as the algorithm.
+
+- **Scoring systems.** Identity matrices are crude; substitution matrices encode observed substitution frequencies. PAM (point accepted mutation) models extrapolate from close homologues (PAM250 is distant), whereas BLOSUM matrices are built from blocks of conserved regions (BLOSUM62 = 62% identity clusters, the default for proteins). Gap open penalties exceed gap extension penalties because indels are rare, and a single long indel is usually better explained than many short ones.
+- **Dynamic programming.** Needleman–Wunsch finds the global optimum (equal-length, related sequences); Smith–Waterman finds local optima (domains in otherwise unrelated proteins). Both are $O(nm)$ in time — which is why heuristic seeds (BLAST/k-mer, FASTA) exist for databases. Affine gap costs require three matrices (M, $I_x$, $I_y$).
+- **Significance.** The $E$-value is the expected number of hits of that score in a database of that size: $E = Kmn\\,e^{-\\lambda S}$. An $E$-value of $10^{-3}$ means one expected chance hit per 1000 searches of that database — it is *database-size dependent*, so the same alignment gets a different E-value against a bigger database. Bit scores normalise for matrix and database size and are comparable across runs.
+- **Interpretation.** High identity over a short region is weak evidence of homology when the sequence is low complexity (coiled-coil, proline-rich, transmembrane stretches); profile HMMs (Pfam) and PSI-BLAST iteration capture position-specific conservation that a single matrix misses. Identical sequences in different species may reflect horizontal transfer, contamination or annotation error before they reflect biology.
+
+Trap: a low E-value is evidence of *similarity*, and homology is an inference; convergent evolution can produce high-scoring alignments in structurally unrelated proteins.`
+      },
+      {
+        heading: "Phylogenetics: parsimony, likelihood and the limits of a tree",
+        content: `- **Character vs distance methods.** Parsimony minimises the number of state changes; maximum likelihood maximises the probability of the data under an explicit substitution model (JC69, K2P, GTR + $\\Gamma$ + invariant sites); Bayesian inference returns posterior distributions. Distance methods (UPGMA assumes a molecular clock; neighbour-joining is fast and clock-free) lose information by collapsing alignment columns into a single distance.
+- **Homology vs homoplasy.** Only shared derived characters (synapomorphies) define clades; shared ancestral states (symplesiomorphies) and convergent states (homoplasies) mislead. Long-branch attraction pulls fast-evolving lineages together — the classic artefact that placed microsporidia among early eukaryotes until better models and taxon sampling corrected it.
+- **Support.** Bootstrap resampling of columns gives a frequency, not a probability that the clade is true; posterior probabilities from Bayesian analyses are typically higher for the same data, so they are not interchangeable. A well-supported short internode can still reflect a rapid radiation with few informative sites.
+- **Rooting.** An unrooted tree has no direction; outgroup rooting requires a taxon outside the ingroup, and midpoint rooting assumes a clock. Gene trees need not match species trees — incomplete lineage sorting, introgression and horizontal transfer all produce discordance, which is why concatenation and coalescent methods (ASTRAL) are compared.
+- **Molecular clocks** are only approximately valid: generation time, metabolic rate and selection all shift rates, and fossil calibrations carry their own error. Divergence dates should be reported as intervals.
+
+Trap: "the most parsimonious tree" is the best explanation under a model, not proof of history; adding taxa can change the answer, and identical topologies from different genes are stronger evidence than one gene with high bootstrap.`
+      },
+      {
+        heading: "Genomics, transcriptomics and the annotation problem",
+        content: `- **Genome assembly** is a graph problem: sequencing reads become contigs, contigs become scaffolds, and repeats longer than a read collapse — the reason short-read assemblies fragment at repeat-rich loci while long reads (PacBio, Nanopore) span them. Depth is Poisson-distributed, so coverage varies; $N50$ measures contiguity, not correctness. Assembly completeness is assessed by conserved single-copy orthologues (BUSCO).
+- **Annotation** finds genes (ORFs, splice sites, codon usage, Kozak/Shine–Dalgarno context), assigns function by homology and domains, and is where most error lives: pseudo­genes, overlapping frames, and mis-predicted exon boundaries are common. Prokaryotic operons mean one mRNA, many proteins; eukaryotic alternative splicing means one gene, many isoforms.
+- **Expression profiling.** Microarrays are hybridisation-based and relative; RNA-seq counts molecules and reports either raw counts or normalised units (TPM normalises within a sample, FPKM/RPKM historically normalised both; DESeq2/edgeR model count overdispersion with a negative binomial). Single-cell RNA-seq adds dropout, so zero counts may be technical.
+- **Comparative genomics.** Orthologues (speciation) versus paralogues (duplication) must be distinguished before inferring function; synteny conservation supports orthology. dN/dS ($\\omega$) tests selection: $\\omega < 1$ purifying, $\\approx 1$ neutral, $> 1$ positive selection at specific codons (site models).
+- **GWAS and QTL** connect genotype to phenotype statistically, and require correction for population structure and multiple testing — a Manhattan plot's tallest peak is a hypothesis, not a mechanism.
+
+Trap: high expression in RNA-seq is not proof of protein abundance; translation efficiency, protein half-life and post-translational control decouple transcript from protein.`
+      },
+      {
+        heading: "Structural bioinformatics: from sequence to shape and ligand",
+        content: `- **Secondary-structure prediction** is now largely solved by deep learning (AlphaFold2/ESMFold), but the output is a *model* with per-residue confidence (pLDDT) and a predicted-aligned-error plot; low-confidence loops and disordered regions should not be over-interpreted. Experimental structures (X-ray, cryo-EM, NMR) remain the ground truth and carry resolution and $R$-factor quality metrics.
+- **Folding principles** explain what predictors exploit: hydrophobic burial, secondary-structure propensities, disulphide and metal constraints, and coevolution of contacting residue pairs (the signal that made deep learning work — a covariation map is an inverse-folding contact map).
+- **Docking and virtual screening** score shape complementarity and interaction energy (van der Waals, electrostatics, desolvation, hydrogen bonding). Scoring functions are the weak link: enrichment of true actives is modest, and a docking pose is a hypothesis to be tested by mutagenesis or crystallography. Free-energy perturbation and molecular dynamics refine but cost compute.
+- **Pharmacophore and QSAR** models generalise across a series; Lipinski-style rules describe oral bioavailability, not potency. Conservation mapping on a structure (ConSurf) identifies functional patches faster than mutating blindly.
+- **Databases** to know: GenBank/ENA (sequences), UniProt (proteins), PDB (structures), Pfam/InterPro (domains), KEGG/Reactome (pathways), GEO/ArrayExpress (expression), Ensembl/UCSC (genomes and tracks).
+
+Trap: a predicted structure with high average confidence can still have a wrong interface; oligomeric state and ligand-bound conformation are not determined by sequence alone.`
+      }
+    ]
+  },
+
+  {
+    id: "cell-14-methods-biostatistics",
+    domainId: "cell_bio",
+    title: "Experimental Design, Core Techniques & Biostatistics",
+    subtitle: "Controls, spectrophotometry, electrophoresis, t-tests, chi-square and reading data figures",
+    level: "USABO Finalist / IBO",
+    xp: 140,
+    estimatedMinutes: 26,
+    prerequisites: [],
+    sources: ["IBO Appendix II: Basic Skills of the Practical Part", "Campbell Ch. 1 (Scientific Inquiry)", "Alberts MBoC Ch. 4 (Methods)", "CEE Student Resource Center"],
+    interactiveTool: null,
+    summary: "IBO states explicitly that questions on the principles of scientific reasoning and biological methods belong in the theory paper, and USABO Part B/C embeds data interpretation. This module covers valid experimental design, the techniques whose outputs appear in figures (spectrophotometry, centrifugation, chromatography, electrophoresis, PCR), and the statistics needed to decide whether a difference is real.",
+    keyFormulas: [
+      { name: "Beer-Lambert Law", latex: "A = \\varepsilon c l" },
+      { name: "Chi-Square Goodness of Fit", latex: "\\chi^2 = \\sum \\frac{(O - E)^2}{E}" },
+      { name: "Standard Error of the Mean", latex: "SE = \\frac{s}{\\sqrt{n}}" }
+    ],
+        sections: [
+      {
+        heading: "Separation and spectroscopy: what each method can and cannot tell you",
+        content: `- **Centrifugation.** Differential centrifugation separates by size/density (nuclei $1000g$, mitochondria $10{,}000g$, microsomes $100{,}000g$); density-gradient (sucrose, Percoll) and equilibrium centrifugation resolve organelles of similar size but different density. Sedimentation coefficient $s$ depends on mass *and* shape, so a large elongated protein can pellet like a small globular one. The Svedberg unit is $10^{-13}\\ \\text{s}$.
+- **Chromatography.** Gel filtration separates by hydrodynamic radius (large elutes first); ion exchange by net charge (pH and pI matter — set pH one unit away from pI for tight binding); affinity by specific interaction (His-tag/Ni$^{2+}$, GST, immunoprecipitation); reverse-phase by hydrophobicity in organic solvent, which denatures. Resolution is measured by plate number and selectivity; a His-tag can alter folding, so tag cleavage and functional assay are controls, not optional extras.
+- **Spectroscopy.** UV absorbance at 280 nm quantifies protein (Trp, Tyr, disulphides) and 260 nm nucleic acid; the A260/A280 ratio diagnoses contamination. Colorimetric assays (Bradford, BCA, Lowry) differ in detergent and reducing-agent compatibility. Circular dichroism reports secondary-structure content ($\\alpha$-helix minima at 208 and 222 nm). Fluorescence (intrinsic Trp, extrinsic ANS, GFP) gives sensitivity and, with FRET, nanometre distances. Mass spectrometry gives exact mass and, with tandem MS, sequence — the workhorse of proteomics; isotope labelling (SILAC, TMT) enables quantification.
+- **Radioisotopes and tracers** remain the gold standard for flux: $^{14}$C for carbon skeletons, $^{32}$P for phosphorylation, $^{3}$H for turnover, $^{45}$Ca for transport. Specific activity and quenching must be controlled.
+
+Trap: a "pure" fraction on a gel is not a functional preparation; activity assays, not band intensity, establish enrichment, and a coomassie band at the expected mass can still be a comigrating contaminant.`
+      },
+      {
+        heading: "Electrophoresis, blotting, PCR and sequencing",
+        content: `- **Electrophoresis.** SDS-PAGE denatures and coats proteins with negative charge, so migration depends on mass (with glycosylation and charge anomalies); native PAGE preserves complexes and reports shape and charge; isoelectric focusing separates by pI, and 2D gels combine both. Agarose gels resolve DNA by size, with supercoiled plasmid running anomalously fast.
+- **Blotting.** Southern (DNA), northern (RNA), western (protein) transfer to a membrane after separation; detection is radioactive or chemiluminescent. A western blot is only semi-quantitative unless a loading control and a linear-range exposure are shown — "housekeeping" controls (GAPDH, actin, tubulin) can themselves change with treatment, a common critique.
+- **PCR.** Denaturation (~95 °C), annealing (Tm-dependent, ~55–65 °C), extension (72 °C, $Taq$ ~1 kb/min). Primer design needs matched Tm, no 3′ complementarity, and specificity checked against the genome. $Taq$ lacks proofreading (error ~$10^{-4}$/bp); high-fidelity polymerases add it. qPCR measures amplification in real time (SYBR green or hydrolysis probes); $C_t$ is inversely proportional to starting template, and quantification requires a standard curve or the $\\Delta\\Delta C_t$ method with validated reference genes. RT-PCR (reverse transcription then PCR) measures RNA, and is not the same as RT-qPCR.
+- **Sequencing.** Sanger uses dideoxynucleotide chain termination (read ~700–1000 bp); Illumina uses reversible-terminator sequencing by synthesis (short reads, massive depth); Nanopore measures current changes as a strand passes a pore (long reads, higher raw error). Assembly, variant calling and methylation detection all follow from these trade-offs.
+- **Genome editing readouts:** CRISPR-Cas9 creates a double-strand break 3 bp upstream of the PAM (NGG for SpCas9); repair by NHEJ gives indels (knockout), by HDR gives precise edits (needs a template). Base and prime editors avoid double-strand breaks. Off-target prediction plus empirical validation (GUIDE-seq, amplicon sequencing) are required before claiming specificity.
+
+Trap: a band of the right size after PCR does not prove the intended product — primer dimers, pseudogene amplification and genomic DNA contamination all give bands, so melting curves and sequencing are required.`
+      },
+      {
+        heading: "Imaging, cytometry and single-cell resolution",
+        content: `- **Light microscopy** is limited by diffraction to ~200 nm laterally. Resolution is improved by confocal pinholes (optical sectioning, rejects out-of-focus light), deconvolution, and super-resolution: STED (stimulated emission depletion), SIM (structured illumination), and single-molecule localisation (PALM/STORM) which reaches 10–20 nm. Each has trade-offs in speed, phototoxicity and live-cell compatibility.
+- **Functional microscopy.** FRAP measures mobility and turnover by bleaching a region and watching recovery; FLIP measures continuous loss; FRET reports proximity under 10 nm and is used for biosensors (cameleon Ca$^{2+}$, tension sensors); TIRF images only the ~100 nm adjacent to the coverslip, ideal for single vesicles and membrane events. Calcium imaging with GCaMP and voltage imaging with ASAP indicators turn dynamics into fluorescence.
+- **Electron microscopy** reaches sub-nanometre resolution but requires fixation (or vitrification in cryo-EM), so dynamics are inferred, not observed; immunogold localisation and tomography add molecular identity and 3D context.
+- **Flow cytometry** measures per-cell fluorescence in suspension at $10^4$–$10^5$ cells/s; compensation for spectral overlap and proper controls (fluorescence-minus-one) are essential, and sorting (FACS) adds viability and sterility constraints. Mass cytometry (CyTOF) trades throughput for ~40 simultaneous markers without compensation artefacts.
+- **Statistics of imaging and omics.** Replicate the biological unit, not the field of view; report $n$ as independent samples; avoid pseudoreplication; correct for multiple comparisons (Bonferroni is conservative, Benjamini–Hochberg controls false discovery rate); pre-register or at least report effect sizes and confidence intervals, because a p-value is not an effect size.
+
+Trap: colocalisation of two colours is not proof of interaction — resolution (~200 nm) is far larger than a molecular complex, so FRET, proximity ligation or co-immunoprecipitation is needed.`
+      },
+      {
+        heading: "Biostatistics for olympiad data analysis",
+        content: `- **Describing data.** Mean and SD for symmetric data; median and IQR for skewed data; SEM ($= SD/\\sqrt{n}$) describes precision of the mean, not spread of the population — plotting SEM as error bars understates variability by $\\sqrt{n}$.
+- **Choosing a test.** Two independent groups, continuous, roughly normal $\\to$ unpaired $t$-test (Welch's if variances differ); paired design $\\to$ paired $t$-test; three or more groups $\\to$ one-way ANOVA with post-hoc correction; two categorical variables $\\to$ $\\chi^2$ (or Fisher's exact for small counts); counts of events $\\to$ Poisson models; relationship between continuous variables $\\to$ regression/correlation. Non-parametric alternatives (Mann–Whitney, Kruskal–Wallis) test ranks, not medians, unless distributions differ only by shift.
+- **What a p-value is.** $P(\\text{data} \\mid H_0)$, not $P(H_0 \\mid \\text{data})$. A $p = 0.04$ means that if the null were true, 4% of experiments would produce data at least this extreme. It says nothing about effect size, and with $n = 10^6$ a trivial difference becomes significant — hence effect sizes and confidence intervals.
+- **Power and error.** Power $= 1-\\beta$ rises with effect size, $n$ and lower variance; with $\\alpha = 0.05$ and power 0.8, a study needs roughly $16/\\Delta^2$ per group for a standardised difference $\\Delta$. Multiple comparisons inflate family-wise error: 20 independent tests at $\\alpha = 0.05$ give a ~64% chance of at least one false positive.
+- **Genetics-specific tests.** $\\chi^2$ goodness-of-fit tests Mendelian ratios; linkage is tested by LOD score (log$_{10}$ of the odds ratio, threshold 3 conventionally); Hardy–Weinberg equilibrium is tested with $\\chi^2$ and deviations indicate genotyping error, selection, non-random mating or population structure. Case-control association needs correction for structure and for the number of markers tested.
+
+Trap: correlation is not causation, but more subtly, a significant interaction in a two-way ANOVA means the *effect of one factor depends on the other* — reporting two main effects and ignoring the interaction is the most common analysis error.`
+      }
+    ]
+  },
+
+  // ==================== ADDED: GAP FILL (PLANT & ANIMAL PHYSIOLOGY) ====================
+  {
+    id: "genetics-3-mendelian-extensions",
+    domainId: "genetics",
+    title: "Advanced Mendelian Genetics: Epistasis, Penetrance & Quantitative Traits",
+    subtitle: "Modified Dihybrid Ratios, Genomic Imprinting, X-Inactivation & Heritability",
+    level: "USABO Finalist / IBO",
+    xp: 150,
+    estimatedMinutes: 28,
+    prerequisites: ["genetics-2-popgen"],
+    sources: ["Pierce: Genetics - A Conceptual Approach Ch. 5, 12, 23", "Griffiths: Introduction to Genetic Analysis Ch. 2-6"],
+    interactiveTool: null,
+    summary: "Master complex non-Mendelian inheritance patterns: epistasis topologies and modified dihybrid F2 ratios (recessive 9:3:4, dominant 12:3:1, duplicate recessive 9:7, duplicate dominant 15:1), complementation testing, penetrance vs expressivity, dosage compensation (lyonization and XIST lncRNA), parent-of-origin genomic imprinting (Igf2/H19 ICR), and quantitative genetics (narrow-sense vs broad-sense heritability and the Breeder's Equation).",
+    keyFormulas: [
+      { name: "Broad-Sense Heritability", latex: "H^2 = \frac{V_G}{V_P} = \frac{V_A + V_D + V_I}{V_G + V_E}" },
+      { name: "Narrow-Sense Heritability", latex: "h^2 = \frac{V_A}{V_P} \quad (V_A: \text{Additive genetic variance})" },
+      { name: "Breeder's Equation for Response to Selection", latex: "R = h^2 S \quad (R: \text{Response to selection}, S: \text{Selection differential})" }
+    ],
+    sections: [
+      {
+        heading: "1. Epistasis Topologies & Modified 9:3:3:1 Ratios",
+        content: `Epistasis occurs when the phenotypic expression of one gene locus masks or alters the phenotypic expression of an independent unlinked locus. In an $AaBb \times AaBb$ dihybrid cross:
+- **Standard Dihybrid Ratio**: $9\,(A\_B\_) : 3\,(A\_bb) : 3\,(aaB\_) : 1\,(aabb)$.
+- **Recessive Epistasis (9:3:4)**: Homozygous recessive genotype $aa$ masks the phenotypic expression of alleles at locus $B$.
+  - *Example*: Labrador coat color. Genotype $ee$ (recessive locus for pigment deposition) produces yellow labs regardless of whether the pigment locus is black ($B\_$) or brown ($bb$).
+- **Dominant Epistasis (12:3:1)**: Presence of a single dominant allele $A$ masks alleles at locus $B$.
+  - Genotypes $9\,A\_B\_ + 3\,A\_bb$ yield the epistatic phenotype ($12$), while $3\,aaB\_$ and $1\,aabb$ show distinct phenotypes (e.g., summer squash fruit color).
+- **Duplicate Recessive Epistasis / Complementary Genes (9:7)**: Homozygous recessive at *either* locus ($aa$ or $bb$) blocks the biochemical pathway, yielding identical mutant phenotypes.
+  - Only $A\_B\_$ produces wild-type color ($9$), while $3\,A\_bb + 3\,aaB\_ + 1\,aabb = 7$ are albino (e.g., sweet pea flower color, where enzymes $A$ and $B$ are sequential in anthocyanin biosynthesis).
+- **Duplicate Genes with Cumulative Effect (9:6:1)**: Dominant alleles at both loci produce one phenotype ($9$), dominant at either locus produces an intermediate phenotype ($3 + 3 = 6$), and double recessive produces the third ($1$).
+- **Duplicate Dominant Epistasis (15:1)**: A dominant allele at *either* locus ($A\_$ or $B\_$) produces the wild-type phenotype (e.g., shepherd's purse triangular seed capsule; only double recessive $aabb$ produces ovoid capsules).
+- **Dominant and Recessive (Inhibitory) Epistasis (13:3)**: Dominant allele $A$ acts as an inhibitor of dominant allele $B$ ($9\,A\_B\_ + 3\,A\_bb + 1\,aabb = 13$; only $3\,aaB\_$ show phenotype).
+- **Complementation Test**: Crossing two homozygous recessive mutants producing wild-type offspring indicates mutations reside in **different genes** (they complement). If offspring are mutant, mutations are allelic (same gene).`
+      },
+      {
+        heading: "2. Penetrance, Expressivity & Lethal Alleles",
+        content: `Phenotypic variation arising from genetic background and environment:
+- **Penetrance**: The percentage of individuals with a given genotype who exhibit the associated phenotype.
+  - *Incomplete Penetrance*: Polydactyly may exhibit $70\%$ penetrance (an individual carrying the dominant allele has a $30\%$ chance of displaying completely normal digits).
+- **Expressivity**: The degree or severity with which a particular genotype is expressed phenotypically in a single individual (e.g., variable expression of neurofibromatosis type 1 café-au-lait spots and neurofibromas).
+- **Recessive Lethal Alleles**: Alleles essential for survival that cause embryonic death when homozygous.
+  - *Classic Example*: Yellow coat color in mice (*Agouti* locus, $A^y$). Crossing two yellow mice ($A^y A \times A^y A$) yields a **2 yellow : 1 agouti** phenotypic ratio among surviving offspring because homozygous $A^y A^y$ embryos die *in utero*.`
+      },
+      {
+        heading: "3. Dosage Compensation, XIST & Genomic Imprinting",
+        content: `Epigenetic mechanisms regulating gene dosage:
+- **Dosage Compensation (Lyonization)**:
+  - In mammalian female somatic cells ($XX$), one of the two X chromosomes is randomly and permanently silenced in early embryogenesis, condensing into a heterochromatic **Barr Body**.
+  - Controlled by the **X Inactivation Center (XIC)** encoding the long non-coding RNA **XIST**.
+  - XIST RNA coats the future inactive X chromosome ($Xi$) in cis, recruiting histone methyltransferases (**Polycomb Repressive Complex 2 / PRC2**), depositing repressive **H3K27me3** marks, macroH2A, and extensive CpG DNA methylation.
+  - Females are functional **genetic mosaics** for X-linked alleles (e.g., calico cat coat color, anhidrotic ectodermal dysplasia).
+- **Genomic Imprinting (Parent-of-Origin Expression)**:
+  - Epigenetic silencing of a specific allele depending strictly on whether it was inherited from the mother or the father, established in the parental germline via differential DNA methylation of **Imprinting Control Regions (ICRs)**.
+  - *Igf2 / H19 Locus*:
+    - Maternal chromosome: Unmethylated ICR binds **CTCF insulator protein**, blocking downstream enhancer from activating *Igf2*; enhancer instead activates *H19* lncRNA.
+    - Paternal chromosome: Methylated ICR prevents CTCF binding; enhancer bypasses *H19* and directly activates paternal **Igf2** (Insulin-like Growth Factor 2).
+  - *Prader-Willi vs. Angelman Syndromes*: Deletion of 15q11-q13 inherited from father causes Prader-Willi (loss of paternally expressed *SNRPN*); same deletion inherited from mother causes Angelman syndrome (loss of maternally expressed *UBE3A*).`
+      },
+      {
+        heading: "4. Quantitative Genetics & Heritability Partitioning",
+        content: `Polygenic traits exhibiting continuous variation across a population:
+- **Phenotypic Variance ($V_P$) Decomposition**:
+  $$V_P = V_G + V_E + V_{G \times E}$$
+  Genetic variance ($V_G$) decomposes into:
+  $$V_G = V_A + V_D + V_I$$
+  - $V_A$: Additive genetic variance (variance due to additive effect of individual alleles; directly responds to natural or artificial selection).
+  - $V_D$: Dominance genetic variance (non-linear interactions between alleles at same locus).
+  - $V_I$: Epistatic (genic interaction) variance (interactions between alleles at different loci).
+- **Heritability Metrics**:
+  - **Broad-Sense Heritability ($H^2 = V_G / V_P$)**: Proportion of phenotypic variance attributable to total genetic variation ($0 \le H^2 \le 1$). Measured in monozygotic vs dizygotic twin concordance.
+  - **Narrow-Sense Heritability ($h^2 = V_A / V_P$)**: Proportion of phenotypic variance attributable *strictly to additive genetic variance*. Governs resemblance between parents and offspring.
+- **The Breeder's Equation**:
+  $$R = h^2 S$$
+  - $S$: **Selection Differential** ($S = \bar{x}_{\text{parents}} - \bar{x}_{\text{population}}$).
+  - $R$: **Response to Selection** ($R = \bar{x}_{\text{offspring}} - \bar{x}_{\text{population}}$).
+  - If narrow-sense heritability $h^2 = 0.60$ and parents selected for body mass average $10\text{ g}$ heavier than the population mean ($S = 10$), the expected gain in offspring is $R = 0.60 \times 10 = 6\text{ g}$!`
+      }
+    ]
+  },
+
+  {
+    id: "genetics-5-meiosis-mutation",
+    domainId: "genetics",
+    title: "Meiosis, Chromosomal Rearrangements & Mutation Repair",
+    subtitle: "Prophase I machinery, nondisjunction, aneuploidy, mutation classes and DNA repair pathways",
+    level: "USABO Finalist / IBO",
+    xp: 140,
+    estimatedMinutes: 26,
+    prerequisites: ["genetics-1-mapping"],
+    sources: ["Pierce: Genetics Ch. 2, 8, 17-18", "Alberts MBoC Ch. 5, 6", "Campbell Ch. 13, 15"],
+    interactiveTool: null,
+    summary: "IBO lists meiosis I and II, crossing over, mutation and modification as core genetics, but the app previously reached meiosis only inside linkage mapping. This module covers the mechanics of meiotic division, the origins of aneuploidy and structural rearrangement, sex-linked inheritance and dosage compensation, and the mutation and repair pathways that set the mutation rate.",
+    keyFormulas: [
+      { name: "Independent Assortment", latex: "\\text{Gamete combinations} = 2^n \\quad (n = \\text{haploid chromosome number})" },
+      { name: "Chromosome Content", latex: "\\text{Meiosis I: } 2n \\to n \\; \\text{(sister chromatids remain attached)}" },
+      { name: "Expected Aneuploidy Source", latex: "\\approx 90\\% \\text{ of trisomies arise from maternal meiosis I nondisjunction}" }
+    ],
+        sections: [
+      {
+        heading: "Meiosis: choreography, recombination and the sources of variation",
+        content: `Meiosis halves the chromosome number in two divisions, with replication only before meiosis I.
+
+- **Prophase I substages:** leptotene (chromosomes condense), zygotene (synapsis begins, synaptonemal complex forms), pachytene (crossing over completes; recombination nodules visible), diplotene (SC disassembles, chiasmata become visible), diakinesis (condensation, nuclear envelope breakdown). Crossing over is initiated by SPO11-catalysed double-strand breaks, resolved as crossovers (Holliday junction resolution) or non-crossovers; at least one chiasma per bivalent is required for correct segregation, which is why "obligate crossover" mutants cause nondisjunction.
+- **Two divisions, different logic.** Meiosis I separates homologues (reductional), held together by chiasmata plus cohesin distal to the crossover; separase cleaves arm cohesin but centromeric cohesin is protected by shugoshin until meiosis II. Meiosis II separates sister chromatids (equational). The result is four haploid products with new allele combinations from both independent assortment ($2^{n}$ for $n$ chromosome pairs) and recombination.
+- **Gametogenesis.** Spermatogenesis is continuous and yields four sperm; oogenesis is arrested in prophase I until ovulation and completes meiosis II only on fertilisation, producing one ovum and polar bodies. The long arrest explains the maternal age effect on aneuploidy: cohesin and chiasmata deteriorate over decades, raising nondisjunction risk (trisomy 21 risk rises steeply after 35).
+- **Nondisjunction** at meiosis I (homologues fail to separate) or II (sister chromatids fail) produces aneuploid gametes; most autosomal aneuploids are inviable, but trisomy 21, 18, 13 and sex-chromosome aneuploids survive to term with characteristic phenotypes. Mosaicism arises from mitotic nondisjunction after fertilisation.
+- **Variation arithmetic:** a human with 23 pairs can produce $2^{23} \\approx 8.4\\times10^{6}$ chromosome combinations before recombination, and recombination multiplies this further — the reason siblings (except identical twins) are genetically unique.
+
+Trap: crossing over occurs in prophase I, not in mitosis (somatic crossing over is rare and pathological), and sister-chromatid exchange in mitosis does not generate new allele combinations.`
+      },
+      {
+        heading: "Recombination mapping, tetrad analysis and interference",
+        content: `- **Map distance.** Recombination frequency (RF) between two loci estimates genetic distance in centimorgans (1 cM = 1% recombinant gametes) only for short distances; for larger distances double crossovers make RF an underestimate, so mapping functions convert RF to distance (Haldane assumes no interference: $d = -\\tfrac{1}{2}\\ln(1-2r)$; Kosambi assumes interference).
+- **Three-point crosses** order loci by comparing parental, single-crossover and double-crossover classes; the least frequent class is the double crossover, which reveals the middle gene. **Interference** $I = 1 - \\text{c.o.c.}$, where the coefficient of coincidence is observed/expected double crossovers; positive interference (I > 0) means crossovers inhibit nearby crossovers, and it declines with distance.
+- **Tetrad analysis** in fungi (*Neurospora*, yeast) gives unordered (PD, NPD, T) or ordered octads. PD : NPD : T = 1:0:4 indicates linkage; PD = NPD indicates independent assortment; tetratype frequency converts to map distance, and ordered asci detect centromere linkage and gene conversion (unequal allele ratios in a single meiosis, evidence for heteroduplex repair).
+- **Physical mapping complements genetics:** somatic-cell hybrids and radiation hybrids assign genes to chromosomes, FISH and array CGH detect copy-number changes, and sequencing-based linkage (GWAS, QTL mapping) uses recombination in populations to localise trait loci. LOD score $Z = \\log_{10}$(odds of linkage) with $Z \\geq 3$ as conventional significance — a likelihood ratio, not a p-value.
+- **Sex-linked and mitochondrial exceptions** break the simple map: recombination is absent in male *Drosophila* (no crossing over), suppressed near centromeres in many species (heterochromatin), and impossible for mtDNA, which is inherited maternally and therefore haplotyped rather than mapped by crosses.
+
+Trap: an RF of 50% means the loci are unlinked *or* so far apart that multiple crossovers obscure linkage — the two are distinguished by three-point crosses or by physical mapping.`
+      },
+      {
+        heading: "Mutation: classes, mechanisms and the repair systems that oppose them",
+        content: `- **Classes.** Substitutions are transitions (purine$\\leftrightarrow$purine) or transversions; indels shift the reading frame unless in multiples of three; consequences are silent (synonymous), missense (conservative or radical), nonsense, or frameshift. Regulatory and splice-site mutations can be as damaging as coding changes. Loss-of-function is usually recessive, gain-of-function usually dominant, and dominant-negative alleles act by poisoning multimers.
+- **Sources.** Replication errors (polymerase misincorporation, slippage at repeats), spontaneous deamination of cytosine to uracil (a transition at CpG hotspots), oxidative damage (8-oxoG), alkylation, intercalation, UV-induced cyclobutane pyrimidine dimers and 6-4 photoproducts, and ionising-radiation double-strand breaks. Trinucleotide repeat expansion causes anticipation (Huntington's, fragile X) via slippage and repair-mediated lengthening.
+- **Repair pathways** are the examinable core: **mismatch repair** (MutS$\\alpha$/MSH2-MSH6, MutL$\\alpha$/MLH1-PMS2; defects cause Lynch syndrome with microsatellite instability), **base excision repair** (glycosylases, AP endonuclease, for small lesions), **nucleotide excision repair** (XPA-XPG, for bulky adducts; defects cause xeroderma pigmentosum), **double-strand break repair** by homologous recombination (BRCA1/2, Rad51; error-free but S/G2-restricted) or non-homologous end joining (Ku70/80, DNA-PK; error-prone), **translesion synthesis** by low-fidelity polymerases (a mutagenic last resort), and **direct reversal** (photolyase in many organisms, MGMT for O$^6$-methylguanine). Fanconi anaemia genes handle interstrand crosslinks.
+- **Mutator phenotypes and cancer.** Loss of mismatch repair or BRCA function raises mutation rate, accelerating tumour evolution; p53 loss removes the checkpoint that would otherwise trigger apoptosis after damage. The Ames test scores reversion in *his$^-$ Salmonella* as a mutagenicity screen, with S9 liver extract for metabolic activation.
+- **Measuring mutation:** fluctuation analysis (Luria–Delbrück) distinguishes pre-existing from induced mutations; mutation accumulation lines and sequencing-based mutation spectra give rates per base per generation (humans ~$10^{-8}$).
+
+Trap: a mutagen that increases mutation *rate* differs from a mutagen that selects pre-existing mutants; the Luria–Delbrück experiment is the classic discrimination, and a "jackpot" distribution proves mutations arise before selection.`
+      },
+      {
+        heading: "Chromosome variation: aneuploidy, polyploidy, rearrangements and imprinting",
+        content: `- **Aneuploidy** (2n ± 1) arises from nondisjunction or anaphase lag; most autosomal trisomies are lethal in utero, with 21, 18 and 13 surviving partially. Sex-chromosome aneuploids (45,X Turner; 47,XXY Klinefelter; 47,XYY; 47,XXX) are viable because of X inactivation and a low gene dose from the Y. Phenotypes follow from gene dosage and from which genes escape inactivation.
+- **Polyploidy** (3n, 4n) is common in plants and often fertile (autopolyploids from within-species duplication; allopolyploids from hybridisation plus doubling, e.g. bread wheat). Endosperm is triploid, so a 2n egg + 2n sperm imbalance blocks seed development — the basis of hybrid incompatibility. In animals, polyploidy is usually lethal, though parthenogenetic and some fish/amphibian lineages are polyploid.
+- **Rearrangements.** Deletions and duplications alter dosage (22q11 deletion, Charcot–Marie–Tooth type 1A duplication); inversions suppress recombination in heterozygotes (and can cause unbalanced gametes); reciprocal translocations produce unbalanced segregation (the Philadelphia chromosome t(9;22) creates BCR-ABL, a constitutively active tyrosine kinase treated by imatinib); Robertsonian fusions reduce chromosome number and cause Down syndrome in carriers. Position effects (a gene moved next to heterochromatin) and breakpoint disruptions are common mechanisms.
+- **Imprinting** is parent-of-origin monoallelic expression by differential methylation: IGF2/H19 and the Prader–Willi/Angelman region on 15q11-q13 are the canonical examples, where deletion or uniparental disomy gives a phenotype that depends on which parent contributed the lesion. **X inactivation** (Xist RNA coating, random in eutherians, imprinted in marsupials) equalises dosage; escape genes explain Turner and Klinefelter phenotypes.
+- **Detection:** karyotype (banding, balanced rearrangements), FISH (locus-specific), array CGH/SNP arrays (copy number and absence of heterozygosity), and sequencing (breakpoints, mosaicism). Each method trades resolution against the ability to see balanced changes.
+
+Trap: a balanced translocation carrier is phenotypically normal but at high risk of unbalanced offspring — "balanced" describes the carrier's chromosomes, not the gametes.`
+      }
+    ]
+  },
+
+  {
+    id: "genetics-1-mapping",
+    domainId: "genetics",
+    title: "Linkage Mapping, Three-Point Crosses & Tetrad Analysis",
+    subtitle: "Recombination Frequencies, Interference (1-COC), Lod Scores, and Ordered Tetrads",
+    level: "USABO Finalist / IBO",
+    xp: 160,
+    estimatedMinutes: 28,
+    prerequisites: [],
+    sources: ["Pierce: Genetics Ch. 7 (Linkage, Recombination, and Mapping)", "Griffiths: Introduction to Genetic Analysis Ch. 4-5"],
+    interactiveTool: "three_point_cross_linkage_mapper",
+    summary: "Systematically solve three-point testcrosses: identify parental vs double crossover classes, establish gene order, compute map distances, calculate interference (I = 1 - COC), evaluate lod scores, and perform ordered and unordered tetrad analysis in Neurospora and yeast.",
+    keyFormulas: [
+      { name: "Coefficient of Coincidence (COC)", latex: "COC = \\frac{\\text{Observed DCO Frequency}}{\\text{Expected DCO Frequency}} = \\frac{\\text{Observed DCO}}{(\\text{Dist}_1) \\times (\\text{Dist}_2) \\times N}" },
+      { name: "Interference", latex: "I = 1 - COC \\quad (I > 0: \\text{positive interference; } I < 0: \\text{negative interference})" },
+      { name: "Gene-Centromere Distance (Ordered Tetrads)", latex: "d = \\frac{1}{2} \\left( \\frac{\\text{Second-Division Asymmetric Asci (SDS)}}{\\text{Total Asci}} \\right) \\times 100 \\text{ cM}" },
+      { name: "Lod Score (Z)", latex: "Z = \\log_{10} \\left( \\frac{P(\\text{Data} \\mid \\theta)}{P(\\text{Data} \\mid \\theta = 0.5)} \\right) \\quad (Z \\ge 3.0 \\text{ confirms linkage})" }
+    ],
+    sections: [
+      {
+        heading: "1. Three-Point Testcross Algorithmic Workflow",
+        content: `Analyzing offspring from a trihybrid testcross ($AaBbCc \\times aabbcc$):
+1. **Identify Parentals (Non-crossovers, NCO)**: The two reciprocal phenotypic classes with the highest counts.
+2. **Identify Double Crossovers (DCO)**: The two reciprocal phenotypic classes with the lowest counts.
+3. **Determine Gene Order**: Compare the alleles present in the DCO classes with the parental classes. **Only the middle gene will be swapped between the two homologs in the DCO!**
+4. **Compute Map Distances**:
+   - Distance between gene 1 and gene 2 (middle) $= \\frac{\\text{SCO}_{1-2} + \\text{DCO}}{\\text{Total Offspring}} \\times 100\\text{ cM}$.
+   - Distance between middle gene 2 and gene 3 $= \\frac{\\text{SCO}_{2-3} + \\text{DCO}}{\\text{Total Offspring}} \\times 100\\text{ cM}$.
+5. **Compute Interference ($I$)**:
+   - $\\text{Expected DCO count} = \\text{Dist}_1 \\times \\text{Dist}_2 \\times N$.
+   - $\\text{Coefficient of Coincidence } (COC) = \\frac{\\text{Observed DCO}}{\\text{Expected DCO}}$.
+   - $\\text{Interference } I = 1 - COC$.
+   - If $I = 1.0$, complete interference (no double crossovers observed). If $I = 0.40$, a crossover in region 1 reduces probability of crossover in region 2 by $40\\%$.`
+      },
+      {
+        heading: "2. Lod Score (Logarithm of the Odds) Analysis",
+        content: `Used in human pedigree genetics where sample sizes are small and planned testcrosses are impossible:
+$$Z = \\log_{10} \\left( \\frac{L(\\theta)}{L(0.5)} \\right) = \\log_{10} \\left( \\frac{\\theta^R (1 - \\theta)^{NR}}{(0.5)^{R + NR}} \\right)$$
+- $\\theta$: Recombination fraction ($0 \\le \\theta \\le 0.5$).
+- $R$: Number of recombinant individuals; $NR$: Number of non-recombinant individuals.
+- **Clinical Significance Thresholds**:
+  - $Z \\ge +3.0$: Confirmed statistical evidence for linkage ($1000 : 1$ odds in favor of linkage).
+  - $Z \\le -2.0$: Exclusion of linkage at that recombination fraction $\\theta$.
+  - $-2.0 < Z < 3.0$: Inconclusive; requires additional pedigrees.`
+      },
+      {
+        heading: "3. Tetrad Analysis in Neurospora & Yeast",
+        content: `Ascomycete fungi retain the four meiotic products within an ascus:
+- **Ordered Tetrads (*Neurospora crassa*)**:
+  - Spores are arranged linearly according to the two meiotic divisions (plus one post-meiotic mitosis yielding 8 linear ascospores).
+  - **First-Division Segregation (FDS, 4:4 pattern)**: Segregation of alleles occurred at Meiosis I $\\to$ no crossover between gene and centromere!
+  - **Second-Division Segregation (SDS, 2:2:2:2 or 2:4:2 pattern)**: Crossover occurred between gene and centromere!
+  - Distance from gene to centromere: $d = \\frac{1}{2} \\left( \\frac{\\text{SDS asci}}{\\text{Total asci}} \\right) \\times 100\\text{ cM}$ (factor of $1/2$ because only two of the four chromatids in the bivalent crossed over).
+- **Unordered Tetrads (*Saccharomyces cerevisiae*)**:
+  - Classify asci into **Parental Ditype (PD)**, **Non-Parental Ditype (NPD)**, and **Tetratype (TT)**.
+  - If $PD \\gg NPD$: The two genes are **linked** on the same chromosome!
+  - If $PD \\approx NPD$: The two genes are on separate chromosomes (independent assortment).
+  - Map distance between two linked genes:
+    $$d = \\frac{NPD + 0.5 TT}{\\text{Total Asci}} \\times 100\\text{ cM}$$`
+      }
+    ]
+  },
+
+  {
+    id: "genetics-4-gene-regulation",
+    domainId: "genetics",
+    title: "Gene Regulation: Operons, Chromatin Remodeling & Epigenetics",
+    subtitle: "Lac/Trp Operon Logic, Histone Code, CpG Methylation & miRNA Silencing",
+    level: "USABO Finalist / IBO",
+    xp: 160,
+    estimatedMinutes: 30,
+    prerequisites: ["genetics-3-mendelian-extensions"],
+    sources: ["Alberts MBoC Ch. 7 (Control of Gene Expression)", "Pierce: Genetics Ch. 16-17", "Lodish: Molecular Cell Biology Ch. 7-9"],
+    interactiveTool: null,
+    summary: "Dissect transcriptional and epigenetic regulatory circuits: prokaryotic operon logic (lac operon dual negative/positive control, catabolite repression, trp operon attenuation and leader RNA secondary hairpin dynamics), eukaryotic chromatin remodeling (HATs/HDACs, histone methyl marks, CpG island methylation), transcription factor combinatorial architecture (enhancers, silencers, insulators, Mediator), and post-transcriptional silencing by miRNAs and siRNAs.",
+    keyFormulas: [
+      { name: "Diauxic Growth Monod Kinetics", latex: "\mu = \mu_{\max} \frac{[S]}{K_s + [S]} \quad (\text{Glucose consumed first; lag phase before lactose utilization})" }
+    ],
+    sections: [
+      {
+        heading: "1. Prokaryotic Operon Logic: Lac & Trp Systems",
+        content: `Prokaryotes organize functionally related genes into polycistronic transcription units (**operons**):
+- **The *Lac* Operon (Inducible Catabolic System)**:
+  - Structural genes: *lacZ* ($\beta$-galactosidase), *lacY* (lactose permease), *lacA* (thiogalactoside transacetylase).
+  - **Negative Control**: In the absence of lactose, homotetrameric **LacI repressor** binds tightly to the **operator ($lacO$)**, physically blocking RNA polymerase promoter clearance.
+  - **Induction**: $\beta$-galactosidase catalyzes a side reaction converting lactose into **allolactose** (the physiological inducer). Allolactose binds LacI $\to$ allosteric conformational shift $\to$ LacI dissociates from operator.
+  - **Positive Control & Catabolite Repression**:
+    - High Glucose: Low cAMP. Inactive **Catabolite Activator Protein (CAP / CRP)** cannot bind. Only basal transcription occurs even if lactose is present.
+    - Low Glucose: Adenylyl cyclase is active $\to \\uparrow cAMP \to$ **cAMP-CAP complex** binds the CAP site upstream of promoter, bending DNA $90^\circ$ and recruiting RNA polymerase holoenzyme.
+    - Full transcription requires **BOTH**: Presence of lactose (repressor off) AND Absence of glucose (cAMP-CAP bound).
+- **The *Trp* Operon (Repressible Anabolic System & Attenuation)**:
+  - Repressor: TrpR is an aporepressor. High **tryptophan** acts as a **corepressor**, binding TrpR to form an active repressor that binds the operator.
+  - **Attenuation Mechanics**:
+    - The leader region (*trpL*) contains 4 RNA segments that can form alternative secondary structures: **1-2 hairpin** (transcription pause), **2-3 hairpin** (anti-terminator), or **3-4 hairpin** (Rho-independent intrinsic terminator followed by poly-U tract).
+    - *TrpL* contains two adjacent Trp codons (UGG UGG).
+    - *Low Tryptophan*: Ribosome translating *trpL* stalls at Trp codons due to lack of $Trp\text{-tRNA}^{\text{Trp}}$. Ribosome covers segment 1; segment 2 pairs with segment 3 (**2-3 anti-terminator hairpin**). The terminator cannot form $\to$ RNA polymerase transcribes the structural genes.
+    - *High Tryptophan*: Ribosome translates through Trp codons without stalling to stop codon, covering segments 1 and 2. This frees segment 3 to pair with segment 4 (**3-4 terminator hairpin**) $\to$ RNA polymerase dissociates *before* transcribing structural genes!`
+      },
+      {
+        heading: "2. Eukaryotic Chromatin Dynamics & Epigenetic Codes",
+        content: `Chromatin architecture dictates transcriptional accessibility:
+- **Nucleosome Structure**: Octamer of two copies each of core histones ($H2A, H2B, H3, H4$) wrapped by $147\text{ bp}$ of DNA in 1.65 left-handed superhelical turns. Histone $H1$ acts as linker histone.
+- **Histone Post-Translational Modifications (The Histone Code)**:
+  - **Acetylation**: Catalyzed by **Histone Acetyltransferases (HATs)** on conserved lysine residues (e.g., H3K9ac, H3K14ac). Neutralizes the positive charge of lysine, eliminating electrostatic attraction to the negatively charged DNA phosphate backbone $\to$ opens chromatin (**euchromatin**) and recruits bromodomain-containing transcription factors. Reversed by **Histone Deacetylases (HDACs)**.
+  - **Methylation**: Catalyzed by Histone Methyltransferases (HMTs) on lysine and arginine residues. Does not alter electrical charge!
+    - **H3K4me3**: Marks active promoters.
+    - **H3K36me3**: Marks actively transcribing gene bodies.
+    - **H3K9me3**: Recruits Heterochromatin Protein 1 (HP1) $\to$ forms constitutive heterochromatin.
+    - **H3K27me3**: Deposited by Polycomb Repressive Complex 2 (PRC2) $\to$ facultative heterochromatic silencing of developmental genes.
+- **DNA Methylation**:
+  - Addition of methyl group to 5-carbon of cytosine in **CpG dinucleotides** by DNA Methyltransferases (**DNMT1** for maintenance methylation after replication; **DNMT3a/3b** for de novo methylation).
+  - Unmethylated **CpG Islands** reside at promoters of $> 60\%$ of mammalian genes.
+  - Hypermethylation of CpG islands recruits Methyl-CpG-Binding Domain proteins (**MBDs / MeCP2**), which recruit HDACs and histone methyltransferases, establishing permanent transcriptional silencing.`
+      },
+      {
+        heading: "3. Eukaryotic Transcriptional Complex Assembly",
+        content: `Combinatorial control and remote regulatory elements:
+- **Promoter Architecture**: Core promoter contains **TATA Box** (at $-30\text{ bp}$), Initiator (Inr), and Downstream Promoter Element (DPE).
+  - **TFIID** (containing **TBP - TATA-Binding Protein**) binds the minor groove of the TATA box, sharply bending DNA by $80^\circ$.
+  - Sequential recruitment of TFIIA, TFIIB, TFIIF, RNA Polymerase II, TFIIE, and **TFIIH**.
+  - **TFIIH Functions**: Contains a DNA helicase to melt the promoter into an open bubble, and a cyclin-dependent kinase (**CDK7**) that phosphorylates the C-Terminal Domain (CTD) of RNA Pol II at **Ser5**, triggering promoter clearance.
+- **Enhancers, Silencers & The Mediator Complex**:
+  - Enhancers contain clusters of binding sites for sequence-specific transcription factors (activators). Can function at distances of tens of kilobases upstream or downstream, and in either orientation.
+  - DNA looping brings remote enhancers to the promoter, mediated by **Cohesin** and the multisubunit **Mediator Complex**.
+- **Insulators & Chromatin Loops**:
+  - **Insulator Elements** bound by **CTCF** establish Topologically Associating Domains (TADs). Prevent an enhancer from inappropriately activating a neighboring gene outside its domain and block heterochromatin spreading.`
+      },
+      {
+        heading: "4. Post-Transcriptional Regulation: microRNAs & RNAi",
+        content: `Fine-tuning gene expression post-transcriptionally:
+- **microRNA (miRNA) Biogenesis & Silencing**:
+  1. Primary microRNAs (**pri-miRNAs**) with stem-loop hairpins transcribed by RNA Pol II.
+  2. Nuclear processing by microprocessor complex (**Drosha** RNase III and **Pasha / DGCR8**) cleaves flanking single-stranded ends, liberating a $\sim 70\text{-nt}$ precursor miRNA (**pre-miRNA**).
+  3. Exported to cytoplasm by **Exportin-5** and Ran-GTP.
+  4. Cytoplasmic cleavage by **Dicer** RNase III removes hairpin loop, producing a 21-25 nucleotide double-stranded miRNA duplex.
+  5. The guide strand is loaded into the **RNA-Induced Silencing Complex (RISC)** containing an **Argonaute protein (Ago2)**; passenger strand is degraded.
+  6. The **Seed Region** (nucleotides 2-8 of miRNA) base-pairs with the **$3'$ UTR** of target mRNAs:
+     - *Imperfect complementarity* (typical in animals): Inhibits translation and recruits deadenylase complexes (CCR4-NOT) to accelerate mRNA decay.
+     - *Perfect complementarity* (typical in plants and siRNAs): Triggers direct endonucleolytic cleavage of mRNA by Argonaute (**slicer activity**).
+- **Iron Regulatory Proteins (IRP/IRE System)**:
+  - *Ferritin* mRNA contains an Iron Response Element (IRE) in its $5'$ UTR. Under low iron, IRP binds $5'$ IRE, blocking translation. Under high iron, iron binds IRP $\to$ dissociates $\to$ ferritin synthesized.
+  - *Transferrin Receptor* mRNA contains IREs in its $3'$ UTR. Under low iron, IRP binds $3'$ IRE, protecting mRNA from endonuclease cleavage. Under high iron, IRP dissociates $\to$ mRNA degraded.`
+      }
+    ]
+  },
+
+  // ==================== DOMAIN 5: ECOLOGY (10%) ====================
+  {
+    id: "genetics-2-popgen",
+    domainId: "genetics",
+    title: "Population Genetics: Selection Models, Inbreeding & Neutral Theory",
+    subtitle: "Overdominance, Mutation-Selection Balance, Ne, Wright's FST, and dN/dS Ratios",
+    level: "USABO Finalist / IBO",
+    xp: 160,
+    estimatedMinutes: 30,
+    prerequisites: ["genetics-1-mapping"],
+    sources: ["Futuyma: Evolution Ch. 6-7 (Genetics of Populations)", "Herron & Freeman: Evolutionary Analysis Ch. 6-7"],
+    interactiveTool: null,
+    summary: "Master quantitative evolutionary genetics: multi-allelic Hardy-Weinberg, general selection models, overdominance equilibrium, mutation-selection balance for lethal recessives, effective population size (Ne) corrections, Wright's F-statistics, and the dN/dS molecular evolution test for selection.",
+    keyFormulas: [
+      { name: "Overdominance Equilibrium Frequency", latex: "\\hat{p} = \\frac{s_2}{s_1 + s_2}, \\quad \\hat{q} = \\frac{s_1}{s_1 + s_2} \\quad (w_{11}=1-s_1, w_{12}=1, w_{22}=1-s_2)" },
+      { name: "Mutation-Selection Balance (Recessive)", latex: "\\hat{q} = \\sqrt{\\frac{\\mu}{s}} \\quad (\\hat{q} = \\frac{\\mu}{s} \\text{ for dominant})" },
+      { name: "Effective Population Size (Sex Ratio Unequal)", latex: "N_e = \\frac{4 N_m N_f}{N_m + N_f}" },
+      { name: "Wright's Fixation Index (FST)", latex: "F_{ST} = \\frac{V_p}{\\bar{p}(1 - \\bar{p})} = \\frac{H_T - \\bar{H}_S}{H_T} \\approx \\frac{1}{4 N_e m + 1}" },
+      { name: "dN/dS (ω) Ratio Test", latex: "\\omega = \\frac{d_N}{d_S} \\quad (\\omega < 1: \\text{purifying; } \\omega = 1: \\text{neutral; } \\omega > 1: \\text{positive Darwinian selection})" }
+    ],
+    sections: [
+      {
+        heading: "1. The General Viability Selection Model",
+        content: `Tracking allele frequency change under differential fitness:
+- Genotypes: $A_1A_1$, $A_1A_2$, $A_2A_2$ with initial frequencies $p^2$, $2pq$, $q^2$.
+- Relative fitness values: $w_{11}$, $w_{12}$, $w_{22}$.
+- Mean population fitness: $\\bar{w} = p^2 w_{11} + 2pq w_{12} + q^2 w_{22}$.
+- Frequency of allele $A_1$ in next generation:
+  $$p' = \\frac{p^2 w_{11} + pq w_{12}}{\\bar{w}}$$
+- **Equilibria**:
+  - **Overdominance (Heterozygote Advantage)**: $w_{12} > w_{11}$ and $w_{12} > w_{22}$. Leads to stable polymorphism!
+    - Example: Sickle-cell trait ($HbA/HbS$) in malaria-endemic regions.
+    - Equilibrium: $\\hat{p} = \\frac{s_2}{s_1 + s_2}$, where $s_1 = 1 - w_{11}$ and $s_2 = 1 - w_{22}$.
+  - **Underdominance (Heterozygote Disadvantage)**: $w_{12} < w_{11}$ and $w_{12} < w_{22}$. Unstable equilibrium point; one allele will inevitably be fixed depending on starting frequency.`
+      },
+      {
+        heading: "2. Effective Population Size ($N_e$)",
+        content: `The size of an idealized Fisher-Wright population that experiences the same rate of genetic drift as the actual population:
+- **Unequal Sex Ratios**:
+  $$N_e = \\frac{4 N_m N_f}{N_m + N_f}$$
+  - If a breeding population has $N_m = 2$ males and $N_f = 98$ females (total 100), $N_e = \\frac{4(2)(98)}{2 + 98} = 7.84$! Drift behaves as if the population had only 8 individuals.
+- **Fluctuating Populations Over Time**:
+  - $N_e$ is the **harmonic mean** of the population sizes across generations:
+    $$\\frac{1}{N_e} = \\frac{1}{t} \\sum_{i=1}^t \\frac{1}{N_i}$$
+  - A single bottleneck event (e.g., $N_1 = 1000, N_2 = 10, N_3 = 1000$) dominates the entire harmonic mean, slashing long-term effective population size.`
+      },
+      {
+        heading: "3. Wright's F-Statistics & Population Substructure",
+        content: `Quantifying inbreeding and genetic differentiation:
+- Hierarchical relationship:
+  $$(1 - F_{IT}) = (1 - F_{IS})(1 - F_{ST})$$
+  - $F_{IS}$: Inbreeding coefficient of individuals relative to their local subpopulation (due to non-random mating within demes).
+  - $F_{ST}$: Fixation index measuring genetic differentiation among subpopulations relative to total population.
+  - $F_{IT}$: Total inbreeding coefficient of an individual relative to the whole metapopulation.
+- **Island Model of Gene Flow**:
+  $$F_{ST} \\approx \\frac{1}{4 N_e m + 1}$$
+  - $N_e m$: Number of effective migrants per generation.
+  - If $N_e m > 1$ (even just **one migrant per generation**), gene flow is sufficient to prevent complete genetic divergence due to drift!`
+      },
+      {
+        heading: "4. Molecular Evolution & The $d_N/d_S$ Selection Test",
+        content: `Detecting evolutionary forces at the protein coding sequence level:
+- **Kimura's Neutral Theory of Molecular Evolution**:
+  - The vast majority of evolutionary changes at the molecular level are caused by random drift of selectively neutral or nearly neutral mutations.
+  - Rate of neutral substitution per generation equals the neutral mutation rate per gamete: $K = \\mu_0$, completely independent of population size $N$!
+- **Non-synonymous vs. Synonymous Substitutions**:
+  - $d_N$: Rate of non-synonymous substitutions per non-synonymous site (changes amino acid).
+  - $d_S$: Rate of synonymous substitutions per synonymous site (silent mutation).
+  - **Interpreting $\\omega = d_N / d_S$**:
+    - $\\omega < 1$: **Purifying (Negative) Selection**. Eliminates deleterious amino acid substitutions to preserve protein function (majority of conserved housekeeping enzymes, e.g., actin, histone H4 $\\omega < 0.05$).
+    - $\\omega = 1$: **Neutral Drift**. Amino acid changes are functionally neutral.
+    - $\\omega > 1$: **Positive (Darwinian Diversifying) Selection**. Rapid adaptive evolution driven by selective advantage (antigen recognition groove of MHC molecules, snake venoms, viral spike proteins).`
+      }
+    ]
+  },
+
+  
+  {
+    id: "genetics-6-natural-selection-speciation",
+    domainId: "genetics",
+    title: "Natural Selection, Adaptation & Speciation",
+    subtitle: "Fitness, selection modes, reproductive isolating mechanisms, hybrid zones and the origin of species",
+    level: "USABO Finalist / IBO",
+    xp: 150,
+    estimatedMinutes: 28,
+    prerequisites: ["genetics-2-popgen", "genetics-3-mendelian-extensions"],
+    sources: ["Futuyma: Evolution Ch. 2-3, 9, 12-17", "Campbell Ch. 22-25", "Pierce Ch. 25-26"],
+    interactiveTool: null,
+    summary: "The IBO evolution list names mutation, natural selection, reproductive isolation, adaptation and fitness explicitly, while the app previously reached evolution only through population-genetic algebra. This module covers selection at the phenotype level, the evidence for adaptation, drift and gene flow, speciation modes and isolating mechanisms, hybrid zones and reinforcement, plus macroevolutionary patterns including adaptive radiation and mass extinction.",
+    keyFormulas: [
+      { name: "Selection as Fitness Differential", latex: "\\Delta \\bar{w} = \\frac{\\mathrm{Cov}(z, w)}{\\bar{w}}" },
+      { name: "Fitness Components", latex: "w = \\text{survival} \\times \\text{mating success} \\times \\text{fecundity}" },
+      { name: "Hybrid Zone Width", latex: "\\text{width} \\propto \\frac{1}{\\text{selection against hybrids}} \\left( \\text{balance with migration} \right)" }
+    ],
+        sections: [
+      {
+        heading: "Hardy–Weinberg as a null model and how populations depart from it",
+        content: `Hardy–Weinberg equilibrium (HWE) states that allele and genotype frequencies stay constant in an ideal population: with alleles $A$ (frequency $p$) and $a$ (frequency $q = 1-p$), genotypes are $p^2$, $2pq$, $q^2$ after one generation of random mating.
+
+- **Assumptions** (each is an examinable violation): no selection, no mutation, no migration, infinite population size (no drift), random mating with respect to the locus, and Mendelian segregation. Departure from any assumption is a research question, not a technicality — HWE is the null hypothesis against which evolution is detected.
+- **Estimating allele frequencies.** From genotype counts, $p = (2N_{AA} + N_{Aa})/2N$. For X-linked loci, males are hemizygous: the frequency of affected males directly estimates $q$, and equilibrium is approached by oscillation because males inherit their X only from mothers.
+- **Deviations and their signatures.** Heterozygote deficit indicates inbreeding ($F = 1 - H_{obs}/H_{exp}$), population structure (Wahlund effect: mixing subpopulations that differ in allele frequency produces a heterozygote deficit even with random mating inside each), or null alleles in genotyping. Heterozygote excess indicates disassortative mating, selection favouring heterozygotes, or sex-linked complications.
+- **Inbreeding coefficient** $F$ is also the probability that two alleles in an individual are identical by descent; $F = 1/2$ for a selfed offspring, $1/4$ for full-sib mating, and it raises the frequency of recessive disorders (the reason rare recessive diseases cluster in consanguineous families and in isolated populations).
+- **Multi-locus and quantitative versions.** Linkage disequilibrium ($D$, $r^2$) measures non-random association of alleles at different loci and decays with recombination over generations — the basis of association mapping. Quantitative traits decompose phenotypic variance into $V_P = V_A + V_D + V_I + V_E$; heritability $h^2 = V_A/V_P$ is a property of a population in an environment, not of a gene.
+
+Trap: HWE genotype frequencies apply *after* one generation of random mating, so a population in disequilibrium at birth can be at HWE as adults; and $p^2 + 2pq + q^2 = 1$ always, so a failure to sum to 1 means an arithmetic error, not biology.`
+      },
+      {
+        heading: "Selection: fitness, allele dynamics and the shape of adaptation",
+        content: `- **Fitness and selection coefficients.** Relative fitness $w$ is standardised survival $\\times$ fecundity; the selection coefficient is $s = 1 - w$. With dominance coefficient $h$, genotype fitnesses are $1$, $1-hs$, $1-s$ for $AA$, $Aa$, $aa$.
+- **Dynamics.** For a beneficial recessive allele starting rare, $\\Delta p \\approx p^2 s$ — slow at first, fast once common; for a beneficial dominant allele, $\\Delta p \\approx p q^2 s/(1-q^2)$-type expressions, fast at first. The change is fastest when allele frequencies are intermediate, which is why fixation times are long at the ends.
+- **Forms of selection.** Directional shifts the mean; stabilising reduces variance around an optimum (birth weight, human birth canal); disruptive favours extremes and can produce bimodality (beak sizes in fluctuating environments, handedness in some snails). **Balancing selection** maintains polymorphism through heterozygote advantage (sickle-cell HbS in malarial regions, where AS fitness exceeds both AA and SS), negative frequency-dependent selection (self-incompatibility alleles, prey search images), or spatial/temporal heterogeneity.
+- **Mutation–selection balance** predicts equilibrium frequency $q \\approx \\sqrt{\\mu/s}$ for a deleterious recessive allele, which is why the incidence of severe recessive disease is roughly the square root of mutation rate — a classic calculation.
+- **Selection on quantitative traits.** The breeder's equation $R = h^2 S$ predicts response to selection; the multivariate version uses the G-matrix. Selection response can be blocked by genetic correlations, low heritability or stabilising selection already at the optimum (the "lek paradox": why does additive variance for fitness persist?).
+- **Molecular signatures.** A selective sweep reduces diversity around the selected site (hitchhiking) and skews the site-frequency spectrum; $d_N/d_S > 1$ indicates positive selection at specific codons. Industrial melanism in *Biston betularia* and darwin's finches during drought are the canonical field demonstrations; antibiotic and pesticide resistance are the fastest, most medically important examples.
+
+Trap: "survival of the fittest" is circular unless fitness is defined independently; fitness is a property of a genotype in an environment, measured as contribution to the next generation, not as strength or longevity.`
+      },
+      {
+        heading: "Drift, gene flow and the genetics of small populations",
+        content: `- **Genetic drift** is sampling variance in allele frequency between generations. Variance per generation is $p(1-p)/2N_e$, so drift is strong when $N_e$ is small. A neutral allele fixes with probability equal to its current frequency; expected time to fixation is ~$4N_e$ generations. Drift reduces heterozygosity at rate $1/2N_e$ per generation and causes random fixation of deleterious alleles in small populations.
+- **Effective population size** $N_e$ is usually far below census size because of unequal sex ratios, variance in reproductive success, population fluctuations (harmonic mean effects) and overlapping generations. A single-generation bottleneck dominates: $1/N_e = 1/t \\sum 1/N_i$. Conservation genetics uses $N_e$, not headcount.
+- **Founder effects and bottlenecks** reduce diversity and raise the frequency of whatever alleles the founders carried: cheetahs show extreme homogeneity, Pingelapese islanders a high frequency of achromatopsia, and island bird populations recurrent inbreeding depression.
+- **Gene flow** homogenises populations: $F_{ST} = 1/(1+4N_e m)$ for the island model, so a small $F_{ST}$ implies substantial migration or large $N_e$. Isolation by distance produces clines; hybrid zones form where divergent populations meet, with tension zones maintained by selection against hybrids.
+- **Inbreeding and heterosis.** Inbreeding raises homozygosity, exposing recessive deleterious alleles (inbreeding depression); crossing divergent lines restores heterozygosity and produces heterosis (hybrid vigour, the basis of hybrid maize). The two are mirror images of the same dominance effect.
+- **Metapopulation dynamics** (Levins: $\\frac{dp}{dt} = cp(1-p) - ep$) explain persistence of subdivided populations through recolonisation; extinction–colonisation balance predicts occupancy, and source–sink structure means a population can persist where births exceed deaths only because immigrants arrive.
+
+Trap: a large census population can have a tiny $N_e$; a skewed sex ratio or a few dominant breeders makes drift as strong as in a population a fraction of the size, which is why "there are thousands of them" is not a conservation argument.`
+      },
+      {
+        heading: "Speciation: barriers, mechanisms and the genetics of incompatibility",
+        content: `- **Species concepts.** Biological (reproductive isolation), morphological, phylogenetic, and genotypic cluster concepts each answer a different question; the biological species concept fails for asexuals, fossils and hybridising taxa, which is why operational criteria (diagnosability, monophyly) are used in practice.
+- **Geography of speciation.** Allopatric (vicariance or dispersal) is the default; peripatric (a small founder population) accelerates drift and founder effects; parapatric involves selection across an environmental gradient; sympatric requires assortative mating strong enough to overcome recombination (polyploidy, host shifts, sexual selection, temporal isolation). Polyploid speciation is instant and common in plants (Tragopogon, Spartina anglica).
+- **Reproductive isolating barriers** are prezygotic (habitat, temporal, behavioural, mechanical, gametic) or postzygotic (hybrid inviability, sterility, breakdown). **Dobzhansky–Muller incompatibilities** arise when two derived alleles at different loci are each fine but incompatible together ($A_1B_1 \\times A_2B_2 \\to A_1B_2$ unfit); the incompatibility evolves without either lineage passing through a low-fitness state, which resolves the apparent paradox of how reproductive isolation can evolve under selection.
+- **Haldane's rule**: the heterogametic sex (XY males, ZW females) is the first to show hybrid sterility or inviability, explained by dominance and faster-X evolution. **Reinforcement** strengthens prezygotic isolation where hybrids are unfit; **ring species** (Ensatina salamanders) document gradual divergence around a barrier.
+- **Adaptive radiation** requires ecological opportunity, release from competition and a key innovation: cichlids in African lakes (trophic morphology, sexual selection on colour), Anolis lizards (ecomorphs replicated on islands), Darwin's finches. Divergence dates come from molecular clocks, which are only approximately clock-like, so dates are reported with calibration uncertainty.
+
+Trap: hybrid sterility and hybrid inviability are different barriers, and F1 versus F2 breakdown differs — an F1 that is vigorous but sterile indicates meiotic incompatibility, not a lack of adaptation.`
+      }
+    ]
+  },
+
+  {
+    id: "plant-5-anatomy",
+    domainId: "plant_bio",
+    title: "Plant Tissue Systems, Vascular Anatomy & Secondary Growth",
+    subtitle: "Dermal-Ground-Vascular Organization, Münch Pressure-Flow, Vascular Cambium & Annual Rings",
+    level: "USABO Finalist / IBO",
+    xp: 150,
+    estimatedMinutes: 25,
+    prerequisites: ["plant-4-hormones"],
+    sources: ["Raven's Biology of Plants Ch. 23-26", "Taiz & Zeiger Ch. 1-2 (Plant Cells & Tissues)"],
+    interactiveTool: null,
+    summary: "Dissect plant primary and secondary anatomy: parenchyma, collenchyma, sclerenchyma (fibers and sclereids), xylem vessel elements vs tracheids (Hagen-Poiseuille hydraulic conductance), phloem sieve elements and companion cells, the symplastic/apoplastic phloem loading mechanisms, and vascular/cork cambium bifacial activity.",
+    keyFormulas: [
+      { name: "Hagen-Poiseuille Conduit Conductance", latex: "Q = \frac{\pi r^4 \Delta P}{8 \eta L} \quad (\text{Conductance scales with } r^4)" },
+      { name: "Münch Phloem Turgor Gradient", latex: "\Delta \Psi_p = \Psi_{p,\text{source}} - \Psi_{p,\text{sink}} > 0 \implies J_v = L_p \Delta \Psi_p" }
+    ],
+    sections: [
+      {
+        heading: "1. The Three Tissue Systems & Cell Specialization",
+        content: `Plant vegetative organs are partitioned into three continuous tissue systems:
+- **Dermal Tissue System**: Protoderm-derived epidermis. Covered by a polyester cutin and wax cuticle. Specialized cells include guard cells (stomatal complexes with subsidiary cells) and trichomes (glandular defense, boundary layer resistance). In roots, root hairs expand the absorption surface area.
+- **Ground Tissue System**: Ground meristem-derived. Comprises three fundamental cell types:
+  1. **Parenchyma**: Thin primary cell walls; metabolically active; totipotent; performs photosynthesis (chlorenchyma), starch storage (amyloplasts), and gas aeration (aerenchyma).
+  2. **Collenchyma**: Unevenly thickened non-lignified primary cell walls (rich in pectin and hemicellulose). Provides plastic, flexible support to elongating stems and petioles (e.g., angular, lamellar, lacunar collenchyma).
+  3. **Sclerenchyma**: Thick, lignified secondary cell walls; dead at functional maturity. Divided into **fibers** (long, slender bundles in xylem/phloem) and **sclereids** (isodiametric stone cells, brachysclereids in pears, astrosclereids in water lilies).
+- **Endodermis & Casparian Strip**: Innermost cortical layer in roots. Possesses radial and transverse walls impregnated with hydrophobic **suberin** and lignin (the Casparian strip), physically blocking the apoplastic route and forcing all water and ions to enter the symplast through selective plasma membrane transport proteins.`
+      },
+      {
+        heading: "2. Xylem Hydraulics & Hagen-Poiseuille Law",
+        content: `Water-conducting elements (tracheary elements) undergo programmed cell death leaving hollow cell wall conduits:
+- **Tracheids**: Found in all vascular plants (only conduit type in gymnosperms). Spindle-shaped cells with overlapping tapered ends and bordered pits. Resistant to freeze-thaw-induced cavitation but exhibit high hydraulic resistance.
+- **Vessel Elements**: Found predominantly in angiosperms and gnetophytes. Shorter, wider cells stacked end-to-end to form continuous hollow pipes (**vessels**). End walls feature open **perforation plates** (simple or scalariform).
+- **Hagen-Poiseuille Law**: Volume flow rate through a cylindrical pipe:
+$$Q = \frac{\pi r^4 \Delta P}{8 \eta L}$$
+Because flow scales with the fourth power of radius ($r^4$), doubling conduit radius increases conductance by **16-fold**! However, wider vessels are exponentially more susceptible to acoustic cavitation and runaway embolism under negative tension ($P_{50}$).`
+      },
+      {
+        heading: "3. Phloem Translocation & Münch Pressure-Flow",
+        content: `Transport of photoassimilates (sucrose, amino acids, signaling molecules) occurs within the phloem:
+- **Sieve Element-Companion Cell Complex (SE-CC)**: Sieve tube elements lose their nucleus, vacuole, and ribosomes at maturity, retaining modified plastids and mitochondria. Connected by sieve plates with large callose-lined sieve pores. Metabolically sustained by adjacent **companion cells** via branched plasmodesmata.
+- **P-Protein (Phloem Protein / Forisomes)**: In angiosperms, injury causes rapid surging of P-protein bodies and callose synthesis ($\beta$-1,3-glucan) to plug sieve plate pores and prevent sap loss.
+- **Phloem Loading (Source)**:
+  - *Apoplastic Loading*: Sucrose exits mesophyll into apoplast via SWEET uniporters, then actively pumped into SE-CC via **$\text{SUT1/SUC2}$ ($H^+/\text{sucrose}$ symporters)** driven by plasma membrane $H^+\text{-ATPases}$.
+  - *Symplastic Polymer Trapping*: Sucrose diffuses through intermediary cells where galactinol synthase and raffinose synthase convert it into raffinose and stachyose (larger oligosaccharides unable to diffuse backward through narrow plasmodesmata).
+- **Münch Pressure-Flow Hypothesis**: High sucrose concentration at source lowers solute potential ($\Psi_s$), drawing water in from adjacent xylem $\to$ generates high hydrostatic turgor pressure ($\Psi_p$). At sink, sucrose is unloaded and consumed/stored, water exits into xylem, lowering turgor pressure. This **hydrostatic pressure gradient ($\Delta \Psi_p$)** drives bulk mass flow from source to sink.`
+      },
+      {
+        heading: "4. Secondary Growth: Vascular & Cork Cambia",
+        content: `Woody plants achieve lateral thickening via two secondary lateral meristems:
+- **Vascular Cambium**: Arises from fascicular cambium (within vascular bundles) and interfascicular cambium (in medullary rays), forming a continuous meristematic cylinder.
+  - Consists of two initial types:
+    1. **Fusiform initials**: Vertically oriented; divide periclinally to produce **secondary xylem (wood)** to the interior and **secondary phloem (inner bark)** to the exterior.
+    2. **Ray initials**: Horizontally oriented; divide to produce vascular rays (parenchymatous horizontal transport of water, nutrients, and starch).
+  - *Growth Rings*: Early wood (spring wood) features wide, thin-walled vessel elements for maximum hydraulic capacity. Late wood (summer wood) features narrow, thick-walled conduits with abundant fibers for structural support.
+- **Cork Cambium (Phellogen)**: Initiates in the outer cortex or pericycle. Divides periclinally to produce **cork (phellem)** outward (dead, suberized cells) and **phelloderm** inward.
+- **Periderm**: Phelloderm + Phellogen + Phellem. Replaces epidermis as outer bark. **Lenticels** are spongy ruptures in the cork facilitating gas exchange for living cortex cells.`
+      }
+    ]
+  },
+
+  {
     id: "plant-1-hydraulics",
     domainId: "plant_bio",
     title: "Plant Water Relations, Cavitation & Pit Membrane Mechanics",
@@ -734,6 +1610,67 @@ $$\\Psi_w = \\Psi_s + \\Psi_p + \\Psi_g$$
   - Wide, hollow cylinders stacked end-to-end with open **perforation plates** (scalariform or simple).
   - High hydraulic conductivity (Hagen-Poiseuille flow rate scales with fourth power of conduit radius: $Q \\propto r^4$).
   - Trade-off: Much more vulnerable to freeze-thaw-induced cavitation and air-seeding than narrow conifer tracheids!`
+      }
+    ]
+  },
+
+  {
+    id: "plant-7-mineral-nutrition",
+    domainId: "plant_bio",
+    title: "Mineral Nutrition, Nitrogen Fixation & Phloem Transport",
+    subtitle: "Essential elements, Casparian strip, root ion uptake, nitrogenase and the Munsch pressure-flow mechanism",
+    level: "USABO Finalist / IBO",
+    xp: 150,
+    estimatedMinutes: 26,
+    prerequisites: ["plant-1-hydraulics"],
+    sources: ["Raven's Biology of Plants Ch. 29-32", "Taiz & Zeiger Ch. 5-6, 10-11", "Campbell Ch. 37"],
+    interactiveTool: null,
+    summary: "IBO requires transport of water, minerals and assimilates plus root structure, yet the app previously covered only the xylem. This module completes plant transport: essential element criteria and deficiency diagnosis, soil cation exchange, the endodermal checkpoint, chemiosmotic ion uptake, symbiotic nitrogen fixation, and the Munsch pressure-flow mechanism that distributes assimilates from source to sink.",
+    keyFormulas: [
+      { name: "Munsch Pressure Flow", latex: "\\Delta \\Psi_p \\; \\text{drives bulk flow from source (high } \\Psi_p) \\text{ to sink (low } \\Psi_p)" },
+      { name: "Nitrogen Fixation Cost", latex: "N_2 + 8H^+ + 8e^- + 16\\ \\text{ATP} \\to 2NH_3 + H_2" },
+      { name: "Cation Exchange Capacity", latex: "\\text{CEC} \\; (\\text{cmol}_c/\\text{kg}) \\propto \\text{clay + organic matter content}" }
+    ],
+        sections: [
+      {
+        heading: "Essential elements, ion availability and deficiency diagnostics",
+        content: `An element is essential only if (i) a plant cannot complete its life cycle without it, and (ii) its function is specific and not substitutable. That yields 17 elements: macro-nutrients C, H, O, N, P, K, Ca, Mg, S and micro-nutrients Fe, Mn, Zn, Cu, B, Mo, Cl, Ni. Silicon, sodium and cobalt are beneficial or essential only in some taxa — a distinction examiners test.
+
+- **Mobility sets symptom position.** Phloem-mobile elements (N, P, K, Mg) are retranslocated from old to young tissue, so deficiency appears first in *older* leaves; immobile elements (Ca, Fe, B, Mn) cannot be rescued and symptoms appear in *young* leaves. Chlorosis (interveinal in Fe/Mn/Mg, general in N), necrosis (K, Mg), purple stems (P), hollow stems (B), whiptail in brassicas (Mo) and stunted nodulation (Ni for urease) are the classic signatures.
+- **Soil chemistry governs availability, not abundance.** Cation exchange capacity arises from clay minerals and humus; pH controls speciation: phosphate is locked as Ca phosphates above pH 7 and as Fe/Al phosphates below pH 5.5; Fe and Mn become insoluble at high pH (lime-induced chlorosis) but toxic at low pH; Al$^{3+}$ becomes soluble and inhibits root growth below pH 5. Liebig's law of the minimum means the scarcest resource sets growth, and luxury consumption means tissue concentration is not a linear function of supply — which is why critical concentrations are used in Diagnosis and Recommendation Integrated System (DRIS) analysis.
+- **Hydroponics and tissue analysis** are the experimental tools: solution culture with a single omitted element, plus visible symptoms, dry-weight accumulation and leaf concentration, establishes essentiality. Split-root and grafting experiments distinguish local from systemic signals.
+- **Fertiliser consequences:** the Haber–Bosch process fixes atmospheric N$_2$ at high energy cost; excess N and P drive eutrophication, hypoxia and N$_2$O emissions, and nitrate leaching contaminates groundwater. Legume rotations exploit biological nitrogen fixation instead.
+
+Trap: a nutrient can be present in soil yet unavailable, so "deficiency" is not the same as "absence"; and a symptom in young leaves rules out mobile elements such as N and K.`
+      },
+      {
+        heading: "Nitrogen: uptake, reduction, symbiosis and the nitrogenase problem",
+        content: `Nitrogen is needed for proteins, nucleic acids and chlorophyll, and plants cannot use N$_2$ directly (triple bond, 941 kJ mol$^{-1}$).
+
+- **Uptake and reduction.** Roots absorb nitrate via NRT1/NRT2 transporters and ammonium via AMT transporters; nitrate reductase (cytosolic, NADH- or NADPH-dependent, molybdenum cofactor) reduces nitrate to nitrite, and nitrite reductase (plastid, ferredoxin) reduces nitrite to ammonium. Ammonium is immediately assimilated by glutamine synthetase (GS) and glutamate synthase (GOGAT), which costs one ATP and one reduced ferredoxin per ammonium — a strategy that keeps free ammonium, a decoupler and pH hazard, vanishingly low. Photorespiratory ammonium is recycled through the same GS-GOGAT route, which is why GS mutants are lethal.
+- **Symbiotic fixation.** Flavonoid exudates from roots activate rhizobial *nod* genes, producing Nod factors that trigger root-hair curling, infection threads and cortical cell division to build the nodule. Bacteria are released into symbiosomes, differentiate into bacteroids, and nitrogenase (Fe-Mo cofactor) reduces N$_2$ to NH$_3$ at a cost of ~16 ATP per N$_2$; the enzyme is irreversibly poisoned by O$_2$, so the nodule supplies low free O$_2$ at high flux via leghaemoglobin, an oxygen-buffering protein that is a plant globin. The plant sanctions non-fixing nodules by cutting off carbon supply — an evolved enforcement mechanism.
+- **Regulation and alternatives.** N status represses nodulation systemically (autoregulation of nodulation, CLE peptides), so fertiliser N suppresses fixation. Actinorhizal plants use *Frankia*; cyanobacteria associate with cycads and *Azolla*; mycorrhizae supply N as well as P. Carnivorous plants (Nepenthes, Drosera) and parasitic plants (Striga, dodder) bypass the problem entirely.
+
+Trap: nitrogenase works anaerobically while the rest of the nodule is aerobic — the compartmentalisation, not the enzyme, is the adaptation, and free O$_2$ is buffered by leghaemoglobin, not removed.`
+      },
+      {
+        heading: "Phosphorus, potassium and micronutrient acquisition strategies",
+        content: `- **Phosphorus** is taken up as H$_2$PO$_4^-$ (acid soils) or HPO$_4^{2-}$ (alkaline), is often the limiting nutrient because it diffuses slowly and is bound to soil particles. Plants respond with high-affinity transporters (PHT1), organic-acid exudation (citrate, malate) that mobilises Ca-P, acid phosphatases that hydrolyse organic P, and root architecture changes (cluster roots in Proteaceae, increased root hairs). Arbuscular mycorrhizae extend the depletion zone and deliver P through arbuscules; the plant pays fixed carbon and the fungus can cheat, so the symbiosis is regulated bidirectionally (myc factors, strigolactones as pre-symbiotic signals). Phytate in seeds is the major storage form, mobilised by phytase during germination.
+- **Potassium** is the dominant cytosolic cation, maintained by AKT1 inward-rectifier channels and HAK/KUP transporters; it sets membrane potential, turgor, enzyme activation and stomatal movement. K deficiency reduces stomatal control and drought tolerance before it reduces growth visually.
+- **Iron** is abundant but insoluble at neutral pH. Non-grasses use **strategy I**: proton extrusion by H$^+$-ATPase, reduction of Fe$^{3+}$ by a plasma-membrane ferric chelate reductase, and uptake of Fe$^{2+}$ by IRT1. Grasses use **strategy II**: secretion of mugineic-acid family phytosiderophores that chelate Fe$^{3+}$, imported by YS/YSL transporters. Iron is transported as citrate or nicotianamine complexes and stored in ferritin; deficiency causes interveinal chlorosis of young leaves; excess generates hydroxyl radicals via Fenton chemistry.
+- **Zinc** is taken up by ZIP transporters and is required for ~300 enzymes and zinc-finger transcription factors; **manganese** is the Mn$_4$CaO$_5$ cluster of photosystem II; **copper** is in plastocyanin and cytochrome oxidase; **boron** cross-links rhamnogalacturonan II in the wall (hence brittle, deformed growing points); **molybdenum** serves nitrate reductase and nitrogenase; **chlorine** is required for the water-splitting complex; **nickel** is the urease metal.
+
+Trap: Fe deficiency and Mn deficiency look similar (interveinal chlorosis of young leaves); they are distinguished by soil pH response and by tissue analysis, not by eye.`
+      },
+      {
+        heading: "Toxicity, salinity and phytoremediation",
+        content: `- **Aluminium toxicity** is the primary limit to crop yield on acid soils: Al$^{3+}$ binds cell-wall pectin and DNA, inhibiting root elongation within hours. Tolerance mechanisms include organic-acid exudation (malate via ALMT1, citrate via MATE) that chelates Al outside the root, and internal detoxification.
+- **Salinity** imposes two phases: an immediate osmotic phase (reduced water uptake, stomatal closure, growth inhibition) and a slower ionic phase (Na$^+$ and Cl$^-$ accumulation to toxic concentrations). Tolerance machinery: the SOS pathway (SOS3 calcineurin-like Ca$^{2+}$ sensor $\\to$ SOS2 kinase $\\to$ SOS1 plasma-membrane Na$^+$/H$^+$ antiporter), vacuolar sequestration by NHX exchangers, and accumulation of compatible solutes (proline, glycine betaine, trehalose) for osmotic adjustment without disturbing enzyme function.
+- **Heavy metals.** Hyperaccumulators (Thlaspi/Noccaea for Zn-Cd, Pteris vittata for arsenic) concentrate metals in vacuoles and trichomes; detoxification uses phytochelatins (glutathione-derived peptides) and metallothioneins. Phytoremediation uses this capacity to extract, stabilise or volatilise contaminants — slow but cheap, and the biomass must then be processed.
+- **Other toxicities** worth naming: Mn toxicity at low pH, boron toxicity in arid soils (marginal leaf necrosis), fluoride and ozone damage, and ammonium toxicity when it exceeds assimilatory capacity.
+- **Design of a nutrient experiment:** use solution culture with chelated micronutrients, control pH and ionic strength, include a no-nutrient control, harvest at matched developmental stage, and measure both biomass and tissue concentration — because a "deficient" plant may simply be small with normal concentration.
+
+Trap: salt stress is not just "too much Na$^+$"; the osmotic component reduces growth before any tissue accumulates toxic ion concentrations, which is why osmotic adjustment traits matter more than Na$^+$ exclusion in some species.`
       }
     ]
   },
@@ -913,61 +1850,64 @@ $$\\Psi_w = \\Psi_s + \\Psi_p + \\Psi_g$$
 
   
   {
-    id: "plant-5-anatomy",
+    id: "plant-8-growth-development",
     domainId: "plant_bio",
-    title: "Plant Tissue Systems, Vascular Anatomy & Secondary Growth",
-    subtitle: "Dermal-Ground-Vascular Organization, Münch Pressure-Flow, Vascular Cambium & Annual Rings",
+    title: "Plant Growth, Photomorphogenesis & Seed Germination",
+    subtitle: "Phytochrome, florigen, vernalisation, seed dormancy and hormone-controlled development",
     level: "USABO Finalist / IBO",
     xp: 150,
-    estimatedMinutes: 25,
-    prerequisites: ["plant-4-hormones"],
-    sources: ["Raven's Biology of Plants Ch. 23-26", "Taiz & Zeiger Ch. 1-2 (Plant Cells & Tissues)"],
+    estimatedMinutes: 26,
+    prerequisites: ["plant-4-hormones", "plant-5-anatomy"],
+    sources: ["Taiz & Zeiger Ch. 16-23", "Raven's Biology of Plants Ch. 24-27", "Campbell Ch. 38-39"],
     interactiveTool: null,
-    summary: "Dissect plant primary and secondary anatomy: parenchyma, collenchyma, sclerenchyma (fibers and sclereids), xylem vessel elements vs tracheids (Hagen-Poiseuille hydraulic conductance), phloem sieve elements and companion cells, the symplastic/apoplastic phloem loading mechanisms, and vascular/cork cambium bifacial activity.",
+    summary: "IBO lists growth and development and germination as required plant topics, and Raven and Taiz devote five chapters to light signalling and dormancy. This module covers phytochrome switching, blue-light responses, photoperiodism and florigen, vernalisation, meristem organisation and apical dominance, and the ABA/GA switch that decides whether a seed germinates.",
     keyFormulas: [
-      { name: "Hagen-Poiseuille Conduit Conductance", latex: "Q = \frac{\pi r^4 \Delta P}{8 \eta L} \quad (\text{Conductance scales with } r^4)" },
-      { name: "Münch Phloem Turgor Gradient", latex: "\Delta \Psi_p = \Psi_{p,\text{source}} - \Psi_{p,\text{sink}} > 0 \implies J_v = L_p \Delta \Psi_p" }
+      { name: "Phytochrome Switching", latex: "P_r \\xrightarrow{660\\ \\text{nm}} P_{fr} \\xrightarrow{730\\ \\text{nm}} P_r" },
+      { name: "Phytochrome Photoequilibrium", latex: "P_{fr}/P_{total} \\approx 0.85 \\text{ under red light, } \\text{low in shade (low R:FR)}" },
+      { name: "Meristem Division Products", latex: "\\text{Apical meristem} \\to \\text{tunica (surface planes)} + \\text{corpus (anticlinal/periclinal)}" }
     ],
-    sections: [
+        sections: [
       {
-        heading: "1. The Three Tissue Systems & Cell Specialization",
-        content: `Plant vegetative organs are partitioned into three continuous tissue systems:
-- **Dermal Tissue System**: Protoderm-derived epidermis. Covered by a polyester cutin and wax cuticle. Specialized cells include guard cells (stomatal complexes with subsidiary cells) and trichomes (glandular defense, boundary layer resistance). In roots, root hairs expand the absorption surface area.
-- **Ground Tissue System**: Ground meristem-derived. Comprises three fundamental cell types:
-  1. **Parenchyma**: Thin primary cell walls; metabolically active; totipotent; performs photosynthesis (chlorenchyma), starch storage (amyloplasts), and gas aeration (aerenchyma).
-  2. **Collenchyma**: Unevenly thickened non-lignified primary cell walls (rich in pectin and hemicellulose). Provides plastic, flexible support to elongating stems and petioles (e.g., angular, lamellar, lacunar collenchyma).
-  3. **Sclerenchyma**: Thick, lignified secondary cell walls; dead at functional maturity. Divided into **fibers** (long, slender bundles in xylem/phloem) and **sclereids** (isodiametric stone cells, brachysclereids in pears, astrosclereids in water lilies).
-- **Endodermis & Casparian Strip**: Innermost cortical layer in roots. Possesses radial and transverse walls impregnated with hydrophobic **suberin** and lignin (the Casparian strip), physically blocking the apoplastic route and forcing all water and ions to enter the symplast through selective plasma membrane transport proteins.`
+        heading: "Meristems, cell expansion and the mechanics of growth",
+        content: `Plant growth is localised in meristems and driven by turgor-driven cell expansion inside a yielding wall.
+
+- **Shoot apical meristem** has a tunica (surface layers, anticlinal divisions) and corpus (bulk), with a central zone of slowly dividing stem cells maintained by the WUSCHEL–CLAVATA feedback loop (WUS promotes stem cells; CLV3 peptide from the centre binds CLV1/2 receptors to repress WUS). Organ initiation at the periphery follows auxin maxima generated by PIN1-mediated polar transport.
+- **Root apical meristem** has a quiescent centre that maintains surrounding initial cells; the transition zone sets the size of the division and elongation zones; the columella senses gravity through starch-filled amyloplasts, and auxin redistribution (PIN3/7) redirects growth downward.
+- **Cell expansion** requires wall loosening: auxin activates plasma-membrane H$^+$-ATPases, apoplast acidification activates expansins and xyloglucan endotransglucosylases, and the wall yields to turgor. Cellulose microfibrils laid down by cellulose synthase complexes (guided by cortical microtubules) constrain the direction of expansion, so microtubule orientation sets cell shape — the reason a cellulose-synthase inhibitor produces spherical, isodiametric cells.
+- **Secondary growth** comes from vascular cambium (bifacial: xylem inward, phloem outward) and cork cambium; annual rings record seasonal growth, and dendrochronology reads climate from ring width and isotope composition.
+- **Determinacy and architecture:** axillary bud outgrowth is controlled by strigolactones and auxin (apical dominance), cytokinin promotes branching, and gibberellin promotes elongation (DELLA degradation). Mutations that change meristem size or determinacy produce the major plant architecture differences exploited in crops.
+
+Trap: growth is not simply "more cells"; it is division plus expansion plus wall yielding, and a tissue can grow without dividing (expansin overexpression) or divide without growing (cell-cycle mutants).`
       },
       {
-        heading: "2. Xylem Hydraulics & Hagen-Poiseuille Law",
-        content: `Water-conducting elements (tracheary elements) undergo programmed cell death leaving hollow cell wall conduits:
-- **Tracheids**: Found in all vascular plants (only conduit type in gymnosperms). Spindle-shaped cells with overlapping tapered ends and bordered pits. Resistant to freeze-thaw-induced cavitation but exhibit high hydraulic resistance.
-- **Vessel Elements**: Found predominantly in angiosperms and gnetophytes. Shorter, wider cells stacked end-to-end to form continuous hollow pipes (**vessels**). End walls feature open **perforation plates** (simple or scalariform).
-- **Hagen-Poiseuille Law**: Volume flow rate through a cylindrical pipe:
-$$Q = \frac{\pi r^4 \Delta P}{8 \eta L}$$
-Because flow scales with the fourth power of radius ($r^4$), doubling conduit radius increases conductance by **16-fold**! However, wider vessels are exponentially more susceptible to acoustic cavitation and runaway embolism under negative tension ($P_{50}$).`
+        heading: "Light as information: photomorphogenesis, photoperiod and the clock",
+        content: `- **Phytochromes** interconvert between Pr (red-absorbing, inactive) and Pfr (far-red-absorbing, active); red light converts Pr$\\to$Pfr and far-red reverses it, giving plants a reversible switch that measures the red:far-red ratio. High R:FR (full sun) favours Pfr and photomorphogenesis (short hypocotyl, expanded cotyledons); low R:FR (canopy shade) favours Pr, triggering shade-avoidance: stem elongation, hyponasty, reduced branching. Pfr is also destroyed slowly in darkness, so the ratio reports both spectral quality and time.
+- **Cryptochromes and phototropins** absorb blue light: cryptochrome controls de-etiolation and the circadian input; phototropin 1 mediates phototropism (auxin redistribution via PIN3), chloroplast movement and stomatal opening (blue light activates the H$^+$-ATPase, K$_{in}$ channels and anion efflux).
+- **Photoperiodism** measures night length. Short-day plants (actually long-night plants, e.g. *Chenopodium*, soybean) flower when the night exceeds a critical length; long-day plants (Arabidopsis, wheat) flower when the night is shorter. A brief light break in the middle of the night reverses the response, proving that darkness, not daylength, is measured. Leaves perceive the signal and produce **florigen** (FT protein), which moves in phloem to the shoot apex and activates floral identity genes (AP1, LFY) — the mobile-signal answer to a classic question.
+- **Vernalisation** satisfies a cold requirement by repressing FLC (a floral repressor) through chromatin modification; the memory persists mitotically, so a vernalised plant flowers even after warmth returns.
+- **The circadian clock** (CCA1/LHY, TOC1, PRR genes) gates photoperiod sensing, starch turnover and stomatal behaviour, and has a period of ~24 h that entrains to light–dark cycles.
+
+Trap: "short-day plant" is a historical label; the plant measures the length of the *night*, so a short-day plant is a long-night plant, and a night break inhibits flowering in it.`
       },
       {
-        heading: "3. Phloem Translocation & Münch Pressure-Flow",
-        content: `Transport of photoassimilates (sucrose, amino acids, signaling molecules) occurs within the phloem:
-- **Sieve Element-Companion Cell Complex (SE-CC)**: Sieve tube elements lose their nucleus, vacuole, and ribosomes at maturity, retaining modified plastids and mitochondria. Connected by sieve plates with large callose-lined sieve pores. Metabolically sustained by adjacent **companion cells** via branched plasmodesmata.
-- **P-Protein (Phloem Protein / Forisomes)**: In angiosperms, injury causes rapid surging of P-protein bodies and callose synthesis ($\beta$-1,3-glucan) to plug sieve plate pores and prevent sap loss.
-- **Phloem Loading (Source)**:
-  - *Apoplastic Loading*: Sucrose exits mesophyll into apoplast via SWEET uniporters, then actively pumped into SE-CC via **$\text{SUT1/SUC2}$ ($H^+/\text{sucrose}$ symporters)** driven by plasma membrane $H^+\text{-ATPases}$.
-  - *Symplastic Polymer Trapping*: Sucrose diffuses through intermediary cells where galactinol synthase and raffinose synthase convert it into raffinose and stachyose (larger oligosaccharides unable to diffuse backward through narrow plasmodesmata).
-- **Münch Pressure-Flow Hypothesis**: High sucrose concentration at source lowers solute potential ($\Psi_s$), drawing water in from adjacent xylem $\to$ generates high hydrostatic turgor pressure ($\Psi_p$). At sink, sucrose is unloaded and consumed/stored, water exits into xylem, lowering turgor pressure. This **hydrostatic pressure gradient ($\Delta \Psi_p$)** drives bulk mass flow from source to sink.`
+        heading: "Hormone integration: from auxin to strigolactone",
+        content: `- **Auxin (IAA)** is synthesised from tryptophan (YUCCA), transported polarly by PIN efflux carriers (chemiosmotic: protonated IAA enters, anionic IAA exits), and perceived by TIR1/AFB receptors that trigger Aux/IAA degradation and ARF-dependent transcription. Functions: apical dominance, tropisms, root initiation, vascular patterning, fruit development. Synthetic auxins (2,4-D, picloram) are herbicides because they overwhelm this machinery.
+- **Cytokinin** (isopentenyladenine derivatives) is perceived by histidine kinases and promotes cell division and shoot initiation; the auxin:cytokinin ratio determines organogenesis in culture (high auxin $\\to$ roots, high cytokinin $\\to$ shoots). It also delays senescence (the basis of kinetin's discovery).
+- **Gibberellin** promotes elongation and germination by degrading DELLA repressors, releasing PIF transcription factors; GA-deficient mutants are dwarfed, and GA-insensitive DELLA mutants are dwarf but GA-insensitive — the "green revolution" semi-dwarf wheat and rice alleles are exactly this.
+- **Abscisic acid** closes stomata (anion efflux, K$^+$ loss, turgor drop), maintains seed dormancy (ABA:GA ratio), and signals drought; it is also the carotenoid-derived signal in root-to-shoot stress communication.
+- **Ethylene** (from ACC, perceived by ETR1) drives fruit ripening, triple response (epinasty, radial swelling, hook), leaf and flower abscission, and root hair formation. **Brassinosteroids** promote elongation and photomorphogenesis; **strigolactones** inhibit branching and attract mycorrhizae; **jasmonate** and **salicylic acid** run defence against herbivores and pathogens respectively, with jasmonate–salicylate antagonism.
+
+Trap: hormone names do not fix function — the same auxin promotes root initiation at low concentration and inhibits elongation at high concentration, and tissue sensitivity matters more than absolute level.`
       },
       {
-        heading: "4. Secondary Growth: Vascular & Cork Cambia",
-        content: `Woody plants achieve lateral thickening via two secondary lateral meristems:
-- **Vascular Cambium**: Arises from fascicular cambium (within vascular bundles) and interfascicular cambium (in medullary rays), forming a continuous meristematic cylinder.
-  - Consists of two initial types:
-    1. **Fusiform initials**: Vertically oriented; divide periclinally to produce **secondary xylem (wood)** to the interior and **secondary phloem (inner bark)** to the exterior.
-    2. **Ray initials**: Horizontally oriented; divide to produce vascular rays (parenchymatous horizontal transport of water, nutrients, and starch).
-  - *Growth Rings*: Early wood (spring wood) features wide, thin-walled vessel elements for maximum hydraulic capacity. Late wood (summer wood) features narrow, thick-walled conduits with abundant fibers for structural support.
-- **Cork Cambium (Phellogen)**: Initiates in the outer cortex or pericycle. Divides periclinally to produce **cork (phellem)** outward (dead, suberized cells) and **phelloderm** inward.
-- **Periderm**: Phelloderm + Phellogen + Phellem. Replaces epidermis as outer bark. **Lenticels** are spongy ruptures in the cork facilitating gas exchange for living cortex cells.`
+        heading: "Germination, senescence, dormancy and stress physiology",
+        content: `- **Seed germination** begins with imbibition (physical), then activation of metabolism; radicle emergence is the visible endpoint. GA from the embryo triggers $\\alpha$-amylase in the aleurone (a classic transcriptional cascade), mobilising starch to sugars; ABA opposes this, so the ABA:GA ratio gates germination. Dormancy is imposed by the seed coat (physical), by the embryo (physiological), or by a combination; breaking mechanisms include after-ripening, cold moist stratification, scarification and light.
+- **Senescence** is an active, programmed process: chlorophyll degrades (yellowing), proteases and nucleases remobilise N and P to developing seeds, and autophagy genes are required. It is delayed by cytokinin, promoted by ethylene and darkness. **Abscission** at the abscission zone depends on ethylene-induced cell-wall hydrolases (polygalacturonase, cellulase) and is inhibited by auxin — the classic ethylene/auxin balance.
+- **Abiotic stress signalling** converges on Ca$^{2+}$, ROS and MAPK cascades. Osmotic stress activates SnRK2 kinases via ABA receptors (PYR/PYL-PP2C), producing stomatal closure and gene induction. Compatible solutes (proline, glycine betaine) adjust osmotic potential; antioxidant systems (superoxide dismutase, ascorbate peroxidase, glutathione) control ROS; heat-shock proteins and dehydrins stabilise proteins and membranes; CBF/DREB transcription factors drive cold acclimation.
+- **Biotic stress** uses pattern-triggered immunity (flg22 receptor FLS2), effector-triggered immunity (R genes, hypersensitive response, HR), systemic acquired resistance (salicylic acid, NPR1) and jasmonate-mediated herbivore defences (proteinase inhibitors, volatiles that attract predators).
+- **Developmental plasticity** ties these together: a plant cannot move, so it adjusts architecture, allocation and phenology — the correct framing for any "why does the plant respond this way" question.
+
+Trap: senescence is not decay; it is transcriptionally controlled nutrient recycling, which is why blocking it increases yield in some crops but reduces seed protein quality.`
       }
     ]
   },
@@ -1112,6 +2052,132 @@ Because flow scales with the fourth power of radius ($r^4$), doubling conduit ra
   },
 
   {
+    id: "animal-9-muscle-locomotion",
+    domainId: "animal_phys",
+    title: "Muscle Contraction, Excitation-Contraction Coupling & Locomotion",
+    subtitle: "Sliding filament, crossbridge cycle, T-tubule calcium release, fibre types and skeletal levers",
+    level: "USABO Finalist / IBO",
+    xp: 160,
+    estimatedMinutes: 28,
+    prerequisites: ["animal-1-neuro"],
+    sources: ["Vander's Human Physiology Ch. 9-11", "Guyton & Hall Ch. 6-8", "Campbell Ch. 49-50"],
+    interactiveTool: null,
+    summary: "IBO explicitly requires support and movement, and USABO animal physiology questions repeatedly test excitation-contraction coupling and the length-tension relationship. This module covers sarcomere ultrastructure, the crossbridge cycle, T-tubule/DHP-RyR signalling, twitch summation and tetanus, muscle fibre types, and the lever and skeleton systems that convert contraction into locomotion.",
+    keyFormulas: [
+      { name: "Sliding Filament Prediction", latex: "A\\ \\text{band constant}; \\; I\\ \\text{band and } H\\ \\text{zone shorten}" },
+      { name: "Mechanical Power", latex: "P = F \\cdot v" },
+      { name: "Muscle Mechanical Advantage", latex: "MA = \\frac{\\text{effort arm}}{\\text{load arm}}" }
+    ],
+        sections: [
+      {
+        heading: "Sarcomere architecture and the sliding-filament mechanism",
+        content: `Skeletal muscle is a hierarchy: muscle $\\to$ fascicle $\\to$ fibre (cell) $\\to$ myofibril $\\to$ sarcomere, the repeated unit between Z-discs (~2.2 µm at rest).
+
+- **Filaments.** Thin filaments are F-actin with tropomyosin and the troponin complex (TnC, TnI, TnT); thick filaments are bipolar myosin II assemblies with titin running from the Z-disc to the M-line. Titin provides passive elasticity and centring, nebulin acts as a molecular ruler setting thin-filament length, and the giant protein obscurin links to the sarcoplasmic reticulum.
+- **Banding.** The A-band spans the thick filament (constant length), the I-band contains only thin filaments (shortens), the H-zone is the central bare region of the thick filament (disappears on contraction), and the M-line holds thick filaments together. Sarcomere shortening is exactly the change in I-band width.
+- **Sliding filament mechanism:** myosin heads bind actin, undergo a force-generating conformational change, detach on ATP binding, and re-cock on hydrolysis. Neither filament shortens; they slide. Force per head is a few piconewtons, and sarcomere force scales with the number of heads bound, which is why stretch beyond overlap (over-stretch) reduces force.
+- **Length–tension** peaks at ~2.0–2.2 µm sarcomere length where actin–myosin overlap is optimal; at long lengths fewer heads can reach, at short lengths thin filaments collide and Ca$^{2+}$ sensitivity falls.
+- **Energy and heat:** ATP is consumed at detachment and at Ca$^{2+}$ reuptake; the "Fenn effect" is the extra heat released when muscle does work, showing that ATP turnover depends on load, not just on activation.
+
+Trap: the A-band does not shorten during contraction — if a diagram shows a shorter A-band, it is wrong; the I-band and H-zone are the structures that change.`
+      },
+      {
+        heading: "Fibre types, motor units and the control of force",
+        content: `- **Fibre types** are set by myosin heavy-chain isoform: type I (slow oxidative, high mitochondrial density, low ATPase, fatigue-resistant), type IIa (fast oxidative-glycolytic), type IIx/IIb (fast glycolytic, high power, easily fatigued). Human muscle is mixed; training shifts oxidative capacity and the IIa/IIx ratio but does not convert I $\\leftrightarrow$ II substantially. Myoglobin-rich red fibres explain the colour difference in poultry.
+- **Motor unit** = one $\\alpha$-motoneuron plus all the fibres it innervates; fibres within a unit are of uniform type. Henneman's size principle: small, slow units are recruited first, larger fast units progressively, which is why fine movements use fatigue-resistant units and maximal force recruits everything.
+- **Force modulation** works through recruitment, rate coding (fusion frequency) and synchronisation. Twitch summation produces unfused then fused tetanus when stimulation outpaces Ca$^{2+}$ reuptake; the catch-like increase in force at the start of tetanus (treppe/staircase) reflects Ca$^{2+}$ accumulation and phosphorylation of myosin light chains.
+- **Proprioception and reflexes:** muscle spindles (intrafusal fibres innervated by Ia afferents) sense length and velocity, Golgi tendon organs (Ib) sense tension, and the stretch reflex (monosynaptic Ia $\\to$ $\\alpha$-motoneuron) and inverse stretch reflex (Ib inhibition) adjust stiffness. Reciprocal inhibition and recurrent inhibition via Renshaw cells shape the pattern. Central pattern generators in the spinal cord produce rhythmic locomotion without sensory feedback, which is then modulated by it.
+- **Force–velocity** is hyperbolic (Hill): force falls as shortening velocity rises, so power peaks at intermediate load — the reason gearing and fibre-type mix matter for sprint versus endurance performance.
+
+Trap: a stronger muscle is not necessarily a muscle with more fibres; neural factors (recruitment, rate coding, coordination) explain much of early strength gain, which is why strength can rise before hypertrophy.`
+      },
+      {
+        heading: "Excitation–contraction coupling, calcium handling and fatigue",
+        content: `- **The chain of events:** motor-neuron action potential $\\to$ ACh release at the neuromuscular junction (nicotinic receptor, end-plate potential) $\\to$ muscle action potential propagated along the sarcolemma and into T-tubules $\\to$ DHPR (voltage sensor) mechanically activates RyR1 $\\to$ Ca$^{2+}$ release from the sarcoplasmic reticulum $\\to$ Ca$^{2+}$ binds TnC $\\to$ tropomyosin rolls, exposing myosin-binding sites $\\to$ crossbridge cycling. Relaxation requires SERCA-mediated Ca$^{2+}$ reuptake (2 Ca$^{2+}$ per ATP) and parvalbumin buffering.
+- **Skeletal versus cardiac coupling.** Skeletal muscle uses mechanical DHPR–RyR1 coupling and does not need extracellular Ca$^{2+}$ for a single twitch; cardiac muscle uses Ca$^{2+}$-induced Ca$^{2+}$ release through RyR2, so contractility depends on Ca$^{2+}$ influx through L-type channels — the basis for calcium-channel blockers and cardiac glycosides. Smooth muscle depends on Ca$^{2+}$–calmodulin-activated myosin light-chain kinase, with myosin phosphatase opposing it and a latch state allowing sustained tone at low ATP cost.
+- **Pharmacology.** Curare blocks the nicotinic receptor (flaccid paralysis); succinylcholine depolarises persistently; organophosphates inhibit acetylcholinesterase (spastic paralysis, SLUDGE syndrome); ryanodine locks RyR open; dantrolene blocks RyR1 and treats malignant hyperthermia (a RyR1 gain-of-function triggered by volatile anaesthetics).
+- **Fatigue** has multiple mechanisms: inorganic phosphate and H$^+$ impair crossbridge function and Ca$^{2+}$ sensitivity; SR Ca$^{2+}$ release declines; glycogen and phosphocreatine deplete; central drive falls. The phosphagen system (creatine kinase, ~10 s), glycolysis (~2 min) and oxidative phosphorylation (sustained) supply ATP in that order, and oxygen debt repays the deficit.
+- **Rigor** occurs when ATP is absent: myosin cannot detach from actin, which is why muscles stiffen after death until proteolysis begins.
+
+Trap: relaxation is an active, ATP-dependent process; ATP is required for both contraction and relaxation, so ATP depletion causes contracture, not flaccidity.`
+      },
+      {
+        heading: "Comparative locomotion: skeletons, gaits and scaling",
+        content: `- **Hydrostatic skeletons** (annelids, nematodes, cephalopod arms, vertebrate tongues) use incompressible fluid under pressure with circular and longitudinal muscle antagonism; nematodes have a fixed-volume pseudocoel and high internal pressure, producing whip-like undulation. Muscular hydrostats (tongue, elephant trunk) achieve the same with constant volume and no fluid compartment.
+- **Exoskeletons** (arthropods) give protection and leverage but constrain growth, requiring ecdysis and a soft post-moult period; jointed levers allow high force with short excursions, and the jump of fleas or froghoppers uses elastic energy storage (resilin) rather than direct muscle power.
+- **Vertebrate locomotion** is dominated by elastic mechanisms and gait transitions: tendons store and return energy (kangaroo hopping recovers much of the cost; human running stores energy in the Achilles tendon), and the walk–trot–gallop transition minimises cost of transport at a given speed. Fish use undulatory waves with myotomal muscle arranged in a helical array, and the body–caudal fin produces thrust at high efficiency; sharks use a heterocercal tail, teleosts a homocercal one.
+- **Flight** is the highest-power locomotion: insects use indirect flight muscles (stretch-activated, asynchronous, allowing wingbeat frequency above motoneuron firing rate) or synchronous muscles; birds use the supracoracoideus for the upstroke and the pectoralis for the downstroke, with a furcula acting as an elastic spring. Wing loading and aspect ratio predict manoeuvrability versus efficiency.
+- **Scaling.** Geometric similarity predicts that mass-specific strength falls with size (area/volume), so large animals need proportionally thicker bones (allometry, elastic similarity); the Froude number (inertia/gravity) predicts gait transitions across species, and Reynolds number determines whether a small swimmer experiences viscosity-dominated (laminar, ciliary) or inertia-dominated flow.
+
+Trap: elastic storage does not reduce the work a muscle does — it reduces the *cost* by recovering energy, so a tendon cannot power a jump without prior muscle work and damping.`
+      }
+    ]
+  },
+
+  {
+    id: "animal-10-sensory-systems",
+    domainId: "animal_phys",
+    title: "Sensory Systems: Photoreception, Hearing & Chemical Senses",
+    subtitle: "Receptor transduction, rod/cone phototransduction, cochlear tonotopy, olfaction and autonomic integration",
+    level: "USABO Finalist / IBO",
+    xp: 160,
+    estimatedMinutes: 28,
+    prerequisites: ["animal-1-neuro"],
+    sources: ["Vander's Human Physiology Ch. 7-8", "Guyton & Hall Ch. 47-54", "Campbell Ch. 49"],
+    interactiveTool: null,
+    summary: "IBO requires sense organs (eyes and ears) plus autonomic reflexes, which the app previously covered only at the membrane-biophysics level. This module builds sensory transduction from receptor potential to perception: adaptation and coding, phototransduction in rods and cones, cochlear frequency mapping and hair-cell mechanotransduction, olfaction and taste, and the autonomic and reflex circuits that act on the signal.",
+    keyFormulas: [
+      { name: "Weber-Fechner Law", latex: "S = k \\ln I" },
+      { name: "Sound Intensity in Decibels", latex: "dB = 20 \\log_{10} \\frac{P}{P_0}" },
+      { name: "Cochlear Place Coding", latex: "f \\propto e^{x} \\; (x = \\text{distance from base, Greenwood function})" }
+    ],
+        sections: [
+      {
+        heading: "Transduction, coding and the psychophysics of sensation",
+        content: `Every sensory system performs the same four operations: transduction (stimulus $\\to$ receptor potential), amplification, encoding (into spike trains) and processing (filtering, contrast, adaptation).
+
+- **Adequate stimulus and receptor potential.** A receptor is a transducer with a characteristic adequate stimulus — mechanical for hair cells, photochemical for photoreceptors, chemical for taste/olfaction, thermal/chemical for nociceptors. The receptor potential is graded, so intensity is coded by amplitude; at the first spike-generating site it is converted to firing rate.
+- **Coding dimensions.** Modality is coded by labelled lines (which axon, which cortical area), intensity by firing rate and by recruitment of additional units, duration by adaptation kinetics, and location by receptive-field position plus lateral inhibition. **Range fractionation** lets a population of receptors with different thresholds cover a wide dynamic range — the reason a single afferent saturates but the system does not.
+- **Adaptation** is phasic (rapidly adapting, reports change; Pacinian corpuscles, olfactory receptors) or tonic (slowly adapting, reports sustained state; muscle spindles, Merkel cells). Adaptation is built into the transducer and into the circuit, which is why you do not feel your clothes.
+- **Psychophysics.** Weber's law: the just-noticeable difference is a constant fraction of the background ($\\Delta I/I = k$); Fechner integrated this into a logarithmic law, and Stevens proposed a power law ($S = kI^{a}$) because brightness and electric shock scale differently. Signal detection theory separates sensitivity ($d'$) from response bias (criterion) — a criterion shift explains "the placebo made it hurt less" without any change in sensitivity.
+- **Lateral inhibition** sharpens contrast: in the compound eye of *Limulus*, neighbouring ommatidia inhibit each other via the plexus, producing Mach bands and edge enhancement. The same computation appears in retinal horizontal cells and in cortical orientation columns (Hubel and Wiesel).
+
+Trap: adaptation changes sensitivity, not the stimulus; a claim that "the receptor stopped responding to the stimulus" is wrong if the stimulus is still above threshold — the response is reduced, not absent, and the perceptual change comes from both receptor and central adaptation.`
+      },
+      {
+        heading: "Vision: phototransduction, optics and colour",
+        content: `- **Phototransduction.** In vertebrate rods, light isomerises 11-*cis*-retinal to all-*trans*-retinal, activating rhodopsin (a GPCR), which activates transducin ($G_t$), which activates phosphodiesterase-6 to hydrolyse cGMP. Falling cGMP closes cyclic-nucleotide-gated channels, so the cell **hyperpolarises** and glutamate release falls — the sign-reversing design that makes the vertebrate retina an image-forming, not a light-detecting, device. Invertebrate (arthropod, mollusc) photoreceptors use the same Gq–PLC–TRP cascade but **depolarise**, a classic contrast. Recovery requires arrestin binding, rhodopsin kinase phosphorylation and regeneration of 11-*cis*-retinal in the retinal pigment epithelium (the reason vitamin A deficiency causes night blindness).
+- **Rods and cones.** Rods are more sensitive (single-photon detection), slower, and saturated in daylight; cones are faster, less sensitive, and come in three spectral classes in Old World primates (S, M, L opsins). Trichromacy is opponent-processed downstream (red–green, blue–yellow, light–dark) which explains afterimages and why "red–green colour blindness" is a single X-linked locus (L/M opsin genes).
+- **Optics.** The cornea provides most refractive power (~40 D), the lens fine-tunes by accommodation: ciliary muscle contraction relaxes zonules and lets the lens round up for near vision (Helmholtz). Presbyopia is loss of lens elasticity; myopia is a long globe or over-powerful cornea (corrected with a diverging lens), hyperopia the reverse. Pupil size trades depth of field and diffraction against light gathering; the fovea trades sensitivity for acuity by having a 1:1 cone-to-ganglion pathway.
+- **Retinal processing** already extracts features: centre–surround receptive fields, ON/OFF pathways, direction selectivity in some ganglion cells, and adaptation to mean luminance. The optic nerve carries ~1 million axons from ~100 million photoreceptors — compression starts in the retina.
+
+Trap: light hyperpolarises vertebrate photoreceptors and *reduces* glutamate release; a diagram showing depolarisation is an invertebrate or a mistake.`
+      },
+      {
+        heading: "Hearing, balance and echolocation",
+        content: `- **Sound and impedance.** Sound is a pressure wave; the middle ear's ossicles (malleus, incus, stapes) and the area ratio of tympanum to oval window amplify pressure ~20-fold to match the air–cochlear-fluid impedance mismatch. Without it, most energy would reflect.
+- **Cochlear mechanics.** The basilar membrane is stiff and narrow at the base, wide and floppy at the apex, so high frequencies peak at the base and low frequencies at the apex — **tonotopy** (place coding, Bekesy). Outer hair cells provide active amplification (electromotility, prestin) that sharpens tuning and produces otoacoustic emissions; inner hair cells are the true afferents (95% of the auditory nerve).
+- **Hair-cell transduction.** Stereocilia are linked by tip links to mechanically gated channels; deflection toward the tallest stereocilium opens channels, K$^+$ enters down its electrochemical gradient (unusually, the endolymph is high in K$^+$ at +80 mV), depolarising the cell and opening voltage-gated Ca$^{2+}$ channels at the base. Adaptation is by myosin-based tip-link tension. Damage from noise, aminoglycosides or loop diuretics is permanent in mammals because hair cells do not regenerate (birds and fish do).
+- **Pitch and localisation.** Low frequencies use phase locking (volley principle) up to ~4–5 kHz; high frequencies rely on place. Interaural time differences (low frequency) and intensity differences (high frequency) localise sound; the medial superior olive computes coincidence.
+- **Vestibular system.** Semicircular canals detect angular acceleration (cupula deflection by endolymph inertia); utricle and saccule detect linear acceleration and head tilt via otoliths. Semicircular canal signals drive the vestibulo-ocular reflex with ~5 ms latency, and mismatch between canal and visual signals produces motion sickness. Nystagmus is the observable reflex.
+- **Echolocation** (bats, dolphins, some birds) trades pulse design against range and resolution: constant-frequency pulses with Doppler-shift compensation favour detecting fluttering targets, frequency-modulated sweeps favour precise ranging, and the auditory system compares emission with echo — a biological radar with jamming avoidance.
+
+Trap: pitch is not a single code — place coding dominates at high frequency and phase locking at low frequency, so a lesion at the cochlear base (high-frequency hearing loss) does not abolish low-frequency pitch.`
+      },
+      {
+        heading: "Chemosensation, mechanosensation, nociception and exotic senses",
+        content: `- **Olfaction.** Odorants bind GPCRs in olfactory sensory neurons; each neuron expresses one receptor allele (a striking example of monoallelic choice), and the bulb maps axons to glomeruli by receptor identity. Coding is combinatorial: a molecule activates a set of receptors and a receptor recognises a set of molecules. cAMP opens a CNG channel and a Ca$^{2+}$-activated Cl$^-$ channel (the main depolarising current). Adaptation involves Ca$^{2+}$–calmodulin and receptor phosphorylation. Vomeronasal (V1R/V2R) and trace-amine-associated receptors cover pheromones and amines. Humans have ~400 functional OR genes and ~600 pseudogenes — a molecular fossil record of reliance on vision.
+- **Taste.** Five modalities: sweet (T1R2+T1R3), umami (T1R1+T1R3, mGluR4), bitter (T2R family, ~25 receptors), sour (PKD2L1, H$^+$-sensitive), salty (ENaC, amiloride-sensitive). Taste cells are tuned but not clonal for a single molecule; labelled lines project to distinct brainstem nuclei, which is why taste is hard to confuse across modalities. Capsaicin activates TRPV1, a heat-gated channel, which is why "spicy" is a pain modality masquerading as taste.
+- **Mechanosensation.** Pacinian corpuscles (vibration, rapidly adapting), Meissner (flutter), Merkel (sustained pressure), Ruffini (stretch); Piezo1/2 are the molecular transducers in many tissues. Proprioception uses muscle spindles, Golgi tendon organs and joint receptors; loss of proprioception (large-fibre neuropathy) causes sensory ataxia with a positive Romberg sign.
+- **Nociception.** Nociceptors are free nerve endings; A$\\delta$ fibres carry sharp first pain, C fibres dull second pain. Sensitisation (hyperalgesia, allodynia) involves prostaglandins, bradykinin, nerve growth factor and TRPV1 phosphorylation. **Gate control theory**: large-fibre input inhibits nociceptive transmission in the dorsal horn (the rationale for rubbing or TENS), and descending pathways from periaqueductal grey release endogenous opioids and serotonin. Referred pain arises from convergent viscerosomatic afferents onto the same second-order neuron.
+- **Exotic modalities** examiners like: electroreception in sharks and platypus (ampullae of Lorenzini, Lorenzini's jelly), magnetoreception (magnetite and cryptochrome radical pairs in birds), infrared imaging in pit vipers (TRPA1), and polarised-light navigation in insects.
+
+Trap: sensitisation is not the same as increased stimulus intensity — the receptor threshold falls and the response gain rises, which is why allodynia makes a light touch painful.`
+      }
+    ]
+  },
+
+  {
     id: "animal-2-cardio",
     domainId: "animal_phys",
     title: "Cardiovascular Dynamics: Wiggers Diagram, PV Loops & Starling Forces",
@@ -1177,6 +2243,83 @@ $$J_v = K_f [ (P_c - P_i) - \\sigma (\\pi_c - \\pi_i) ]$$
 - $\\pi_c$: Capillary plasma oncotic pressure ($\approx 25-28\\text{ mmHg}$, primarily albumin).
 - $\\pi_i$: Interstitial fluid oncotic pressure ($\approx 1-3\\text{ mmHg}$).
 - **Net filtration** occurs at arteriolar end ($+10\\text{ mmHg}$); **net reabsorption** occurs at venular end ($-8\\text{ mmHg}$). Slight excess fluid filtered ($2-4\\text{ L/day}$) is returned to circulation via the **lymphatic system**!`
+      }
+    ]
+  },
+
+  {
+    id: "animal-5-respiration",
+    domainId: "animal_phys",
+    title: "Respiratory Physiology: Gas Exchange, O₂ Transport & Ventilation Control",
+    subtitle: "Countercurrent Exchange, O₂-Hb Dissociation Curve, Bohr/Haldane Effects & Chemoreceptor Feedback",
+    level: "USABO Finalist / IBO",
+    xp: 170,
+    estimatedMinutes: 30,
+    prerequisites: ["animal-4-digestion"],
+    sources: ["Vander's Human Physiology Ch. 13 (Respiration)", "Guyton & Hall Ch. 40-42", "Costanzo Physiology Ch. 4"],
+    interactiveTool: null,
+    summary: "Master respiratory biophysics and clinical physiology: comparative respiratory mechanics (fish countercurrent gill lamellae, avian crosscurrent parabronchi and non-collapsible air sacs), mammalian compliance and pulmonary surfactant (Laplace's law DPPC), oxygen-hemoglobin dissociation dynamics (P50, Bohr right-shift, 2,3-BPG, fetal HbF), carbon dioxide carriage (chloride shift, Haldane effect), and central vs peripheral chemoreceptor feedback loops.",
+    keyFormulas: [
+      { name: "Alveolar Gas Equation", latex: "P_A\text{O}_2 = P_I\text{O}_2 - \frac{P_A\text{CO}_2}{R} = (P_{\text{atm}} - P_{\text{H}_2\text{O}}) F_I\text{O}_2 - \frac{P_A\text{CO}_2}{R}" },
+      { name: "Law of Laplace (Alveolar Stability)", latex: "P = \frac{2 T}{r} \quad (\text{Surfactant reduces } T \text{ dynamically as } r \text{ decreases})" },
+      { name: "Fick's Law of Gas Diffusion", latex: "\dot{V}_{\text{gas}} = \frac{A \cdot D \cdot (P_1 - P_2)}{T} \propto \frac{A \cdot \text{Solubility}}{\Delta x \cdot \sqrt{\text{MW}}} \Delta P" }
+    ],
+    sections: [
+      {
+        heading: "1. Comparative Gas Exchange: Gills, Parabronchi & Lungs",
+        content: `Respiratory structures across animal phyla optimize the parameters of Fick's Law:
+- **Fish Gill Countercurrent Exchange**:
+  - Water flows across secondary lamellae in the exact *opposite direction* to capillary blood flow.
+  - A partial pressure gradient ($\Delta P_{\text{O}_2}$) is maintained along the *entire length* of the capillary bed.
+  - Allows blood $P_{\text{O}_2}$ to reach up to **$80-90\%$ of the oxygen saturation** of incoming water!
+  - Concurrent flow would reach equilibrium at only $50\%$, wasting the oxygen content of the water.
+- **Avian Crosscurrent & Unidirectional Flow**:
+  - Birds possess rigid, non-collapsible lungs with continuous parallel tubules called **parabronchi** connected to anterior and posterior **air sacs**.
+  - Takes **two complete respiratory cycles** for a single bolus of air to move through the system:
+    - *Inhalation 1*: Air enters posterior air sacs.
+    - *Exhalation 1*: Air passes through parabronchi where gas exchange occurs.
+    - *Inhalation 2*: Deoxygenated air enters anterior air sacs.
+    - *Exhalation 2*: Air exits via trachea.
+  - Flow across parabronchial capillaries is **crosscurrent**: blood $P_{\text{O}_2}$ leaving the parabronchus can exceed the $P_{\text{O}_2}$ of exhaled gas, enabling flight at extreme altitudes (e.g., Bar-headed geese over the Himalayas at $> 8,000\text{ m}$).`
+      },
+      {
+        heading: "2. Mammalian Pulmonary Mechanics & Surfactant",
+        content: `Inspiration and expiration dynamics governed by pressure gradients:
+- **Pleural Pressures**: At Functional Residual Capacity (FRC), inward elastic recoil of the lung matches outward elastic recoil of the chest wall, creating a negative intrapleural pressure ($-5\text{ cm } H_2O$).
+- **Inspiration**: Contraction of diaphragm and external intercostals expands thoracic cavity $\to$ intrapleural pressure drops to $-8\text{ cm } H_2O \to$ alveolar pressure drops below atmospheric ($-1\text{ cm } H_2O$) $\to$ air flows in.
+- **Compliance & Laplace's Law**:
+  $$P = \frac{2T}{r}$$
+  - Without surfactant, smaller alveoli (smaller radius $r$) would generate much higher internal collapsing pressures than larger alveoli, causing air to empty into larger alveoli and collapsing smaller ones (**atelectasis**).
+- **Pulmonary Surfactant**: Secreted by **Type II alveolar epithelial cells**; composed of **dipalmitoylphosphatidylcholine (DPPC)** and surfactant proteins (SP-A, B, C, D).
+  - Molecules crowd closer together in shrinking alveoli, reducing surface tension $T$ proportionally to radius $r$, stabilizing alveoli of varying sizes and drastically increasing pulmonary compliance.`
+      },
+      {
+        heading: "3. Oxygen-Hemoglobin Dissociation & The Bohr Effect",
+        content: `Hemoglobin ($HbA$, $\alpha_2\beta_2$) cooperatively binds up to four $O_2$ molecules, generating a sigmoidal binding curve:
+- **$P_{50}$ Parameter**: The partial pressure of oxygen at which hemoglobin is $50\%$ saturated (normal arterial $P_{50} \approx 26.6\text{ mmHg}$).
+- **Right Shift (Decreased $O_2$ Affinity / Enhanced Tissue Delivery)**:
+  - Higher $P_{50}$: Hemoglobin releases oxygen more readily to metabolically active tissues.
+  - Triggers (**CADET face right**):
+    1. **$\\uparrow \text{CO}_2$** (hypercapnia).
+    2. **$\\uparrow \text{Acidity / } [\text{H}^+]$** (decreased pH) = **The Bohr Effect**. $H^+$ protonates histidine residues (His146 on $\beta$-chains), forming salt bridges that stabilize the low-affinity Tense (T) state.
+    3. **$\\uparrow 2,3\text{-Bisphosphoglycerate (2,3-BPG)}$**: Synthesized via the Rapoport-Luebering shunt in erythrocytes. Binds the central cavity between $\beta$-subunits with positively charged residues (Lys82, His2, His143).
+    4. **$\\uparrow \text{Exercise / } \\uparrow \text{Temperature}$**.
+- **Left Shift (Increased $O_2$ Affinity)**:
+  - Lower $P_{50}$: Binds $O_2$ tightly. Caused by $\\downarrow [H^+]$ (alkalosis), $\\downarrow P_{\text{CO}_2}$, $\\downarrow \text{temp}$, $\\downarrow 2,3\text{-BPG}$.
+  - **Fetal Hemoglobin ($HbF$, $\alpha_2\gamma_2$)**: $\gamma$-chains replace His143 with neutral serine, slashing 2,3-BPG binding affinity! Therefore, $HbF$ has a much higher oxygen affinity than maternal $HbA$, driving transplacental oxygen transfer.`
+      },
+      {
+        heading: "4. Carbon Dioxide Carriage & Ventilatory Control",
+        content: `Three modes of $CO_2$ transport and neurological chemical feedback:
+- **Modes of $CO_2$ Carriage**:
+  1. **Dissolved in Plasma** ($pprox 7\%$).
+  2. **Carbaminohemoglobin** ($pprox 23\%$): $CO_2$ reacts reversibly with uncharged N-terminal amino groups of deoxyhemoglobin.
+  3. **Bicarbonate ($HCO_3^-$)** ($pprox 70\%$): In erythrocytes, **Carbonic Anhydrase II** rapidly hydrates $CO_2 + H_2O \rightleftharpoons H_2CO_3 \rightleftharpoons H^+ + HCO_3^-$.
+     - **The Chloride Shift (Hamburger Phenomenon)**: $HCO_3^-$ is pumped out into plasma via the **Band 3 anion exchanger (AE1)** in exchange for plasma $Cl^-$.
+- **The Haldane Effect**: Deoxygenation of hemoglobin increases its capacity to carry $CO_2$ (deoxyhemoglobin is a better proton buffer and forms carbamino compounds more readily than oxyhemoglobin).
+- **Chemical Control of Breathing**:
+  - **Central Chemoreceptors (Ventral Medulla)**: Sense $[H^+]$ in cerebrospinal fluid (CSF). $CO_2$ freely crosses blood-brain barrier and forms $H^+$ via CSF carbonic anhydrase; dominant driver of resting ventilation!
+  - **Peripheral Chemoreceptors (Carotid and Aortic Bodies)**: Glomus cells sense arterial **hypoxia** ($P_{\text{O}_2} < 60\text{ mmHg}$), hypercapnia, and metabolic acidosis ($H^+$ directly from blood). Hypoxia closes background $K^+$ channels $\to$ depolarization $\to Ca^{2+}$ influx $\to$ dopamine release onto sinus nerve (CN IX).`
       }
     ]
   },
@@ -1333,82 +2476,149 @@ Normal values: $\\text{pH} = 7.40$, $[HCO_3^-] = 24\\text{ mEq/L}$, $P_{\\text{C
   },
 
   {
-    id: "animal-5-respiration",
+    id: "animal-8-endocrine",
     domainId: "animal_phys",
-    title: "Respiratory Physiology: Gas Exchange, O₂ Transport & Ventilation Control",
-    subtitle: "Countercurrent Exchange, O₂-Hb Dissociation Curve, Bohr/Haldane Effects & Chemoreceptor Feedback",
+    title: "Endocrine System: Hypothalamic-Pituitary Axes & Hormone Signaling",
+    subtitle: "Hormone Classes, RAAS, Thyroid Axis, Calcium Homeostasis & Insulin/Glucagon",
     level: "USABO Finalist / IBO",
-    xp: 170,
-    estimatedMinutes: 30,
-    prerequisites: ["animal-4-digestion"],
-    sources: ["Vander's Human Physiology Ch. 13 (Respiration)", "Guyton & Hall Ch. 40-42", "Costanzo Physiology Ch. 4"],
+    xp: 160,
+    estimatedMinutes: 28,
+    prerequisites: ["animal-7-reproduction-development"],
+    sources: ["Vander's Human Physiology Ch. 11 (Endocrine System)", "Guyton & Hall Ch. 76-78", "Costanzo Physiology Ch. 8-9"],
     interactiveTool: null,
-    summary: "Master respiratory biophysics and clinical physiology: comparative respiratory mechanics (fish countercurrent gill lamellae, avian crosscurrent parabronchi and non-collapsible air sacs), mammalian compliance and pulmonary surfactant (Laplace's law DPPC), oxygen-hemoglobin dissociation dynamics (P50, Bohr right-shift, 2,3-BPG, fetal HbF), carbon dioxide carriage (chloride shift, Haldane effect), and central vs peripheral chemoreceptor feedback loops.",
+    summary: "Master the endocrine regulatory network: hormone chemical classification (peptides, catecholamines, thyroid hormones, steroids), hypothalamic neurosecretory control (portal hypophyseal system vs posterior axonal transport), the Renin-Angiotensin-Aldosterone System (RAAS), calcium homeostasis (PTH, calcitonin, 1,25-(OH)2D3 calcitriol), thyroid synthesis and deiodination, and pancreatic islet metabolic integration.",
     keyFormulas: [
-      { name: "Alveolar Gas Equation", latex: "P_A\text{O}_2 = P_I\text{O}_2 - \frac{P_A\text{CO}_2}{R} = (P_{\text{atm}} - P_{\text{H}_2\text{O}}) F_I\text{O}_2 - \frac{P_A\text{CO}_2}{R}" },
-      { name: "Law of Laplace (Alveolar Stability)", latex: "P = \frac{2 T}{r} \quad (\text{Surfactant reduces } T \text{ dynamically as } r \text{ decreases})" },
-      { name: "Fick's Law of Gas Diffusion", latex: "\dot{V}_{\text{gas}} = \frac{A \cdot D \cdot (P_1 - P_2)}{T} \propto \frac{A \cdot \text{Solubility}}{\Delta x \cdot \sqrt{\text{MW}}} \Delta P" }
+      { name: "Renin-Angiotensin-Aldosterone Axis", latex: "\text{Angiotensinogen} \\xrightarrow{\text{Renin}} \text{Ang I} \\xrightarrow{\text{ACE}} \text{Ang II} \to \text{Aldosterone release + Vasoconstriction}" }
     ],
     sections: [
       {
-        heading: "1. Comparative Gas Exchange: Gills, Parabronchi & Lungs",
-        content: `Respiratory structures across animal phyla optimize the parameters of Fick's Law:
-- **Fish Gill Countercurrent Exchange**:
-  - Water flows across secondary lamellae in the exact *opposite direction* to capillary blood flow.
-  - A partial pressure gradient ($\Delta P_{\text{O}_2}$) is maintained along the *entire length* of the capillary bed.
-  - Allows blood $P_{\text{O}_2}$ to reach up to **$80-90\%$ of the oxygen saturation** of incoming water!
-  - Concurrent flow would reach equilibrium at only $50\%$, wasting the oxygen content of the water.
-- **Avian Crosscurrent & Unidirectional Flow**:
-  - Birds possess rigid, non-collapsible lungs with continuous parallel tubules called **parabronchi** connected to anterior and posterior **air sacs**.
-  - Takes **two complete respiratory cycles** for a single bolus of air to move through the system:
-    - *Inhalation 1*: Air enters posterior air sacs.
-    - *Exhalation 1*: Air passes through parabronchi where gas exchange occurs.
-    - *Inhalation 2*: Deoxygenated air enters anterior air sacs.
-    - *Exhalation 2*: Air exits via trachea.
-  - Flow across parabronchial capillaries is **crosscurrent**: blood $P_{\text{O}_2}$ leaving the parabronchus can exceed the $P_{\text{O}_2}$ of exhaled gas, enabling flight at extreme altitudes (e.g., Bar-headed geese over the Himalayas at $> 8,000\text{ m}$).`
+        heading: "1. Chemical Classes & Receptors of Hormones",
+        content: `Hormones fall into distinct structural classes governing their transport and signaling:
+- **1. Peptides & Proteins** (e.g., Insulin, Glucagon, ACTH, PTH):
+  - Synthesized as preprohormones in rough ER $\to$ signal sequence cleaved to prohormone $\to$ packaged in secretory vesicles in Golgi $\to$ mature hormone stored until exocytosis.
+  - Hydrophilic; circulate freely dissolved in plasma; short half-life ($t_{1/2} \approx 2-30\text{ minutes}$). Bind cell-surface GPCRs or RTKs.
+- **2. Steroid Hormones** (e.g., Cortisol, Aldosterone, Testosterone, Estradiol):
+  - Synthesized on-demand from **cholesterol** in adrenal cortex, gonads, and placenta (rate-limiting step: **StAR protein** transporting cholesterol into inner mitochondrial membrane where CYP11A1 / cholesterol side-chain cleavage enzyme converts it to pregnenolone).
+  - Lipophilic; diffuse across membranes immediately; circulate bound to plasma carriers (**CBG, SHBG, Albumin**); long half-life ($t_{1/2} \approx 1-2\text{ hours}$). Bind intracellular nuclear receptors that dimerize, bind **Hormone Response Elements (HREs)** on DNA via zinc-finger motifs, and modulate transcription.
+- **3. Amine Hormones** (derived from Tyrosine):
+  - *Catecholamines* (Epinephrine, Norepinephrine, Dopamine): Water-soluble; circulate free; bind surface GPCRs ($\alpha_1, \alpha_2, \beta_1, \beta_2$).
+  - *Thyroid Hormones* ($T_3, T_4$): Iodinated diphenyl ethers; lipophilic; circulate $> 99.9\%$ bound to **Thyroxine-Binding Globulin (TBG)**; bind intracellular nuclear thyroid hormone receptors (TRs).`
       },
       {
-        heading: "2. Mammalian Pulmonary Mechanics & Surfactant",
-        content: `Inspiration and expiration dynamics governed by pressure gradients:
-- **Pleural Pressures**: At Functional Residual Capacity (FRC), inward elastic recoil of the lung matches outward elastic recoil of the chest wall, creating a negative intrapleural pressure ($-5\text{ cm } H_2O$).
-- **Inspiration**: Contraction of diaphragm and external intercostals expands thoracic cavity $\to$ intrapleural pressure drops to $-8\text{ cm } H_2O \to$ alveolar pressure drops below atmospheric ($-1\text{ cm } H_2O$) $\to$ air flows in.
-- **Compliance & Laplace's Law**:
-  $$P = \frac{2T}{r}$$
-  - Without surfactant, smaller alveoli (smaller radius $r$) would generate much higher internal collapsing pressures than larger alveoli, causing air to empty into larger alveoli and collapsing smaller ones (**atelectasis**).
-- **Pulmonary Surfactant**: Secreted by **Type II alveolar epithelial cells**; composed of **dipalmitoylphosphatidylcholine (DPPC)** and surfactant proteins (SP-A, B, C, D).
-  - Molecules crowd closer together in shrinking alveoli, reducing surface tension $T$ proportionally to radius $r$, stabilizing alveoli of varying sizes and drastically increasing pulmonary compliance.`
+        heading: "2. The Hypothalamic-Pituitary Network",
+        content: `The central conductor of endocrine homeostasis:
+- **Anterior Pituitary (Adenohypophysis)**:
+  - Derived embryologically from an oral ectoderm upgrowth (**Rathke's pouch**).
+  - Controlled by hypothalamic hypophysiotropic hormones transported via the **Hypothalamo-Hypophyseal Portal System**:
+    - **TRH** $\to$ Thyrotropes $\to$ **TSH** (thyroid).
+    - **CRH** $\to$ Corticotropes $\to$ **ACTH** (adrenal cortex).
+    - **GnRH** $\to$ Gonadotropes $\to$ **LH & FSH** (gonads).
+    - **GHRH** (+) and **Somatostatin** (-) $\to$ Somatotropes $\to$ **Growth Hormone (GH)** (stimulates hepatic **IGF-1**).
+    - **Dopamine (Prolactin-Inhibiting Hormone)** (-) $\to$ Lactotropes $\to$ **Prolactin (PRL)**.
+  - *Feedback Loops*: Long-loop negative feedback (peripheral gland hormone inhibits pituitary and hypothalamus); Short-loop feedback (anterior pituitary hormone inhibits hypothalamus).
+- **Posterior Pituitary (Neurohypophysis)**:
+  - Down-growth of neural ectoderm from diencephalon. Consists of pituicytes and unmyelinated axon terminals whose cell bodies reside in the hypothalamus:
+    - **Supraoptic Nucleus**: Synthesizes **Antidiuretic Hormone (ADH / Arginine Vasopressin)**.
+    - **Paraventricular Nucleus**: Synthesizes **Oxytocin**.
+  - Transported down hypothalamo-hypophyseal tract bound to **neurophysin** carriers and stored in Herring bodies for calcium-dependent exocytosis.`
       },
       {
-        heading: "3. Oxygen-Hemoglobin Dissociation & The Bohr Effect",
-        content: `Hemoglobin ($HbA$, $\alpha_2\beta_2$) cooperatively binds up to four $O_2$ molecules, generating a sigmoidal binding curve:
-- **$P_{50}$ Parameter**: The partial pressure of oxygen at which hemoglobin is $50\%$ saturated (normal arterial $P_{50} \approx 26.6\text{ mmHg}$).
-- **Right Shift (Decreased $O_2$ Affinity / Enhanced Tissue Delivery)**:
-  - Higher $P_{50}$: Hemoglobin releases oxygen more readily to metabolically active tissues.
-  - Triggers (**CADET face right**):
-    1. **$\\uparrow \text{CO}_2$** (hypercapnia).
-    2. **$\\uparrow \text{Acidity / } [\text{H}^+]$** (decreased pH) = **The Bohr Effect**. $H^+$ protonates histidine residues (His146 on $\beta$-chains), forming salt bridges that stabilize the low-affinity Tense (T) state.
-    3. **$\\uparrow 2,3\text{-Bisphosphoglycerate (2,3-BPG)}$**: Synthesized via the Rapoport-Luebering shunt in erythrocytes. Binds the central cavity between $\beta$-subunits with positively charged residues (Lys82, His2, His143).
-    4. **$\\uparrow \text{Exercise / } \\uparrow \text{Temperature}$**.
-- **Left Shift (Increased $O_2$ Affinity)**:
-  - Lower $P_{50}$: Binds $O_2$ tightly. Caused by $\\downarrow [H^+]$ (alkalosis), $\\downarrow P_{\text{CO}_2}$, $\\downarrow \text{temp}$, $\\downarrow 2,3\text{-BPG}$.
-  - **Fetal Hemoglobin ($HbF$, $\alpha_2\gamma_2$)**: $\gamma$-chains replace His143 with neutral serine, slashing 2,3-BPG binding affinity! Therefore, $HbF$ has a much higher oxygen affinity than maternal $HbA$, driving transplacental oxygen transfer.`
+        heading: "3. The Adrenal Gland & The RAAS Axis",
+        content: `Adrenal functional zoning and blood pressure regulation:
+- **Adrenal Cortex (Mesoderm)**: Three distinct concentric zones (**GFR = Salt, Sugar, Sex**):
+  1. **Zona Glomerulosa** (outer $15\%$): Lacks $17\alpha$-hydroxylase. Synthesizes **Aldosterone** (mineralocorticoid) driven by Angiotensin II and hyperkalemia ($K^+$).
+  2. **Zona Fasciculata** (middle $75\%$): Synthesizes **Cortisol** (glucocorticoid) driven by ACTH. Cortisol stimulates gluconeogenesis, lipolysis, protein catabolism, and suppresses immune responses by inhibiting $PLA_2$, $COX-2$, and $NF-\kappa B$.
+  3. **Zona Reticularis** (inner $10\%$): Synthesizes adrenal androgens (**DHEA, Androstenedione**).
+- **Adrenal Medulla (Neural Crest)**: Chromaffin cells act as modified postganglionic sympathetic neurons, secreting **Epinephrine ($80\%$)** and **Norepinephrine ($20\%$)** driven by preganglionic acetylcholine.
+- **The Renin-Angiotensin-Aldosterone System (RAAS)**:
+  1. Renal hypoperfusion or low $NaCl$ delivery to macula densa triggers **Juxtaglomerular (JG) cells** to secrete **Renin**.
+  2. Renin cleaves hepatic **Angiotensinogen** into decapeptide **Angiotensin I**.
+  3. **Angiotensin-Converting Enzyme (ACE)** (primarily on pulmonary vascular endothelium) cleaves Ang I to octapeptide **Angiotensin II**.
+  4. Angiotensin II actions: Potent systemic arteriolar vasoconstriction; stimulates hypothalamic thirst and ADH release; binds $AT_1$ receptors in zona glomerulosa to stimulate **Aldosterone** release.
+  5. Aldosterone binds mineralocorticoid receptors in renal cortical collecting duct principal cells $\to$ upregulates apical **ENaC** ($Na^+$ channels) and basolateral **$Na^+/K^+\text{-ATPase}$**, driving $Na^+$ reabsorption, water retention, and $K^+/H^+$ excretion.`
       },
       {
-        heading: "4. Carbon Dioxide Carriage & Ventilatory Control",
-        content: `Three modes of $CO_2$ transport and neurological chemical feedback:
-- **Modes of $CO_2$ Carriage**:
-  1. **Dissolved in Plasma** ($pprox 7\%$).
-  2. **Carbaminohemoglobin** ($pprox 23\%$): $CO_2$ reacts reversibly with uncharged N-terminal amino groups of deoxyhemoglobin.
-  3. **Bicarbonate ($HCO_3^-$)** ($pprox 70\%$): In erythrocytes, **Carbonic Anhydrase II** rapidly hydrates $CO_2 + H_2O \rightleftharpoons H_2CO_3 \rightleftharpoons H^+ + HCO_3^-$.
-     - **The Chloride Shift (Hamburger Phenomenon)**: $HCO_3^-$ is pumped out into plasma via the **Band 3 anion exchanger (AE1)** in exchange for plasma $Cl^-$.
-- **The Haldane Effect**: Deoxygenation of hemoglobin increases its capacity to carry $CO_2$ (deoxyhemoglobin is a better proton buffer and forms carbamino compounds more readily than oxyhemoglobin).
-- **Chemical Control of Breathing**:
-  - **Central Chemoreceptors (Ventral Medulla)**: Sense $[H^+]$ in cerebrospinal fluid (CSF). $CO_2$ freely crosses blood-brain barrier and forms $H^+$ via CSF carbonic anhydrase; dominant driver of resting ventilation!
-  - **Peripheral Chemoreceptors (Carotid and Aortic Bodies)**: Glomus cells sense arterial **hypoxia** ($P_{\text{O}_2} < 60\text{ mmHg}$), hypercapnia, and metabolic acidosis ($H^+$ directly from blood). Hypoxia closes background $K^+$ channels $\to$ depolarization $\to Ca^{2+}$ influx $\to$ dopamine release onto sinus nerve (CN IX).`
+        heading: "4. Calcium Homeostasis & Pancreatic Islet Dynamics",
+        content: `Endocrine control of blood calcium and blood glucose:
+- **Calcium Homeostasis** (Normal serum ionized $Ca^{2+} \approx 1.1-1.3\text{ mmol/L}$):
+  - **Parathyroid Hormone (PTH)**: Secreted by parathyroid chief cells when **Calcium-Sensing Receptors (CaSR)** detect low ionized $Ca^{2+}$.
+    - *Bone*: Binds osteoblasts $\to$ upregulates **RANKL** while suppressing Osteoprotegerin (OPG) $\to$ RANKL binds RANK on osteoclast precursors $\to$ osteoclast activation and bone resorption.
+    - *Kidney*: Stimulates $Ca^{2+}$ reabsorption in distal convoluted tubule; inhibits phosphate reabsorption in proximal tubule (phosphaturic effect); activates **$1\alpha$-hydroxylase (CYP27B1)** converting calcidiol ($25\text{-OH } D_3$) into active **Calcitriol ($1,25\text{-(OH)}_2 D_3$)**.
+    - *Intestine*: Calcitriol upregulates apical **TRPV6** channels, cytosolic **calbindin-D9k**, and basolateral **PMCA1b**, stimulating intestinal calcium and phosphate absorption.
+  - **Calcitonin**: Secreted by parafollicular C cells of thyroid in response to hypercalcemia; directly inhibits osteoclastic bone resorption.
+- **Pancreatic Islet Endocrine Physiology**:
+  - **$\beta$-Cells (Insulin)**: High blood glucose enters via **GLUT2** (rodents) / **GLUT1** (humans) $\to$ glucokinase glycolysis $\to \\uparrow [ATP]/[ADP] \to$ **closes ATP-sensitive $K^+$ channels ($K_{\text{ATP}}$)** $\to$ membrane depolarization $\to$ opens voltage-gated $Ca^{2+}$ channels $\to Ca^{2+}$ influx triggers **insulin exocytosis**!
+  - Insulin binds receptor tyrosine kinase (IR) $\to$ IRS1/2 $\to$ PI3K $\to$ Akt $\to$ translocation of **GLUT4** vesicles to plasma membrane in skeletal muscle and adipose tissue; stimulates glycogen synthesis and lipogenesis.
+  - **$\alpha$-Cells (Glucagon)**: Secreted during hypoglycemia; acts via GPCR-$G_{\alpha s}-cAMP-PKA$ in liver to stimulate glycogenolysis and gluconeogenesis.`
       }
     ]
   },
 
+  // ==================== DOMAIN 4: GENETICS & MOLECULAR EVOLUTION (20%) ====================
+  {
+    id: "animal-11-homeostasis-thermoregulation",
+    domainId: "animal_phys",
+    title: "Homeostasis, Thermoregulation, Osmoregulation & Blood",
+    subtitle: "Feedback control, Q10, countercurrent heat exchange, osmotic strategies, nitrogenous waste and haemostasis",
+    level: "USABO Finalist / IBO",
+    xp: 160,
+    estimatedMinutes: 28,
+    prerequisites: ["animal-3-renal", "animal-8-endocrine"],
+    sources: ["Vander's Human Physiology Ch. 5, 15-18", "Guyton & Hall Ch. 73-75", "Campbell Ch. 40, 44", "Raven's Biology of Plants Ch. 30"],
+    interactiveTool: null,
+    summary: "Homeostasis, thermoregulation and osmoregulation are required IBO animal topics, and the app previously treated them only inside the kidney. This module covers feedback control as a formal concept, heat exchange and Q10 with ectotherm and endotherm strategies, osmotic strategies across marine, freshwater and terrestrial environments, nitrogenous waste economics, and blood composition with haemostasis and lymph flow.",
+    keyFormulas: [
+      { name: "Q10 Temperature Coefficient", latex: "Q_{10} = \\left( \\frac{R_2}{R_1} \\right)^{10/(T_2 - T_1)}" },
+      { name: "Osmotic Pressure", latex: "\\pi = iCRT" },
+      { name: "Filtration Flow", latex: "J_v = K_f[(P_c - P_i) - \\sigma(\\pi_c - \\pi_i)]" }
+    ],
+        sections: [
+      {
+        heading: "Feedback control: set points, gain and allostasis",
+        content: `Homeostasis is the regulation of an internal variable around a value that the system defends, not the absence of change.
+
+- **Control vocabulary.** A sensor measures the variable, an integrator (usually hypothalamic) compares it with a set point, an error signal drives effectors, and negative feedback reduces the error. Positive feedback amplifies (oxytocin in labour, action-potential upstroke, blood clotting) and must be terminated by an event. Feedforward anticipates (cephalic-phase insulin release, shivering before core temperature falls).
+- **Gain** quantifies correction: $G = \\text{correction}/(\\text{remaining error})$; high-gain systems hold the variable close to set point, low-gain systems allow wide swings. Time constants and delays explain oscillation (hunting) — the reason some endocrine axes overshoot.
+- **Antagonistic control** is the norm: insulin/glucagon, PTH/calcitonin, ADH/ANP, sympathetic/parasympathetic. Redundancy and hierarchy mean a variable can be defended by several mechanisms with different thresholds, which is why measured "normal ranges" are statistical, not physiological, boundaries.
+- **Set point versus allostasis.** Fever raises the hypothalamic set point (pyrogens $\\to$ PGE$_2$) so the body behaves as if it were cold (vasoconstriction, shivering) until the new set point is reached — different from hyperthermia, where the set point is normal but heat gain exceeds loss (heat stroke, malignant hyperthermia, MDMA). Allostasis is anticipatory adjustment of set points (stress-induced hypertension); chronic allostatic load is a disease mechanism.
+- **Example integration:** plasma glucose is defended by insulin (uptake, glycogen synthesis, lipogenesis), glucagon (glycogenolysis, gluconeogenesis), cortisol and adrenaline (counter-regulatory), plus incretin and neural feedforward; calcium by PTH (bone resorption, renal reabsorption, 1$\\alpha$-hydroxylase), vitamin D (intestinal absorption), calcitonin and FGF23 (phosphate); water by ADH, thirst and RAAS.
+
+Trap: a "set point" is not fixed for life — it changes with fever, pregnancy, altitude and chronic stress, so a value outside the population range can be homeostatically defended.`
+      },
+      {
+        heading: "Thermal physiology: exchange, endothermy and torpor",
+        content: `- **Heat exchange** occurs by radiation, conduction, convection and evaporation; evaporation is the only route that works when ambient temperature exceeds body temperature. Insulation (fur, blubber, feathers), surface-area-to-volume ratio, countercurrent heat exchange in limbs (rete mirabile in bird legs, dolphin flippers) and behavioural thermoregulation modulate the balance.
+- **Ectotherms vs endotherms** is a continuum, not a dichotomy: ectotherms use external heat and have low metabolic rates; endotherms generate heat internally (BMR 5–10× higher per gram) and defend a narrow range; heterotherms switch (hummingbirds, bats, tenrecs). Mesotherms (tuna, opah, some sharks) use regional endothermy with retia mirabilia.
+- **Thermoneutral zone** is the ambient range where metabolic rate is minimal; below it, heat production rises (shivering then non-shivering thermogenesis), above it, evaporative cooling rises. **Q$_{10}$** (rate ratio per 10 °C) is ~2–3 for most biological rates, which is why a 10 °C fever roughly doubles metabolic demand.
+- **Shivering** is antagonistic muscle contraction without work (ATP hydrolysed for heat); **non-shivering thermogenesis** uses brown adipose tissue, where UCP1 (thermogenin) uncouples the respiratory chain so proton flow produces heat instead of ATP. Brown fat is abundant in infants and hibernators and is recruited by cold and sympathetic noradrenaline; it is present and metabolically active in adult humans.
+- **Torpor, hibernation, estivation:** daily torpor (hummingbirds, some bats) drops set point and metabolic rate for hours; hibernation sustains weeks-months with periodic arousals; estivation is summer dormancy in the heat. Arousal from hibernation requires intense thermogenesis and is energetically expensive, which is why arousal frequency is optimised rather than arbitrary.
+- **Fever vs hyperthermia** (above): antipyretics (NSAIDs) inhibit cyclo-oxygenase and lower the set point; they do not cool a hyperthermic patient, who needs active cooling.
+
+Trap: sweating cools by evaporation; at 100% humidity it fails, so high humidity plus high temperature is far more dangerous than the same temperature at low humidity.`
+      },
+      {
+        heading: "Osmoregulation and the countercurrent kidney",
+        content: `- **Strategies.** Osmoconformers (marine invertebrates, hagfish) match internal osmolarity to seawater; osmoregulators maintain a set osmolarity. Freshwater teleosts are hyperosmotic to their medium: they gain water osmotically, lose ions, produce copious dilute urine and actively take up Na$^+$/Cl$^-$ through gill ionocytes. Marine teleosts are hypoosmotic: they drink seawater, absorb water and ions in the gut, excrete excess salt through gill chloride cells, and produce scant urine. Elasmobranchs retain urea and trimethylamine N-oxide to become slightly hyperosmotic, avoiding both drinking and water loss. Anadromous fish (salmon) remodel gill transporters and switch from ion uptake to ion secretion during migration, driven by prolactin and cortisol.
+- **Countercurrent multiplier.** The loop of Henle generates a corticomedullary osmotic gradient: the descending limb is water-permeable and solute-impermeable, the ascending limb is water-impermeable and actively transports NaCl out, so the interstitium becomes progressively hypertonic. The vasa recta act as countercurrent exchangers, preserving the gradient without washing it away. Long loops (desert mammals) produce concentrated urine; short loops (beavers) do not. The collecting duct's final water permeability is set by ADH-driven AQP2 insertion.
+- **Hormonal control.** ADH (vasopressin, V2 receptor, cAMP, AQP2) concentrates urine; RAAS (renin $\\to$ angiotensin II $\\to$ aldosterone) conserves Na$^+$ and water; ANP promotes natriuresis; aldosterone also drives K$^+$ secretion. Osmotic thirst and hypovolaemic thirst are separate (osmoreceptors in the OVLT vs baroreceptors), which is why haemorrhage and dehydration produce different drinking behaviour.
+- **Invertebrate solutions:** Malpighian tubules (insects) secrete primary urine by active K$^+$ transport and modify it in the hindgut; crustaceans use antennal glands; protonephridia in flatworms.
+- **Nitrogen waste** choice follows water availability: ammonia (fish, aquatic invertebrates) is toxic but cheap; urea (mammals, elasmobranchs, adult amphibians) costs ATP but is less toxic; uric acid (birds, reptiles, insects) is nearly insoluble and excreted as paste, saving water — the same logic drives the uricotelic switch in desert species.
+
+Trap: the loop of Henle concentrates *interstitial* fluid, not urine directly; urine is concentrated later in the collecting duct, so a diuretic acting on the ascending limb abolishes the gradient and prevents concentration regardless of ADH.`
+      },
+      {
+        heading: "Integrated regulation: calcium, glucose, stress and altitude",
+        content: `- **Calcium.** Plasma Ca$^{2+}$ is defended tightly because it sets neuronal excitability and clotting. Low Ca$^{2+}$ $\\to$ PTH from parathyroid chief cells (CaSR-sensing) $\\to$ bone resorption (RANKL/OPG), renal Ca$^{2+}$ reabsorption, and 1$\\alpha$-hydroxylase activation to raise calcitriol, which increases intestinal absorption. High Ca$^{2+}$ $\\to$ calcitonin (minor in humans) and suppressed PTH; FGF23 handles phosphate. Hypocalcaemia causes tetany and prolongs the QT interval; hypercalcaemia causes constipation, polyuria and confusion ("stones, bones, abdominal groans, psychic moans").
+- **Glucose.** $\\beta$-cells sense glucose via glucokinase, raising ATP/ADP, closing K$_{ATP}$ channels, depolarising, opening L-type Ca$^{2+}$ channels and releasing insulin (first phase from docked granules, second from reserve pool). Incretins (GLP-1, GIP) amplify the response; GLP-1 receptor agonists and DPP-4 inhibitors exploit this. Insulin signals through IRS-1/PI3K/Akt to translocate GLUT4 in muscle and fat, activate glycogen synthase (via GSK3 inhibition) and suppress hepatic gluconeogenesis. Counter-regulation: glucagon (glycogenolysis, gluconeogenesis), adrenaline ($\\beta_2$), cortisol (permissive, promotes gluconeogenesis), growth hormone. Chronic hyperglycaemia causes non-enzymatic glycation (HbA1c), osmotic damage (sorbitol pathway) and microvascular disease.
+- **Stress axis.** CRH $\\to$ ACTH $\\to$ cortisol with negative feedback at hippocampus and hypothalamus; chronic cortisol causes insulin resistance, immunosuppression, bone loss and hippocampal atrophy. Catecholamines act within seconds (fight-or-flight), cortisol within minutes to hours (permissive and metabolic), and aldosterone adds volume retention. Selye's general adaptation syndrome is the historical framing; allostasis is the modern one.
+- **Altitude.** Acute hypoxia raises ventilation via carotid-body sensing, causing respiratory alkalosis that shifts the oxygen–haemoglobin curve left; acclimatisation over days increases 2,3-BPG (shifting it right), erythropoietin-driven polycythaemia, capillary density and mitochondrial efficiency. Tibetan and Andean adaptations differ (nitric oxide–mediated flow vs haemoglobin concentration), a textbook case of convergent solutions to the same stress.
+
+Trap: calcium and phosphate are regulated by different but interacting hormones (PTH, vitamin D, FGF23, calcitonin); a normal plasma calcium with abnormal phosphate points to FGF23 or PTH, not to calcitonin.`
+      }
+    ]
+  },
+
+  // ==================== ADDED: GAP FILL (GENETICS/EVOLUTION, ECOLOGY, ETHOLOGY, BIOSYSTEMATICS) ====================
   {
     id: "animal-6-immunity",
     domainId: "animal_phys",
@@ -1568,388 +2778,6 @@ Normal values: $\\text{pH} = 7.40$, $[HCO_3^-] = 24\\text{ mEq/L}$, $P_{\\text{C
     ]
   },
 
-  {
-    id: "animal-8-endocrine",
-    domainId: "animal_phys",
-    title: "Endocrine System: Hypothalamic-Pituitary Axes & Hormone Signaling",
-    subtitle: "Hormone Classes, RAAS, Thyroid Axis, Calcium Homeostasis & Insulin/Glucagon",
-    level: "USABO Finalist / IBO",
-    xp: 160,
-    estimatedMinutes: 28,
-    prerequisites: ["animal-7-reproduction-development"],
-    sources: ["Vander's Human Physiology Ch. 11 (Endocrine System)", "Guyton & Hall Ch. 76-78", "Costanzo Physiology Ch. 8-9"],
-    interactiveTool: null,
-    summary: "Master the endocrine regulatory network: hormone chemical classification (peptides, catecholamines, thyroid hormones, steroids), hypothalamic neurosecretory control (portal hypophyseal system vs posterior axonal transport), the Renin-Angiotensin-Aldosterone System (RAAS), calcium homeostasis (PTH, calcitonin, 1,25-(OH)2D3 calcitriol), thyroid synthesis and deiodination, and pancreatic islet metabolic integration.",
-    keyFormulas: [
-      { name: "Renin-Angiotensin-Aldosterone Axis", latex: "\text{Angiotensinogen} \\xrightarrow{\text{Renin}} \text{Ang I} \\xrightarrow{\text{ACE}} \text{Ang II} \to \text{Aldosterone release + Vasoconstriction}" }
-    ],
-    sections: [
-      {
-        heading: "1. Chemical Classes & Receptors of Hormones",
-        content: `Hormones fall into distinct structural classes governing their transport and signaling:
-- **1. Peptides & Proteins** (e.g., Insulin, Glucagon, ACTH, PTH):
-  - Synthesized as preprohormones in rough ER $\to$ signal sequence cleaved to prohormone $\to$ packaged in secretory vesicles in Golgi $\to$ mature hormone stored until exocytosis.
-  - Hydrophilic; circulate freely dissolved in plasma; short half-life ($t_{1/2} \approx 2-30\text{ minutes}$). Bind cell-surface GPCRs or RTKs.
-- **2. Steroid Hormones** (e.g., Cortisol, Aldosterone, Testosterone, Estradiol):
-  - Synthesized on-demand from **cholesterol** in adrenal cortex, gonads, and placenta (rate-limiting step: **StAR protein** transporting cholesterol into inner mitochondrial membrane where CYP11A1 / cholesterol side-chain cleavage enzyme converts it to pregnenolone).
-  - Lipophilic; diffuse across membranes immediately; circulate bound to plasma carriers (**CBG, SHBG, Albumin**); long half-life ($t_{1/2} \approx 1-2\text{ hours}$). Bind intracellular nuclear receptors that dimerize, bind **Hormone Response Elements (HREs)** on DNA via zinc-finger motifs, and modulate transcription.
-- **3. Amine Hormones** (derived from Tyrosine):
-  - *Catecholamines* (Epinephrine, Norepinephrine, Dopamine): Water-soluble; circulate free; bind surface GPCRs ($\alpha_1, \alpha_2, \beta_1, \beta_2$).
-  - *Thyroid Hormones* ($T_3, T_4$): Iodinated diphenyl ethers; lipophilic; circulate $> 99.9\%$ bound to **Thyroxine-Binding Globulin (TBG)**; bind intracellular nuclear thyroid hormone receptors (TRs).`
-      },
-      {
-        heading: "2. The Hypothalamic-Pituitary Network",
-        content: `The central conductor of endocrine homeostasis:
-- **Anterior Pituitary (Adenohypophysis)**:
-  - Derived embryologically from an oral ectoderm upgrowth (**Rathke's pouch**).
-  - Controlled by hypothalamic hypophysiotropic hormones transported via the **Hypothalamo-Hypophyseal Portal System**:
-    - **TRH** $\to$ Thyrotropes $\to$ **TSH** (thyroid).
-    - **CRH** $\to$ Corticotropes $\to$ **ACTH** (adrenal cortex).
-    - **GnRH** $\to$ Gonadotropes $\to$ **LH & FSH** (gonads).
-    - **GHRH** (+) and **Somatostatin** (-) $\to$ Somatotropes $\to$ **Growth Hormone (GH)** (stimulates hepatic **IGF-1**).
-    - **Dopamine (Prolactin-Inhibiting Hormone)** (-) $\to$ Lactotropes $\to$ **Prolactin (PRL)**.
-  - *Feedback Loops*: Long-loop negative feedback (peripheral gland hormone inhibits pituitary and hypothalamus); Short-loop feedback (anterior pituitary hormone inhibits hypothalamus).
-- **Posterior Pituitary (Neurohypophysis)**:
-  - Down-growth of neural ectoderm from diencephalon. Consists of pituicytes and unmyelinated axon terminals whose cell bodies reside in the hypothalamus:
-    - **Supraoptic Nucleus**: Synthesizes **Antidiuretic Hormone (ADH / Arginine Vasopressin)**.
-    - **Paraventricular Nucleus**: Synthesizes **Oxytocin**.
-  - Transported down hypothalamo-hypophyseal tract bound to **neurophysin** carriers and stored in Herring bodies for calcium-dependent exocytosis.`
-      },
-      {
-        heading: "3. The Adrenal Gland & The RAAS Axis",
-        content: `Adrenal functional zoning and blood pressure regulation:
-- **Adrenal Cortex (Mesoderm)**: Three distinct concentric zones (**GFR = Salt, Sugar, Sex**):
-  1. **Zona Glomerulosa** (outer $15\%$): Lacks $17\alpha$-hydroxylase. Synthesizes **Aldosterone** (mineralocorticoid) driven by Angiotensin II and hyperkalemia ($K^+$).
-  2. **Zona Fasciculata** (middle $75\%$): Synthesizes **Cortisol** (glucocorticoid) driven by ACTH. Cortisol stimulates gluconeogenesis, lipolysis, protein catabolism, and suppresses immune responses by inhibiting $PLA_2$, $COX-2$, and $NF-\kappa B$.
-  3. **Zona Reticularis** (inner $10\%$): Synthesizes adrenal androgens (**DHEA, Androstenedione**).
-- **Adrenal Medulla (Neural Crest)**: Chromaffin cells act as modified postganglionic sympathetic neurons, secreting **Epinephrine ($80\%$)** and **Norepinephrine ($20\%$)** driven by preganglionic acetylcholine.
-- **The Renin-Angiotensin-Aldosterone System (RAAS)**:
-  1. Renal hypoperfusion or low $NaCl$ delivery to macula densa triggers **Juxtaglomerular (JG) cells** to secrete **Renin**.
-  2. Renin cleaves hepatic **Angiotensinogen** into decapeptide **Angiotensin I**.
-  3. **Angiotensin-Converting Enzyme (ACE)** (primarily on pulmonary vascular endothelium) cleaves Ang I to octapeptide **Angiotensin II**.
-  4. Angiotensin II actions: Potent systemic arteriolar vasoconstriction; stimulates hypothalamic thirst and ADH release; binds $AT_1$ receptors in zona glomerulosa to stimulate **Aldosterone** release.
-  5. Aldosterone binds mineralocorticoid receptors in renal cortical collecting duct principal cells $\to$ upregulates apical **ENaC** ($Na^+$ channels) and basolateral **$Na^+/K^+\text{-ATPase}$**, driving $Na^+$ reabsorption, water retention, and $K^+/H^+$ excretion.`
-      },
-      {
-        heading: "4. Calcium Homeostasis & Pancreatic Islet Dynamics",
-        content: `Endocrine control of blood calcium and blood glucose:
-- **Calcium Homeostasis** (Normal serum ionized $Ca^{2+} \approx 1.1-1.3\text{ mmol/L}$):
-  - **Parathyroid Hormone (PTH)**: Secreted by parathyroid chief cells when **Calcium-Sensing Receptors (CaSR)** detect low ionized $Ca^{2+}$.
-    - *Bone*: Binds osteoblasts $\to$ upregulates **RANKL** while suppressing Osteoprotegerin (OPG) $\to$ RANKL binds RANK on osteoclast precursors $\to$ osteoclast activation and bone resorption.
-    - *Kidney*: Stimulates $Ca^{2+}$ reabsorption in distal convoluted tubule; inhibits phosphate reabsorption in proximal tubule (phosphaturic effect); activates **$1\alpha$-hydroxylase (CYP27B1)** converting calcidiol ($25\text{-OH } D_3$) into active **Calcitriol ($1,25\text{-(OH)}_2 D_3$)**.
-    - *Intestine*: Calcitriol upregulates apical **TRPV6** channels, cytosolic **calbindin-D9k**, and basolateral **PMCA1b**, stimulating intestinal calcium and phosphate absorption.
-  - **Calcitonin**: Secreted by parafollicular C cells of thyroid in response to hypercalcemia; directly inhibits osteoclastic bone resorption.
-- **Pancreatic Islet Endocrine Physiology**:
-  - **$\beta$-Cells (Insulin)**: High blood glucose enters via **GLUT2** (rodents) / **GLUT1** (humans) $\to$ glucokinase glycolysis $\to \\uparrow [ATP]/[ADP] \to$ **closes ATP-sensitive $K^+$ channels ($K_{\text{ATP}}$)** $\to$ membrane depolarization $\to$ opens voltage-gated $Ca^{2+}$ channels $\to Ca^{2+}$ influx triggers **insulin exocytosis**!
-  - Insulin binds receptor tyrosine kinase (IR) $\to$ IRS1/2 $\to$ PI3K $\to$ Akt $\to$ translocation of **GLUT4** vesicles to plasma membrane in skeletal muscle and adipose tissue; stimulates glycogen synthesis and lipogenesis.
-  - **$\alpha$-Cells (Glucagon)**: Secreted during hypoglycemia; acts via GPCR-$G_{\alpha s}-cAMP-PKA$ in liver to stimulate glycogenolysis and gluconeogenesis.`
-      }
-    ]
-  },
-
-  // ==================== DOMAIN 4: GENETICS & MOLECULAR EVOLUTION (20%) ====================
-  {
-    id: "genetics-1-mapping",
-    domainId: "genetics",
-    title: "Linkage Mapping, Three-Point Crosses & Tetrad Analysis",
-    subtitle: "Recombination Frequencies, Interference (1-COC), Lod Scores, and Ordered Tetrads",
-    level: "USABO Finalist / IBO",
-    xp: 160,
-    estimatedMinutes: 28,
-    prerequisites: [],
-    sources: ["Pierce: Genetics Ch. 7 (Linkage, Recombination, and Mapping)", "Griffiths: Introduction to Genetic Analysis Ch. 4-5"],
-    interactiveTool: "three_point_cross_linkage_mapper",
-    summary: "Systematically solve three-point testcrosses: identify parental vs double crossover classes, establish gene order, compute map distances, calculate interference (I = 1 - COC), evaluate lod scores, and perform ordered and unordered tetrad analysis in Neurospora and yeast.",
-    keyFormulas: [
-      { name: "Coefficient of Coincidence (COC)", latex: "COC = \\frac{\\text{Observed DCO Frequency}}{\\text{Expected DCO Frequency}} = \\frac{\\text{Observed DCO}}{(\\text{Dist}_1) \\times (\\text{Dist}_2) \\times N}" },
-      { name: "Interference", latex: "I = 1 - COC \\quad (I > 0: \\text{positive interference; } I < 0: \\text{negative interference})" },
-      { name: "Gene-Centromere Distance (Ordered Tetrads)", latex: "d = \\frac{1}{2} \\left( \\frac{\\text{Second-Division Asymmetric Asci (SDS)}}{\\text{Total Asci}} \\right) \\times 100 \\text{ cM}" },
-      { name: "Lod Score (Z)", latex: "Z = \\log_{10} \\left( \\frac{P(\\text{Data} \\mid \\theta)}{P(\\text{Data} \\mid \\theta = 0.5)} \\right) \\quad (Z \\ge 3.0 \\text{ confirms linkage})" }
-    ],
-    sections: [
-      {
-        heading: "1. Three-Point Testcross Algorithmic Workflow",
-        content: `Analyzing offspring from a trihybrid testcross ($AaBbCc \\times aabbcc$):
-1. **Identify Parentals (Non-crossovers, NCO)**: The two reciprocal phenotypic classes with the highest counts.
-2. **Identify Double Crossovers (DCO)**: The two reciprocal phenotypic classes with the lowest counts.
-3. **Determine Gene Order**: Compare the alleles present in the DCO classes with the parental classes. **Only the middle gene will be swapped between the two homologs in the DCO!**
-4. **Compute Map Distances**:
-   - Distance between gene 1 and gene 2 (middle) $= \\frac{\\text{SCO}_{1-2} + \\text{DCO}}{\\text{Total Offspring}} \\times 100\\text{ cM}$.
-   - Distance between middle gene 2 and gene 3 $= \\frac{\\text{SCO}_{2-3} + \\text{DCO}}{\\text{Total Offspring}} \\times 100\\text{ cM}$.
-5. **Compute Interference ($I$)**:
-   - $\\text{Expected DCO count} = \\text{Dist}_1 \\times \\text{Dist}_2 \\times N$.
-   - $\\text{Coefficient of Coincidence } (COC) = \\frac{\\text{Observed DCO}}{\\text{Expected DCO}}$.
-   - $\\text{Interference } I = 1 - COC$.
-   - If $I = 1.0$, complete interference (no double crossovers observed). If $I = 0.40$, a crossover in region 1 reduces probability of crossover in region 2 by $40\\%$.`
-      },
-      {
-        heading: "2. Lod Score (Logarithm of the Odds) Analysis",
-        content: `Used in human pedigree genetics where sample sizes are small and planned testcrosses are impossible:
-$$Z = \\log_{10} \\left( \\frac{L(\\theta)}{L(0.5)} \\right) = \\log_{10} \\left( \\frac{\\theta^R (1 - \\theta)^{NR}}{(0.5)^{R + NR}} \\right)$$
-- $\\theta$: Recombination fraction ($0 \\le \\theta \\le 0.5$).
-- $R$: Number of recombinant individuals; $NR$: Number of non-recombinant individuals.
-- **Clinical Significance Thresholds**:
-  - $Z \\ge +3.0$: Confirmed statistical evidence for linkage ($1000 : 1$ odds in favor of linkage).
-  - $Z \\le -2.0$: Exclusion of linkage at that recombination fraction $\\theta$.
-  - $-2.0 < Z < 3.0$: Inconclusive; requires additional pedigrees.`
-      },
-      {
-        heading: "3. Tetrad Analysis in Neurospora & Yeast",
-        content: `Ascomycete fungi retain the four meiotic products within an ascus:
-- **Ordered Tetrads (*Neurospora crassa*)**:
-  - Spores are arranged linearly according to the two meiotic divisions (plus one post-meiotic mitosis yielding 8 linear ascospores).
-  - **First-Division Segregation (FDS, 4:4 pattern)**: Segregation of alleles occurred at Meiosis I $\\to$ no crossover between gene and centromere!
-  - **Second-Division Segregation (SDS, 2:2:2:2 or 2:4:2 pattern)**: Crossover occurred between gene and centromere!
-  - Distance from gene to centromere: $d = \\frac{1}{2} \\left( \\frac{\\text{SDS asci}}{\\text{Total asci}} \\right) \\times 100\\text{ cM}$ (factor of $1/2$ because only two of the four chromatids in the bivalent crossed over).
-- **Unordered Tetrads (*Saccharomyces cerevisiae*)**:
-  - Classify asci into **Parental Ditype (PD)**, **Non-Parental Ditype (NPD)**, and **Tetratype (TT)**.
-  - If $PD \\gg NPD$: The two genes are **linked** on the same chromosome!
-  - If $PD \\approx NPD$: The two genes are on separate chromosomes (independent assortment).
-  - Map distance between two linked genes:
-    $$d = \\frac{NPD + 0.5 TT}{\\text{Total Asci}} \\times 100\\text{ cM}$$`
-      }
-    ]
-  },
-
-  {
-    id: "genetics-2-popgen",
-    domainId: "genetics",
-    title: "Population Genetics: Selection Models, Inbreeding & Neutral Theory",
-    subtitle: "Overdominance, Mutation-Selection Balance, Ne, Wright's FST, and dN/dS Ratios",
-    level: "USABO Finalist / IBO",
-    xp: 160,
-    estimatedMinutes: 30,
-    prerequisites: ["genetics-1-mapping"],
-    sources: ["Futuyma: Evolution Ch. 6-7 (Genetics of Populations)", "Herron & Freeman: Evolutionary Analysis Ch. 6-7"],
-    interactiveTool: null,
-    summary: "Master quantitative evolutionary genetics: multi-allelic Hardy-Weinberg, general selection models, overdominance equilibrium, mutation-selection balance for lethal recessives, effective population size (Ne) corrections, Wright's F-statistics, and the dN/dS molecular evolution test for selection.",
-    keyFormulas: [
-      { name: "Overdominance Equilibrium Frequency", latex: "\\hat{p} = \\frac{s_2}{s_1 + s_2}, \\quad \\hat{q} = \\frac{s_1}{s_1 + s_2} \\quad (w_{11}=1-s_1, w_{12}=1, w_{22}=1-s_2)" },
-      { name: "Mutation-Selection Balance (Recessive)", latex: "\\hat{q} = \\sqrt{\\frac{\\mu}{s}} \\quad (\\hat{q} = \\frac{\\mu}{s} \\text{ for dominant})" },
-      { name: "Effective Population Size (Sex Ratio Unequal)", latex: "N_e = \\frac{4 N_m N_f}{N_m + N_f}" },
-      { name: "Wright's Fixation Index (FST)", latex: "F_{ST} = \\frac{V_p}{\\bar{p}(1 - \\bar{p})} = \\frac{H_T - \\bar{H}_S}{H_T} \\approx \\frac{1}{4 N_e m + 1}" },
-      { name: "dN/dS (ω) Ratio Test", latex: "\\omega = \\frac{d_N}{d_S} \\quad (\\omega < 1: \\text{purifying; } \\omega = 1: \\text{neutral; } \\omega > 1: \\text{positive Darwinian selection})" }
-    ],
-    sections: [
-      {
-        heading: "1. The General Viability Selection Model",
-        content: `Tracking allele frequency change under differential fitness:
-- Genotypes: $A_1A_1$, $A_1A_2$, $A_2A_2$ with initial frequencies $p^2$, $2pq$, $q^2$.
-- Relative fitness values: $w_{11}$, $w_{12}$, $w_{22}$.
-- Mean population fitness: $\\bar{w} = p^2 w_{11} + 2pq w_{12} + q^2 w_{22}$.
-- Frequency of allele $A_1$ in next generation:
-  $$p' = \\frac{p^2 w_{11} + pq w_{12}}{\\bar{w}}$$
-- **Equilibria**:
-  - **Overdominance (Heterozygote Advantage)**: $w_{12} > w_{11}$ and $w_{12} > w_{22}$. Leads to stable polymorphism!
-    - Example: Sickle-cell trait ($HbA/HbS$) in malaria-endemic regions.
-    - Equilibrium: $\\hat{p} = \\frac{s_2}{s_1 + s_2}$, where $s_1 = 1 - w_{11}$ and $s_2 = 1 - w_{22}$.
-  - **Underdominance (Heterozygote Disadvantage)**: $w_{12} < w_{11}$ and $w_{12} < w_{22}$. Unstable equilibrium point; one allele will inevitably be fixed depending on starting frequency.`
-      },
-      {
-        heading: "2. Effective Population Size ($N_e$)",
-        content: `The size of an idealized Fisher-Wright population that experiences the same rate of genetic drift as the actual population:
-- **Unequal Sex Ratios**:
-  $$N_e = \\frac{4 N_m N_f}{N_m + N_f}$$
-  - If a breeding population has $N_m = 2$ males and $N_f = 98$ females (total 100), $N_e = \\frac{4(2)(98)}{2 + 98} = 7.84$! Drift behaves as if the population had only 8 individuals.
-- **Fluctuating Populations Over Time**:
-  - $N_e$ is the **harmonic mean** of the population sizes across generations:
-    $$\\frac{1}{N_e} = \\frac{1}{t} \\sum_{i=1}^t \\frac{1}{N_i}$$
-  - A single bottleneck event (e.g., $N_1 = 1000, N_2 = 10, N_3 = 1000$) dominates the entire harmonic mean, slashing long-term effective population size.`
-      },
-      {
-        heading: "3. Wright's F-Statistics & Population Substructure",
-        content: `Quantifying inbreeding and genetic differentiation:
-- Hierarchical relationship:
-  $$(1 - F_{IT}) = (1 - F_{IS})(1 - F_{ST})$$
-  - $F_{IS}$: Inbreeding coefficient of individuals relative to their local subpopulation (due to non-random mating within demes).
-  - $F_{ST}$: Fixation index measuring genetic differentiation among subpopulations relative to total population.
-  - $F_{IT}$: Total inbreeding coefficient of an individual relative to the whole metapopulation.
-- **Island Model of Gene Flow**:
-  $$F_{ST} \\approx \\frac{1}{4 N_e m + 1}$$
-  - $N_e m$: Number of effective migrants per generation.
-  - If $N_e m > 1$ (even just **one migrant per generation**), gene flow is sufficient to prevent complete genetic divergence due to drift!`
-      },
-      {
-        heading: "4. Molecular Evolution & The $d_N/d_S$ Selection Test",
-        content: `Detecting evolutionary forces at the protein coding sequence level:
-- **Kimura's Neutral Theory of Molecular Evolution**:
-  - The vast majority of evolutionary changes at the molecular level are caused by random drift of selectively neutral or nearly neutral mutations.
-  - Rate of neutral substitution per generation equals the neutral mutation rate per gamete: $K = \\mu_0$, completely independent of population size $N$!
-- **Non-synonymous vs. Synonymous Substitutions**:
-  - $d_N$: Rate of non-synonymous substitutions per non-synonymous site (changes amino acid).
-  - $d_S$: Rate of synonymous substitutions per synonymous site (silent mutation).
-  - **Interpreting $\\omega = d_N / d_S$**:
-    - $\\omega < 1$: **Purifying (Negative) Selection**. Eliminates deleterious amino acid substitutions to preserve protein function (majority of conserved housekeeping enzymes, e.g., actin, histone H4 $\\omega < 0.05$).
-    - $\\omega = 1$: **Neutral Drift**. Amino acid changes are functionally neutral.
-    - $\\omega > 1$: **Positive (Darwinian Diversifying) Selection**. Rapid adaptive evolution driven by selective advantage (antigen recognition groove of MHC molecules, snake venoms, viral spike proteins).`
-      }
-    ]
-  },
-
-  
-  {
-    id: "genetics-3-mendelian-extensions",
-    domainId: "genetics",
-    title: "Advanced Mendelian Genetics: Epistasis, Penetrance & Quantitative Traits",
-    subtitle: "Modified Dihybrid Ratios, Genomic Imprinting, X-Inactivation & Heritability",
-    level: "USABO Finalist / IBO",
-    xp: 150,
-    estimatedMinutes: 28,
-    prerequisites: ["genetics-2-popgen"],
-    sources: ["Pierce: Genetics - A Conceptual Approach Ch. 5, 12, 23", "Griffiths: Introduction to Genetic Analysis Ch. 2-6"],
-    interactiveTool: null,
-    summary: "Master complex non-Mendelian inheritance patterns: epistasis topologies and modified dihybrid F2 ratios (recessive 9:3:4, dominant 12:3:1, duplicate recessive 9:7, duplicate dominant 15:1), complementation testing, penetrance vs expressivity, dosage compensation (lyonization and XIST lncRNA), parent-of-origin genomic imprinting (Igf2/H19 ICR), and quantitative genetics (narrow-sense vs broad-sense heritability and the Breeder's Equation).",
-    keyFormulas: [
-      { name: "Broad-Sense Heritability", latex: "H^2 = \frac{V_G}{V_P} = \frac{V_A + V_D + V_I}{V_G + V_E}" },
-      { name: "Narrow-Sense Heritability", latex: "h^2 = \frac{V_A}{V_P} \quad (V_A: \text{Additive genetic variance})" },
-      { name: "Breeder's Equation for Response to Selection", latex: "R = h^2 S \quad (R: \text{Response to selection}, S: \text{Selection differential})" }
-    ],
-    sections: [
-      {
-        heading: "1. Epistasis Topologies & Modified 9:3:3:1 Ratios",
-        content: `Epistasis occurs when the phenotypic expression of one gene locus masks or alters the phenotypic expression of an independent unlinked locus. In an $AaBb \times AaBb$ dihybrid cross:
-- **Standard Dihybrid Ratio**: $9\,(A\_B\_) : 3\,(A\_bb) : 3\,(aaB\_) : 1\,(aabb)$.
-- **Recessive Epistasis (9:3:4)**: Homozygous recessive genotype $aa$ masks the phenotypic expression of alleles at locus $B$.
-  - *Example*: Labrador coat color. Genotype $ee$ (recessive locus for pigment deposition) produces yellow labs regardless of whether the pigment locus is black ($B\_$) or brown ($bb$).
-- **Dominant Epistasis (12:3:1)**: Presence of a single dominant allele $A$ masks alleles at locus $B$.
-  - Genotypes $9\,A\_B\_ + 3\,A\_bb$ yield the epistatic phenotype ($12$), while $3\,aaB\_$ and $1\,aabb$ show distinct phenotypes (e.g., summer squash fruit color).
-- **Duplicate Recessive Epistasis / Complementary Genes (9:7)**: Homozygous recessive at *either* locus ($aa$ or $bb$) blocks the biochemical pathway, yielding identical mutant phenotypes.
-  - Only $A\_B\_$ produces wild-type color ($9$), while $3\,A\_bb + 3\,aaB\_ + 1\,aabb = 7$ are albino (e.g., sweet pea flower color, where enzymes $A$ and $B$ are sequential in anthocyanin biosynthesis).
-- **Duplicate Genes with Cumulative Effect (9:6:1)**: Dominant alleles at both loci produce one phenotype ($9$), dominant at either locus produces an intermediate phenotype ($3 + 3 = 6$), and double recessive produces the third ($1$).
-- **Duplicate Dominant Epistasis (15:1)**: A dominant allele at *either* locus ($A\_$ or $B\_$) produces the wild-type phenotype (e.g., shepherd's purse triangular seed capsule; only double recessive $aabb$ produces ovoid capsules).
-- **Dominant and Recessive (Inhibitory) Epistasis (13:3)**: Dominant allele $A$ acts as an inhibitor of dominant allele $B$ ($9\,A\_B\_ + 3\,A\_bb + 1\,aabb = 13$; only $3\,aaB\_$ show phenotype).
-- **Complementation Test**: Crossing two homozygous recessive mutants producing wild-type offspring indicates mutations reside in **different genes** (they complement). If offspring are mutant, mutations are allelic (same gene).`
-      },
-      {
-        heading: "2. Penetrance, Expressivity & Lethal Alleles",
-        content: `Phenotypic variation arising from genetic background and environment:
-- **Penetrance**: The percentage of individuals with a given genotype who exhibit the associated phenotype.
-  - *Incomplete Penetrance*: Polydactyly may exhibit $70\%$ penetrance (an individual carrying the dominant allele has a $30\%$ chance of displaying completely normal digits).
-- **Expressivity**: The degree or severity with which a particular genotype is expressed phenotypically in a single individual (e.g., variable expression of neurofibromatosis type 1 café-au-lait spots and neurofibromas).
-- **Recessive Lethal Alleles**: Alleles essential for survival that cause embryonic death when homozygous.
-  - *Classic Example*: Yellow coat color in mice (*Agouti* locus, $A^y$). Crossing two yellow mice ($A^y A \times A^y A$) yields a **2 yellow : 1 agouti** phenotypic ratio among surviving offspring because homozygous $A^y A^y$ embryos die *in utero*.`
-      },
-      {
-        heading: "3. Dosage Compensation, XIST & Genomic Imprinting",
-        content: `Epigenetic mechanisms regulating gene dosage:
-- **Dosage Compensation (Lyonization)**:
-  - In mammalian female somatic cells ($XX$), one of the two X chromosomes is randomly and permanently silenced in early embryogenesis, condensing into a heterochromatic **Barr Body**.
-  - Controlled by the **X Inactivation Center (XIC)** encoding the long non-coding RNA **XIST**.
-  - XIST RNA coats the future inactive X chromosome ($Xi$) in cis, recruiting histone methyltransferases (**Polycomb Repressive Complex 2 / PRC2**), depositing repressive **H3K27me3** marks, macroH2A, and extensive CpG DNA methylation.
-  - Females are functional **genetic mosaics** for X-linked alleles (e.g., calico cat coat color, anhidrotic ectodermal dysplasia).
-- **Genomic Imprinting (Parent-of-Origin Expression)**:
-  - Epigenetic silencing of a specific allele depending strictly on whether it was inherited from the mother or the father, established in the parental germline via differential DNA methylation of **Imprinting Control Regions (ICRs)**.
-  - *Igf2 / H19 Locus*:
-    - Maternal chromosome: Unmethylated ICR binds **CTCF insulator protein**, blocking downstream enhancer from activating *Igf2*; enhancer instead activates *H19* lncRNA.
-    - Paternal chromosome: Methylated ICR prevents CTCF binding; enhancer bypasses *H19* and directly activates paternal **Igf2** (Insulin-like Growth Factor 2).
-  - *Prader-Willi vs. Angelman Syndromes*: Deletion of 15q11-q13 inherited from father causes Prader-Willi (loss of paternally expressed *SNRPN*); same deletion inherited from mother causes Angelman syndrome (loss of maternally expressed *UBE3A*).`
-      },
-      {
-        heading: "4. Quantitative Genetics & Heritability Partitioning",
-        content: `Polygenic traits exhibiting continuous variation across a population:
-- **Phenotypic Variance ($V_P$) Decomposition**:
-  $$V_P = V_G + V_E + V_{G \times E}$$
-  Genetic variance ($V_G$) decomposes into:
-  $$V_G = V_A + V_D + V_I$$
-  - $V_A$: Additive genetic variance (variance due to additive effect of individual alleles; directly responds to natural or artificial selection).
-  - $V_D$: Dominance genetic variance (non-linear interactions between alleles at same locus).
-  - $V_I$: Epistatic (genic interaction) variance (interactions between alleles at different loci).
-- **Heritability Metrics**:
-  - **Broad-Sense Heritability ($H^2 = V_G / V_P$)**: Proportion of phenotypic variance attributable to total genetic variation ($0 \le H^2 \le 1$). Measured in monozygotic vs dizygotic twin concordance.
-  - **Narrow-Sense Heritability ($h^2 = V_A / V_P$)**: Proportion of phenotypic variance attributable *strictly to additive genetic variance*. Governs resemblance between parents and offspring.
-- **The Breeder's Equation**:
-  $$R = h^2 S$$
-  - $S$: **Selection Differential** ($S = \bar{x}_{\text{parents}} - \bar{x}_{\text{population}}$).
-  - $R$: **Response to Selection** ($R = \bar{x}_{\text{offspring}} - \bar{x}_{\text{population}}$).
-  - If narrow-sense heritability $h^2 = 0.60$ and parents selected for body mass average $10\text{ g}$ heavier than the population mean ($S = 10$), the expected gain in offspring is $R = 0.60 \times 10 = 6\text{ g}$!`
-      }
-    ]
-  },
-
-  {
-    id: "genetics-4-gene-regulation",
-    domainId: "genetics",
-    title: "Gene Regulation: Operons, Chromatin Remodeling & Epigenetics",
-    subtitle: "Lac/Trp Operon Logic, Histone Code, CpG Methylation & miRNA Silencing",
-    level: "USABO Finalist / IBO",
-    xp: 160,
-    estimatedMinutes: 30,
-    prerequisites: ["genetics-3-mendelian-extensions"],
-    sources: ["Alberts MBoC Ch. 7 (Control of Gene Expression)", "Pierce: Genetics Ch. 16-17", "Lodish: Molecular Cell Biology Ch. 7-9"],
-    interactiveTool: null,
-    summary: "Dissect transcriptional and epigenetic regulatory circuits: prokaryotic operon logic (lac operon dual negative/positive control, catabolite repression, trp operon attenuation and leader RNA secondary hairpin dynamics), eukaryotic chromatin remodeling (HATs/HDACs, histone methyl marks, CpG island methylation), transcription factor combinatorial architecture (enhancers, silencers, insulators, Mediator), and post-transcriptional silencing by miRNAs and siRNAs.",
-    keyFormulas: [
-      { name: "Diauxic Growth Monod Kinetics", latex: "\mu = \mu_{\max} \frac{[S]}{K_s + [S]} \quad (\text{Glucose consumed first; lag phase before lactose utilization})" }
-    ],
-    sections: [
-      {
-        heading: "1. Prokaryotic Operon Logic: Lac & Trp Systems",
-        content: `Prokaryotes organize functionally related genes into polycistronic transcription units (**operons**):
-- **The *Lac* Operon (Inducible Catabolic System)**:
-  - Structural genes: *lacZ* ($\beta$-galactosidase), *lacY* (lactose permease), *lacA* (thiogalactoside transacetylase).
-  - **Negative Control**: In the absence of lactose, homotetrameric **LacI repressor** binds tightly to the **operator ($lacO$)**, physically blocking RNA polymerase promoter clearance.
-  - **Induction**: $\beta$-galactosidase catalyzes a side reaction converting lactose into **allolactose** (the physiological inducer). Allolactose binds LacI $\to$ allosteric conformational shift $\to$ LacI dissociates from operator.
-  - **Positive Control & Catabolite Repression**:
-    - High Glucose: Low cAMP. Inactive **Catabolite Activator Protein (CAP / CRP)** cannot bind. Only basal transcription occurs even if lactose is present.
-    - Low Glucose: Adenylyl cyclase is active $\to \\uparrow cAMP \to$ **cAMP-CAP complex** binds the CAP site upstream of promoter, bending DNA $90^\circ$ and recruiting RNA polymerase holoenzyme.
-    - Full transcription requires **BOTH**: Presence of lactose (repressor off) AND Absence of glucose (cAMP-CAP bound).
-- **The *Trp* Operon (Repressible Anabolic System & Attenuation)**:
-  - Repressor: TrpR is an aporepressor. High **tryptophan** acts as a **corepressor**, binding TrpR to form an active repressor that binds the operator.
-  - **Attenuation Mechanics**:
-    - The leader region (*trpL*) contains 4 RNA segments that can form alternative secondary structures: **1-2 hairpin** (transcription pause), **2-3 hairpin** (anti-terminator), or **3-4 hairpin** (Rho-independent intrinsic terminator followed by poly-U tract).
-    - *TrpL* contains two adjacent Trp codons (UGG UGG).
-    - *Low Tryptophan*: Ribosome translating *trpL* stalls at Trp codons due to lack of $Trp\text{-tRNA}^{\text{Trp}}$. Ribosome covers segment 1; segment 2 pairs with segment 3 (**2-3 anti-terminator hairpin**). The terminator cannot form $\to$ RNA polymerase transcribes the structural genes.
-    - *High Tryptophan*: Ribosome translates through Trp codons without stalling to stop codon, covering segments 1 and 2. This frees segment 3 to pair with segment 4 (**3-4 terminator hairpin**) $\to$ RNA polymerase dissociates *before* transcribing structural genes!`
-      },
-      {
-        heading: "2. Eukaryotic Chromatin Dynamics & Epigenetic Codes",
-        content: `Chromatin architecture dictates transcriptional accessibility:
-- **Nucleosome Structure**: Octamer of two copies each of core histones ($H2A, H2B, H3, H4$) wrapped by $147\text{ bp}$ of DNA in 1.65 left-handed superhelical turns. Histone $H1$ acts as linker histone.
-- **Histone Post-Translational Modifications (The Histone Code)**:
-  - **Acetylation**: Catalyzed by **Histone Acetyltransferases (HATs)** on conserved lysine residues (e.g., H3K9ac, H3K14ac). Neutralizes the positive charge of lysine, eliminating electrostatic attraction to the negatively charged DNA phosphate backbone $\to$ opens chromatin (**euchromatin**) and recruits bromodomain-containing transcription factors. Reversed by **Histone Deacetylases (HDACs)**.
-  - **Methylation**: Catalyzed by Histone Methyltransferases (HMTs) on lysine and arginine residues. Does not alter electrical charge!
-    - **H3K4me3**: Marks active promoters.
-    - **H3K36me3**: Marks actively transcribing gene bodies.
-    - **H3K9me3**: Recruits Heterochromatin Protein 1 (HP1) $\to$ forms constitutive heterochromatin.
-    - **H3K27me3**: Deposited by Polycomb Repressive Complex 2 (PRC2) $\to$ facultative heterochromatic silencing of developmental genes.
-- **DNA Methylation**:
-  - Addition of methyl group to 5-carbon of cytosine in **CpG dinucleotides** by DNA Methyltransferases (**DNMT1** for maintenance methylation after replication; **DNMT3a/3b** for de novo methylation).
-  - Unmethylated **CpG Islands** reside at promoters of $> 60\%$ of mammalian genes.
-  - Hypermethylation of CpG islands recruits Methyl-CpG-Binding Domain proteins (**MBDs / MeCP2**), which recruit HDACs and histone methyltransferases, establishing permanent transcriptional silencing.`
-      },
-      {
-        heading: "3. Eukaryotic Transcriptional Complex Assembly",
-        content: `Combinatorial control and remote regulatory elements:
-- **Promoter Architecture**: Core promoter contains **TATA Box** (at $-30\text{ bp}$), Initiator (Inr), and Downstream Promoter Element (DPE).
-  - **TFIID** (containing **TBP - TATA-Binding Protein**) binds the minor groove of the TATA box, sharply bending DNA by $80^\circ$.
-  - Sequential recruitment of TFIIA, TFIIB, TFIIF, RNA Polymerase II, TFIIE, and **TFIIH**.
-  - **TFIIH Functions**: Contains a DNA helicase to melt the promoter into an open bubble, and a cyclin-dependent kinase (**CDK7**) that phosphorylates the C-Terminal Domain (CTD) of RNA Pol II at **Ser5**, triggering promoter clearance.
-- **Enhancers, Silencers & The Mediator Complex**:
-  - Enhancers contain clusters of binding sites for sequence-specific transcription factors (activators). Can function at distances of tens of kilobases upstream or downstream, and in either orientation.
-  - DNA looping brings remote enhancers to the promoter, mediated by **Cohesin** and the multisubunit **Mediator Complex**.
-- **Insulators & Chromatin Loops**:
-  - **Insulator Elements** bound by **CTCF** establish Topologically Associating Domains (TADs). Prevent an enhancer from inappropriately activating a neighboring gene outside its domain and block heterochromatin spreading.`
-      },
-      {
-        heading: "4. Post-Transcriptional Regulation: microRNAs & RNAi",
-        content: `Fine-tuning gene expression post-transcriptionally:
-- **microRNA (miRNA) Biogenesis & Silencing**:
-  1. Primary microRNAs (**pri-miRNAs**) with stem-loop hairpins transcribed by RNA Pol II.
-  2. Nuclear processing by microprocessor complex (**Drosha** RNase III and **Pasha / DGCR8**) cleaves flanking single-stranded ends, liberating a $\sim 70\text{-nt}$ precursor miRNA (**pre-miRNA**).
-  3. Exported to cytoplasm by **Exportin-5** and Ran-GTP.
-  4. Cytoplasmic cleavage by **Dicer** RNase III removes hairpin loop, producing a 21-25 nucleotide double-stranded miRNA duplex.
-  5. The guide strand is loaded into the **RNA-Induced Silencing Complex (RISC)** containing an **Argonaute protein (Ago2)**; passenger strand is degraded.
-  6. The **Seed Region** (nucleotides 2-8 of miRNA) base-pairs with the **$3'$ UTR** of target mRNAs:
-     - *Imperfect complementarity* (typical in animals): Inhibits translation and recruits deadenylase complexes (CCR4-NOT) to accelerate mRNA decay.
-     - *Perfect complementarity* (typical in plants and siRNAs): Triggers direct endonucleolytic cleavage of mRNA by Argonaute (**slicer activity**).
-- **Iron Regulatory Proteins (IRP/IRE System)**:
-  - *Ferritin* mRNA contains an Iron Response Element (IRE) in its $5'$ UTR. Under low iron, IRP binds $5'$ IRE, blocking translation. Under high iron, iron binds IRP $\to$ dissociates $\to$ ferritin synthesized.
-  - *Transferrin Receptor* mRNA contains IREs in its $3'$ UTR. Under low iron, IRP binds $3'$ IRE, protecting mRNA from endonuclease cleavage. Under high iron, IRP dissociates $\to$ mRNA degraded.`
-      }
-    ]
-  },
-
-  // ==================== DOMAIN 5: ECOLOGY (10%) ====================
   {
     id: "eco-1-dynamics",
     domainId: "ecology",
@@ -2171,63 +2999,135 @@ $$\frac{dP}{dt} = f a N P - q P \quad (\text{Predator})$$
 
   // ==================== DOMAIN 6: ETHOLOGY (5%) ====================
   {
-    id: "ethology-1-kin-selection",
-    domainId: "ethology",
-    title: "Kin Selection, Haplodiploidy & Evolutionary Game Theory",
-    subtitle: "Hamilton's Rule, Hymenoptera Relatedness, Hawk-Dove ESS Payoff Matrices",
+    id: "eco-4-community-succession",
+    domainId: "ecology",
+    title: "Community Structure, Keystone Species & Succession",
+    subtitle: "Niches, food webs, trophic cascades, disturbance regimes and primary versus secondary succession",
     level: "USABO Finalist / IBO",
-    xp: 140,
-    estimatedMinutes: 20,
-    prerequisites: [],
-    sources: ["Alcock: Animal Behavior Ch. 11-13", "Davies, Krebs, West: Behavioural Ecology Ch. 6, 11"],
+    xp: 130,
+    estimatedMinutes: 24,
+    prerequisites: ["eco-1-dynamics"],
+    sources: ["Begon, Townsend & Harper: Ecology Ch. 8-11", "Campbell Ch. 54", "Futuyma Ch. 19"],
     interactiveTool: null,
-    summary: "Calculate coefficients of relatedness (r) in haplodiploid systems, apply Hamilton's rule (rB > C) to social evolution and eusociality, and analyze Evolutionary Stable Strategies (ESS) using Hawk-Dove game theoretic payoff matrices and the Marginal Value Theorem.",
+    summary: "The IBO ecology list includes community structure and ecosystems, and USABO writes data questions about food webs and succession. This module covers the niche concept, competitive exclusion and resource partitioning, the roles of dominant, keystone and foundation species, trophic cascades and food-web metrics, disturbance and diversity, and the models of primary and secondary succession.",
     keyFormulas: [
-      { name: "Hamilton's Rule for Kin Selection", latex: "r B > C \\quad (r: \\text{relatedness, } B: \\text{fitness benefit, } C: \\text{cost to altruist})" },
-      { name: "Hawk-Dove Payoff Matrix", latex: "\\text{Hawk vs Hawk: } \\frac{V - C}{2}, \\quad \\text{Hawk vs Dove: } V, \\quad \\text{Dove vs Hawk: } 0, \\quad \\text{Dove vs Dove: } \\frac{V}{2}" },
-      { name: "Mixed ESS Equilibrium Frequency", latex: "p_{\\text{Hawk}} = \\frac{V}{C} \\quad (\\text{when } V < C)" }
+      { name: "Shannon Diversity Index", latex: "H' = -\\sum p_i \\ln p_i" },
+      { name: "Pielou Evenness", latex: "J' = \\frac{H'}{\\ln S}" },
+      { name: "Species Richness Scaling", latex: "S = c A^z \\; (z \\approx 0.15-0.35 \\text{ for islands})" }
     ],
-    sections: [
+        sections: [
       {
-        heading: "1. Hamilton's Rule & Haplodiploid Pedigree Relatedness",
-        content: `Altruistic traits are favored by natural selection if the inclusive fitness gain exceeds the cost:
-$$r B > C$$
-- **Haplodiploidy in Hymenoptera (Ants, Bees, Wasps)**:
-  - Males are haploid (develop from unfertilized eggs via arrhenotokous parthenogenesis; father has no father and no sons).
-  - Females are diploid.
-  - A father passes **$100\\%$ of his genes** to all his daughters.
-  - A mother passes **$50\\%$ of her genes** to daughters and sons.
-- **Calculating Relatedness ($r$) between Family Members**:
-  - **Full Sisters**: Share $1/2$ their genes through mother ($0.5 \\times 0.5 = 0.25$) and ALL their genes through father ($0.5 \\times 1.0 = 0.5$).
-    $$r_{\\text{sister-sister}} = 0.25 + 0.5 = \\mathbf{0.75}$$
-  - **Sister to Brother**: Brothers develop from unfertilized egg; receive zero genes from father.
-    $$r_{\\text{sister-brother}} = 0.5 \\times 0.5 = \\mathbf{0.25}$$
-  - **Mother to Daughter / Son**:
-    $$r = 0.50$$
-  - **The Eusociality Consequence**: A female worker is more closely related to her full sisters ($r = 0.75$) than she would be to her own offspring ($r = 0.50$)! This asymmetric relatedness pre-adapts haplodiploid insects to eusocial worker policing and queen rearing.`
+        heading: "Succession: models, trajectories and the traits of pioneers",
+        content: `Succession is directional change in community composition after a disturbance; it is a process, not a stage.
+
+- **Primary vs secondary.** Primary succession starts on substrate with no soil or seed bank (glacier forelands, lava flows, dunes, mine spoil); secondary succession follows disturbance that leaves soil and propagules (fire, blowdown, abandoned field, flood). Secondary succession is much faster because nutrients, structure and propagules are inherited.
+- **Three mechanistic models** (Connell & Slatyer): **facilitation** (early species improve conditions for later ones — N-fixing pioneers enrich soil), **tolerance** (later species are simply better competitors for light and nutrients and can establish under early ones), **inhibition** (early species suppress establishment of others, delaying succession; the pattern seen in some grasslands and algal fouling communities). All three operate simultaneously in most systems, with the balance shifting through time.
+- **Pioneer traits:** high dispersal, dormancy, rapid growth, short life, high reproductive allocation, tolerance of full sun and nutrient stress. Late-successional traits are the mirror image: shade tolerance, slow growth, long life, large seeds with low dispersal, investment in defence.
+- **Trajectory and endpoints.** Clements' superorganism and climax is now largely replaced by Gleason's individualistic view plus multiple stable states; "climax" is better treated as a dynamic attractor whose position depends on climate, soils, herbivory and disturbance regime. Chronosequences (space-for-time substitution) speed up study but assume sites share a starting condition and trajectory — a strong assumption.
+- **Ecosystem consequences.** Biomass, soil organic matter, nitrogen capital, and species richness typically rise while productivity may peak at intermediate stages (the intermediate-succession productivity pattern). Succession is also the template for restoration: assist natural processes (propagule supply, soil amendment, nurse plants) rather than imposing a static assemblage.
+
+Trap: facilitation does not mean early species are "necessary"; where inhibition dominates, removing the early dominants can accelerate succession, so the same intervention can help or hinder depending on the model in operation.`
       },
       {
-        heading: "2. Evolutionary Game Theory & The Hawk-Dove ESS",
-        content: `An Evolutionary Stable Strategy (ESS) is a behavioral strategy that, once adopted by a population, cannot be invaded by any rare mutant alternative strategy:
-- Let resource value be $V$, and cost of serious injury in escalated fighting be $C$.
-- **Payoff Matrix (Payoff to Row player against Column player)**:
-  - Hawk vs Hawk: $\\frac{V - C}{2}$
-  - Hawk vs Dove: $V$
-  - Dove vs Hawk: $0$
-  - Dove vs Dove: $\\frac{V}{2}$
-- **Analysis**:
-  - Case 1: If $V > C$ (resource is more valuable than injury cost), Hawk is a pure ESS. Everyone plays Hawk.
-  - Case 2: If $V < C$ (injury is costly, e.g., weapons, antlers), neither pure Hawk nor pure Dove is an ESS!
-    - If all are Dove, a mutant Hawk enters and gets $V > V/2$, invading successfully.
-    - If all are Hawk, each gets $(V-C)/2 < 0$, so a mutant Dove enters and gets $0 > (V-C)/2$, invading successfully.
-    - **Mixed ESS**: The stable equilibrium is a mixed population with fraction $p$ of Hawks:
-      $$p E(\\text{Hawk}, \\text{Hawk}) + (1-p) E(\\text{Hawk}, \\text{Dove}) = p E(\\text{Dove}, \\text{Hawk}) + (1-p) E(\\text{Dove}, \\text{Dove})$$
-      $$p \\left( \\frac{V - C}{2} \\right) + (1 - p) V = 0 + (1 - p) \\frac{V}{2} \\implies p = \\frac{V}{C}$$`
+        heading: "Disturbance regimes, alternative states and resilience",
+        content: `- **Disturbance** is a discrete event that removes biomass and changes resource availability; the **regime** (frequency, intensity, extent, season) selects the traits present. Fire-adapted traits (serotiny, thick bark, resprouting, smoke-triggered germination) are evidence of a long fire regime; removing fire can convert a grassland to shrubland, not the reverse.
+- **Intermediate disturbance hypothesis** predicts maximum diversity at intermediate frequency/intensity, balancing competitive exclusion at low disturbance against mortality and colonisation limitation at high disturbance. It is attractive and often over-applied: it holds best where competitive dominance is strong and disturbance creates patch heterogeneity.
+- **Alternative stable states** require positive feedbacks, and the classic examples are instructive: kelp forests versus urchin barrens (urchin grazing feedback), clear versus turbid lakes (piscivore–zooplankton–phytoplankton feedback plus sediment phosphorus release), coral versus macroalgal dominance after bleaching plus overfishing. Transitions show **hysteresis** — the threshold to return is not the threshold that triggered the shift, so restoration may require reversing the driver, not just stopping it.
+- **Resistance vs resilience**: resistance is the capacity to absorb change without shifting; resilience is the capacity to return. Engineering resilience (return time) and ecological resilience (magnitude of disturbance absorbed before the state changes) are different quantities and both are used loosely in policy.
+- **Coupled disturbance interactions** matter: drought plus insect outbreak plus fire, or overfishing plus bleaching, produce compounding effects larger than the sum of parts; invasive grasses create a grass–fire feedback that permanently converts dry forest.
+- **Management implication:** the objective is often to maintain process and heterogeneity (patch mosaic, varied seral stages) rather than a fixed species list, because the disturbance regime is what maintains the community's options.
+
+Trap: a community that returns to its original composition after disturbance is resilient; one that merely persists because it never changes is resistant — the terms are not interchangeable.`
+      },
+      {
+        heading: "Trophic structure: cascades, keystones and the top-down debate",
+        content: `- **Trophic levels and efficiency:** only ~10% of energy passes between levels (range 5–20%), which limits food-chain length; body size, ecosystem size and productivity are the best predictors of chain length, and the "3–4 links" rule is a rough consequence of energy loss.
+- **Top-down versus bottom-up.** Hairston, Smith and Slobodkin argued that herbivores are limited by predators (the world is green because plants are not herbivore-limited); bottom-up theory emphasises nutrient and plant productivity control. Modern answers are conditional: the relative strength of top-down control varies with productivity, habitat structure and the food web's asymmetry.
+- **Trophic cascades** are indirect effects of predators on plants mediated by herbivores: sea otters $\\to$ urchins $\\to$ kelp (a four-level cascade with an urchin barren alternative state), wolves $\\to$ elk $\\to$ willow/aspen (with behaviourally mediated "landscape of fear" effects and a contested magnitude), and dingo removal $\\to$ mesopredator release $\\to$ small mammals. Cascades are strongest in simple, strongly interacting webs and in aquatic systems.
+- **Keystone species** have effects disproportionate to their biomass (Paine's *Pisaster* removal experiment); **dominant species** have large effects simply through abundance; **ecosystem engineers** modify physical habitat (beavers, prairie dogs, corals, termites) and can be autogenic (their own bodies) or allogenic (transforming the environment).
+- **Apparent competition and indirect interactions:** two prey species can suppress each other through a shared predator without competing for resources; intraguild predation mixes competition and predation, stabilising or destabilising depending on relative efficiencies. Non-consumptive effects (fear, trait-mediated indirect interactions) can equal consumptive effects in magnitude.
+- **Food-web metrics:** connectance, linkage density, omnivory, modularity and nestedness describe structure; generalist webs are more robust to random extinction but vulnerable to targeted loss of highly connected species — the basis of "which species' loss matters most" questions.
+
+Trap: removing a top predator does not necessarily increase herbivores if mesopredators take over; the sign of a cascade depends on the web's structure, so a food-chain diagram alone cannot predict it.`
+      },
+      {
+        heading: "Assembly, diversity metrics and island biogeography",
+        content: `- **Diversity metrics.** Alpha (within a site), beta (between sites, compositional turnover), gamma (regional). Species richness ignores abundance; Shannon ($H' = -\\sum p_i \\ln p_i$) and Simpson ($1-\\sum p_i^2$) weight common species differently; rarefaction and Chao estimators correct for sampling effort, and no comparison of richness is valid without equal effort or coverage-based standardisation.
+- **Species–area relationship:** $S = cA^z$ with $z \\approx 0.15$–0.35 for islands and ~0.1 for nested samples. Habitat loss reduces richness according to $z$, and the "extinction debt" means the loss lags behind the habitat loss by decades — a central conservation insight.
+- **Island biogeography** (MacArthur & Wilson): richness is an equilibrium between immigration (declining with isolation) and extinction (declining with area). It predicts the species–area and species–isolation relationships, and underpins reserve design — but it is a static equilibrium model and ignores nonequilibrium dynamics, speciation on large islands, and the matrix between habitat patches.
+- **Metacommunity paradigms** offer four lenses: species sorting (environment filters species), patch dynamics (competition–colonisation trade-off), mass effects (dispersal swamps local dynamics), and neutral theory (drift plus dispersal, all species equivalent). Each makes different predictions about $\\beta$-diversity and about when local diversity reflects local environment.
+- **Assembly rules and priority effects:** early colonists can lock in composition (alternative states at small scales), and trait-based approaches (functional diversity, community-weighted means) predict assembly better than taxonomy; phylogenetic diversity adds evolutionary history to the accounting.
+- **Disturbance, productivity and diversity:** the hump-shaped productivity–diversity relationship and the scale dependence of every diversity pattern are reminders that "more productive = more diverse" fails at large scales where area and evolutionary history dominate.
+
+Trap: two sites with equal richness can have entirely different diversity once abundance is considered, and a high $\\beta$-diversity with low $\\alpha$ means the region is heterogeneous, not that either site is poor.`
       }
     ]
   },
 
-  
+  {
+    id: "eco-5-biomes-conservation",
+    domainId: "ecology",
+    title: "Climate, Biomes, Biogeography & Conservation Biology",
+    subtitle: "Hadley circulation, biome contrasts, species ranges, HIPPO threats and reserve design",
+    level: "USABO Finalist / IBO",
+    xp: 130,
+    estimatedMinutes: 24,
+    prerequisites: ["eco-2-ecosystems"],
+    sources: ["Begon, Townsend & Harper: Ecology Ch. 1-4, 22", "Campbell Ch. 52-56", "Ricklefs: The Economy of Nature"],
+    interactiveTool: null,
+    summary: "The IBO ecology list continues into ecosystems, biomes and conservation, which the app previously covered only as energy flow. This module covers the climatic machinery that produces biomes, the diagnostic features of major terrestrial and aquatic biomes, the patterns and limits of species ranges, and the conservation toolbox: threats, extinction vortex, viability analysis, reserve design and ecosystem services.",
+    keyFormulas: [
+      { name: "Species-Area Relationship", latex: "S = cA^z" },
+      { name: "Maximum Sustainable Yield", latex: "\\text{MSY} = \\frac{rK}{4} \\; \\text{at } N = \\frac{K}{2}" },
+      { name: "Population Viability Decline", latex: "\\text{extinction risk} \\propto \\frac{1}{N_e} \\text{ and increases with variance}" }
+    ],
+        sections: [
+      {
+        heading: "Climate, soils and the global distribution of biomes",
+        content: `Biomes are large-scale vegetation types set primarily by temperature and precipitation, filtered by soils, fire and herbivory.
+
+- **Whittaker diagram:** plotting mean annual temperature against precipitation separates tropical rainforest (high both), savanna (warm, seasonal), desert (low precipitation regardless of temperature), temperate forest, temperate grassland, boreal forest/taiga (cold, moderate moisture) and tundra (cold, dry). Holdridge life zones use biotemperature and potential evapotranspiration ratio; both are approximations that fail at boundaries, where fire and grazing decide between forest and grassland.
+- **Determinants:** Hadley cell circulation creates wet equatorial and dry subtropical belts; rain shadows dry leeward slopes; continentality drives seasonal extremes; ocean currents shift boundaries (the Gulf Stream warms Europe). ENSO reorganises rainfall interannually, and the ITCZ migration sets savanna seasonality.
+- **Soils** are the second filter: Oxisols and Ultisols (weathered, acidic, low base saturation) underlie tropical forests whose productivity depends on rapid recycling, not stored fertility — the reason slash-and-burn agriculture collapses quickly. Mollisols (grassland), Spodosols (boreal, podzolised), Andisols (volcanic, high P sorption) and Aridisols each carry characteristic vegetation. Cation exchange capacity, pH, and phosphorus availability are the practical variables.
+- **Biogeographic realms** add history: the same climate supports different floras and faunas in the Nearctic, Palearctic, Neotropical, Afrotropical, Indo-Malayan, Australasian and Antarctic realms, and the Antarctic flora's relics (Nothofagus, Proteaceae) record Gondwanan fragmentation.
+- **Biome shifts** are already observable: shrub encroachment into tundra and grassland, woody thickening in savanna driven by CO$_2$ and fire suppression, and forest dieback at dry margins — changes in disturbance regimes transform biomes faster than gradual climate change alone.
+
+Trap: a biome is defined by its dominant vegetation and climate envelope, not by a single species; the same biome on different continents contains unrelated species (convergence), which is why "savanna" is a structure, not a taxon.`
+      },
+      {
+        heading: "Productivity, nutrient limitation and biogeochemical cycling",
+        content: `- **GPP and NPP.** Gross primary production is total carbon fixed; net primary production subtracts autotrophic respiration ($NPP = GPP - R_a$); net ecosystem production subtracts heterotrophic respiration too. NPP is measured by harvest, eddy covariance (NEE), or remote-sensing proxies (NDVI, EVI, solar-induced fluorescence), each with different biases.
+- **Global patterns:** NPP rises with temperature and water availability and peaks in the wet tropics; ocean productivity peaks in upwelling zones and at high latitudes, with vast oligotrophic gyres where iron and nitrogen are scarce. Redfield stoichiometry (C:N:P = 106:16:1) describes plankton and links carbon to nutrient cycles.
+- **Limiting nutrients.** Liebig's law: the scarcest resource limits. Terrestrial systems are usually N-limited early in succession and P-limited in old, weathered tropical soils; temperate forests respond to N deposition, and temperate grasslands to both N and P. In the ocean, nitrogen (and phosphorus) limits most regions, but iron limits the high-nutrient, low-chlorophyll (HNLC) Southern Ocean, equatorial Pacific and subarctic Pacific — iron fertilisation experiments produced blooms that were rapidly grazed, showing that carbon export is not simply a function of production.
+- **Decomposition and C:N.** Litter quality (C:N, lignin, tannins) controls decomposition rates; low-quality litter immobilises N and slows cycling, feeding back to productivity. Mycorrhizal types (arbuscular vs ectomycorrhizal) shift the balance between inorganic and organic N acquisition and thus soil carbon storage.
+- **Trophic transfer** is ~10% efficient, so top predators require large areas; fisheries catch levels track primary production with a lag and are distorted by fishing down the food web.
+- **Carbon accounting:** forests are net sinks while growing and can become sources after disturbance; soil carbon responds slowly (centuries) while biomass responds fast, which is why "plant trees" claims must specify time horizon, permanence and albedo effects.
+
+Trap: high NPP does not imply high biodiversity or high carbon storage; tropical forests are productive with low soil carbon, while peatlands store enormous carbon with low NPP.`
+      },
+      {
+        heading: "Biodiversity gradients, extinction risk and fragmentation",
+        content: `- **Latitudinal diversity gradient** is the oldest pattern in ecology. Competing explanations: energy/productivity, area (tropics have more land), evolutionary time (tropics are older and less disturbed by glaciation), climatic stability, and biotic interactions (stronger predation/competition driving specialisation). Evidence supports a combination, with area and time doing much of the work in the marine realm.
+- **Hotspots and endemism.** Conservation prioritisation uses endemism plus threat (Myers' hotspots) or phylogenetic distinctiveness (EDGE). A hotspot with 1500 endemic plants and >70% habitat loss is a different priority from a large intact wilderness — the two strategies (hotspot versus wilderness) are complementary, not competing.
+- **Extinction risk** is driven by small population size, narrow range, specialisation, slow life history and exploitation. The IUCN criteria (A–E) formalise this with quantitative thresholds for range, population size, decline rate and quantitative extinction probability. Extinction vortex: small populations suffer inbreeding depression, drift, Allee effects and environmental stochasticity that reinforce decline.
+- **Fragmentation and edges.** Habitat loss is the primary driver; fragmentation adds edge effects (microclimate, windthrow, predation, invasive species), reduced connectivity and area effects. The matrix matters — a hostile matrix isolates patches more than a permeable one — and corridors increase movement and gene flow but also facilitate disease and invasion spread.
+- **Extinction debt** means committed extinctions lag habitat loss; **climate velocity** (how fast isotherms move) predicts whether species can track suitable climate, and dispersal limitation, topography and fragmentation decide the answer. Invasive species, disease (amphibian chytrid, white-nose syndrome), overexploitation and pollution act synergistically with climate.
+
+Trap: a species can be abundant and still at risk (passenger pigeon), and a small range is not necessarily vulnerable if the habitat is stable — abundance, range and trend must be read together.`
+      },
+      {
+        heading: "Conservation genetics, protected areas and restoration practice",
+        content: `- **Population viability.** Minimum viable population estimates come from population viability analysis (PVA), which models demographic and environmental stochasticity, catastrophes and genetics; the "50/500 rule" (50 for inbreeding, 500 for drift) is a heuristic now considered too low, with $N_e$ of thousands needed for long-term persistence. Recovery plans therefore target population size *and* connectivity.
+- **Genetic management.** Captive breeding programmes need pedigree management to retain diversity and avoid adaptation to captivity; genetic rescue (immigrant alleles) can reverse inbreeding depression but risks outbreeding depression if populations are locally adapted. Seed banks and cryopreservation are insurance, not conservation.
+- **Reserve design.** SLOSS (single large or several small) depends on species–area, edge and connectivity; the modern answer is a network with core areas, buffers, corridors and stepping stones, embedded in a permeable matrix. Zoning (no-take, multiple use), enforcement and local tenure are usually stronger determinants of outcomes than boundary geometry.
+- **Restoration and rewilding.** Restoration ecology sets reference conditions and trajectories (assisted natural regeneration, soil amendment, nurse plants, hydrological repair); rewilding emphasises process, keystone species and self-organisation, accepting novel ecosystems. Success criteria must be explicit — composition, function, resilience or service delivery — because they differ.
+- **Policy instruments** worth naming: the mitigation hierarchy (avoid, minimise, restore, offset), payments for ecosystem services, REDD+, the Kunming–Montreal Global Biodiversity Framework's 30×30 target, and the IUCN Red List categories. Monitoring and adaptive management are the difference between a plan and an outcome.
+
+Trap: an offset that replaces an irreplaceable old-growth community with a planted one is not equivalent; equivalence requires like-for-like in composition, structure and function, which is why offsets are contested for high-value habitats.`
+      }
+    ]
+  },
+
   {
     id: "ethology-2-classical-behavior",
     domainId: "ethology",
@@ -2308,6 +3208,126 @@ $$r B > C$$
 
   // ==================== DOMAIN 7: BIOSYSTEMATICS & BIODIVERSITY (5%) ====================
   {
+    id: "ethology-1-kin-selection",
+    domainId: "ethology",
+    title: "Kin Selection, Haplodiploidy & Evolutionary Game Theory",
+    subtitle: "Hamilton's Rule, Hymenoptera Relatedness, Hawk-Dove ESS Payoff Matrices",
+    level: "USABO Finalist / IBO",
+    xp: 140,
+    estimatedMinutes: 20,
+    prerequisites: [],
+    sources: ["Alcock: Animal Behavior Ch. 11-13", "Davies, Krebs, West: Behavioural Ecology Ch. 6, 11"],
+    interactiveTool: null,
+    summary: "Calculate coefficients of relatedness (r) in haplodiploid systems, apply Hamilton's rule (rB > C) to social evolution and eusociality, and analyze Evolutionary Stable Strategies (ESS) using Hawk-Dove game theoretic payoff matrices and the Marginal Value Theorem.",
+    keyFormulas: [
+      { name: "Hamilton's Rule for Kin Selection", latex: "r B > C \\quad (r: \\text{relatedness, } B: \\text{fitness benefit, } C: \\text{cost to altruist})" },
+      { name: "Hawk-Dove Payoff Matrix", latex: "\\text{Hawk vs Hawk: } \\frac{V - C}{2}, \\quad \\text{Hawk vs Dove: } V, \\quad \\text{Dove vs Hawk: } 0, \\quad \\text{Dove vs Dove: } \\frac{V}{2}" },
+      { name: "Mixed ESS Equilibrium Frequency", latex: "p_{\\text{Hawk}} = \\frac{V}{C} \\quad (\\text{when } V < C)" }
+    ],
+    sections: [
+      {
+        heading: "1. Hamilton's Rule & Haplodiploid Pedigree Relatedness",
+        content: `Altruistic traits are favored by natural selection if the inclusive fitness gain exceeds the cost:
+$$r B > C$$
+- **Haplodiploidy in Hymenoptera (Ants, Bees, Wasps)**:
+  - Males are haploid (develop from unfertilized eggs via arrhenotokous parthenogenesis; father has no father and no sons).
+  - Females are diploid.
+  - A father passes **$100\\%$ of his genes** to all his daughters.
+  - A mother passes **$50\\%$ of her genes** to daughters and sons.
+- **Calculating Relatedness ($r$) between Family Members**:
+  - **Full Sisters**: Share $1/2$ their genes through mother ($0.5 \\times 0.5 = 0.25$) and ALL their genes through father ($0.5 \\times 1.0 = 0.5$).
+    $$r_{\\text{sister-sister}} = 0.25 + 0.5 = \\mathbf{0.75}$$
+  - **Sister to Brother**: Brothers develop from unfertilized egg; receive zero genes from father.
+    $$r_{\\text{sister-brother}} = 0.5 \\times 0.5 = \\mathbf{0.25}$$
+  - **Mother to Daughter / Son**:
+    $$r = 0.50$$
+  - **The Eusociality Consequence**: A female worker is more closely related to her full sisters ($r = 0.75$) than she would be to her own offspring ($r = 0.50$)! This asymmetric relatedness pre-adapts haplodiploid insects to eusocial worker policing and queen rearing.`
+      },
+      {
+        heading: "2. Evolutionary Game Theory & The Hawk-Dove ESS",
+        content: `An Evolutionary Stable Strategy (ESS) is a behavioral strategy that, once adopted by a population, cannot be invaded by any rare mutant alternative strategy:
+- Let resource value be $V$, and cost of serious injury in escalated fighting be $C$.
+- **Payoff Matrix (Payoff to Row player against Column player)**:
+  - Hawk vs Hawk: $\\frac{V - C}{2}$
+  - Hawk vs Dove: $V$
+  - Dove vs Hawk: $0$
+  - Dove vs Dove: $\\frac{V}{2}$
+- **Analysis**:
+  - Case 1: If $V > C$ (resource is more valuable than injury cost), Hawk is a pure ESS. Everyone plays Hawk.
+  - Case 2: If $V < C$ (injury is costly, e.g., weapons, antlers), neither pure Hawk nor pure Dove is an ESS!
+    - If all are Dove, a mutant Hawk enters and gets $V > V/2$, invading successfully.
+    - If all are Hawk, each gets $(V-C)/2 < 0$, so a mutant Dove enters and gets $0 > (V-C)/2$, invading successfully.
+    - **Mixed ESS**: The stable equilibrium is a mixed population with fraction $p$ of Hawks:
+      $$p E(\\text{Hawk}, \\text{Hawk}) + (1-p) E(\\text{Hawk}, \\text{Dove}) = p E(\\text{Dove}, \\text{Hawk}) + (1-p) E(\\text{Dove}, \\text{Dove})$$
+      $$p \\left( \\frac{V - C}{2} \\right) + (1 - p) V = 0 + (1 - p) \\frac{V}{2} \\implies p = \\frac{V}{C}$$`
+      }
+    ]
+  },
+
+  
+  {
+    id: "ethology-3-foraging-mating",
+    domainId: "ethology",
+    title: "Optimal Foraging, Mating Systems & Communication",
+    subtitle: "Marginal value theorem, sexual selection, parental investment, honest signalling and biological rhythms",
+    level: "USABO Finalist / IBO",
+    xp: 130,
+    estimatedMinutes: 22,
+    prerequisites: ["ethology-1-kin-selection", "ethology-2-classical-behavior"],
+    sources: ["Alcock: Animal Behavior Ch. 6-10, 12", "Davies, Krebs & West: An Introduction to Behavioural Ecology Ch. 4-8", "Campbell Ch. 51"],
+    interactiveTool: null,
+    summary: "IBO lists foraging, defensive behaviour, mating systems, parental care and biological rhythms as required ethology, none of which the app previously covered. This module covers economic decision rules in foraging, the logic of mating systems and sexual selection, honest signalling and mimicry, navigation and migration, and the circadian machinery behind biological rhythms.",
+    keyFormulas: [
+      { name: "Profitability", latex: "\\text{Profitability} = \\frac{E}{h} \\quad (E = \\text{energy gained}, h = \\text{handling time})" },
+      { name: "Hamilton's Rule", latex: "rB > C" },
+      { name: "Fisherian Sex Ratio", latex: "\\text{investment in sons} : \\text{daughters} = 1:1" }
+    ],
+        sections: [
+      {
+        heading: "Optimal foraging: currencies, patch models and functional responses",
+        content: `Optimal foraging theory assumes that selection has tuned decisions to maximise a fitness currency (net energy gain, nutrient balance, or survival) subject to constraints (handling time, travel time, predation risk, digestive capacity).
+
+- **Diet choice.** A prey type is included if it is profitable ($E/h$, energy over handling time) relative to the rate achievable by skipping it. The model predicts *no partial preferences*: items are either always taken or always ignored, and inclusion depends on the abundance of the most profitable alternatives — so a predator should drop a low-value prey from its diet when high-value prey become common. Real animals show partial preferences because of sampling, nutrient requirements and imperfect information.
+- **Patch use: marginal value theorem.** A forager should leave a patch when its instantaneous return falls to the average return for the habitat (the marginal value equals the environment-wide rate). Predictions: patches are exploited longer when travel time between patches is longer, and giving-up density (GUD) is a standard field measure — higher GUD means the forager perceives higher costs (predation risk, missed opportunity).
+- **Functional responses.** Holling type I (linear to a maximum), type II (decelerating, $aN/(1+ahN)$: handling time limits), type III (sigmoidal, switching and learning). Type III stabilises prey populations at low density because the predator's per-capita impact falls when prey are rare; type II can destabilise.
+- **Distribution and risk.** The ideal free distribution predicts that competitors distribute so that intake equalises across patches (proportional to resources); the despotic distribution predicts that dominant individuals occupy the best patches and subordinates get less. Risk-sensitive foraging predicts preference for variance when mean intake is below a survival threshold and for certainty when above (the "daily energy budget rule"). Central-place foragers (bees, seabirds) maximise delivery rate rather than personal intake, which changes load-size optima.
+
+Trap: optimality models are null models of *design*, not predictions of individual behaviour; the correct interpretation of a deviation is to identify the missing constraint (predation risk, toxin, nutrient limitation), not to declare the animal irrational.`
+      },
+      {
+        heading: "Mating systems, parental investment and sexual conflict",
+        content: `- **Anisogamy is the origin.** Large, nutrient-rich eggs versus small, motile sperm generate the asymmetry in potential reproductive rate that Trivers' parental investment theory explains: the sex investing more in offspring becomes a limiting resource, and the other sex competes for it. The Bateman gradient (reproductive success rising faster with mates for males) is the predicted consequence and holds in many, not all, systems.
+- **Mating systems** map onto that asymmetry: monogamy (biparental care needed or mate guarding), polygyny (resource or female defence, leks), polyandry (sex-role reversal where males brood, as in jacanas and pipefish), promiscuity (scramble competition). Genetic monogamy is rare: extra-pair paternity is common in socially monogamous birds, so social and genetic mating systems must be distinguished — a favourite exam discrimination.
+- **Parental investment and conflict.** Each parent benefits if the other invests more (Trivers' tug-of-war); the resolution depends on the cost of desertion and the options available (the "battle of the sexes"). Sexual conflict produces antagonistic coevolution: seminal fluid proteins that manipulate female receptivity, female counter-adaptations, and arms races in reproductive tracts.
+- **Mate choice and competition.** Intrasexual selection (combat, sperm competition) and intersexual selection (choice) act together. **Sperm competition** favours larger ejaculates, longer sperm, mate guarding and copulatory plugs; **cryptic female choice** biases paternity after copulation. Alternative tactics (sneaker males, satellites, female mimicry) persist when their fitness equals that of the conventional tactic at equilibrium.
+- **Costs of choice** include search time, predation risk and missed opportunities, which is why preferences are often threshold-based rather than maximising.
+
+Trap: extra-pair paternity does not mean the social system is misdescribed; "monogamous" refers to the social bond, and both labels are needed to describe a population.`
+      },
+      {
+        heading: "Sexual selection: runaway, good genes and honest signals",
+        content: `- **Mechanisms of preference evolution.** Direct benefits (nuptial gifts, parental care, territory quality) are straightforward. Indirect benefits operate through offspring quality: **Fisher's runaway** produces self-reinforcing coevolution of preference and ornament until viability selection halts it; **Zahavi's handicap** proposes that costly ornaments are honest because only high-quality individuals can afford them (the immunocompetence handicap: testosterone raises ornament expression and suppresses immunity, so only resistant males can display fully); **sensory bias** proposes that preferences pre-exist as by-products of how sensory systems work (water mites, swordtails).
+- **Honesty and condition.** Ornaments are condition-dependent, and fluctuating asymmetry is often (not always) higher in poor-condition individuals, making symmetry a candidate quality signal. The evidence for good-genes benefits is real but usually modest in magnitude, which is why the debate persists.
+- **Runaway versus good genes are distinguishable**: runaway expects trait and preference to coevolve without a correlation to viability, good genes expect offspring viability benefits, and sensory bias expects the preference to exist before the ornament.
+- **Post-copulatory selection** extends the same logic inside the female tract: sperm competition (lottery, displacement, incapacitation), cryptic female choice, and seminal fluid manipulation. In internally fertilising species, sexual selection continues after mating, which is why paternity is not determined by mating frequency alone.
+- **Sexual conflict and speciation.** Divergent mate preferences can generate reproductive isolation rapidly (cichlid colour, *Drosophila* cuticular hydrocarbons), making sexual selection a speciation engine, not just a within-population process.
+
+Trap: a costly ornament is not automatically a handicap — the handicap argument requires that the cost be *differentially* affordable, so a trait that is equally cheap for everyone conveys no information.`
+      },
+      {
+        heading: "Social behaviour: kin selection, cooperation and communication",
+        content: `- **Hamilton's rule:** altruism spreads when $rB > C$, where $r$ is relatedness, $B$ the benefit to the recipient and $C$ the cost to the actor. This reframes altruism as inclusive fitness and explains helping, alarm calling and sterile castes. Relatedness is computed by pedigree (full sibs $r = 0.5$, half sibs 0.25, haplodiploid sisters 0.75) but the relevant $r$ is the regression relatedness in the population, which is often lower than pedigree values.
+- **Eusociality** requires overlapping generations, cooperative brood care and reproductive division of labour. Haplodiploidy (Hymenoptera) makes sisters unusually related, which helped explain female-biased worker castes, but termites are diploid and eusocial, and naked mole rats are eusocial mammals — so haplodiploidy is neither necessary nor sufficient. The ecological model (monogamy plus a defensible, long-lived nest plus dispersal risk) now explains more of the distribution.
+- **Cooperation without kinship:** reciprocal altruism requires repeated interaction, recognition and enforcement (tit-for-tat, raiding in vampire bats); by-product mutualism needs no enforcement; punishment and partner choice stabilise cooperation in humans and cleaner-fish mutualisms. The prisoner's dilemma is the formal template, and the iterated version with noise explains why forgiveness (generous tit-for-tat) outperforms strict reciprocity.
+- **Communication and signalling.** Signals evolve when both sender and receiver benefit; **honest signalling** is maintained by costs (handicap principle) or by indices that cannot be faked (body size, fundamental frequency). Referential alarm calls (vervet monkeys: eagle, leopard, snake) show semantic content; audience effects and eavesdropping show that signalling is strategic. Deceit (firefly femme fatale, cuckoo chicks) is predicted wherever receiver response can be exploited.
+- **Social learning and culture** are documented in primates, cetaceans, birds and fish: transmission biases (conformist, prestige), teaching in meerkats and ants, and cumulative culture in humans and some birds. Culture can drive genetic change (gene–culture coevolution, lactase persistence) and is a mechanism of rapid adaptation.
+
+Trap: "kin selection explains altruism" does not mean animals compute $r$; kin recognition by familiarity, phenotype matching or spatial cues is the proximate mechanism, and Hamilton's rule is the functional explanation — keep the two levels separate.`
+      }
+    ]
+  },
+
+  {
     id: "systematics-1-cladistics",
     domainId: "biosystematics",
     title: "Phylogenetic Systematics: Parsimony, Fitch Algorithm & Major Clades",
@@ -2376,1030 +3396,6 @@ $$r B > C$$
 
   // ==================== ADDED: IBO/USABO SYLLABUS GAP FILL (CELL BIOLOGY) ====================
   {
-    id: "cell-9-biomolecules",
-    domainId: "cell_bio",
-    title: "Chemical Basis of Life: Water, Macromolecules & Protein Folding",
-    subtitle: "Water potential, buffers, carbohydrate and lipid chemistry, protein structure and the energy carriers",
-    level: "USABO Finalist / IBO",
-    xp: 120,
-    estimatedMinutes: 22,
-    prerequisites: [],
-    sources: ["Lehninger Ch. 1-5", "Campbell Ch. 2-5", "Alberts MBoC Ch. 2"],
-    interactiveTool: null,
-    summary: "IBO Cell Biology opens with chemical components, and USABO tests them through quantitative water, buffer and protein-structure questions. This module builds the chemistry layer: hydrogen bonding and water potential, Henderson-Hasselbalch buffering, the four macromolecule classes and their glycosidic/ester/peptide/phosphodiester linkages, protein folding and denaturation, coenzymes, and the redox carriers ATP, NAD and NADP.",
-    keyFormulas: [
-      { name: "Henderson-Hasselbalch", latex: "pH = pK_a + \\log \\frac{[A^-]}{[HA]}" },
-      { name: "Van't Hoff Osmotic Pressure", latex: "\\pi = iCRT" },
-      { name: "ATP Hydrolysis Free Energy", latex: "\\Delta G^{\\circ \\prime} \\approx -30.5 \\text{ kJ/mol}" }
-    ],
-    sections: [
-      {
-        heading: "1. Water, pH & Buffer Systems",
-        content: `Every olympiad paper assumes water's anomalous properties, so know the molecular reason for each:
-- **Cohesion and surface tension** arise from up to four hydrogen bonds per molecule; they drive xylem transport (transpiration pull) and give water a surface tension of about $72\\ \\text{mN/m}$.
-- **High specific heat ($4.18\\ \\text{J g}^{-1}\\text{K}^{-1}$) and high heat of vaporisation ($2260\\ \\text{J/g}$)** let organisms buffer temperature and cool by evaporating relatively little water.
-- **Ice floats** because hydrogen bonding fixes a hexagonal lattice of density $0.92\\ \\text{g/cm}^3$, insulating water bodies.
-- **Solvent power** comes from water's high dielectric constant ($\\approx 80$), which shields ions better than vacuum.
-
-Buffers are the quantitative part:
-$$pH = pK_a + \\log \\frac{[A^-]}{[HA]}$$
-- A buffer is most effective within $\\pm 1$ pH unit of its $pK_a$; outside that range its capacity collapses.
-- Blood uses the **bicarbonate system** ($pK_a = 6.1$ for $H_2CO_3$), which works at pH 7.4 because the lungs independently clamp $P_{CO_2}$; phosphate ($pK_a = 6.8$) buffers intracellular fluid and urine.
-- **Histidine** ($pK_a \\approx 6.0$) is the physiological buffer built into proteins, and it is the residue responsible for the Bohr effect in haemoglobin.
-- If an acid is added to a buffer, $[HA]$ rises and $[A^-]$ falls, so pH changes only by the log of the ratio, not linearly with the added protons.`
-      },
-      {
-        heading: "2. Carbohydrates, Lipids & Their Linkages",
-        content: `**Carbohydrates**
-- Monosaccharides are aldoses or ketoses; trioses to hexoses dominate biology. Glucose cyclises into a pyranose ring, giving the $\\alpha$ and $\\beta$ anomers that decide whether a polysaccharide is digestible.
-- Glycosidic bonds join monomers: **$\\alpha$-1,4** in starch and glycogen (digestible, branched by $\\alpha$-1,6), **$\\beta$-1,4** in cellulose (structural, only microbial cellulases cleave it), **$\\beta$-1,3** in callose and laminarin.
-- Sucrose (glucose + fructose) is the universal phloem sugar because it is non-reducing and osmotically efficient; trehalose protects membranes during desiccation.
-- A gram of carbohydrate yields about $17\\ \\text{kJ}$ of energy.
-
-**Lipids**
-- Fatty acids are amphipathic carboxylates; saturation determines packing and melting point. Double bonds are almost always *cis*, which kinks the chain and keeps membranes fluid.
-- Storage triacylglycerols are anhydrous (about $38\\ \\text{kJ/g}$), whereas glycogen binds roughly twice its mass in water — the reason animals store fat for long-term energy.
-- Phospholipids are glycerol-3-phosphate with two acyl chains plus a head group (choline, ethanolamine, serine, inositol). Sterols (cholesterol, ergosterol, phytosterols) modulate fluidity and act as signalling precursors for steroid hormones and vitamin D.
-- Carotenoids, chlorophylls and retinal show the lipid-soluble pigments that later appear in phototransduction and photosynthesis.`
-      },
-      {
-        heading: "3. Proteins, Nucleic Acids & Energy Carriers",
-        content: `**Proteins**
-- Twenty standard amino acids, each with a three-letter code (Ala, Arg, Asn, Asp, Cys, Gln, Glu, Gly, His, Ile, Leu, Lys, Met, Phe, Pro, Ser, Thr, Trp, Tyr, Val) and a one-letter code; USABO frequently gives a peptide and asks for its net charge at a stated pH.
-- Peptide bonds are planar and rigid; the polypeptide's backbone forms $\\alpha$-helices and $\\beta$-sheets through main-chain hydrogen bonds, whereas tertiary structure is driven by hydrophobic collapse, salt bridges, disulphides and metal coordination.
-- Quaternary structure assembles subunits; **chaperones (Hsp60, Hsp70)** assist folding, and misfolding underlies amyloid disease.
-- **Denaturation** disrupts non-covalent bonds (heat, extremes of pH, urea, SDS) but leaves the peptide backbone intact; renaturation is possible only if the native state is the global energy minimum.
-- **Conjugated proteins** carry a non-amino-acid moiety: haem (haemoglobin, cytochromes), metal centres (ferredoxin), or carbohydrate (glycoproteins). The protein moiety is the **apoenzyme**; its bound organic cofactor is the **coenzyme** (NAD, FAD, TPP, coenzyme A).
-
-**Nucleic acids and carriers**
-- Nucleotides are a nitrogenous base (purines A, G; pyrimidines C, T, U) linked to ribose or deoxyribose and phosphate; nucleotides join by $3'$-$5'$ phosphodiester bonds.
-- Base composition follows Chargaff's rules ($A = T$, $G = C$ in duplex DNA), and denaturation temperature rises with G-C content because three hydrogen bonds replace two.
-- Energy and redox carriers set the currency of metabolism: **ATP** (phosphoanhydride, $\\Delta G^{\\circ \\prime} \\approx -30.5\\ \\text{kJ/mol}$), **NAD+/NADH** (catabolic electron carrier, about 2.5 ATP each), **NADP+/NADPH** (anabolic reducing power, made by the pentose phosphate pathway and ferredoxin-NADP reductase), plus **FADH2**, coenzyme A and the phosphorylated nucleotides GTP, UTP, CTP.`
-      }
-    ]
-  },
-
-  {
-    id: "cell-10-membranes-transport",
-    domainId: "cell_bio",
-    title: "Biological Membranes, Transport & Cell Junctions",
-    subtitle: "Fluid mosaic asymmetry, osmosis and tonicity, ATP-driven pumps and epithelial junctions",
-    level: "USABO Finalist / IBO",
-    xp: 130,
-    estimatedMinutes: 24,
-    prerequisites: [],
-    sources: ["Alberts MBoC Ch. 10-11", "Vander's Human Physiology Ch. 4-5", "Campbell Ch. 7"],
-    interactiveTool: null,
-    summary: "Transport through membranes is a named IBO Cell Biology heading. This module covers membrane asymmetry and fluidity, diffusion and osmosis with tonicity predictions, aquaporin kinetics, primary versus secondary active transport, the sodium-potassium ATPase stoichiometry, and the junctional and extracellular-matrix anatomy that turns cells into tissues.",
-    keyFormulas: [
-      { name: "Water Potential", latex: "\\Psi_w = \\Psi_s + \\Psi_p" },
-      { name: "Solute Potential", latex: "\\Psi_s = -iCRT" },
-      { name: "Diffusion (Fick's Law)", latex: "J = P \\cdot A \\cdot \\Delta C" }
-    ],
-    sections: [
-      {
-        heading: "1. Membrane Architecture & Fluidity",
-        content: `The **fluid mosaic model** (Singer and Nicolson, 1972) described a lipid bilayer as a two-dimensional solvent for proteins, and freeze-fracture electron microscopy confirmed that proteins are embedded rather than adsorbed.
-- **Asymmetry**: the outer leaflet is rich in phosphatidylcholine and sphingomyelin plus glycolipids; the inner leaflet carries phosphatidylserine and phosphatidylethanolamine. Phosphatidylserine exposed on the outer surface is the signal that marks a cell for phagocytosis (basis of annexin V apoptosis assays).
-- **Cholesterol** inserts between acyl chains: below the transition temperature it prevents tight packing, and above it restrains movement — a fluidity buffer. Plants use stigmasterol; bacteria use hopanoids; archaea use tetraether monolayers, which survive extreme heat.
-- **Membrane proteins**: integral (transmembrane $\\alpha$-helices or $\\beta$-barrels such as porins), peripheral (attached electrostatically or by lipid anchors), and lipid-linked (GPI-anchored).
-- **Fluidity depends on** temperature, chain length, unsaturated *cis* bonds, and sterol content; cells homeostatically adjust saturation (homeoviscous adaptation) — cold-adapted fish membranes carry more unsaturated chains.
-- Membrane rafts (sphingolipid-cholesterol microdomains) concentrate signalling proteins and are a recognised USABO conceptual question.
-
-Transport can be passive (exchange-only) or active. Everything else in this module follows from two quantities: the **electrochemical gradient** ($\\Delta\\mu = RT\\ln(C_2/C_1) + zF\\Delta\\Psi$) and the membrane's permeability to the species.`
-      },
-      {
-        heading: "2. Diffusion, Osmosis & Tonicity",
-        content: `- **Simple diffusion** is limited by lipid solubility: $O_2$, $CO_2$, steroids and ethanol cross readily; ions and glucose do not.
-- **Facilitated diffusion** uses channels or carriers and shows saturation (GLUT1-4 transport glucose down its gradient at $K_m$ values that differ by tissue; GLUT4 is insulin-sensitive muscle and fat).
-- **Osmosis** is water movement toward higher solute concentration across a semipermeable membrane. In plant and animal physiology the driving quantity is **water potential**:
-$$\\Psi_w = \\Psi_s + \\Psi_p$$
-  - Solute potential $\\Psi_s = -iCRT$ is always negative for solutions; $i$ is the van't Hoff factor (2 for NaCl, 1 for glucose).
-  - Pressure potential $\\Psi_p$ is positive in turgid plant cells and zero in an open-beaker animal cell.
-- **Tonicity predictions** are the classic exam calculation: a cell in hypertonic solution loses water (crenation in animal cells, plasmolysis with the membrane pulling away from the wall in plants); in hypotonic solution an animal cell swells and may lyse, while a plant cell becomes turgid and the wall pressure prevents rupture.
-- **Aquaporins** are tetrameric channels that pass about $10^9$ water molecules per second and are gated by phosphorylation, pH and osmotic stress; ADH/vasopressin regulates AQP2 trafficking in the collecting duct.
-- Ion channels are gated by voltage, ligand or mechanical force and select ions by dehydrated-radius and charge filters.`
-      },
-      {
-        heading: "3. Active Transport & Intercellular Junctions",
-        content: `**Pumps**
-- The **Na+/K+ ATPase** exports 3 $Na^+$ and imports 2 $K^+$ per ATP, generating a net outward current. It consumes roughly 30% of resting ATP in mammals and is electrogenic, contributing about $-5\\ \\text{mV}$ to the resting potential; cardiac glycosides (ouabain, digoxin) inhibit it.
-- **Ca2+ ATPases (SERCA and PMCA)** maintain a cytosolic $Ca^{2+}$ near $10^{-7}\\ \\text{M}$ against $10^{-3}\\ \\text{M}$ outside, a 10,000-fold gradient that makes calcium a fast signal.
-- **V-type proton ATPases** acidify lysosomes and plant vacuoles; P-type pumps export protons across the plasma membrane in plants and fungi, creating the electrochemical gradient that drives secondary transport.
-
-**Secondary active transport** couples to that gradient: intestinal **SGLT1** moves $Na^+$ down its gradient with glucose against its own, and the **NCX** exchanger trades 3 $Na^+$ in for 1 $Ca^{2+}$ out. ABC transporters (MDR1/P-glycoprotein, CFTR) bind ATP directly for the primary step.
-
-**Junctions and matrix**
-- **Tight junctions (claudins, occludins)** seal the paracellular route and create the blood-brain barrier and epithelial polarity.
-- **Desmosomes (cadherins + keratins)** resist mechanical stress in skin and heart; **gap junctions (connexins)** pass ions and small molecules up to about 1 kDa and electrically couple cardiac and smooth muscle.
-- **Plasmodesmata** are plant cytoplasmic channels lined by the plasma membrane; they set the symplastic route that viruses exploit.
-- The **extracellular matrix** is collagen (tensile strength), elastin, proteoglycans (hydration), and fibronectin/laminin that bind **integrins** to link the matrix to actin and to signal through focal adhesion kinase.`
-      }
-    ]
-  },
-
-  {
-    id: "cell-11-cytoskeleton-motility",
-    domainId: "cell_bio",
-    title: "Cytoskeleton, Motor Proteins & Cell Motility",
-    subtitle: "Actin treadmilling, microtubule dynamic instability, kinesin/dynein and the 9+2 axoneme",
-    level: "USABO Finalist / IBO",
-    xp: 130,
-    estimatedMinutes: 22,
-    prerequisites: [],
-    sources: ["Alberts MBoC Ch. 16-17", "Lodish Molecular Cell Biology Ch. 17-18", "Campbell Ch. 6"],
-    interactiveTool: null,
-    summary: "The cytoskeleton is an explicit IBO Cell Biology topic and a favourite mechanism question. Learn the three filament systems, their nucleotide-dependent assembly, the polarity and duty ratio of each motor protein, how the mitotic spindle and the axoneme are built, and how defects produce disease.",
-    keyFormulas: [
-      { name: "Actin Critical Concentration", latex: "\\text{Net growth when } [G\\text{-actin}] > C_c" },
-      { name: "Axoneme Arrangement", latex: "9 + 2 \\; (9 \\text{doublets} + 2 \\text{central singlet pairs})" }
-    ],
-    sections: [
-      {
-        heading: "1. Microfilaments & Actin Dynamics",
-        content: `- Actin monomers (G-actin) bind ATP and polymerise into a **double helical filament (F-actin)** with a fast-growing barbed (+) end and a slow pointed (-) end. At steady state, subunits add at the (+) end and dissociate at the (-) end — **treadmilling** — whose rate depends on the free monomer concentration relative to the critical concentration.
-- Regulation: **ARP2/3** nucleates branched networks (lamellipodia), **formin** builds unbranched bundles (filopodia, contractile ring), **thymosin** and **profilin** sequester or charge monomers, and **cofilin** severs ADP-actin to accelerate turnover.
-- **Myosins** walk toward the (+) end (except myosin VI). Myosin II assembles bipolar minifilaments that generate contraction in the cytokineis ring, stress fibres and muscle sarcomeres; myosin V carries cargo along actin; myosin I links membrane to actin.
-- Actin functions beyond movement include microvillar cores of the intestinal brush border, cell cortex tension, endocytosis (with dynamin and the Arp2/3 machinery), and cytoplasmic streaming in plant cells.
-- **Myosin ATPase cycle**: ATP binding releases myosin from actin, hydrolysis cocks the lever arm, phosphate release drives the power stroke, and ADP release limits the cycle.`
-      },
-      {
-        heading: "2. Microtubules & Motor Transport",
-        content: `- $\\alpha/\\beta$-tubulin heterodimers assemble into a hollow, 25 nm tube with a (+) end at the $\\beta$-tubulin surface. Nucleation occurs at the **centrosome/MTOC** ($\\gamma$-tubulin ring complex); plant cells nucleate from the nuclear envelope and cortical arrays instead.
-- **Dynamic instability**: GTP-bound tubulin grows a stabilising cap; accidental hydrolysis behind the growing end permits **catastrophe**, while **rescue** regrows. This search-and-capture behaviour lets spindles find chromosomes in minutes.
-- **Motor directionality** is a standard exam item: **kinesin** walks to the (+) end (anterograde, mid-synapse toward the terminal), **dynein** walks to the (-) end (retrograde, terminal to cell body). Both are processive ATPases with rates of roughly $1\\ \\mu\\text{m/s}$; axonal transport is around 50-400 mm/day and fundamentally depends on them.
-- Structures built from microtubules: the **mitotic spindle**, the marginal band of platelets, cilia and flagella, and neuronal neurites.
-- **Cilia and flagella** share the **9+2 axoneme**: nine outer doublets of A and B tubules, two central singlet microtubules, radial spokes and dynein arms. Dynein sliding is converted into bending by nexin links; absence of dynein arms causes **primary ciliary dyskinesia (Kartagener syndrome)** with situs inversus and chronic infection.
-- Drug pharmacology follows microtubules: colchicine and nocodazole block polymerisation, paclitaxel stabilises, vinca alkaloids destabilise; all are antimitotic.`
-      },
-      {
-        heading: "3. Intermediate Filaments, Adhesion & Migration",
-        content: `**Intermediate filaments** (about 10 nm) are the tensile, non-nucleotide cytoskeleton:
-- **Keratins** in epithelia, **vimentin** in mesenchymal cells, **desmin** in muscle, **neurofilaments** in axons, **lamins** forming the nuclear lamina.
-- They polymerise into coiled-coil ropes without polarity, so no motors walk along them; their job is mechanical resilience. Mutations in keratin cause epidermolysis bullosa; lamin A/C mutations cause progeria; desmin mutations cause cardiomyopathy.
-
-**Adhesion and the migration cycle**
-1. **Protrusion** — actin polymerisation pushes lamellipodia and filopodia forward under Rac/Cdc42 control.
-2. **Adhesion** — integrins in nascent adhesions bind fibronectin and recruit talin, vinculin and FAK to the actin cortex.
-3. **Contraction** — Rho-activated myosin II stress fibres pull the cell body forward.
-4. **De-adhesion** — focal adhesions disassemble at the rear, recycling integrin.
-- Cadherins drive **homophilic** cell-cell adhesion (E-cadherin loss correlates with epithelial-mesenchymal transition and metastasis); selectins mediate leukocyte rolling; Ig-superfamily CAMs guide axonal growth.
-- Directional migration in development and immunity uses **chemotaxis** through G-protein-coupled chemokine receptors — the same machinery as Dictyostelium's cAMP relay.`
-      }
-    ]
-  },
-
-  {
-    id: "cell-12-metabolism",
-    domainId: "cell_bio",
-    title: "Central Metabolism: Glycolysis, TCA Cycle & Metabolic Integration",
-    subtitle: "Ten-step glycolysis, oxidative decarboxylation, beta-oxidation, urea cycle and gluconeogenesis",
-    level: "USABO Finalist / IBO",
-    xp: 160,
-    estimatedMinutes: 30,
-    prerequisites: ["cell-2-chemiosmosis"],
-    sources: ["Lehninger Ch. 14-23", "Campbell Ch. 9", "Alberts MBoC Ch. 13"],
-    interactiveTool: null,
-    summary: "IBO lists glycolysis, the citric acid cycle and oxidative phosphorylation as required cell metabolism, yet olympiad papers test them with carbon and ATP accounting. This module supplies the stoichiometry, the committed regulatory steps, reciprocal regulation of glycolysis and gluconeogenesis, and how lipid, amino acid and carbohydrate fuels join the same pathway.",
-    keyFormulas: [
-      { name: "Net Glycolysis Yield", latex: "\\text{Glucose} \\to 2\\ \\text{Pyruvate}: \\; 2\\ \\text{ATP} + 2\\ \\text{NADH} \\;(-2\\ \\text{from investment})" },
-      { name: "P/O Ratio", latex: "\\text{NADH} = 2.5\\ \\text{ATP}, \\quad \\text{FADH}_2 = 1.5\\ \\text{ATP}" },
-      { name: "Complete Oxidation Yield", latex: "\\text{Glucose} \\to 30-32\\ \\text{ATP} + 6\\ \\text{CO}_2" }
-    ],
-    sections: [
-      {
-        heading: "1. Glycolysis & Fermentation",
-        content: `Glycolysis occurs in the cytosol in two phases:
-- **Investment phase (2 ATP)**: hexokinase/glucokinase phosphorylates glucose, phosphoglucose isomerase, phosphofructokinase-1 (PFK-1, the committed step), aldolase cleaves into DHAP and glyceraldehyde-3-phosphate.
-- **Payoff phase (4 ATP + 2 NADH)**: GAPDH produces 1,3-BPG and NADH, phosphoglycerate kinase and pyruvate kinase make **substrate-level phosphorylation**, so net yield is **2 ATP and 2 NADH per glucose**.
-- **PFK-1** is the key allosteric valve: inhibited by ATP and citrate, activated by AMP/ADP and fructose-2,6-bisphosphate, which is itself made by phosphofructokinase-2 — an elegant dual-function enzyme regulated by phosphorylation.
-- Hexokinase has a low $K_m$ and is inhibited by glucose-6-phosphate; liver **glucokinase** has a high $K_m$ and responds to blood glucose after a meal.
-
-**Fermentation** regenerates NAD+ without oxygen:
-- **Lactic acid fermentation** (muscle, *Lactobacillus*) reduces pyruvate to lactate via LDH; the Cori cycle recovers it to glucose in the liver.
-- **Alcoholic fermentation** decarboxylates pyruvate to acetaldehyde and reduces it to ethanol, the basis of brewing and of the Crabtree effect in yeast.
-- Fermentation yields only the 2 glycolytic ATP, so the **Pasteur effect** is that oxygen sharply reduces glucose consumption.
-- IBO also asks about the **phototrophy/chemotrophy** distinction in prokaryotes: glycolysis and the TCA cycle are conserved, but electron donors can be inorganic (chemolithotrophy: nitrifiers, sulfur oxidisers, methanogens).`
-      },
-      {
-        heading: "2. Pyruvate Oxidation & the TCA Cycle",
-        content: `**Pyruvate dehydrogenase (PDH)** irreversibly oxidises pyruvate in the mitochondrial matrix: decarboxylation, lipoamide chemistry and transfer to coenzyme A yield **NADH + CO2 + acetyl-CoA**. PDH requires thiamine (TPP), lipoate, FAD, NAD+ and CoA, and is inhibited by acetyl-CoA and NADH; deficiency produces the thiamine-deficiency syndrome of beriberi.
-
-**Per acetyl-CoA turn of the TCA (Krebs) cycle:**
-1. Citrate synthase condenses acetyl-CoA with oxaloacetate (committed step, inhibited by ATP, NADH and succinyl-CoA).
-2. Aconitase and isocitrate dehydrogenase produce the first NADH and the first $CO_2$.
-3. $\\alpha$-ketoglutarate dehydrogenase produces the second NADH and $CO_2$.
-4. Succinyl-CoA synthetase makes **GTP** (substrate-level phosphorylation).
-5. Succinate dehydrogenase (Complex II of the ETC) makes **FADH2**.
-6. Fumarase and malate dehydrogenase regenerate oxaloacetate with the third NADH.
-
-Net per pyruvate: **3 NADH, 1 FADH2, 1 GTP and 2 CO2**. Because the cycle supplies biosynthetic precursors, intermediates must be replenished (**anaplerosis** via pyruvate carboxylase), and the **glyoxylate cycle** of plants and bacteria sidesteps the decarboxylation steps so acetate can be turned into carbohydrate.`
-      },
-      {
-        heading: "3. Oxidative Phosphorylation, Fat & Amino Acid Fuels",
-        content: `**Adenosine triphosphate accounting** with modern P/O ratios (NADH = 2.5 ATP, FADH2 = 1.5 ATP): 2 from glycolysis, 2 from substrate-level in the TCA, about 25 from the 10 NADH, and about 3 from 2 FADH2 — **30 to 32 ATP per glucose**. The older 36-38 values assumed 3 ATP per NADH; state which convention you use.
-- **Respiratory control**: electron flow is tightly coupled to ATP demand. Uncouplers (DNP, UCP1) collapse the proton gradient and oxidise substrate furiously without ATP; oligomycin stops both; atractyloside blocks the adenine nucleotide translocator.
-- **Beta-oxidation** in the matrix requires the carnitine shuttle (CPT1, inhibited by malonyl-CoA). Each cycle releases 1 acetyl-CoA, 1 NADH and 1 FADH2; palmitate (C16) therefore yields 8 acetyl-CoA and about 106 ATP. Excess acetyl-CoA is diverted into ketogenesis (acetoacetate, beta-hydroxybutyrate), which the brain uses during starvation.
-- **Amino acids** are deaminated (transamination by alanine aminotransferase, then glutamate dehydrogenase); ammonia is detoxified in the **urea cycle** (carbamoyl phosphate synthetase, ornithine transcarbamoylase, arginase) at about 3 ATP per urea, and the carbon skeletons enter as pyruvate, acetyl-CoA, or TCA intermediates — glucogenic or ketogenic.
-- **Gluconeogenesis** is nearly the reverse of glycolysis but bypasses its three irreversible steps: pyruvate carboxylase + PEPCK, fructose-1,6-bisphosphatase, and glucose-6-phosphatase. Glucose and insulin suppress it; glucagon and cortisol induce it.
-- **Pentose phosphate pathway** produces NADPH for biosynthesis and ribose-5-phosphate for nucleotides, and succinyl-CoA, acetyl-CoA and malate dehydrogenase form the two-hemes of metabolic integration.
-- **Glycogen** turnover: glycogen phosphorylase releases glucose-1-phosphate and debranching enzyme handles $\\alpha$-1,6 bonds; insulin activates glycogen synthase, glucagon and AMPK activate phosphorylase.`
-      }
-    ]
-  },
-
-  {
-    id: "cell-13-bioinformatics",
-    domainId: "cell_bio",
-    title: "Bioinformatics: Sequence Analysis, BLAST & Genomics",
-    subtitle: "Databases, pairwise alignment, E-values, dN/dS and molecular clocks - now inside the IBO syllabus",
-    level: "USABO Finalist / IBO",
-    xp: 120,
-    estimatedMinutes: 20,
-    prerequisites: ["cell-6-molecular-genetics", "genetics-2-popgen"],
-    sources: ["IBO 2024 Practical: Bioinformatics (GenBank, BLAST, statistical ecology)", "Alberts MBoC Ch. 8-9", "NCBI Handbook", "Claverie & Notredame: Bioinformatics for Beginners"],
-    interactiveTool: null,
-    summary: "A bioinformatics practical has appeared at every IBO since 2019 and USABO added the area from 2025. This module covers the formats and databases, reading frames and ORFs, alignment scoring and E-values, BLAST variants, phylogenomic inference with bootstrap support, and the selection statistics (dN/dS) that turn sequences into evolutionary evidence.",
-    keyFormulas: [
-      { name: "Karlin-Altschul Expectation", latex: "E = K m n e^{-\\lambda S}" },
-      { name: "Synonymous/Nonsynonymous Ratio", latex: "\\omega = \\frac{d_N}{d_S}\\; (>1 \\text{ = positive selection, } <1 \\text{ = purifying})" },
-      { name: "Number of Reading Frames", latex: "3 \\text{ per strand} \\times 2 \\text{ strands} = 6" }
-    ],
-    sections: [
-      {
-        heading: "1. Databases, Formats & Finding Genes",
-        content: `**Core databases**
-- **GenBank/ENA/DDBJ** hold nucleotide records; **UniProt/Swiss-Prot** holds curated proteins; **PDB** holds structures; **RefSeq** holds curated reference genomes; **GEO/ArrayExpress** hold expression data.
-- A record is identified by an **accession number** (stable) plus a version suffix; depositing authors may update a record but the accession persists.
-
-**Formats you must read fluently**
-- **FASTA**: a header line beginning with \`>\` followed by nucleotide or protein sequence. Validate length and composition before analysis.
-- **FASTQ**: four lines per read — identifier, sequence, \`+\`, and a Phred quality string; quality $Q = -10\\log_{10}(P_{\\text{error}})$, so Q20 = 1% and Q30 = 0.1% error.
-- Alignment formats (SAM/BAM, CIGAR strings) describe how reads map to a reference; VCF records variants with a reference allele and alternate allele.
-
-**Gene finding**
-- Translate all **six reading frames** (three forward, three reverse complement) and look for a start codon (ATG) and an in-frame stop codon (TAA, TAG, TGA) — the longest open reading frame typically encodes the protein.
-- Prokaryotic ORFs are compact; eukaryotic genes contain introns, so translation of genomic DNA fails and mRNA-derived cDNA is used instead.
-- Codon usage bias, GC content and Kozak/polyadenylation signals refine prediction; automated tools such as ORFfinder, AUGUSTUS and Prodigal implement these rules.`
-      },
-      {
-        heading: "2. Alignment & BLAST Statistics",
-        content: `**Pairwise alignment**
-- **Global (Needleman-Wunsch)** aligns entire sequences, used when the two are homologous end to end; **local (Smith-Waterman)** aligns the best-scoring subregion, used when one sequence is a fragment or carries a divergent domain.
-- Scoring uses a substitution matrix (BLOSUM62 for proteins, with positive scores for conservative replacements) plus **gap penalties** (opening penalty plus extension penalty).
-- Report three separate things: **identity** (percentage of identical residues), **similarity** (conservative substitutions count), and **homology** (a conclusion about shared ancestry — never a percentage).
-
-**BLAST family**
-- **blastn** nucleotide query against nucleotide database; **blastp** protein vs protein; **blastx** translated nucleotides; **tblastn** protein query against translated database; **tblastx** both translated.
-- BLAST first finds short exact **words** (seeds) and then extends them with gaps, which is why it is orders of magnitude faster than full Smith-Waterman.
-- The **E-value** is the expected number of alignments with that score arising by chance in a database of that size:
-$$E = K m n e^{-\\lambda S}$$
-  - $E \\ll 1$ (for example $10^{-30}$) indicates a strong match; $E = 0.05$ means the score could arise by chance once in 20 searches.
-  - Because $E$ scales with database size and query length, **never compare E-values across different database sizes**.
-- **Multiple sequence alignment** (Clustal, MUSCLE, MAFFT) reveals conserved columns; conservation implies functional constraint, and domain databases (Pfam, PROSITE) classify the aligned region as a known fold.`
-      },
-      {
-        heading: "3. Phylogenomics, Molecular Evolution & Omics",
-        content: `**Building trees from sequences**
-- **Distance methods** (UPGMA assumes an equal-rate clock; neighbour-joining is faster but less accurate) cluster a distance matrix.
-- **Character methods** (maximum parsimony, maximum likelihood, Bayesian inference) evaluate models of substitution directly against aligned columns; likelihood and Bayesian methods are standard because they allow rate heterogeneity across sites.
-- **Bootstrap** resamples alignment columns and reports how often each node is recovered; above 70-95% support a clade is generally accepted, below about 50% the node should be collapsed.
-- **Molecular clocks** convert sequence divergence into time when a calibrated fossil or biogeographic date is available; the clock is only as good as its calibration and assumes roughly constant rates, which is violated by generation-time effects.
-
-**Detecting selection**
-- Synonymous substitutions ($d_S$) are invisible to selection; nonsynonymous substitutions ($d_N$) are not. **$\\omega = d_N/d_S$**: below 1 indicates purifying selection, near 1 neutral evolution, and above 1 positive selection at that codon.
-- Sliding-window scans locate positively selected codons (for example in MHC antigen-binding grooves or influenza haemagglutinin).
-
-**Omics workflows**
-- **Transcriptomics**: RNA-seq quantifies mRNA as reads per kilobase per million (RPKM/TPM), and differential expression is tested with negative-binomial models (DESeq2, edgeR).
-- **Variant analysis**: SNP calling, GWAS for trait association, and clinical interpretation of variants all rest on correct reference alignment.
-- **Statistical ecology** is part of the same IBO practical: rarefaction curves, diversity indices, ordination and distance-based clustering apply identical logic to organismal data.`
-      }
-    ]
-  },
-
-  {
-    id: "cell-14-methods-biostatistics",
-    domainId: "cell_bio",
-    title: "Experimental Design, Core Techniques & Biostatistics",
-    subtitle: "Controls, spectrophotometry, electrophoresis, t-tests, chi-square and reading data figures",
-    level: "USABO Finalist / IBO",
-    xp: 140,
-    estimatedMinutes: 26,
-    prerequisites: [],
-    sources: ["IBO Appendix II: Basic Skills of the Practical Part", "Campbell Ch. 1 (Scientific Inquiry)", "Alberts MBoC Ch. 4 (Methods)", "CEE Student Resource Center"],
-    interactiveTool: null,
-    summary: "IBO states explicitly that questions on the principles of scientific reasoning and biological methods belong in the theory paper, and USABO Part B/C embeds data interpretation. This module covers valid experimental design, the techniques whose outputs appear in figures (spectrophotometry, centrifugation, chromatography, electrophoresis, PCR), and the statistics needed to decide whether a difference is real.",
-    keyFormulas: [
-      { name: "Beer-Lambert Law", latex: "A = \\varepsilon c l" },
-      { name: "Chi-Square Goodness of Fit", latex: "\\chi^2 = \\sum \\frac{(O - E)^2}{E}" },
-      { name: "Standard Error of the Mean", latex: "SE = \\frac{s}{\\sqrt{n}}" }
-    ],
-    sections: [
-      {
-        heading: "1. Experimental Design & Measurement",
-        content: `A USABO data question is usually a design critique in disguise:
-- **Hypothesis** must be falsifiable and mechanistic; a prediction is the observable consequence of the hypothesis.
-- **Variables**: independent (manipulated), dependent (measured), and controlled. Confounding variables are those that covary with the treatment — the classic example is a drug experiment in which the treated group also receives a different vehicle.
-- **Controls**: a negative control shows the effect is not spontaneous (no treatment, solvent only); a positive control confirms the assay can detect the effect at all.
-- **Replication** estimates variability; **randomisation** removes assignment bias; **blinding** removes observer bias. Pseudoreplication (many measurements from one individual) inflates the apparent sample size.
-- **Accuracy versus precision**: accuracy is closeness to the true value, precision is reproducibility. Systematic error shifts the mean, random error widens the spread.
-- **Units and significant figures**: report the measurement's precision; $12.0\\ \\text{mM}$ is not $12\\ \\text{mM}$. Concentration conversions: molarity $M = n/V$, dilution $C_1V_1 = C_2V_2$, percentage solutions must state w/v or v/v.
-- **Standard curves** convert an instrument response (absorbance, fluorescence, peak area) into concentration; linearity limits define the reportable range.`
-      },
-      {
-        heading: "2. Core Laboratory Techniques",
-        content: `**Microscopy**
-- Compound light microscope resolution is about $0.2\\ \\mu\\text{m}$, limited by wavelength ($d = 0.61\\lambda/NA$); electron microscopy reaches $0.2\\ \\text{nm}$ for TEM and a few nm for SEM.
-- Sample preparation matters: fixation, dehydration, sectioning and staining (haematoxylin/eosin, iodine for starch, Sudan III for lipids, Evans blue for viability).
-
-**Separation methods**
-- **Differential centrifugation** separates organelles by sedimentation coefficient: nuclei and cell debris at about $1000\\times g$, mitochondria about $10{,}000\\times g$, microsomes $100{,}000\\times g$.
-- **Chromatography**: gel filtration separates by size (large molecules elute first), ion exchange by charge, affinity by specific binding, thin-layer and paper by polarity. $R_f$ values are reported relative to the solvent front.
-- **Electrophoresis**: agarose separates DNA by size (linear log $M_r$ versus mobility) and is often stained with ethidium bromide or SYBR; SDS-PAGE denatures proteins and separates by mass in the $1-200\\ \\text{kDa}$ range; isoelectric focusing separates by $pI$; the two-dimensional gel combines both.
-
-**Assays and molecular tools**
-- **Spectrophotometry** obeys Beer-Lambert: $A = \\varepsilon c l$. Absorbance at 260 nm quantifies nucleic acid, 280 nm protein; the $A_{260}/A_{280}$ ratio near 1.8 indicates pure DNA, 2.0 pure RNA, and below 1.6 protein contamination.
-- **Immunoassays** (ELISA, Western blot) use antibody specificity; **PCR** requires primers, dNTPs, Mg2+, and a thermostable polymerase, with $2^n$ amplification after $n$ cycles and a Ct value for quantitative PCR.
-- **Dialysis, ultrafiltration and salting out** separate by size or solubility; **autoradiography and fluorescence** report localisation.`
-      },
-      {
-        heading: "3. Biostatistics & Data Interpretation",
-        content: `**Descriptive statistics**
-- Mean, median and mode describe centre; range, variance, standard deviation and standard error describe spread. $SE = s/\\sqrt{n}$ shrinks as sample size grows, so a standard error bar can look small even when variability is large — read the figure legend to know which is plotted.
-- Report the **95% confidence interval**: if the interval for a mean difference excludes zero, the difference is significant at $\\alpha = 0.05$.
-
-**Inference**
-- **t-test** compares two means (paired or unpaired); **ANOVA** compares three or more and is followed by post-hoc tests to avoid inflation of the Type I error rate.
-- **Chi-square** tests goodness of fit or independence:
-$$\\chi^2 = \\sum \\frac{(O - E)^2}{E}$$
-  - Degrees of freedom = categories $-$ 1 (goodness of fit) or $(r-1)(c-1)$ for a contingency table; this is the standard test for a Mendelian ratio or a Hardy-Weinberg deficit.
-- **p-value** is the probability of data this extreme if the null hypothesis is true; it is not the probability that the null is true. **Type I error** rejects a true null ($\\alpha$), **Type II error** fails to reject a false one ($\\beta$); power is $1-\\beta$.
-- **Correlation** ($r$, $r^2$) is not causation; a regression slope needs its standard error and a significance test.
-
-**Interpreting a figure in an exam**
-Read axes and units first, then identify the control series, then look for the comparison the authors care about. A significant difference with overlapping error bars in a small-$n$ panel is a favourite trap; so is a mean difference that is statistically significant but biologically trivial.`
-      }
-    ]
-  },
-
-  // ==================== ADDED: GAP FILL (PLANT & ANIMAL PHYSIOLOGY) ====================
-  {
-    id: "plant-7-mineral-nutrition",
-    domainId: "plant_bio",
-    title: "Mineral Nutrition, Nitrogen Fixation & Phloem Transport",
-    subtitle: "Essential elements, Casparian strip, root ion uptake, nitrogenase and the Munsch pressure-flow mechanism",
-    level: "USABO Finalist / IBO",
-    xp: 150,
-    estimatedMinutes: 26,
-    prerequisites: ["plant-1-hydraulics"],
-    sources: ["Raven's Biology of Plants Ch. 29-32", "Taiz & Zeiger Ch. 5-6, 10-11", "Campbell Ch. 37"],
-    interactiveTool: null,
-    summary: "IBO requires transport of water, minerals and assimilates plus root structure, yet the app previously covered only the xylem. This module completes plant transport: essential element criteria and deficiency diagnosis, soil cation exchange, the endodermal checkpoint, chemiosmotic ion uptake, symbiotic nitrogen fixation, and the Munsch pressure-flow mechanism that distributes assimilates from source to sink.",
-    keyFormulas: [
-      { name: "Munsch Pressure Flow", latex: "\\Delta \\Psi_p \\; \\text{drives bulk flow from source (high } \\Psi_p) \\text{ to sink (low } \\Psi_p)" },
-      { name: "Nitrogen Fixation Cost", latex: "N_2 + 8H^+ + 8e^- + 16\\ \\text{ATP} \\to 2NH_3 + H_2" },
-      { name: "Cation Exchange Capacity", latex: "\\text{CEC} \\; (\\text{cmol}_c/\\text{kg}) \\propto \\text{clay + organic matter content}" }
-    ],
-    sections: [
-      {
-        heading: "1. Essential Elements, Soil & Deficiency Diagnosis",
-        content: `An element is **essential** if (1) a plant cannot complete its life cycle without it, and (2) it has a specific function that no other element can replace (Arnon and Stout criteria).
-- **Macronutrients** are required at $\\ge 1\\ \\text{g/kg}$ dry mass: N, P, K, Ca, Mg, S plus C, H, O. **Micronutrients** are needed at ppm levels: Fe, Mn, Zn, Cu, B, Mo, Cl, Ni.
-- **Soil chemistry** governs availability. Clay and humus are negatively charged and adsorb cations, giving **cation exchange capacity**; roots release $H^+$ and organic acids to displace $Ca^{2+}$, $K^+$ and $Mg^{2+}$. pH controls solubility: iron and phosphate are insoluble at high pH, aluminium becomes toxic at low pH.
-- **Inorganic carbon, nitrogen and phosphorus cycles** must be named precisely: ammonification (decomposers release $NH_4^+$), nitrification (Nitrosomonas then Nitrobacter), denitrification (anaerobes return $N_2$), and mycorrhizal phosphate uptake.
-
-**Deficiency diagnosis** is a classic exam item because nutrient mobility differs:
-- **Mobile elements** (N, P, K, Mg) are retranslocated from older tissue, so deficiency appears first in **older leaves** — chlorosis begins at the leaf margins and veins remain green for Mg, while N gives uniform pale yellowing.
-- **Immobile elements** (Ca, Fe, B) cannot be moved, so deficiency appears in **young leaves** and meristems — Fe chlorosis whitens young interveinal tissue, Ca deficiency causes blossom-end rot and tipburn, B deficiency kills growing points.
-- Toxicity, not deficiency, is the usual problem for micronutrients (Mn, Cu, B), which is why their ranges are narrow.`
-      },
-      {
-        heading: "2. Root Uptake, the Casparian Strip & Nitrogen Fixation",
-        content: `**Two routes into the root**
-- The **apoplastic pathway** moves through cell walls and intercellular spaces; the **symplastic pathway** moves through cytoplasm via plasmodesmata after crossing a membrane.
-- The **Casparian strip** of suberin in the endodermis blocks the apoplastic route, forcing every ion through a selectively permeable membrane before it reaches the xylem — the plant's quality-control checkpoint. Endodermal uptake is energised by P-type $H^+$-ATPases that create a proton gradient; ions enter through specific transporters ($NO_3^-$ via NRT1/2 with 2 $H^+$; $K^+$ via KUP/HAK; phosphate via PHT with $H^+$).
-- **Root pressure and guttation** follow from active ion pumping into the xylem, which lowers $\\Psi_s$, draws water in, and pushes droplets from hydathodes at night.
-
-**Symbioses**
-- **Mycorrhizae**: arbuscular mycorrhizae (Glomeromycota) form arbuscules inside cortical cells and deliver phosphate, zinc and water for photosynthate; ectomycorrhizae form a Hartig net and dominate in temperate forests. Roughly 90% of land plants are mycorrhizal.
-- **Nitrogen fixation**: legumes secrete flavonoids, bacteria respond with **Nod factors**, root hairs curl and an infection thread forms. Nitrogenase catalyses $N_2 \\to 2NH_3$ at a cost of about **16 ATP per N2** and is irreversibly poisoned by $O_2$; **leghemoglobin** buffers oxygen, and nodule bacteroids rely on the dicarboxylate/malate shuttle. Associative fixation occurs in cyanobacteria (heterocysts), Frankia actinorhizae and free-living Azotobacter/Clostridium.`
-      },
-      {
-        heading: "3. Phloem Transport & Assimilate Allocation",
-        content: `**Munsch pressure-flow** (bulk flow hypothesis)
-1. **Phloem loading at the source**: sucrose is concentrated into sieve tubes, water follows osmotically from the xylem, so $\\Psi_p$ rises.
-2. **Pressure flows down the turgor gradient** through sieve tube elements linked by sieve plates.
-3. **Phloem unloading at the sink**: sucrose is removed, water returns to the xylem, and $\\Psi_p$ falls.
-
-Consequences you can calculate:
-- Flow depends on the **pressure gradient**, not on active transport along the whole path; phloem transport rates are roughly $0.3-1\\ \\text{m/h}$, far faster than diffusion ($\\sim 1\\ \\text{cm/day}$ in water).
-- **Loading mechanisms** differ: apoplastic loading uses a sucrose-$H^+$ symporter (SUT/SUC) powered by the plasma membrane pump; symplastic loading couples through plasmodesmata and a **polymer trap** converts sucrose to raffinose or stachyose in the companion cells; some species load passively by diffusion.
-- **Sink strength** sets allocation: growing apices, expanding leaves, fruits and storage organs compete. When a source leaf is removed, stored reserves remobilise and yield in the nearest sink drops.
-
-**Anatomy and structural evidence**
-- A sieve tube element loses its nucleus and most organelles at maturity but retains the plasma membrane and a **companion cell** attached by specialised plasmodesmata; the companion cell supplies ATP, RNA and proteins, and **P-proteins** plug damage.
-- Aphid stylet exudation provides the classic experimental demonstration of phloem transport under positive pressure.
-- **Parasitic plants** (Cuscuta, Striga) are phloem feeders, and the phloem is also the route by which viruses and viroids spread systemically.`
-      }
-    ]
-  },
-
-  {
-    id: "plant-8-growth-development",
-    domainId: "plant_bio",
-    title: "Plant Growth, Photomorphogenesis & Seed Germination",
-    subtitle: "Phytochrome, florigen, vernalisation, seed dormancy and hormone-controlled development",
-    level: "USABO Finalist / IBO",
-    xp: 150,
-    estimatedMinutes: 26,
-    prerequisites: ["plant-4-hormones", "plant-5-anatomy"],
-    sources: ["Taiz & Zeiger Ch. 16-23", "Raven's Biology of Plants Ch. 24-27", "Campbell Ch. 38-39"],
-    interactiveTool: null,
-    summary: "IBO lists growth and development and germination as required plant topics, and Raven and Taiz devote five chapters to light signalling and dormancy. This module covers phytochrome switching, blue-light responses, photoperiodism and florigen, vernalisation, meristem organisation and apical dominance, and the ABA/GA switch that decides whether a seed germinates.",
-    keyFormulas: [
-      { name: "Phytochrome Switching", latex: "P_r \\xrightarrow{660\\ \\text{nm}} P_{fr} \\xrightarrow{730\\ \\text{nm}} P_r" },
-      { name: "Phytochrome Photoequilibrium", latex: "P_{fr}/P_{total} \\approx 0.85 \\text{ under red light, } \\text{low in shade (low R:FR)}" },
-      { name: "Meristem Division Products", latex: "\\text{Apical meristem} \\to \\text{tunica (surface planes)} + \\text{corpus (anticlinal/periclinal)}" }
-    ],
-    sections: [
-      {
-        heading: "1. Light Signalling, Photomorphogenesis & Photoperiodism",
-        content: `**Phytochrome**
-- Phytochrome is a soluble chromoprotein with a bilin chromophore existing in two interconvertible forms: $P_r$ (absorbs $660\\ \\text{nm}$, biologically inactive) and $P_{fr}$ (absorbs $730\\ \\text{nm}$, active). Red light converts $P_r \\to P_{fr}$, far-red reverses it, so the final response depends on the **last light exposure** — the basis of red/far-red reversibility, the oldest experiment in plant photobiology.
-- Responses include seed germination (lettuce), stem elongation inhibition, leaf expansion, chloroplast development, anthocyanin accumulation and the **shade avoidance syndrome**: canopy shade has a low red:far-red ratio, shifting the photoequilibrium toward $P_r$ and triggering rapid stem extension.
-
-**Blue light** is perceived by phototropins (phot, phot1/phot2), cryptochromes and zeitlupe: they drive phototropism (shoot bending to light), stomatal opening (via H+-ATPase activation in guard cells), chloroplast movement, and circadian entrainment.
-
-**Photoperiodism and flowering**
-- **Short-day plants** (chrysanthemum, soybean) flower when the night exceeds a critical length; **long-day plants** (arabidopsis, spinach) flower when the night is shorter than the critical length. The **critical night length**, not day length, is what the plant measures — interrupting the night with a brief red flash prevents flowering in short-day plants, and far-red reverses the effect.
-- The leaf perceives the photoperiod and produces **FT protein (florigen)**, which travels in the phloem to the shoot apex and activates floral identity genes (AP1, LFY). CONSTANS stabilises FT mRNA under long days.
-- **Vernalisation** (cold requirement) is epigenetic: prolonged cold represses the floral repressor **FLC** through histone modification, permitting flowering in biennials such as winter wheat.
-- The **circadian clock** (CCA1/LHY, TOC1, GI feedback loop) gives an approximately 24-hour free-running rhythm that is entrained by light; it gates many of these responses.`
-      },
-      {
-        heading: "2. Seed Dormancy, Germination & the ABA/GA Switch",
-        content: `**Dormancy** prevents germination in the wrong season and is broken by:
-- **After-ripening** (dry storage), **stratification** (moist cold, $4\\ ^\\circ\\text{C}$), **scarification** (physical or acid abrasion of the seed coat), and light or smoke cues (karrikin signalling after fire).
-- The controlling balance is **ABA (dormant) versus gibberellin (germinating)**: ABA maintains embryo dormancy and desiccation tolerance; GA synthesised by the embryo after imbibition overrides it. Mutants unable to make ABA germinate prematurely (vivipary); ABA-insensitive mutants germinate without the cold requirement.
-
-**Germination sequence**
-1. **Imbibition** — water uptake is purely physical and drives seed swelling even in dead seeds.
-2. **Respiration rises** sharply; the pentose phosphate pathway supplies NADPH for reductive biosynthesis.
-3. In cereals the aleurone layer responds to GA from the embryo by secreting **alpha-amylase** into the endosperm, hydrolysing starch to maltose for the scutellum; this is the classic signal-transduction experiment (GA-replete half-seeds digest starch, GA-free half-seeds do not).
-4. The radicle emerges first (anchoring and water uptake), then the plumule; in epigeal germination the hypocotyl lifts the cotyledons (bean), in hypogeal germination they stay below ground (pea, maize).
-5. Light, temperature and nitrate act as environmental gates; phytochrome-mediated germination is why lettuce seeds need red light.
-
-**Desiccation tolerance** relies on LEA proteins, sucrose and raffinose glass formation inside the seed — the same protectants used in cryopreservation.`
-      },
-      {
-        heading: "3. Meristems, Apical Dominance & Senescence",
-        content: `**Meristem organisation**
-- The shoot apical meristem has a two-tier structure: the **tunica** (outer layers dividing anticlinally, forming epidermis and surface) and the **corpus** (inner cells dividing in all planes, forming the body). The organising centre expresses **WUSCHEL**, which maintains stem cells, while **CLAVATA3** signalling restricts the domain — the WUS-CLV3 negative feedback loop sets meristem size.
-- The root apical meristem has a **quiescent centre** that supplies the columella and vascular initials; the root cap senses gravity through statoliths (amyloplasts) and redistributes auxin to bend the root downward.
-
-**Regulation of form**
-- **Apical dominance**: auxin from the shoot apex suppresses lateral buds; decapitation releases them, and cytokinin applied directly to a bud substitutes for decapitation. Strigolactones reinforce the inhibition.
-- **Acid growth**: auxin activates plasma membrane H+-ATPases, apoplast pH falls, expansins loosen cellulose cross-links and turgor extends the wall — the mechanism of cell elongation.
-- Organogenesis depends on hormone ratios: a high **auxin:cytokinin** ratio induces roots in tissue culture, a low ratio induces shoots, and intermediate ratios callus.
-- **Secondary growth** comes from the vascular cambium (xylem inward, phloem outward) and cork cambium (periderm); annual rings reflect early-wood/late-wood density differences.
-
-**Senescence and death**
-- Ethylene triggers leaf abscission: an abscission zone forms, cellulases dissolve the separation layer, and chlorophyll degrades while carotenoids persist (autumn colours).
-- Fruit ripening is climacteric (ethylene burst, autocatalytic) in tomato, banana and apple and non-climacteric in citrus and grape.
-- Programmed cell death removes the suspensor, xylem vessel elements (lignified corpse) and root cap cells — compare with apoptosis in animals, which uses caspases rather than vacuolar proteases.`
-      }
-    ]
-  },
-
-  {
-    id: "animal-9-muscle-locomotion",
-    domainId: "animal_phys",
-    title: "Muscle Contraction, Excitation-Contraction Coupling & Locomotion",
-    subtitle: "Sliding filament, crossbridge cycle, T-tubule calcium release, fibre types and skeletal levers",
-    level: "USABO Finalist / IBO",
-    xp: 160,
-    estimatedMinutes: 28,
-    prerequisites: ["animal-1-neuro"],
-    sources: ["Vander's Human Physiology Ch. 9-11", "Guyton & Hall Ch. 6-8", "Campbell Ch. 49-50"],
-    interactiveTool: null,
-    summary: "IBO explicitly requires support and movement, and USABO animal physiology questions repeatedly test excitation-contraction coupling and the length-tension relationship. This module covers sarcomere ultrastructure, the crossbridge cycle, T-tubule/DHP-RyR signalling, twitch summation and tetanus, muscle fibre types, and the lever and skeleton systems that convert contraction into locomotion.",
-    keyFormulas: [
-      { name: "Sliding Filament Prediction", latex: "A\\ \\text{band constant}; \\; I\\ \\text{band and } H\\ \\text{zone shorten}" },
-      { name: "Mechanical Power", latex: "P = F \\cdot v" },
-      { name: "Muscle Mechanical Advantage", latex: "MA = \\frac{\\text{effort arm}}{\\text{load arm}}" }
-    ],
-    sections: [
-      {
-        heading: "1. Sarcomere Ultrastructure & the Crossbridge Cycle",
-        content: `**Ultrastructure**
-- A sarcomere runs Z-disc to Z-disc. **Thick filaments** are myosin II with heads and a bare central zone; **thin filaments** are actin with troponin and tropomyosin. **Titin** connects the Z-disc to the thick filament and provides passive elasticity; **nebulin** sets thin filament length.
-- Bands: the **A band** is the full thick filament length and never changes; the **I band** is thin-filament-only and shortens; the **H zone** is thick-filament-only and disappears in full contraction; the **M line** cross-links thick filaments.
-- **Sliding filament evidence**: A band constant, I band and H zone shrink, and thick/thin overlap increases — no filament shortens.
-
-**Crossbridge cycle**
-1. Myosin head bound to ADP + Pi attaches to actin (rigor state after ADP release).
-2. **ATP binding** detaches the head (the reason ATP is required for relaxation, and why rigor mortis follows ATP depletion).
-3. ATP hydrolysis cocks the head; $Ca^{2+}$ removes the troponin-tropomyosin block so the head can bind.
-4. **Power stroke** — phosphate release rotates the lever arm and slides the thin filament about 10 nm.
-5. ADP release completes the cycle.
-- Force per crossbridge is a few piconewtons; the number recruited sets total tension, and the cycle rate sets velocity, which is why force and velocity trade off.`
-      },
-      {
-        heading: "2. Excitation-Contraction Coupling & Mechanics",
-        content: `**Signal to contraction**
-1. An action potential reaches the **neuromuscular junction**, where voltage-gated $Ca^{2+}$ channels admit calcium and acetylcholine is released. ACh binds nicotinic receptors, generating an end-plate potential that triggers a muscle action potential. Curare blocks the receptor; acetylcholinesterase terminates the signal (inhibited by organophosphates).
-2. The action potential spreads along the sarcolemma and into **T-tubules**, where the voltage sensor **DHPR** mechanically opens **ryanodine receptors (RyR1)** on the sarcoplasmic reticulum — the basis of skeletal muscle's dependence on extracellular calcium being only indirect.
-3. $Ca^{2+}$ binds troponin C, tropomyosin shifts, and crossbridges cycle. **SERCA** pumps calcium back, so relaxation costs ATP.
-4. **Malignant hyperthermia** is a RyR1 gain-of-function; **dantrolene** blocks RyR1.
-
-**Mechanics**
-- A single twitch lasts tens of milliseconds; repeated stimulation before relaxation produces **summation** and then **tetanus** (fused, maximal tension). Cardiac muscle cannot tetanise because its action potential plateau and long refractory period prevent summation.
-- **Length-tension**: tension is maximal at optimal overlap (about $2.0-2.2\\ \\mu\\text{m}$ sarcomere length); too short, thin filaments collide at the Z-disc; too long, fewer crossbridges engage.
-- **Force-velocity**: light loads shorten fast, heavy loads shorten slowly, and at isometric load velocity is zero.
-- **Motor units** are recruited in order of size (Henneman's principle); **fibre types** differ: slow oxidative type I (myoglobin-rich, fatigue-resistant, postural), fast oxidative IIa, fast glycolytic IIx (power, rapid fatigue).
-- Energy: creatine phosphate buffers ATP for seconds, anaerobic glycolysis for about a minute, then oxidative phosphorylation. Fatigue involves Pi accumulation, $H^+$ from lactate, and impaired calcium handling — not simply lactate.`
-      },
-      {
-        heading: "3. Smooth, Cardiac Muscle & Skeletal Systems",
-        content: `**Smooth muscle**
-- Spindle-shaped cells without sarcomeres; contraction is regulated by **calmodulin-dependent myosin light-chain kinase**, so calcium comes from the SR and extracellular space, and phosphorylation activates crossbridges.
-- **Unitary (single-unit)** smooth muscle has gap junctions and contracts as a sheet (gut peristalsis, uterus); **multiunit** has discrete innervation (iris, piloerectors).
-- The **latch state** allows sustained force at low ATP cost, which is how sphincters and arterioles hold tone.
-- Nitric oxide relaxes vascular smooth muscle through cGMP and myosin light-chain phosphatase; $Ca^{2+}$ channel blockers reduce tone.
-
-**Cardiac muscle**
-- Striated, branched, with **intercalated discs** containing desmosomes and gap junctions, so the heart behaves as a functional syncytium. Calcium-induced calcium release (RyR2) amplifies the trigger calcium, and the plateau phase prevents tetanus.
-- **Frank-Starling** relates preload to stroke volume; contractility is graded by sympathetic calcium entry and by phosphorylation of troponin I and phospholamban.
-
-**Skeletal and locomotor systems**
-- **Levers**: bones are levers, joints are fulcrums, muscles supply effort. Most limb muscles work at mechanical disadvantage (small effort arm) trading force for speed and range; $MA = \\text{effort arm}/\\text{load arm}$.
-- **Antagonistic pairs** (biceps/triceps, flexor/extensor) are required because muscles can only pull. Origin is the fixed attachment, insertion the moving one; tendons transmit force, ligaments bind bone to bone.
-- **Hydrostatic skeletons** (annelids, nematodes) use coelomic fluid under pressure with circular and longitudinal muscle layers acting antagonistically.
-- **Exoskeletons** (arthropods) give protection and leverage but constrain growth, requiring ecdysis; insect flight muscles are asynchronous, contracting faster than nerve impulses.
-- Vertebrate skeletons are endoskeletal, with bone remodelled by osteoblasts and osteoclasts under PTH and calcitonin control, and cartilage providing low-friction joint surfaces.`
-      }
-    ]
-  },
-
-  {
-    id: "animal-10-sensory-systems",
-    domainId: "animal_phys",
-    title: "Sensory Systems: Photoreception, Hearing & Chemical Senses",
-    subtitle: "Receptor transduction, rod/cone phototransduction, cochlear tonotopy, olfaction and autonomic integration",
-    level: "USABO Finalist / IBO",
-    xp: 160,
-    estimatedMinutes: 28,
-    prerequisites: ["animal-1-neuro"],
-    sources: ["Vander's Human Physiology Ch. 7-8", "Guyton & Hall Ch. 47-54", "Campbell Ch. 49"],
-    interactiveTool: null,
-    summary: "IBO requires sense organs (eyes and ears) plus autonomic reflexes, which the app previously covered only at the membrane-biophysics level. This module builds sensory transduction from receptor potential to perception: adaptation and coding, phototransduction in rods and cones, cochlear frequency mapping and hair-cell mechanotransduction, olfaction and taste, and the autonomic and reflex circuits that act on the signal.",
-    keyFormulas: [
-      { name: "Weber-Fechner Law", latex: "S = k \\ln I" },
-      { name: "Sound Intensity in Decibels", latex: "dB = 20 \\log_{10} \\frac{P}{P_0}" },
-      { name: "Cochlear Place Coding", latex: "f \\propto e^{x} \\; (x = \\text{distance from base, Greenwood function})" }
-    ],
-    sections: [
-      {
-        heading: "1. Principles of Sensory Transduction",
-        content: `Every sense organ performs the same four steps: **stimulus capture, transduction into a receptor potential, encoding into spikes, and central processing**.
-- **Receptor classes**: mechanoreceptors (hair cells, Pacinian corpuscles, muscle spindles), thermoreceptors (TRP channels), photoreceptors (opsins), chemoreceptors (odorant and taste receptors), nociceptors (TRPV1, ASICs) and electroreceptors.
-- **Adequate stimulus** is the form of energy a receptor is tuned to; receptors can be excited by inappropriate stimuli (pressure on the eye produces phosphenes).
-- **Receptor potential is graded**, not all-or-none; the spike rate encodes intensity as a population code: stronger stimuli recruit more receptors (recruitment) and increase firing frequency (frequency coding).
-- **Adaptation**: tonic receptors fire continuously (pain, proprioception), phasic receptors fire at onset and offset and report change (Pacinian corpuscles, smell).
-- **Weber-Fechner law** — perceived intensity grows with the logarithm of stimulus intensity, so discrimination is proportional: you can detect a 5% change in a bright light but a large change in a dim one.
-- **Lateral inhibition** sharpens contrast: neighbour inhibition in the retina and somatosensory cortex converts a broad stimulus into an edge.
-- **Labelled lines** mean a signal's modality is determined by the pathway it enters, not by the stimulus itself.`
-      },
-      {
-        heading: "2. Vision: Optics & Phototransduction",
-        content: `**Optics**
-- Cornea provides about two-thirds of the refractive power; the lens fine-tunes **accommodation** via ciliary muscle and zonules (helmet-shaped in fish, rounded in mammals).
-- Myopia is corrected with a diverging lens, hyperopia with a converging lens; astigmatism is an unequal curvature; presbyopia is loss of lens elasticity with age.
-- The **fovea** contains only cones and gives highest acuity; the optic disc has no photoreceptors (blind spot); the pupil regulates light from about $2$ to $8\\ \\text{mm}$ diameter, changing retinal illumination by roughly 16-fold.
-
-**Phototransduction** — the canonical G-protein cascade
-1. A photon isomerises 11-cis retinal to all-trans retinal, activating **rhodopsin**.
-2. Rhodopsin activates **transducin** ($G_t$), which activates **phosphodiesterase-6**.
-3. PDE hydrolyses **cGMP**, and cGMP-gated $Na^+$ channels close.
-4. The cell **hyperpolarises** (the dark current stops), reducing glutamate release — light turns the photoreceptor *off*, the opposite of intuition.
-5. Recovery: arrestin binds opsin, rhodopsin kinase phosphorylates it, and guanylyl cyclase regenerates cGMP.
-- Amplification is enormous (one photon closes hundreds of channels), and the response is fast because it is a cascade rather than a second messenger change in membrane potential.
-- **Rods** have high sensitivity and slow recovery (night vision, no colour); **cones** have three opsin variants (short, medium, long wavelength) giving trichromatic colour vision and fast kinetics. Colour opponency arises in retinal ganglion cells (red-green, blue-yellow).
-- **Compound eyes** (insects) consist of ommatidia, each sampling one direction; resolution depends on ommatidial number while sensitivity depends on aperture and rhabdom size — the acuity/sensitivity tradeoff again.`
-      },
-      {
-        heading: "3. Hearing, Balance, Chemical Senses & Autonomic Integration",
-        content: `**Hearing**
-- Sound is a pressure wave; the pinna and ear canal funnel it to the tympanic membrane. The **ossicles (malleus, incus, stapes)** provide impedance matching, amplifying pressure about 22-fold so airborne sound can drive cochlear fluid.
-- **Cochlear tonotopy**: the basilar membrane is narrow and stiff at the base (high frequencies) and wide and floppy at the apex (low frequencies); the travelling wave peaks at a position set by frequency — the **place theory** of pitch. Outer hair cells amplify and sharpen the peak (cochlear amplifier); their loss causes presbycusis.
-- **Hair-cell transduction**: stereocilia tips are linked by **tip links** to mechanotransduction channels; deflection toward the kinocilium opens channels, $K^+$ flows in driven by the $+80\\ \\text{mV}$ endocochlear potential, and the cell depolarises. Bundle deflection away closes them.
-- Conductive deafness affects the outer/middle ear; sensorineural deafness affects hair cells or the eighth nerve; ototoxic drugs (aminoglycosides, loop diuretics) damage hair cells irreversibly.
-
-**Balance** — vestibular maculae detect linear acceleration and head tilt via otoliths; cristae in semicircular canals detect rotational acceleration through cupula deflection.
-
-**Chemical senses**
-- **Olfaction**: odorants bind a very large GPCR family; cAMP opens a cyclic-nucleotide-gated channel, depolarising the receptor. Each receptor cell expresses one receptor type, and the glomerular map in the olfactory bulb is spatially organised.
-- **Taste**: T1R dimers detect sweet and umami, T2R detect bitter, ion channels detect salt and acid; T2R cells use PLC/IP3 and TRPM5.
-- **Nociception** uses TRPV1 (heat/capsaicin), ASICs (acid) and bradykinin-sensitised channels.
-
-**Autonomic integration**
-- The **hypothalamus** is the homeostatic integrator; the **medulla** houses vital reflex centres (cardiorespiratory, swallowing).
-- **Sympathetic** preganglionic fibres are short, acetylcholine at nicotinic ganglia then norepinephrine at $\\alpha$/$\\beta$ adrenergic receptors (adrenal medulla releases epinephrine); **parasympathetic** fibres are long, with ACh at nicotinic ganglia and muscarinic receptors at targets, dominant at rest.
-- A **reflex arc** needs a receptor, afferent, integration centre, efferent and effector; the knee-jerk is monosynaptic, while withdrawal reflexes are polysynaptic and crossed-extensor.`
-      }
-    ]
-  },
-
-  {
-    id: "animal-11-homeostasis-thermoregulation",
-    domainId: "animal_phys",
-    title: "Homeostasis, Thermoregulation, Osmoregulation & Blood",
-    subtitle: "Feedback control, Q10, countercurrent heat exchange, osmotic strategies, nitrogenous waste and haemostasis",
-    level: "USABO Finalist / IBO",
-    xp: 160,
-    estimatedMinutes: 28,
-    prerequisites: ["animal-3-renal", "animal-8-endocrine"],
-    sources: ["Vander's Human Physiology Ch. 5, 15-18", "Guyton & Hall Ch. 73-75", "Campbell Ch. 40, 44", "Raven's Biology of Plants Ch. 30"],
-    interactiveTool: null,
-    summary: "Homeostasis, thermoregulation and osmoregulation are required IBO animal topics, and the app previously treated them only inside the kidney. This module covers feedback control as a formal concept, heat exchange and Q10 with ectotherm and endotherm strategies, osmotic strategies across marine, freshwater and terrestrial environments, nitrogenous waste economics, and blood composition with haemostasis and lymph flow.",
-    keyFormulas: [
-      { name: "Q10 Temperature Coefficient", latex: "Q_{10} = \\left( \\frac{R_2}{R_1} \\right)^{10/(T_2 - T_1)}" },
-      { name: "Osmotic Pressure", latex: "\\pi = iCRT" },
-      { name: "Filtration Flow", latex: "J_v = K_f[(P_c - P_i) - \\sigma(\\pi_c - \\pi_i)]" }
-    ],
-    sections: [
-      {
-        heading: "1. Feedback Control & Set Points",
-        content: `Homeostasis maintains internal variables within functional tolerances by balancing input and output — it is not a static state but a dynamic equilibrium.
-- **Negative feedback** is the dominant architecture: a deviation triggers a response that opposes it (baroreceptor reflex, insulin, thermoregulation). It requires a sensor, an integrating centre, an effector and a communication route (neural or hormonal).
-- **Positive feedback** amplifies the deviation and must terminate (oxytocin during parturition, clotting cascade, action potential upstroke).
-- **Feedforward** anticipates: the smell of food triggers insulin release before glucose rises.
-- **Set point** is enforced by a hypothalamic reference; fever shows that the set point itself is shifted by pyrogens (IL-1, PGE2), and antipyretics inhibit cyclooxygenase to reset it.
-- **Antagonistic control** gives fine resolution: insulin/glucagon balance blood glucose, calcitonin/PTH balance calcium, sympathetic/parasympathetic balance heart rate.
-- **Circadian rhythm** modulates set points — cortisol peaks before dawn, body temperature minimum precedes waking, and a time-of-day variable is a classic data-interpretation trap.
-- **Allostasis** extends the concept to predictive regulation (immunological, behavioural) and is worth naming in an essay answer.`
-      },
-      {
-        heading: "2. Thermoregulation",
-        content: `**Heat exchange** occurs by four routes: **conduction** (direct contact), **convection** (moving fluid), **radiation** (electromagnetic) and **evaporation** (high latent heat, $2260\\ \\text{J/g}$ water) — the last is the only route that works at high ambient temperature and depends on humidity.
-
-**Ectotherms versus endotherms**
-- Ectotherms derive most heat from environment; rate processes follow $Q_{10}$, typically 2-3, so behaviour (basking, burrowing, posture) becomes thermoregulation. Their advantages are low energy cost (about 5-10% of endotherm cost) and long fasting capacity; their limits are activity at low temperature.
-- Endotherms generate heat by metabolism, raising the basal metabolic rate roughly 5-10 fold. **Shivering thermogenesis** uses futile muscle cycling; **non-shivering thermogenesis** uses brown adipose tissue, where UCP1 uncouples the ETC so protons leak without ATP production.
-
-**Mechanisms**
-- **Countercurrent heat exchange**: arteries and veins in a rete mirabile run in opposite directions, so venous blood picks up heat from arterial blood; heat is retained in the core in arctic birds and in the swim bladder of fish, and the same principle concentrates oxygen in the rete of the fish gas gland.
-- **Neurohormonal control**: hypothalamic thermostat compares core temperature to set point; cold triggers TRPM8/TRPV8 signals, shivering, vasoconstriction, piloerection and thyroxine/epinephrine release; heat triggers vasodilation, sweating (sympathetic cholinergic fibres, unique to primates) and panting.
-- **Body size**: surface area scales as $M^{2/3}$, heat production roughly as $M^{3/4}$, so small endotherms lose heat faster and must either increase mass with latitude (Bergmann's rule) or reduce appendages (Allen's rule). Hibernation, torpor and daily heterothermy cut demand.
-- **Fever** is a regulated rise in set point; hyperthermia is uncontrolled heat gain (heat stroke), where evaporation fails and the set point is normal.`
-      },
-      {
-        heading: "3. Osmoregulation, Blood & Lymphatics",
-        content: `**Osmotic strategies**
-- **Osmoconformers** (most marine invertebrates, hagfish) match internal osmolarity to seawater; **osmoregulators** maintain a different internal concentration at a metabolic cost.
-- **Marine teleosts** lose water osmotically to seawater, drink continuously, absorb salts in the intestine, and excrete excess salt through **chloride cells** in the gill; they produce little urine.
-- **Freshwater teleosts** gain water osmotically, produce copious dilute urine, and actively take up ions via gill $Na^+/H^+$ and $Cl^-/HCO_3^-$ exchange.
-- **Anadromous** fish (salmon) remodel gill pumps and permeability during migration; **euryhaline** species tolerate wide ranges while **stenohaline** do not. Terrestrial animals must conserve water by producing concentrated urine (loop of Henle length correlates with habitat dryness) and by minimising evaporative loss (cuticle, keratin, uricotely).
-- **Nitrogenous waste** options trade energy against water: ammonia needs the most water (highly toxic, excreted by aquatic animals), urea costs about 3 ATP per nitrogen but is less toxic (elasmobranchs, mammals, adult amphibians), uric acid costs far more energy but is nearly insoluble (birds, reptiles, insects, desert species) — the classic qualitative question.
-- Elasmobranchs retain **urea and TMAO** as an organic osmolyte strategy; halophytes and succulents use compartmentalised ions and organic solutes to cope with saline soils.
-
-**Blood**
-- Plasma (about 55% of volume) carries ions, proteins (albumin, globulins, fibrinogen), glucose, lipids and hormones; cells are erythrocytes (haematocrit about 45%), leukocytes and platelets.
-- **Haemostasis** runs in stages: vascular spasm, platelet plug (von Willebrand factor, ADP, thromboxane A2), then the coagulation cascade — intrinsic and extrinsic paths converge on prothrombin to thrombin, which converts fibrinogen to fibrin, stabilised by factor XIII. Calcium is required at multiple steps, which is why citrate anticoagulates blood.
-- **Lymphatics** return interstitial fluid through one-way valves to subclavian veins; Starling forces govern exchange — filtration driven by capillary pressure, reabsorption by oncotic pressure, with a net small filtrate that lymphatics must recover.
-- Blood typing and transfusion reactions follow from antigens (ABO, Rh) and preformed antibodies, with haemolytic disease of the newborn in Rh incompatibility.`
-      }
-    ]
-  },
-
-  // ==================== ADDED: GAP FILL (GENETICS/EVOLUTION, ECOLOGY, ETHOLOGY, BIOSYSTEMATICS) ====================
-  {
-    id: "genetics-5-meiosis-mutation",
-    domainId: "genetics",
-    title: "Meiosis, Chromosomal Rearrangements & Mutation Repair",
-    subtitle: "Prophase I machinery, nondisjunction, aneuploidy, mutation classes and DNA repair pathways",
-    level: "USABO Finalist / IBO",
-    xp: 140,
-    estimatedMinutes: 26,
-    prerequisites: ["genetics-1-mapping"],
-    sources: ["Pierce: Genetics Ch. 2, 8, 17-18", "Alberts MBoC Ch. 5, 6", "Campbell Ch. 13, 15"],
-    interactiveTool: null,
-    summary: "IBO lists meiosis I and II, crossing over, mutation and modification as core genetics, but the app previously reached meiosis only inside linkage mapping. This module covers the mechanics of meiotic division, the origins of aneuploidy and structural rearrangement, sex-linked inheritance and dosage compensation, and the mutation and repair pathways that set the mutation rate.",
-    keyFormulas: [
-      { name: "Independent Assortment", latex: "\\text{Gamete combinations} = 2^n \\quad (n = \\text{haploid chromosome number})" },
-      { name: "Chromosome Content", latex: "\\text{Meiosis I: } 2n \\to n \\; \\text{(sister chromatids remain attached)}" },
-      { name: "Expected Aneuploidy Source", latex: "\\approx 90\\% \\text{ of trisomies arise from maternal meiosis I nondisjunction}" }
-    ],
-    sections: [
-      {
-        heading: "1. Meiosis I and II: Mechanics",
-        content: `**Prophase I substages**
-- **Leptotene**: chromosomes condense. **Zygotene**: homologous chromosomes pair into synapsis, held by the **synaptonemal complex** (SYCP1/2/3, cohesin REC8). **Pachytene**: crossing over occurs, forming **chiasmata**; in humans there are about 1-3 crossovers per chromosome arm, and at least one per arm is required for correct segregation. **Diplotene**: the complex dissolves but chiasmata remain as physical links. **Diakinesis**: condensation completes and the nuclear envelope breaks down.
-- **Crossing over** is initiated by SPO11-induced double-strand breaks and repaired by homologous recombination; this is the source of genetic map distance, and interference reflects crossover spacing control.
-
-**The divisions**
-- **Metaphase I**: homologous pairs (bivalents) align, and their orientation is random and independent — the basis of independent assortment, giving $2^{23} \\approx 8.4 \\times 10^6$ combinations in humans before recombination.
-- **Anaphase I**: homologues separate, but sister chromatids remain joined by centromeric cohesin protected by **shugoshin**; separase cleaves only the arm cohesin.
-- **Meiosis II** is equational: sister chromatids separate, producing four haploid cells with half the DNA of a somatic $G_1$ cell.
-- **Gametogenesis**: spermatogenesis yields four sperm; oogenesis yields one ovum and two or three polar bodies, with the first meiotic division completed only at ovulation and the second only at fertilisation.
-- Key contrast with mitosis: pairing and crossing over, two divisions, haploid daughter cells, and no replication between divisions.`
-      },
-      {
-        heading: "2. Nondisjunction, Rearrangements & Sex Linkage",
-        content: `**Aneuploidy**
-- **Nondisjunction** at meiosis I (homologues fail to separate) or meiosis II (sisters fail) produces $n+1$ and $n-1$ gametes. About 90% of trisomies arise in maternal meiosis I, and maternal age is the strongest risk factor.
-- Autosomal trisomies: **Down syndrome (21)**, **Edwards (18)**, **Patau (13)**; sex-chromosome aneuploidies are better tolerated because of X inactivation — **Turner (XO)**, **Klinefelter (XXY)**, **XYY**, and triploid/tetraploid states abort early.
-- **Polyploidy** is common in plants and central to plant speciation: autopolyploidy (duplicated genome of one species) and allopolyploidy (hybrid genome, e.g., bread wheat at $6n$).
-
-**Structural rearrangements**
-- **Deletion** (loss, e.g., 5p cat-cry), **duplication** (gene family expansion), **inversion** (suppresses recombination in heterozygotes, a speciation mechanism), **translocation** (Robertsonian fusions reduce chromosome number; Philadelphia chromosome t(9;22) creates BCR-ABL).
-- Fragile sites (FMR1) break under replication stress.
-
-**Sex linkage and dosage**
-- X-linked recessive disorders (haemophilia, red-green colour blindness, Duchenne) show criss-cross inheritance: affected males, carrier females, no male-to-male transmission. Y-linked traits pass strictly father to son.
-- **X inactivation** (Lyon hypothesis) silences one X in females via **XIST** RNA and heterochromatin; the inactive X forms the **Barr body**. Calico cats and X-linked mosaicism are its visible consequences; skewing produces variable expression.
-- **Genomic imprinting** (IGF2/H19, Prader-Willi vs Angelman) depends on parent of origin; **mitochondrial inheritance** is maternal, heteroplasmic and thresholds effects, and meiotic drive distorts transmission ratios.`
-      },
-      {
-        heading: "3. Mutation Classes & DNA Repair",
-        content: `**Point mutations**
-- **Transitions** (purine to purine) are more common than **transversions**.
-- **Missense** changes an amino acid; **nonsense** creates a stop codon; **silent** leaves the protein unchanged but can alter splicing or codon usage; **frameshift** insertion or deletion of a non-multiple-of-three length scrambles all downstream codons.
-- Consequences at the protein level: sickle cell disease is a single missense (Glu6Val in beta-globin); **trinucleotide repeat expansion** (CAG in Huntington's, CGG in fragile X, GAA in Friedreich ataxia) shows anticipation.
-- **Mutagens**: UV light creates **cyclobutane pyrimidine dimers and 6-4 photoproducts**; alkylating agents (EMS, mustard gas) cause transitions; intercalators (ethidium) cause frameshifts; ionising radiation causes double-strand breaks; reactive oxygen causes 8-oxoguanine.
-
-**Repair pathways**
-- **Direct reversal**: photolyase in bacteria and plants photoreactivates dimers (not present in humans).
-- **Mismatch repair (MMR)**: MutS/MutL recognise replication mismatches; loss causes Lynch syndrome.
-- **Base excision repair (BER)** removes oxidised and deaminated bases.
-- **Nucleotide excision repair (NER)** removes bulky adducts; loss causes **xeroderma pigmentosum**.
-- **Double-strand break repair**: homologous recombination (error-free, needs a sister chromatid) or non-homologous end joining (fast but error-prone); BRCA1/2 are HR defects; p53 induces apoptosis when damage is irreparable.
-- **Transposons**: Ac/Ds and Mu in maize (McClintock), P elements in Drosophila, Alu and L1 in humans; retrotransposons move via RNA, DNA transposons by cut-and-paste; the RAG system that builds antibodies evolved from a transposon.
-- Spontaneous mutation rate is roughly $10^{-8}$ per base per generation in humans, and the **Ames test** uses auxotrophic Salmonella reversion to screen mutagenicity.`
-      }
-    ]
-  },
-
-  {
-    id: "genetics-6-natural-selection-speciation",
-    domainId: "genetics",
-    title: "Natural Selection, Adaptation & Speciation",
-    subtitle: "Fitness, selection modes, reproductive isolating mechanisms, hybrid zones and the origin of species",
-    level: "USABO Finalist / IBO",
-    xp: 150,
-    estimatedMinutes: 28,
-    prerequisites: ["genetics-2-popgen", "genetics-3-mendelian-extensions"],
-    sources: ["Futuyma: Evolution Ch. 2-3, 9, 12-17", "Campbell Ch. 22-25", "Pierce Ch. 25-26"],
-    interactiveTool: null,
-    summary: "The IBO evolution list names mutation, natural selection, reproductive isolation, adaptation and fitness explicitly, while the app previously reached evolution only through population-genetic algebra. This module covers selection at the phenotype level, the evidence for adaptation, drift and gene flow, speciation modes and isolating mechanisms, hybrid zones and reinforcement, plus macroevolutionary patterns including adaptive radiation and mass extinction.",
-    keyFormulas: [
-      { name: "Selection as Fitness Differential", latex: "\\Delta \\bar{w} = \\frac{\\mathrm{Cov}(z, w)}{\\bar{w}}" },
-      { name: "Fitness Components", latex: "w = \\text{survival} \\times \\text{mating success} \\times \\text{fecundity}" },
-      { name: "Hybrid Zone Width", latex: "\\text{width} \\propto \\frac{1}{\\text{selection against hybrids}} \\left( \\text{balance with migration} \right)" }
-    ],
-    sections: [
-      {
-        heading: "1. Selection, Fitness & the Evidence for Adaptation",
-        content: `Darwin's four postulates: individuals vary, variation is heritable, more offspring are produced than survive, and survival/reproduction is non-random with respect to the trait. Together they force change in allele frequency.
-- **Fitness** is relative, measured as the contribution of a genotype to the next generation, decomposed into survival, mating success and fecundity. Absolute fitness sets population growth; relative fitness drives allele frequency change.
-- **Modes of selection**: directional (mean shifts, e.g., beak depth during drought in *Geospiza*, industrial melanism), stabilising (variance reduced, human birth weight), disruptive (bimodal extremes favoured, beak polymorphism in African seedcrackers), and balancing (heterozygote advantage in sickle-cell heterozygotes; frequency-dependent selection in scale-eating fish and MHC loci).
-- **Sexual selection** is a special case: intersexual choice and intrasexual combat can oppose viability selection, producing ornaments, armaments and sexual dimorphism. Mate choice can be arbitrary (Fisherian runaway), honest (handicap principle) or direct-benefit.
-- **Evidence for adaptation** must go beyond plausibility: comparative method, experimental manipulation (stickleback armour and spines transplanted between predation regimes), inoculation experiments, and the fossil record. **Exaptation** is a trait co-opted for a new function (feathers before flight).
-- **Constraints** limit optima: phylogenetic history, allometry, trade-offs, developmental and energetic budgets.
-- **Experimental evolution**: *E. coli* long-term evolution gives measurable fitness increases; antibiotic resistance is the classroom case of selection acting on existing variation and later on new mutations.`
-      },
-      {
-        heading: "2. Drift, Gene Flow & Population Differentiation",
-        content: `Selection is only one of four evolutionary forces; the others are mutation, genetic drift and gene flow, and only selection makes adaptation.
-- **Genetic drift** is sampling error in finite populations: allele frequencies fluctuate, alleles fix or are lost by chance, and its variance is inversely proportional to the **effective population size** $N_e$. Drift is strongest in small populations, so it dominates in bottlenecked species and during founder events.
-- **Bottlenecks and founder effects** reduce diversity and can increase the frequency of harmful recessives (Cheetah, Pingelap achromatopsia, Afrikaner porphyria).
-- **Inbreeding** raises homozygosity and exposes deleterious recessives — inbreeding depression — while **outcrossing** can produce heterosis (hybrid vigour), which is the basis of hybrid maize.
-- **Gene flow** homogenises populations; its balance with drift is captured by $F_{ST} = 1/(4N_e m + 1)$, so even one migrant per generation prevents strong differentiation.
-- **Clines** in allele or phenotype frequency record the relative strengths of selection and dispersal (bistoury, human lactase persistence, melanism in deer mice).
-- **Molecular signatures**: a selective sweep reduces diversity around the selected locus; purifying selection keeps protein-coding genes conserved ($d_N/d_S \\ll 1$).
-- **Quantitative traits** respond according to the breeder's equation $R = h^2 S$, where $h^2$ is narrow-sense heritability and $S$ the selection differential — and $h^2$ is itself environment-dependent.`
-      },
-      {
-        heading: "3. Speciation, Hybrid Zones & Macroevolution",
-        content: `**Species concepts** differ in what they measure: **biological** (reproductive isolation, apply cautiously to asexuals and fossils), **morphological**, **phylogenetic**, and **ecological** (niche difference).
-
-**Isolating mechanisms**
-- **Prezygotic**: habitat/ecological, temporal, behavioural, mechanical, gametic incompatibility.
-- **Postzygotic**: hybrid inviability, hybrid sterility (Haldane's rule: the heterogametic sex is affected first), hybrid breakdown in later generations.
-- **Reinforcement** sharpens prezygotic barriers when hybrids are unfit — the reason character displacement is seen in sympatry but not allopatry.
-
-**Modes of speciation**
-- **Allopatric** with vicariance (river, mountain, glaciation) or dispersal: geographic isolation removes gene flow and drift plus divergent selection complete the split.
-- **Peripatric** speciation is founder-driven at the edge; **sympatric** requires mechanisms that break gene flow in one place: polyploidy (especially plants, instantaneous speciation), host shifts (apple maggot), seasonal shifts, or strong assortative mating.
-- **Hybrid zones** form where diverged populations meet; their width reflects a balance between dispersal and selection against hybrids, and they can move through a species' range as climate shifts.
-
-**Macroevolution**
-- **Adaptive radiation** follows ecological opportunity (Galápagos finches, cichlids of African lakes, Hawaiian honeycreepers, mammals after dinosaurs).
-- **Punctuated equilibrium** versus gradualism is a claim about *pattern*, not about mechanism.
-- **Mass extinctions** (five major events) reset diversity and are followed by radiation; background extinction rates differ by orders of magnitude from mass extinction events.
-- **Origins**: the RNA world hypothesis, the Miller-Urey experiment (reduced gas mixture constraint), the first cells and endosymbiotic theory (mitochondria from alpha-proteobacteria, chloroplasts from cyanobacteria).
-- **Evo-devo**: Hox gene colinearity and heterochrony explain morphology changes without inventing new genes; **molecular clocks** convert sequence difference into time, calibrated with fossils.`
-      }
-    ]
-  },
-
-  {
-    id: "eco-4-community-succession",
-    domainId: "ecology",
-    title: "Community Structure, Keystone Species & Succession",
-    subtitle: "Niches, food webs, trophic cascades, disturbance regimes and primary versus secondary succession",
-    level: "USABO Finalist / IBO",
-    xp: 130,
-    estimatedMinutes: 24,
-    prerequisites: ["eco-1-dynamics"],
-    sources: ["Begon, Townsend & Harper: Ecology Ch. 8-11", "Campbell Ch. 54", "Futuyma Ch. 19"],
-    interactiveTool: null,
-    summary: "The IBO ecology list includes community structure and ecosystems, and USABO writes data questions about food webs and succession. This module covers the niche concept, competitive exclusion and resource partitioning, the roles of dominant, keystone and foundation species, trophic cascades and food-web metrics, disturbance and diversity, and the models of primary and secondary succession.",
-    keyFormulas: [
-      { name: "Shannon Diversity Index", latex: "H' = -\\sum p_i \\ln p_i" },
-      { name: "Pielou Evenness", latex: "J' = \\frac{H'}{\\ln S}" },
-      { name: "Species Richness Scaling", latex: "S = c A^z \\; (z \\approx 0.15-0.35 \\text{ for islands})" }
-    ],
-    sections: [
-      {
-        heading: "1. Niches, Competition & Community Roles",
-        content: `**The niche**
-- A **fundamental niche** is the full range of conditions a species could occupy without competitors; a **realized niche** is the part actually occupied after biotic interactions — Hutchinson's hypervolume formalised this.
-- **Competitive exclusion** means two species cannot coexist indefinitely on one limiting resource; coexistence requires **resource partitioning** or a trade-off (competition-colonisation trade-off in metacommunities).
-- **Character displacement** documents niche evolution where ranges overlap (Darwin's finches, sticklebacks, *Anolis* lizards).
-- **Lotka-Volterra competition** gives the coexistence condition $\\alpha_{12} < K_1/K_2$ and $\\alpha_{21} < K_2/K_1$: each species must limit itself more than it limits the other.
-
-**Community roles**
-- **Dominant species** are the most abundant and control biomass; **keystone species** have disproportionate influence relative to abundance — the classic experiment is Paine's removal of *Pisaster* starfish, which collapsed mussel-bed diversity.
-- **Foundation species** physically create habitat (corals, kelp, beavers, prairie dogs); **ecosystem engineers** modify resource availability.
-- **Trophic levels and food webs**: connectance and linkage density measure web complexity; omnivory and intraguild predation weaken simple trophic-level models.
-- **Trophic cascades** occur when a top predator changes herbivore behaviour or abundance and therefore plant biomass (sea otters and kelp, wolves and riparian willows, dingoes and small mammals).
-- **Diversity metrics** must distinguish richness (number of species) from evenness (how similar abundances are); two communities with the same richness can differ sharply in $H'$.`
-      },
-      {
-        heading: "2. Disturbance, Dynamics & Diversity Patterns",
-        content: `- **Intermediate disturbance hypothesis** predicts maximum diversity at intermediate frequency and intensity, because low disturbance allows competitive exclusion and high disturbance excludes slow colonisers.
-- **Disturbance ecology** recognises fire, windthrow, flood, grazing and disease as regime features; many communities are **disturbance-dependent** (longleaf pine savannas, Mediterranean shrublands).
-- **Metapopulations** are sets of local populations linked by dispersal; persistence depends on colonisation exceeding local extinction, and the Levins model gives an equilibrium fraction of occupied patches.
-- **Species-area relationship** $S = cA^z$ underlies reserve design and explains why habitat loss drives extinction; z is steeper for islands than for nested mainland samples.
-- **Diversity gradients**: tropical high diversity correlates with energy, area, stability and evolutionary time; the latitudinal gradient is the largest pattern in ecology.
-- **Edge effects** alter light, wind, humidity and predation at habitat boundaries and reduce effective core area.
-- **Priority effects** show that assembly order can determine the final community, so identical habitats can end in different stable states (alternative stable states, hysteresis).`
-      },
-      {
-        heading: "3. Succession: Primary, Secondary & Models",
-        content: `**Succession** is directional change in community composition over time after disturbance.
-- **Primary succession** starts on substrate without soil (bare rock, lava, glacial till); **secondary succession** starts where soil remains (abandoned fields, burned forest) and is much faster because seed banks and nutrients persist.
-- **Chronosequence example** — Glacier Bay, Alaska: pioneer *Dryas* and lichens fix nitrogen and trap organic matter, alder adds nitrogen through symbiosis, spruce then hemlock shade out the pioneers. Each stage changes the environment in ways that favour or exclude later species.
-
-**Three explanatory models**
-1. **Facilitation (Clementsian)** — early species improve conditions for later ones; the mechanism dominates primary succession.
-2. **Tolerance** — late species tolerate low resources and simply outlast pioneers; succession is driven by life-history differences.
-3. **Inhibition** — early species suppress competitors, so priority effects matter and succession may stall.
-- **Clements versus Gleason**: Clements argued for a deterministic climax community (a superorganism); Gleason argued for individualistic responses and no fixed endpoint. Modern ecology favours the individualistic view with multiple possible stable states.
-
-**What succession changes**
-- Biomass and canopy height rise, species richness often peaks at intermediate stage, soil organic matter and nitrogen accumulate, light at ground level falls, and species composition shifts from $r$-selected pioneers (high dispersal, rapid growth, short life) to $K$-selected late seral species (competitive, long-lived, shade tolerant).
-- **Restoration ecology** relies on succession theory: remove the inhibitor (overgrazing, invasive grass), reintroduce propagules, restore hydrology and fire regime, then let succession proceed — with monitoring against a reference ecosystem.`
-      }
-    ]
-  },
-
-  {
-    id: "eco-5-biomes-conservation",
-    domainId: "ecology",
-    title: "Climate, Biomes, Biogeography & Conservation Biology",
-    subtitle: "Hadley circulation, biome contrasts, species ranges, HIPPO threats and reserve design",
-    level: "USABO Finalist / IBO",
-    xp: 130,
-    estimatedMinutes: 24,
-    prerequisites: ["eco-2-ecosystems"],
-    sources: ["Begon, Townsend & Harper: Ecology Ch. 1-4, 22", "Campbell Ch. 52-56", "Ricklefs: The Economy of Nature"],
-    interactiveTool: null,
-    summary: "The IBO ecology list continues into ecosystems, biomes and conservation, which the app previously covered only as energy flow. This module covers the climatic machinery that produces biomes, the diagnostic features of major terrestrial and aquatic biomes, the patterns and limits of species ranges, and the conservation toolbox: threats, extinction vortex, viability analysis, reserve design and ecosystem services.",
-    keyFormulas: [
-      { name: "Species-Area Relationship", latex: "S = cA^z" },
-      { name: "Maximum Sustainable Yield", latex: "\\text{MSY} = \\frac{rK}{4} \\; \\text{at } N = \\frac{K}{2}" },
-      { name: "Population Viability Decline", latex: "\\text{extinction risk} \\propto \\frac{1}{N_e} \\text{ and increases with variance}" }
-    ],
-    sections: [
-      {
-        heading: "1. Climate, Biomes & Productivity",
-        content: `**Atmospheric circulation** sets the biome template:
-- Solar heating is maximal at the equator, producing rising air, low pressure and heavy rain — the **Hadley cell**. Air descends at roughly $30^\\circ$ latitude, creating the subtropical high-pressure deserts; the **Coriolis effect** deflects winds, and jets steer weather systems.
-- **Rainshadows** form on the lee of mountains (Hawaii, the Gobi, the eastern Sierra), and **ocean currents** moderate coastal climates (Gulf Stream, Humboldt, Benguela upwelling).
-- The **Whittaker diagram** plots mean temperature against precipitation; isopleths of biome type follow from that combination, which is why the same biome appears on different continents.
-
-**Terrestrial biomes** and their diagnostic traits: tropical rainforest (high diversity, closed canopy, low seasonality), tropical seasonal forest and savanna (grass-fire-grazer feedback), hot and cold desert (succulence, CAM, nocturnal activity), chaparral/Mediterranean (sclerophyll, fire-adapted), temperate grassland (mollisols, deep roots), temperate deciduous forest (seasonal leaf drop), taiga/boreal forest (conifers, permafrost margins), tundra (short growing season, cryoturbation).
-
-**Aquatic biomes**: lake zonation (littoral, limnetic, profundal, benthic) and turnover in dimictic lakes; wetlands as nutrient and carbon sinks; estuaries as salinity gradients and nurseries; intertidal zonation by desiccation and competition (Connell's barnacle experiment); coral reefs as endosymbiosis between corals and zooxanthellae, limited to warm shallow water; open ocean with photic and aphotic zones; **upwelling** regions that support the world's largest fisheries.
-
-**Net primary productivity** is limited by light, water, nutrients (nitrogen and phosphorus) and temperature; ocean NPP is mostly limited by nitrogen and iron, and NPP declines from equator to poles.`
-      },
-      {
-        heading: "2. Biogeography & the Limits of Ranges",
-        content: `**Patterns**
-- **Species-area**: larger areas hold more species because they sample more habitats and support larger populations; $S = cA^z$.
-- **Island biogeography** (MacArthur and Wilson) balances immigration against extinction; equilibrium richness rises with area and falls with distance (already formalised in the predation module).
-- **Endemism** concentrates on islands and ancient landscapes; **biodiversity hotspots** hold many endemics in small areas under high threat.
-- **Provinciality** reflects barriers and historical contingency: the Wallace line separates Asian and Australasian faunas because deep water prevented dispersal.
-
-**Limits to ranges**
-- A range boundary can be set by physiological tolerance, resource availability, biotic competition, dispersal limitation or demography — distinguishing them requires reciprocal transplant experiments, common gardens or range-edge sampling.
-- **Phenology** shifts with warming (earlier leaf-out, mistimed bird migration, no-analogue communities). **Climate envelope (niche) models** project potential ranges but ignore evolution, dispersal lags and biotic interactions, which is their main weakness.
-- **Invasion biology**: introduced species establish when propagule pressure, abiotic match and enemy release coincide; most introductions fail and a small fraction become harmful (tens rule).
-- **Range shifts** and range collapse under climate change are now standard exam data: species track isotherms at roughly $1-2\\ \\text{km/year}$ or upslope as temperatures rise.`
-      },
-      {
-        heading: "3. Conservation Biology & Ecosystem Services",
-        content: `**Threats (HIPPO)**
-1. **Habitat loss and fragmentation** — the largest driver; fragmentation reduces core area, increases edge, and isolates populations.
-2. **Invasive species** — competition, predation and disease; island floras and faunas are most vulnerable.
-3. **Pollution** — nutrients, pesticides, plastics, light and noise; bioaccumulation and biomagnification concentrate lipophilic toxins up trophic levels (DDT, PCBs, methylmercury).
-4. **Human population growth and resource extraction**.
-5. **Overexploitation** — fisheries collapse, bushmeat, wildlife trade.
-- Climate change compounds all of these and shifts species ranges and phenology.
-
-**Small-population biology**
-- The **extinction vortex** links small population size to inbreeding, drift, loss of genetic diversity, Allee effects and disease, producing a self-reinforcing decline.
-- **Minimum viable population** and **population viability analysis (PVA)** estimate extinction risk over a horizon from demographic and environmental stochasticity.
-- **Effective population size** is vastly smaller than census size; **genetic rescue** introdues variation and can reverse inbreeding depression.
-
-**Conservation design**
-- **Reserve design** debates single large versus several small protected areas (SLOSS), with the modern answer depending on species needs: large core areas, connectivity corridors, buffer zones and edge minimisation.
-- **In situ** protection beats **ex situ** (zoos, seed banks) as the primary strategy, but seed banks (Millennium Seed Bank) and cryopreservation are essential backups.
-- **Sustainable yield** is modelled as MSY = rK/4 at half carrying capacity, and real fisheries overshoot it because of uncertainty and subsidy.
-- **Ecosystem services** — provisioning, regulating, cultural and supporting — quantify nature's value; payment schemes, carbon credits and marine protected areas are the policy instruments.
-- **International frameworks**: IUCN Red List categories, CITES trade controls, the Convention on Biological Diversity's 30-by-30 target, and restoration commitments.`
-      }
-    ]
-  },
-
-  {
-    id: "ethology-3-foraging-mating",
-    domainId: "ethology",
-    title: "Optimal Foraging, Mating Systems & Communication",
-    subtitle: "Marginal value theorem, sexual selection, parental investment, honest signalling and biological rhythms",
-    level: "USABO Finalist / IBO",
-    xp: 130,
-    estimatedMinutes: 22,
-    prerequisites: ["ethology-1-kin-selection", "ethology-2-classical-behavior"],
-    sources: ["Alcock: Animal Behavior Ch. 6-10, 12", "Davies, Krebs & West: An Introduction to Behavioural Ecology Ch. 4-8", "Campbell Ch. 51"],
-    interactiveTool: null,
-    summary: "IBO lists foraging, defensive behaviour, mating systems, parental care and biological rhythms as required ethology, none of which the app previously covered. This module covers economic decision rules in foraging, the logic of mating systems and sexual selection, honest signalling and mimicry, navigation and migration, and the circadian machinery behind biological rhythms.",
-    keyFormulas: [
-      { name: "Profitability", latex: "\\text{Profitability} = \\frac{E}{h} \\quad (E = \\text{energy gained}, h = \\text{handling time})" },
-      { name: "Hamilton's Rule", latex: "rB > C" },
-      { name: "Fisherian Sex Ratio", latex: "\\text{investment in sons} : \\text{daughters} = 1:1" }
-    ],
-    sections: [
-      {
-        heading: "1. Optimal Foraging & Economic Decisions",
-        content: `Foraging models assume natural selection favours decisions that maximise net energy gain per unit time, subject to constraints (handling time, predation risk, gut capacity).
-- **Optimal diet** ranks prey by profitability $E/h$: items are added to the diet in rank order and the optimal set is the one where the average rate is maximised, which is why a predator should **ignore low-profitability prey when rich prey are abundant** and switch to them when they become scarce.
-- **Marginal value theorem (Charnov)**: a forager should leave a patch when its instantaneous harvest rate falls to the average rate for the habitat, including travel time. Travel time longer → stay longer; patch quality higher → stay longer. Giving-up densities measure this in the field.
-- **Risk sensitivity**: animals preferring variance (when survival is likely) or avoiding variance (when starvation risk is high) explain apparently irrational choices.
-- **Central place foraging** (bees, birds feeding young) trades load size against trip number; **caching** (Clark's nutcracker, squirrels) requires spatial memory and is a model system for hippocampus function.
-- **Producer-scrounger** games and **ideal free distribution** show that individuals distribute across patches in proportion to resources when free to move — an evolutionarily stable distribution rather than an optimum for each individual.
-- **Optimal foraging is a null model**: deviations (predation risk, nutrient constraints, social information) are as informative as agreements.`
-      },
-      {
-        heading: "2. Mating Systems, Sexual Selection & Parental Care",
-        content: `**Mating systems**
-- **Monogamy** is expected when biparental care is essential or mate guarding pays; **polygyny** when males can defend resources or females, or when females cluster; **polyandry** when males compete to care for broods and females can lay multiple clutches (jacanas, pipefish); **promiscuity/lekking** when males display and females choose without resources.
-- **Ecological determinants**: the spatial distribution of resources and of receptive females (Emlen and Oring) predicts the system better than phylogeny.
-
-**Sexual selection**
-- **Bateman gradient**: variance in reproductive success is steeper for the sex with lower gamete investment, so that sex (usually male) competes.
-- **Trivers' parental investment** explains choosiness: the sex investing more becomes the limiting resource and is selected to be discriminating.
-- **Intrasexual** selection produces armaments (antlers, horns, size); **intersexual** selection produces ornaments and displays (peacock train, long-tailed widowbird tail-length experiment).
-- Mechanisms of female preference: direct benefits (nuptial gifts, territory quality), good genes (parasite resistance, MHC diversity), Fisherian runaway (arbitrary trait-preferences co-evolve), and sensory bias.
-- **Sperm competition and cryptic female choice** operate after copulation (mate guarding, sperm displacement, copulatory plugs).
-- **Sex allocation** follows Fisher: equal investment in sons and daughters is the stable strategy; **local mate competition** with inbreeding shifts the ratio toward daughters.
-- **Parent-offspring conflict** (Trivers) follows from shared genes but different optima for investment; **siblicide** and **infanticide** (where males take over a group and kill unweaned young to shorten interbirth intervals) are predictable outcomes.`
-      },
-      {
-        heading: "3. Communication, Defence & Biological Rhythms",
-        content: `**Signals** evolve when sender and receiver share an interest; **honest signals** persist when cheating is costly (handicap principle). Modalities: acoustic (bird song, alarm calls), visual (colour, posture), chemical (pheromones, trail marks), tactile (honeybee waggle dance vibration), electrical (electric fish).
-- **Referential signalling** encodes predator type (vervet alarm calls distinguish eagle, leopard, snake), and **eavesdropping** third parties exploit signals.
-- **Aposematism** warns with conspicuous colour (poison dart frogs); **Müllerian mimicry** is shared warning colouration among defended species, **Batesian mimicry** is a palatable mimic copying a defended model. Frequency and predator learning set the dynamics.
-- Other defences: startle displays, thanatosis, autotomy, group defence (mobbing), and **crypsis**.
-
-**Navigation and migration**
-- **Sun compass** with time compensation (starling clock-shift experiments), **magnetic compass** (radical pairs, magnetite), **polarised light** orientation in insects, **olfactory maps** in salmon homing, and learned landmarks.
-- Migration strategies include partial versus complete, obligate versus facultative, and **orientation versus navigation** (compass-only versus goal-directed correction).
-
-**Biological rhythms**
-- **Circadian** rhythms have a free-running period near 24 h and are entrained by **Zeitgebers** (light-dark, temperature, food); the molecular clock is the CLOCK-BMAL1/PER-CRY feedback loop, and the SCN is the mammalian master pacemaker.
-- **Circannual** and tidal rhythms extend the concept; constant conditions reveal free-running period and demonstrate endogenous control.
-- **Chronotypes** and seasonal affective disorder show how light entrains human physiology, and shift work or artificial light disrupts the same machinery.
-- **Costs of rhythms** are measured by survival and reproductive success in clock-mutant organisms — the classic demonstration that circadian clocks are adaptive.`
-      }
-    ]
-  },
-
-  {
     id: "systematics-2-taxonomy-diversity",
     domainId: "biosystematics",
     title: "Taxonomy & the Diversity of Life: Prokaryotes to Vertebrates",
@@ -3415,47 +3411,48 @@ Consequences you can calculate:
       { name: "Binomial Nomenclature", latex: "\\textit{Genus species} \\; \\text{(italicised, genus capitalised, species lowercase)}" },
       { name: "Hierarchy", latex: "\\text{Domain} \\to \\text{Kingdom} \\to \\text{Phylum} \\to \\text{Class} \\to \\text{Order} \\to \\text{Family} \\to \\text{Genus} \\to \\text{Species}" }
     ],
-    sections: [
+        sections: [
       {
-        heading: "1. Nomenclature, Taxonomy & the Three Domains",
-        content: `**Nomenclature**
-- Binomial names are italicised: *Homo sapiens*, *Escherichia coli*; the genus is capitalised and the species epithet is not, and the name is complete only with its author when precision matters.
-- Rules come from the **ICZN** (animals), **ICN** (plants, algae, fungi) and **ICNP** (prokaryotes); priority determines the valid name and a **type specimen** anchors it.
-- A **dichotomous key** classifies using paired, mutually exclusive characters read in order — IBO tests both using and building one.
-- Classification can be artificial (convenience), natural (overall similarity) or phylogenetic (shared ancestry); only the last must be monophyletic.
+        heading: "Species concepts, delimitation and cryptic diversity",
+        content: `- **Concepts.** Biological (reproductive isolation), morphological (diagnosable gaps), ecological (distinct niche), phylogenetic (reciprocally monophyletic), and genotypic cluster (distinct clusters in multilocus genotype space) each answer a different question; none is universally applicable (asexuals, fossils, hybridising taxa defeat the BSC, and recent divergence defeats reciprocal monophyly).
+- **Delimitation in practice.** Integrative taxonomy combines morphology, DNA (COI barcoding, multilocus or genomic data), karyotype, ecology, behaviour and geography. Molecular delimitation methods (ABGD, GMYC, bPTP) partition trees into candidate species but are sensitive to sampling and to the model chosen, so they propose hypotheses, they do not certify species.
+- **Cryptic diversity** is the rule rather than the exception in many taxa: what looked like one widespread species often resolves into several. This matters practically — conservation status of a "widespread" species can collapse once it is split, and disease vectors or crop pests may be species complexes with different ecologies.
+- **DNA barcoding** uses a standard marker (COI for animals, *rbcL*/*matK* for plants, ITS for fungi) to assign unknown specimens to reference libraries. It works because intraspecific variation is usually much smaller than interspecific divergence (the barcode gap), and it fails when the gap is absent, when hybridisation is common, or when the library lacks close relatives. Metabarcoding extends the approach to whole communities from environmental DNA.
+- **Hybridisation and introgression** blur species boundaries and can transfer adaptive alleles; some "species" are stable hybrid zones. The pragmatic test is whether the entities remain distinct where they co-occur (reproductive isolation in sympatry), which is the operational core of the BSC.
 
-**Three domains**
-- **Bacteria**: peptidoglycan cell wall, 70S ribosomes, ester-linked membrane lipids, circular chromosome plus plasmids, no histones (mostly), binary fission. Metabolic diversity is enormous: photoautotrophs (cyanobacteria), chemolithotrophs (nitrifiers, sulfur oxidisers), methanogens are archaeal, and heterotrophs.
-- **Archaea**: ether-linked branched-chain lipids, pseudopeptidoglycan, no peptidoglycan, often extremophile (thermoacidophiles, halophiles, methanogens), and their RNA polymerase and histones resemble eukaryotes — Woese's rRNA evidence forced the three-domain split.
-- **Eukarya**: nucleus, membrane-bound organelles, 80S ribosomes, cytoskeleton; endosymbiosis explains mitochondria and chloroplasts.
-
-**Fungi**
-- Chitin walls, ergosterol membranes, heterotrophic absorption, hyphae forming a mycelium, septa with pores, and a **heterokaryotic** stage in many groups.
-- **Zygomycetes** (bread moulds, zygosporangium), **Ascomycetes** (sac fungi, ascospores in asci; includes yeasts, morels, truffles, lichens), **Basidiomycetes** (club fungi, basidiospores on basidia; mushrooms, rusts, smuts), and **Chytrids** (flagellated spores, amphibian disease).
-- **Lichens** are mutualisms of fungus and alga/cyanobacterium; **mycorrhizae** are fungi-plant symbioses; fungi are also the principal decomposers of lignin and cellulose.`
+Trap: a single gene tree is not a species tree; incomplete lineage sorting and introgression both produce discordance, so delimitation requires multiple independent loci and, ideally, ecology or morphology.`
       },
       {
-        heading: "2. Plant Diversity: Bryophytes to Angiosperms",
-        content: `Land plants are **embryophytes** with a waxy cuticle, protected embryos and (in most) vascular tissue; the trend is from gametophyte-dominant to sporophyte-dominant life cycles.
-- **Bryophytes** (mosses, liverworts, hornworts): no vascular tissue or true roots, gametophyte dominant, sperm swims to the archegonium, water-dependent reproduction, and peat mosses store carbon.
-- **Lycophytes** (club mosses) and **monilophytes** (ferns, horsetails): vascular tissue and lignin but no seeds; sporophyte dominant, sperm still swimming, sporangia on leaves. Heterospory (Selaginella) is the precursor of the seed habit.
-- **Gymnosperms**: seeds, pollen tubes, no enclosed ovary. Cycads, ginkgo, conifers and gnetophytes; conifer needles reduce transpiration and their tracheids are the xylem cells.
-- **Angiosperms**: flowers (sepals, petals, stamens, carpels), double fertilisation producing **triploid endosperm**, fruit from ovary, and vessel elements alongside tracheids. Monocots (one cotyledon, parallel veins, scattered vascular bundles, fibrous roots) versus eudicots (two cotyledons, net veins, ringed bundles, taproot).
-- **Alternation of generations** is the unifying frame: $n$ gametophyte makes gametes by mitosis, fertilisation restores $2n$, meiosis in the sporophyte makes spores — the ratio of the two phases is the diagnostic character.
-- Key reproductive structures for exam descriptions: archegonium, antheridium, sorus, cone, flower formula, and the **pollen tube** guided by synergid LURE peptides.`
+        heading: "Nomenclature, ranks and the logic of cladistic classification",
+        content: `- **Nomenclature is a legal system, classification is a scientific hypothesis.** The ICZN (animals) and ICN (plants, algae, fungi) set rules: binomial names (genus + specific epithet, italicised), priority (the earliest valid name wins), typification (each name is anchored to a type specimen or type species), homonymy (the same name cannot be used twice in one kingdom) and synonymy (multiple names for one taxon, with the oldest valid name preferred). Authorship and year follow the name; a name in parentheses means the species was moved to a different genus after description.
+- **Ranks** are Linnaean conveniences: domain, kingdom, phylum, class, order, family, genus, species, with optional prefixes (sub-, super-). Ranks are not comparable across taxa (a fish "order" and a mammal "order" are not equivalent ages), and many traditional groups are paraphyletic: Reptilia excluding birds, Pisces, Invertebrata, Protista and Dicotyledonae are all paraphyletic as traditionally used, which is why cladists either abandon them or redefine them (Reptilia including birds, "fish" replaced by specific clades).
+- **Cladistic logic.** Only synapomorphies (shared derived characters) define groups; symplesiomorphies cannot, and homoplasy misleads. Monophyletic groups contain an ancestor and all descendants; paraphyletic groups exclude some descendants; polyphyletic groups unite convergences. Classification should mirror phylogeny, which is why molecular data reorganised everything from fungal taxonomy to mammalian orders.
+- **PhyloCode** proposes naming clades without ranks (Pan, Aves, Mammalia as node- or branch-based definitions), but ranked nomenclature remains dominant in practice because of stability and legacy literature.
+- **Practical naming issues** examiners exploit: a species name is not a description (it can be a person's name), a subspecies trinomial is legitimate, "sp." and "spp." are not italicised abbreviations for unnamed species, and sensu lato/sensu stricto distinguish broad and narrow usage after a split.
+
+Trap: renaming a species because it moved genus does not change the specific epithet, and the original author goes in parentheses — a name's authority encodes its taxonomic history.`
       },
       {
-        heading: "3. Invertebrate Phyla & Vertebrate Classes",
-        content: `**Body plan vocabulary** — symmetry (radial, bilateral, biradial), germ layers (diploblastic, triploblastic), coelom (acoelomate, pseudocoelomate, coelomate), segmentation, cephalisation and protostome/deuterostome development — is the fastest way to place an unknown animal.
+        heading: "The tree of life: clades, body plans and the characters that define them",
+        content: `- **Three domains** (Bacteria, Archaea, Eukarya) with eukaryotes emerging from within the Asgard archaeal lineage; the eukaryotic supergroups are Opisthokonta (animals, fungi, choanoflagellates), Archaeplastida (plants, green and red algae), SAR (stramenopiles, alveolates, rhizarians), Amoebozoa, and Excavata (a possibly paraphyletic assemblage).
+- **Animal body-plan characters** used as synapomorphies: multicellularity with collagen and epithelia (Metazoa), true tissues and gastrulation (Eumetazoa), bilateral symmetry with three germ layers and cephalisation (Bilateria), a coelom and through-gut (varies), segmentation (Annelida, Arthropoda, Chordata independently). Sponges lack true tissues; cnidarians are diploblastic with radial symmetry; ctenophores are a separate early branch whose position remains contested.
+- **Protostome split.** Ecdysozoa (moulting: nematodes, arthropods, tardigrades, onychophorans) is supported by molecular phylogeny and by ecdysis itself; Lophotrochozoa (molluscs, annelids, brachiopods, flatworms) is supported by a lophophore or trochophore larva in many members. This replaced the old coelom-based grouping — a classic example of a morphological character (coelom type) being homoplastic.
+- **Deuterostomes** (echinoderms, hemichordates, chordates) share radial cleavage, enterocoely and the blastopore fate. Chordate synapomorphies: notochord, dorsal hollow nerve cord, pharyngeal slits, post-anal tail, endostyle/thyroid. Vertebrate innovations: vertebral column, cranial neural crest, bone, jaws (gnathostomes), limbs (tetrapods), amniotic egg (amniotes).
+- **Plant and fungal clades.** Land plants: bryophytes (non-vascular), lycophytes, monilophytes (ferns), gymnosperms, angiosperms (with monocots and eudicots as major clades); the angiosperm synapomorphies include flowers, double fertilisation and triploid endosperm. Fungi: Chytridiomycota, Zygomycota/Mucoromycota, Ascomycota (sac fungi, lichens), Basidiomycota (mushrooms, rusts) — distinguished by sexual spore-bearing structures.
+- **Reading a tree correctly:** proximity of tips means nothing; nodes are ancestors; branch length can encode time or change; rotating a node is not a change of relationship. "More evolved" is meaningless — every extant lineage has the same evolutionary age.
 
-**Invertebrate phyla and diagnostic traits**
-- **Porifera** (sponges): no tissues, choanocytes, filter feeding, spicules; **Cnidaria**: diploblastic, radial, cnidocytes with nematocysts, polyp and medusa forms; **Ctenophora**: comb rows of cilia.
-- **Platyhelminthes** (flatworms): acoelomate, no anus, flame cells; **Nematoda**: pseudocoelomate, cuticle, longitudinal muscles only, whip-like movement; **Annelida**: coelomate, metameric segmentation, setae; **Mollusca**: mantle, foot, radula, gills (Gastropoda, Bivalvia, Cephalopoda); **Arthropoda**: chitin exoskeleton, jointed appendages, open circulation, ecdysis (Chelicerata, Crustacea, Myriapoda, Insecta); **Echinodermata**: deuterostome, water vascular system, tube feet, pentaradial larvae bilateral — a favourite trick question.
+Trap: a group that lacks a trait is not automatically basal; loss is as common as gain, so "fish are less evolved" or "sponges are primitive" misreads the tree.`
+      },
+      {
+        heading: "Measuring biodiversity: indices, eDNA and phylogeny in practice",
+        content: `- **Counting diversity.** Species richness is the simplest and most sampling-dependent measure; rarefaction curves, Chao1 and coverage-based estimators standardise effort. Evenness measures (Pielou's $J$, Simpson's dominance) describe how abundance is partitioned; Shannon and Simpson differ in sensitivity to rare versus common species, so the index must match the question.
+- **Beta diversity** quantifies turnover between sites (Jaccard, Sørensen for presence–absence; Bray–Curtis for abundance) and can be partitioned into replacement and nestedness components — turnover implies different assemblages, nestedness implies subsets, and the two demand different conservation responses.
+- **Molecular biodiversity assessment** has transformed inventory: eDNA metabarcoding detects species from water or soil without capture (with false negatives from primer bias and false positives from contamination), and metagenomics adds functional potential. Reference database completeness is the limiting factor, not sequencing depth.
+- **Phylogenetic diversity** measures the branch length spanned by a set of taxa, capturing evolutionary information that richness misses; EDGE scores combine evolutionary distinctiveness with extinction risk to prioritise species that are both unique and threatened. Phylogenetic clustering of a community indicates environmental filtering; overdispersion indicates competition — with the caveat that both signals can be produced by other processes.
+- **Applications:** biosecurity (early detection of invasive species), fisheries stock identification, wildlife forensics, diet analysis from scats, pollinator networks, and monitoring restoration trajectories. The taxonomic impediment — too few experts and too many undescribed species — is the practical bottleneck, which is why DNA-based approaches and citizen science are complementary rather than substitutable.
+- **Data infrastructure** matters: GBIF, GenBank, BOLD and museum collections are the record of biodiversity, and their gaps (tropical invertebrates, deep sea, microbes) bias every global estimate.
 
-**Vertebrate classes**
-- **Agnatha** (jawless fishes), **Chondrichthyes** (cartilaginous, placoid scales), **Osteichthyes** (bony; swim bladder, operculum), **Amphibia** (moist skin, metamorphosis, eggs in water), **Reptilia** (amniotic egg, keratin scales, ectothermy), **Aves** (feathers, hollow bones, four-chambered heart, endothermy), **Mammalia** (hair, mammary glands, three middle-ear ossicles; monotremes, marsupials, eutherians).
-- Key innovations to know in order: notochord and dorsal hollow nerve cord, jaws, paired limbs, the **amniotic egg** (freeing reproduction from water), endothermy, and the placenta.
-- Exam skill: an unknown organism plus its characters should lead you to phylum or class by elimination, then to the key synapomorphy.`
+Trap: a metabarcoding read count is not an abundance measure; primer efficiency, gene copy number and DNA shedding rates all distort relative abundance, so presence is more reliable than proportion.`
       }
     ]
   }

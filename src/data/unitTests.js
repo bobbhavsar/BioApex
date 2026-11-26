@@ -360,7 +360,7 @@ Which statement is correct?`,
       {
         id: "ut-gen-6",
         difficulty: "IBO Theoretical",
-        prompt: `A boy with Klinefelter syndrome (47, XXY) is found to have two maternal X chromosomes and one paternal Y. At which meiotic division could the error have occurred, and in which parent?`,
+        prompt: `A boy with Klinefelter syndrome (47, XXY) has two maternal X chromosomes and one paternal Y. He is heterozygous at the X-linked G6PD locus, carrying a different maternal allele on each of his two X chromosomes. At which meiotic division did the error occur, and in which parent?`,
         options: [
           "Maternal meiosis I, producing an XX egg that was fertilised by a Y sperm",
           "Paternal meiosis II, producing an XY sperm",
@@ -369,7 +369,7 @@ Which statement is correct?`,
           "A mitotic error after fertilisation cannot be excluded"
         ],
         correctIndex: 0,
-        explanation: `Two maternal X's means the egg carried both X chromosomes, so the error was in the mother. Homologous X chromosomes separate at meiosis I, so failure to separate there yields an XX egg; meiosis II failure would produce an XX egg only if the secondary oocyte had two chromatids of the *same* X, which still fits — but the decisive point is that the extra X is maternal, not paternal.\n\nBecause both maternal X's are present and they differ in parental origin, meiosis I nondisjunction is the standard interpretation; paternal XY sperm would give one maternal and one paternal X.`
+        explanation: `Two maternal X's means the egg carried both X chromosomes, so the error was maternal — the sperm contributed only the Y.\n\nThe heterozygosity is the decisive evidence: the two X's in the egg are different homologues, and homologues are the partners that separate at meiosis I. A meiosis II error would have separated sister chromatids, which are identical apart from crossing over, so it would have produced an egg homozygous at G6PD (barring a crossover between the locus and the centromere). The standard interpretation is therefore maternal meiosis I nondisjunction.\n\nPaternal errors are excluded because a paternal XY sperm would give one maternal and one paternal X, and paternal XX sperm would give two paternal X's.`
       }
     ]
   },

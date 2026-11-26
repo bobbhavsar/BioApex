@@ -197,7 +197,7 @@ Oxygen evolution is observed to peak on Flash 3, and then on Flash 7, 11, and 15
 
 What is the correct gene order, the map distance between the two outer genes, and the genetic interference ($I$)?`,
         options: [
-          "Gene order: $sc - ec - cv$; Total distance: $19.2\\text{ cM}$; Interference $I = 0.74$",
+          "Gene order: $sc - ec - cv$; Total distance: $19.1\\text{ cM}$; Interference $I = 0.71$",
           "Gene order: $ec - sc - cv$; Total distance: $19.2\\text{ cM}$; Interference $I = 0.26$",
           "Gene order: $sc - ec - cv$; Total distance: $20.0\\text{ cM}$; Interference $I = 0.50$",
           "Gene order: $sc - cv - ec$; Total distance: $18.5\\text{ cM}$; Interference $I = 0.82$",
@@ -213,18 +213,14 @@ What is the correct gene order, the map distance between the two outer genes, an
    Compare DCO ($+ \\; ec \\; +$ and $sc \\; + \\; cv$) with Parentals ($+ \\; + \\; +$ and $sc \\; ec \\; cv$).
    The allele that is switched relative to the other two is **$ec$**!
    Therefore, the gene order is: **$sc - ec - cv$**.
-4. **Calculate Distance between $sc$ and $ec$ (Region 1):**
-   SCO in Region 1: $+ \\; + \\; cv$ (18) + $sc \\; ec \\; +$ (20) $= 38$.
-   $$\\text{Dist}(sc-ec) = \\frac{38 + 2}{2000} \\times 100\\% = \\frac{40}{2000} \\times 100\\% = 2.0\\text{ cM}$$
-5. **Calculate Distance between $ec$ and $cv$ (Region 2):**
-   SCO in Region 2: $sc \\; + \\; +$ (168) + $+ \\; ec \\; cv$ (172) $= 340$.
-   $$\\text{Dist}(ec-cv) = \\frac{340 + 2}{2000} \\times 100\\% = \\frac{342}{2000} \\times 100\\% = 17.1\\text{ cM}$$
-6. **Total Distance ($sc - cv$):**
-   $$2.0\\text{ cM} + 17.1\\text{ cM} = \\mathbf{19.1 - 19.2\\text{ cM}}$$.
-7. **Calculate Interference ($I$):**
-   $$\\text{Expected DCO} = (0.02) \\times (0.171) \\times 2000 = 6.84$$
-   $$\\text{Coefficient of Coincidence } (COC) = \\frac{\\text{Observed DCO}}{\\text{Expected DCO}} = \\frac{2}{6.84} \\approx 0.292$$
-   $$\\text{Interference } I = 1 - COC = 1 - 0.292 \\approx \\mathbf{0.71 - 0.74}$$.
+4. **Distances, with each single-crossover class assigned to its correct interval:**
+   - Crossover between $sc$ and $ec$ gives the $sc + +$ (168) and $+ \, ec \, cv$ (172) classes: $(340 + 2)/2000 = 17.1\text{ cM}$.
+   - Crossover between $ec$ and $cv$ gives the $+ \, + \, cv$ (18) and $sc \, ec \, +$ (20) classes: $(38 + 2)/2000 = 2.0\text{ cM}$.
+5. **Total map distance:** $17.1 + 2.0 = \mathbf{19.1\text{ cM}}$, with the map reading $sc$ --17.1-- $ec$ --2.0-- $cv$.
+6. **Interference:**
+   - Expected DCO $= 0.171 \times 0.020 \times 2000 = 6.8$.
+   - Coefficient of coincidence $= 2/6.8 = 0.29$.
+   - Interference $I = 1 - 0.29 = \mathbf{0.71}$: a crossover in the $sc$–$ec$ interval strongly suppresses a second crossover nearby.
 
 *Reference: Pierce: Genetics - A Conceptual Approach, 7th Ed., Chapter 7.*`
       }

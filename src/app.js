@@ -2439,10 +2439,14 @@ const CHECKPOINT_BANK = {
         explanation: "Nitrogenase uses about 16 ATP per N2 (8 electrons at 2 ATP each) and inevitably produces H2, which is why nodules need leghemoglobin to supply oxygen for respiration while protecting the enzyme from O2 inactivation."
       },
       {
-        prompt: "In the Munsch pressure-flow model, what drives phloem sap movement?",
-        options: ["A turgor pressure gradient between source and sink", "Active transport of sucrose along the whole sieve tube", "Transpiration pull from the leaves"],
+        prompt: "Grasses acquire iron from alkaline soil by a different strategy from a tomato plant. Which statement is correct?",
+        options: [
+          "Grasses secrete phytosiderophores that chelate Fe3+ and take it up intact, whereas tomato reduces Fe3+ at the membrane and imports Fe2+ through IRT1",
+          "Both groups rely only on rhizosphere acidification, so iron deficiency is impossible above pH 7",
+          "Grasses import Fe2+ through IRT1 while dicots secrete siderophores"
+        ],
         correctIndex: 0,
-        explanation: "Loading sucrose at the source draws water in osmotically and raises pressure; unloading at the sink lowers it, so bulk flow follows the pressure gradient without an energy cost along the pathway."
+        explanation: "Strategy II (grasses) releases mugineic-acid family phytosiderophores that chelate Fe3+ for uptake by YS/YSL transporters; strategy I (dicots and other non-grasses) extrudes protons, reduces Fe3+ with a plasma-membrane ferric chelate reductase and imports Fe2+ through IRT1. Neither strategy works well at very high pH, which is why lime-induced chlorosis is common and why grasses dominate calcareous soils."
       }
     ],
     'plant-8-growth-development': [
@@ -2651,147 +2655,7 @@ const CHECKPOINT_BANK = {
         explanation: "Archaea have ether-linked branched lipids and no peptidoglycan, and their RNA polymerase and histones are more eukaryotic; both groups lack a nucleus and have circular chromosomes."
       }
     ],
-    'animal-11-homeostasis-thermoregulation': [
-      {
-        prompt: "A patient develops a fever and the hypothalamic set point rises to 39 \u00b0C. What does the body do first?",
-        options: ["Vasoconstriction, shivering and behavioural warming, driving core temperature up to the new set point", "Sweating and vasodilation to dump heat", "Nothing \u2014 core temperature is defended at 37 \u00b0C regardless of the set point"],
-        correctIndex: 0,
-        explanation: "Fever is a regulated rise in the set point, not a failure of regulation. The hypothalamus now treats 37 \u00b0C as 'too cold' and mounts heat conservation and heat production until core temperature reaches the new target."
-      },
-      {
-        prompt: "In the countercurrent heat exchanger of a duck's leg or a dolphin's flipper, what does the arrangement achieve?",
-        options: ["Warm arterial blood pre-warms cold venous blood returning to the core, so heat is retained instead of lost", "It maximises heat loss from the extremity", "It has no thermal effect and only stabilises the vessels"],
-        correctIndex: 0,
-        explanation: "Because artery and vein run in opposite directions, the temperature gradient is maintained along the whole length, so venous blood re-enters the body near arterial temperature. The extremity stays cold and the core stays warm."
-      },
-      {
-        prompt: "During dehydration, ADH acts on the collecting duct to",
-        options: ["insert aquaporin-2 channels in the apical membrane, increasing water reabsorption and concentrating urine", "secrete sodium into the tubular fluid to draw water with it", "dilate the afferent arteriole to raise GFR"],
-        correctIndex: 0,
-        explanation: "ADH (vasopressin) binds V2 receptors, raises cAMP, and shuttles aquaporin-2 into the apical membrane so water follows the medullary osmotic gradient. Without it the duct is water-impermeable and dilute urine is produced."
-      }
-    ],
-    'genetics-5-meiosis-mutation': [
-      {
-        prompt: "At which stage does crossing over between non-sister chromatids of homologous chromosomes occur?",
-        options: ["Pachytene of prophase I, at the synaptonemal complex", "Metaphase II", "Anaphase of mitosis"],
-        correctIndex: 0,
-        explanation: "Homologs pair (synapsis) in zygotene and reciprocal exchange occurs at pachytene, producing chiasmata that later hold homologs together so they orient and segregate correctly in meiosis I."
-      },
-      {
-        prompt: "A carrier of a balanced Robertsonian translocation has only 45 chromosomes but is phenotypically normal. Why?",
-        options: ["The long arms of two acrocentric chromosomes are fused, so no essential genetic material is lost", "The missing chromosome is a Y chromosome", "All genes on the fused chromosome are silenced"],
-        correctIndex: 0,
-        explanation: "Robertsonian fusions join two acrocentric chromosomes near their centromeres. Only short-arm satellite DNA is lost, so the carrier is healthy \u2014 but meiosis can produce unbalanced gametes, causing trisomy in offspring."
-      },
-      {
-        prompt: "Which repair pathway removes bulky UV photoproducts such as thymine dimers?",
-        options: ["Nucleotide excision repair", "Mismatch repair", "Base excision repair"],
-        correctIndex: 0,
-        explanation: "NER excises a short single-stranded patch around the helix-distorting lesion and resynthesises it. Defective NER causes xeroderma pigmentosum, with extreme UV sensitivity and skin cancer risk."
-      }
-    ],
-    'genetics-6-natural-selection-speciation': [
-      {
-        prompt: "How is the relative fitness of a genotype defined?",
-        options: ["Its per-capita contribution to the next generation's gene pool, divided by the population mean", "Its survival rate alone, ignoring reproduction", "The absolute number of offspring it produces, regardless of the rest of the population"],
-        correctIndex: 0,
-        explanation: "Fitness is relative and reproductive: it combines survival and fecundity into a contribution to the next generation, scaled so the population mean is 1. A genotype can have high survival and still low fitness if it reproduces poorly."
-      },
-      {
-        prompt: "An island population has Fst = 0.25 under the island model. How many effective migrants per generation does that imply?",
-        options: ["0.75", "4", "1"],
-        correctIndex: 0,
-        explanation: "Fst = 1/(4Nm + 1). Setting 1/(4Nm + 1) = 0.25 gives 4Nm + 1 = 4, so Nm = 0.75 \u2014 less than one effective migrant per generation, which is not enough to prevent substantial differentiation by drift."
-      },
-      {
-        prompt: "Two tree-frog species mate readily in the lab, but hybrid tadpoles die before metamorphosis. This is",
-        options: ["postzygotic isolation (hybrid inviability)", "prezygotic isolation (behavioural isolation)", "mechanical isolation"],
-        correctIndex: 0,
-        explanation: "Mating succeeds, so the barrier acts after zygote formation. Hybrid inviability is postzygotic, alongside hybrid sterility and hybrid breakdown; prezygotic barriers prevent fertilisation in the first place."
-      }
-    ],
-    'eco-4-community-succession': [
-      {
-        prompt: "Paramecium aurelia and P. caudatum compete in the same flask; P. aurelia survives and P. caudatum declines to extinction. What does this demonstrate?",
-        options: ["Competitive exclusion, with each species restricted to its realised niche", "Character displacement", "Facilitation"],
-        correctIndex: 0,
-        explanation: "Gause's principle: two species competing for the same limiting resource cannot coexist indefinitely. Where they overlap in culture, the better competitor excludes the other, so the surviving species occupies only its realised niche."
-      },
-      {
-        prompt: "The intermediate disturbance hypothesis predicts maximum diversity when",
-        options: ["disturbance is at intermediate frequency and intensity", "disturbance is constant and severe", "there is no disturbance at all"],
-        correctIndex: 0,
-        explanation: "Frequent severe disturbance keeps communities at pioneer stage, while no disturbance lets competitive dominants exclude others. Intermediate disturbance opens space often enough to sustain colonists while allowing competitive species to persist."
-      },
-      {
-        prompt: "On bare volcanic rock, the first colonists are",
-        options: ["lichens and mosses that weather rock and begin soil formation", "grasses and shrubs with deep roots", "climax forest trees"],
-        correctIndex: 0,
-        explanation: "Primary succession starts with no soil. Lichens and mosses trap particles, weather minerals and add organic matter, creating the substrate that later herbaceous, shrub and tree stages require \u2014 an example of facilitation."
-      }
-    ],
-    'eco-5-biomes-conservation': [
-      {
-        prompt: "Which terrestrial biome has the highest net primary productivity per unit area?",
-        options: ["Tropical rainforest", "Temperate grassland", "Tundra"],
-        correctIndex: 0,
-        explanation: "Warm temperatures, high rainfall and year-round growth give tropical rainforests the highest NPP per square metre, even though low-nutrient soils limit agriculture once the canopy is cleared. Tundra and desert are the lowest."
-      },
-      {
-        prompt: "The species-area relationship is S = cA^z with z \u2248 0.25. If habitat area falls to 10% of its original extent, roughly what fraction of species is lost?",
-        options: ["About 45%", "About 10%", "About 90%"],
-        correctIndex: 0,
-        explanation: "S falls by the factor 0.1^0.25 = 0.56, so roughly 44% of species are lost \u2014 the empirical basis for the rule of thumb that a tenfold area reduction removes about half the species."
-      },
-      {
-        prompt: "Which of these is an ecosystem service provided by wetlands?",
-        options: ["Nutrient retention and flood attenuation", "Increased soil erosion downstream", "Removal of all dissolved oxygen from water"],
-        correctIndex: 0,
-        explanation: "Wetlands slow water, trap sediment and take up nitrogen and phosphorus, reducing downstream eutrophication and peak flood flows. They also store carbon and support nursery habitat for fish."
-      }
-    ],
-    'ethology-3-foraging-mating': [
-      {
-        prompt: "The marginal value theorem predicts that a foraging animal leaves a patch when",
-        options: ["its instantaneous intake rate in the patch falls to the average rate for the habitat", "the patch is completely empty", "it has spent a fixed amount of time in the patch"],
-        correctIndex: 0,
-        explanation: "Patch residence should equalise the marginal capture rate with the habitat-wide average, which already includes travel time. Longer travel times make the average higher and the optimal stay longer."
-      },
-      {
-        prompt: "In most sexually reproducing animals, which sex is typically the choosier and which competes for mates?",
-        options: ["The sex with the higher parental investment is choosy; the other sex competes", "Males are always choosy and females always compete", "Both sexes invest equally, so neither competes"],
-        correctIndex: 0,
-        explanation: "Bateman's principle: the sex contributing more per offspring (usually females, through eggs, gestation or care) is a limiting resource, so the lower-investing sex competes and the higher-investing sex chooses."
-      },
-      {
-        prompt: "A gazelle stots (jumps stiff-legged) when it spots a predator. Why is this an honest signal?",
-        options: ["It is energetically costly and reveals real physical condition, so only fit animals can afford it", "It makes the gazelle harder to see", "It warns other prey without cost to the signaller"],
-        correctIndex: 0,
-        explanation: "Zahavi's handicap principle: a signal is trustworthy only if it is hard to fake. Stotting is costly and condition-dependent, so predators can use it to avoid wasting a chase on healthy prey."
-      }
-    ],
-    'systematics-2-taxonomy-diversity': [
-      {
-        prompt: "Which is the correctly written scientific name?",
-        options: ["Homo sapiens (genus capitalised, species lowercase, both italicised)", "homo Sapiens", "HOMO SAPIENS"],
-        correctIndex: 0,
-        explanation: "Binomial nomenclature is italicised, with the genus capitalised and the specific epithet lowercase. After first use the genus may be abbreviated (H. sapiens)."
-      },
-      {
-        prompt: "Which plant group has vascular tissue but reproduces by spores without seeds?",
-        options: ["Ferns (pteridophytes)", "Bryophytes", "Gymnosperms"],
-        correctIndex: 0,
-        explanation: "Ferns have xylem and phloem and a dominant sporophyte, but no seeds: spores are released from sporangia and the gametophyte is a small free-living prothallus. Bryophytes lack true vascular tissue."
-      },
-      {
-        prompt: "Which feature defines the phylum Arthropoda?",
-        options: ["Segmented body with jointed appendages and a chitinous exoskeleton, moulted to grow", "Radial symmetry with a water vascular system", "A notochord present at some life stage"],
-        correctIndex: 0,
-        explanation: "Arthropods are segmented, have paired jointed appendages and a chitin exoskeleton that must be shed (ecdysis) to grow \u2014 which is why insects, crustaceans, arachnids, myriapods and the extinct trilobites share the phylum."
-      }
-    ]
-};
+  };
 
 function getStepCheckpoint(moduleId, stepIdx) {
   const bank = CHECKPOINT_BANK;
