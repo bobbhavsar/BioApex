@@ -1278,8 +1278,11 @@ function renderLessonCelebration(container, mod) {
 
   document.getElementById('celeb-track-btn').addEventListener('click', () => navigate('track'));
   document.getElementById('celeb-quiz-btn').addEventListener('click', () => {
-    const qSet = QUIZ_SETS.find(q => q.moduleId === mod.id) || QUIZ_SETS[0];
-    navigate('quiz', { quizId: qSet.id });
+    // A node without a long-form challenge set gets its own checkpoint quiz; the
+    // old fallback opened the first challenge set, so finishing the water lesson
+    // handed the learner enzyme-kinetics questions.
+    const qSet = QUIZ_SETS.find(q => q.moduleId === mod.id) || NODE_QUIZZES.find(q => q.moduleId === mod.id);
+    navigate('quiz', { quizId: qSet ? qSet.id : `unit-${mod.domainId}` });
   });
 }
 
@@ -2308,6 +2311,16 @@ const CHECKPOINT_BANK = {
     // ===== Added modules (IBO/USABO syllabus gap fill) =====
     'cell-9-biomolecules': [
       {
+        prompt: "Water has a relative permittivity of about 80 at 25 degrees C, while a protein core is about 4. What does that difference explain?",
+        options: [
+          "A salt bridge between two buried charged residues is far stronger than the same pair in bulk solvent",
+          "Hydrogen bonds cannot form inside a protein core, so only hydrophobic contacts remain",
+          "The hydrophobic effect disappears inside a protein because water is excluded"
+        ],
+        correctIndex: 0,
+        explanation: "Coulomb's law carries a 1/epsilon factor, so separating an ion pair costs about 80-fold more in bulk water than in a hydrocarbon-like core. The same electrostatic contacts that are weak and transient on a protein surface become strong and fixed once buried, which is also why a charged residue placed in a lipid bilayer is destabilising. Hydrogen bonds do still form in a dry core, and the hydrophobic effect is the reason the core exists, so both other options invert the logic."
+      },
+      {
         prompt: "A buffer has a pKa of 6.8. Over which pH range is it most effective at resisting pH change?",
         options: ["pH 3.8 to 4.8", "pH 5.8 to 7.8", "pH 7.8 to 9.8"],
         correctIndex: 1,
@@ -2320,18 +2333,26 @@ const CHECKPOINT_BANK = {
         explanation: "The hydrophobic effect drives burial of nonpolar residues and is the dominant folding force in aqueous solution; backbone hydrogen bonds define secondary structure and disulfides only stabilise the folded state once formed."
       },
       {
-        prompt: "Which polysaccharide cannot be digested by human amylases, and why?",
-        options: ["Cellulose, because it is linked by beta-1,4 glycosidic bonds", "Starch, because it is branched by alpha-1,6 bonds", "Glycogen, because it is stored in the liver"],
+        prompt: "A DNA duplex is heated while its absorbance at 260 nm is followed. Which change raises its melting temperature?",
+        options: [
+          "Raising the GC content at constant salt",
+          "Lowering the monovalent cation concentration",
+          "Converting the duplex to the A-form"
+        ],
         correctIndex: 0,
-        explanation: "Human amylases and maltases act only on alpha linkages; the beta-1,4 bonds of cellulose require microbial cellulases, which is why dietary fibre reaches the colon intact."
+        explanation: "GC pairs make three hydrogen bonds and stack better than AT pairs, so each percent GC raises Tm by roughly 0.4-0.9 degrees C, and the hyperchromic shift at 260 nm tracks strand separation. Lowering salt increases phosphate-phosphate repulsion and destabilises the duplex, while the A-form is shorter and wider with less base stacking, so both of those lower Tm. Base stacking, not hydrogen bonding, dominates duplex stability."
       }
     ],
     'cell-10-membranes-transport': [
       {
-        prompt: "A plant cell has solute potential -0.6 MPa and pressure potential +0.2 MPa. It is placed in a solution with water potential -0.5 MPa. What happens?",
-        options: ["Water enters the cell, because its water potential (-0.4 MPa) is higher than the solution", "Water leaves the cell, because the solution is more negative", "No net movement, because the potentials are equal"],
+        prompt: "A neuron at 37 degrees C has [K+] inside = 140 mM and [K+] outside = 5 mM. What is the K+ equilibrium potential, and what sets it?",
+        options: [
+          "About -89 mV inside-negative, because K+ is concentrated inside and that gradient holds a negative potential inside",
+          "About +89 mV inside-positive, because K+ is the permeant ion",
+          "About -61 mV, because the concentration ratio is only 28-fold"
+        ],
         correctIndex: 0,
-        explanation: "Cell water potential is -0.6 + 0.2 = -0.4 MPa, which is higher (less negative) than the -0.5 MPa external solution, so water moves down its water potential gradient into the cell and turgor rises."
+        explanation: "E_K = (RT/zF) ln([K+]out/[K+]in) = 61.5 mV x log10(5/140) = -89 mV at 37 degrees C. K+ is concentrated inside, so the equilibrium potential is negative inside; the resting potential sits close to but not at E_K because the membrane is slightly permeable to Na+ and Cl-, which is why the Goldman equation weights all permeant ions rather than using K+ alone."
       },
       {
         prompt: "How many ions does the Na+/K+ ATPase move per ATP hydrolysed, and in which direction?",
@@ -2658,11 +2679,69 @@ const CHECKPOINT_BANK = {
     ],
   };
 
+// Each checkpoint tests one specific lesson topic, recorded here as the index of
+// that topic in module.sections, in the same order as the module's questions.
+// Showing the bank by array position put buffering on the water topic and V(D)J
+// recombination on innate immunity, so the test each question belongs to is
+// stated explicitly; -1 means the lesson does not teach that material, so the
+// question stays in the node's practice quiz but is never shown on a step.
+const CHECKPOINT_TOPICS = {
+  'cell-1-kinetics': [0, 1, 2, 3],                          // diffusion limit, LB inhibition, MWC vs KNF, ping-pong
+  'cell-2-chemiosmosis': [0, 1, 2, 3],                      // Q-cycle, PMF split, c-ring cost, uncoupler
+  'cell-3-signaling': [0, 1],                               // cholera toxin, PTEN
+  'cell-4-trafficking': [1, 2],                             // COPII/Sar1, SNARE disassembly
+  'cell-5-checkpoints-apoptosis': [0, 3],                   // Cdc25, apoptosome
+  'plant-1-hydraulics': [2],                                // torus-margo pits
+  'plant-2-photochemistry': [0],                            // S-state of the OEC
+  'plant-3-c4-cam': [1],                                    // agranal bundle-sheath chloroplasts
+  'plant-4-hormones': [0],                                  // auxin as molecular glue
+  'animal-1-neuro': [2],                                    // NaV inactivation gate
+  'animal-2-cardio': [0],                                   // S1 and isovolumetric contraction
+  'animal-3-renal': [2],                                    // NKCC2 and the lumen-positive potential
+  'genetics-1-mapping': [0],                                // interference
+  'genetics-2-popgen': [0],                                 // overdominant equilibrium
+  'eco-1-dynamics': [2],                                    // Lotka-Volterra coexistence
+  'ethology-1-kin-selection': [0],                          // haplodiploid relatedness
+  'systematics-1-cladistics': [0],                          // paraphyly
+  'cell-6-molecular-genetics': [0, 2],                      // Okazaki processing, CTD Ser5
+  'cell-7-microbiology': [0, 3],                            // lipid A, lambda lysogeny
+  'cell-8-biotechnology': [3, 1],                           // PAM, Taq
+  'plant-5-anatomy': [1, 3],                                // Hagen-Poiseuille, vascular cambium
+  'plant-6-reproduction': [2, 1],                           // endosperm ploidy, LURE guidance
+  'animal-4-digestion': [1, 2],                             // parietal alkaline tide, chylomicrons
+  'animal-5-respiration': [2, 3],                           // Bohr shifts, chloride shift
+  'animal-6-immunity': [1, 2],                              // V(D)J, MHC II
+  'animal-7-reproduction-development': [2, 1],              // Spemann organizer, cortical reaction
+  'animal-8-endocrine': [2, 3],                             // ACE, PTH
+  'genetics-3-mendelian-extensions': [0, 3],                // recessive epistasis, breeder's equation
+  'genetics-4-gene-regulation': [0, 1],                     // lac operon, histone acetylation
+  'eco-2-ecosystems': [0, 2],                               // inverted biomass pyramid, nitrogenase
+  'eco-3-predation-biodiversity': [0, 3],                   // predator-prey lag, island biogeography
+  'ethology-2-classical-behavior': [2, 3],                  // waggle dance, circadian clock
+  'cell-9-biomolecules': [0, 1, 2, 3],                      // dielectric screening, buffer range, folding force, DNA Tm
+  'cell-10-membranes-transport': [0, 2, 3],                 // Nernst, Na+/K+ ATPase, gap junctions
+  'cell-11-cytoskeleton-motility': [1, 1, 1],               // dynein, axoneme, dynamic instability: all microtubule topics
+  'cell-12-metabolism': [0, 1, 0],                          // glycolysis yield, TCA yield, PFK-1
+  'cell-13-bioinformatics': [0, 2, 2],                      // BLAST E-value, dN/dS, six reading frames
+  'cell-14-methods-biostatistics': [0, 3, 3],               // A260/A280, chi-square, standard error
+  'plant-7-mineral-nutrition': [0, 1, 2],                   // mobile-element deficiency, nitrogenase cost, Fe strategies
+  'plant-8-growth-development': [1, 3, 1],                  // phytochrome, GA/aleurone, photoperiod
+  'animal-9-muscle-locomotion': [0, 2, 2],                  // A band, troponin C, rigor
+  'animal-10-sensory-systems': [1, 2, 2],                   // rod phototransduction, ossicles, tonotopy
+  'animal-11-homeostasis-thermoregulation': [-1, 2, 2, 1],  // teleost osmoregulation, uric acid, rete mirabile
+  'genetics-5-meiosis-mutation': [0, 0, 2],                 // shugoshin, 2^23, NER
+  'genetics-6-natural-selection-speciation': [3, 3, 3],     // Haldane, hybrid sterility, polyploidy
+  'eco-4-community-succession': [2, 0, 1],                  // keystone, primary vs secondary, intermediate disturbance
+  'eco-5-biomes-conservation': [0, -1, 2],                  // deserts, habitat loss
+  'ethology-3-foraging-mating': [0, 1, -1],                 // MVT, parental investment
+  'systematics-2-taxonomy-diversity': [2, 2, 2]             // echinoderms, gymnosperms, archaea
+};
+
 function getStepCheckpoint(moduleId, stepIdx) {
-  const bank = CHECKPOINT_BANK;
-  if (bank[moduleId] && bank[moduleId][stepIdx]) {
-    return bank[moduleId][stepIdx];
-  }
+  const bank = CHECKPOINT_BANK[moduleId] || [];
+  const topics = CHECKPOINT_TOPICS[moduleId] || [];
+  const qIdx = topics.indexOf(stepIdx);
+  if (qIdx !== -1 && bank[qIdx]) return bank[qIdx];
 
   // No multiple-choice checkpoint exists for this topic: the lesson uses an
   // "explain it back" retrieval prompt instead of inventing a generic question.
@@ -2691,7 +2770,7 @@ function buildNodeQuiz(module) {
     moduleId: module.id,
     kind: 'node',
     title: module.title.split(',')[0],
-    description: `${bank.length} checkpoint questions, one per section of this node.`,
+    description: `${bank.length} checkpoint ${bank.length === 1 ? 'question' : 'questions'} drawn from this node's lesson topics.`,
     questions: bank.map((q, i) => shuffleOptions({
       id: `nq-${module.id}-${i}`,
       difficulty: 'Node Check',
