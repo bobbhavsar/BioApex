@@ -1929,7 +1929,7 @@ const CHECKPOINT_BANK = {
       },
       {
         prompt: "In a ping-pong bisubstrate mechanism, what event occurs before the second substrate B can bind?",
-        options: ["Substrate B binds to form a ternary EAB complex", "The first product P is released and a modified enzyme intermediate (E*) is formed", "Both products P and Q are released simultaneously"],
+        options: ["Substrate B binds first, forming a ternary EAB complex", "Product P leaves, leaving a modified E* intermediate", "Both products P and Q leave together at the end"],
         correctIndex: 1,
         explanation: "Ping-pong (double-displacement) kinetics requires product P to dissociate before substrate B docks onto the modified enzyme intermediate!"
       }
@@ -1937,25 +1937,25 @@ const CHECKPOINT_BANK = {
     'cell-2-chemiosmosis': [
       {
         prompt: "How many net protons are translocated into the intermembrane space per pair of electrons passing through the Cytochrome bc\u2081 complex (Complex III)?",
-        options: ["2 H\u207a", "4 H\u207a (via the two-cycle Q-cycle mechanism)", "6 H\u207a"],
+        options: ["2 H\u207a (one Q-cycle turnover)", "4 H\u207a (two Q-cycle turnovers)", "6 H\u207a (three Q-cycle turnovers)"],
         correctIndex: 1,
         explanation: "The Q-cycle oxidizes 2 molecules of QH\u2082 and reduces 1 Q, pumping a net 4 H\u207a into the IMS per 2 electrons delivered to cytochrome c!"
       },
       {
         prompt: "In mammalian mitochondria, which component contributes ~80% of the total proton-motive force (\u0394p \u2248 215 mV)?",
-        options: ["Electrical membrane potential (\u0394\u03a8 \u2248 -170 mV)", "pH gradient (\u0394pH)", "Osmotic hydrostatic pressure"],
+        options: ["Electrical \u0394\u03a8 (about -170 mV, ~80% of \u0394p)", "Chemical \u0394pH (about 0.8 units, ~20% of \u0394p)", "Osmotic pressure across the inner membrane"],
         correctIndex: 0,
         explanation: "In mitochondria, electrical potential \u0394\u03a8 dominates (~80%), whereas in chloroplast thylakoids, ion counter-fluxes collapse \u0394\u03a8 so \u0394pH accounts for almost 100%!"
       },
       {
         prompt: "Mammalian ATP synthase has an 8-subunit c-ring. Accounting for phosphate and ADP symport, what is the energetic cost per ATP synthesized and exported?",
-        options: ["2.67 H\u207a / ATP", "3.67 H\u207a / ATP (2.67 for c-ring + 1 for transport)", "4.67 H\u207a / ATP"],
+        options: ["2.67 H\u207a / ATP (c-ring only)", "3.67 H\u207a / ATP (c-ring plus symport)", "4.67 H\u207a / ATP (c-ring plus antiport)"],
         correctIndex: 1,
         explanation: "8 protons rotate the ring 360\u00b0 to make 3 ATP (8/3 = 2.67), plus 1 proton equivalent for ANT and phosphate translocase = 3.67 H\u207a/ATP!"
       },
       {
         prompt: "What is observed when the chemical uncoupler 2,4-dinitrophenol (DNP) is added to coupled mitochondria?",
-        options: ["Oxygen consumption halts immediately", "Oxygen consumption accelerates to maximum rate while ATP synthesis ceases", "Proton-motive force builds to toxic levels"],
+        options: ["Oxygen consumption halts immediately and ATP synthesis speeds up", "Oxygen consumption accelerates to maximum while ATP synthesis stops", "Proton-motive force builds until the membrane potential collapses"],
         correctIndex: 1,
         explanation: "DNP dissipates the proton gradient as heat, removing PMF back-pressure and driving oxygen consumption to its absolute maximum without ATP generation!"
       }
@@ -1963,7 +1963,7 @@ const CHECKPOINT_BANK = {
     'cell-3-signaling': [
       {
         prompt: "What is the molecular mechanism of Cholera toxin on G-protein signaling?",
-        options: ["ADP-ribosylates G\u03b1s, locking it in constitutive active GTP-bound state", "ADP-ribosylates G\u03b1i, preventing adenylyl cyclase inhibition", "Phosphorylates RTKs directly"],
+        options: ["ADP-ribosylates G\u03b1s, locking it in the active GTP-bound state", "ADP-ribosylates G\u03b1i, blocking inhibition of adenylyl cyclase", "Phosphorylates receptor tyrosine kinases on their cytoplasmic tails"],
         correctIndex: 0,
         explanation: "Cholera toxin ADP-ribosylates G\u03b1s, inhibiting intrinsic GTPase activity so adenylyl cyclase remains constitutively active, causing massive cAMP accumulation!"
       },
@@ -1983,7 +1983,7 @@ const CHECKPOINT_BANK = {
       },
       {
         prompt: "What provides the free energy required to disassemble the stable post-fusion cis-SNARE complex in the target membrane?",
-        options: ["ATP hydrolysis catalyzed by NSF (an AAA+ ATPase) and \u03b1-SNAP", "GTP hydrolysis by Rab", "Membrane voltage dissipation"],
+        options: ["ATP hydrolysis by NSF, an AAA+ ATPase, with \u03b1-SNAP", "GTP hydrolysis by a Rab GTPase on the target membrane", "Dissipation of the membrane potential across the bilayer"],
         correctIndex: 0,
         explanation: "NSF is a hexameric AAA+ ATPase that unwinds the tight 4-helix SNARE bundle using ATP hydrolysis, freeing SNAREs for recycling!"
       }
@@ -1991,7 +1991,7 @@ const CHECKPOINT_BANK = {
     'cell-5-checkpoints-apoptosis': [
       {
         prompt: "How does the dual-specificity phosphatase Cdc25 trigger entry into mitosis at the G2/M boundary?",
-        options: ["Removes inhibitory phosphates from Thr14 and Tyr15 on CDK1", "Directly ubiquitinates Cyclin B", "Phosphorylates Wee1 kinase"],
+        options: ["Removes inhibitory phosphates from Thr14 and Tyr15 of CDK1", "Ubiquitinates Cyclin B directly, tagging it for the proteasome", "Phosphorylates Wee1 kinase to keep CDK1 inactive"],
         correctIndex: 0,
         explanation: "Cdc25 dephosphorylates Thr14 and Tyr15 on CDK1, creating an irreversible positive feedback loop that rapidly activates MPF!"
       },
@@ -2005,7 +2005,7 @@ const CHECKPOINT_BANK = {
     'plant-1-hydraulics': [
       {
         prompt: "What is the function of the torus-margo bordered pit membrane in conifer tracheids during cavitation?",
-        options: ["The torus aspirates against the overarching pit border, sealing the pit to prevent air spreading", "Increases transpiration by 50%", "Secretes suberin into xylem"],
+        options: ["Torus aspirates onto the border, sealing the pit", "It raises the transpiration rate by about 50%", "It secretes suberin into the xylem to seal the wall"],
         correctIndex: 0,
         explanation: "The torus acts as a one-way safety valve: large pressure differentials aspirate the impermeable torus over the pit aperture, isolating the embolized tracheid!"
       }
@@ -2013,7 +2013,7 @@ const CHECKPOINT_BANK = {
     'plant-2-photochemistry': [
       {
         prompt: "In dark-adapted chloroplasts, what is the predominant initial S-state of the Oxygen-Evolving Complex (Mn\u2084CaO\u2085 cluster)?",
-        options: ["S\u2081 (thermodynamically stable dark ground state)", "S\u2080", "S\u2084"],
+        options: ["S\u2081 (dark-stable ground state)", "S\u2080 (most reduced, after O\u2082 release)", "S\u2084 (transient, just before O\u2082 release)"],
         correctIndex: 0,
         explanation: "Because S\u2081 is stable in the dark, single-turnover flash trains require 3 flashes (S\u2081 \u2192 S\u2082 \u2192 S\u2083 \u2192 S\u2084 \u2192 S\u2080) to yield the first peak of oxygen!"
       }
@@ -2021,7 +2021,7 @@ const CHECKPOINT_BANK = {
     'plant-3-c4-cam': [
       {
         prompt: "Why do bundle sheath chloroplasts in NADP-ME C\u2084 plants (such as maize) exhibit agranal ultrastructure?",
-        options: ["They lack PSII, minimizing local O\u2082 production to suppress Rubisco photorespiration", "They lack ATP synthase", "They cannot fix carbon in the dark"],
+        options: ["They lack PSII, so less O\u2082 is made near Rubisco", "They lack ATP synthase, so they cannot make ATP", "They cannot fix carbon unless it is dark"],
         correctIndex: 0,
         explanation: "Agranal bundle sheath chloroplasts lack grana and PSII, drastically lowering O\u2082 concentration around Rubisco while pumping in 10,000 ppm CO\u2082!"
       }
@@ -2029,7 +2029,7 @@ const CHECKPOINT_BANK = {
     'plant-4-hormones': [
       {
         prompt: "What is the biochemical role of auxin (IAA) in the TIR1 receptor complex?",
-        options: ["Acts as a 'molecular glue' completing the binding pocket for the Aux/IAA repressor degron", "Directly phosphorylates ARF transcription factors", "Cleaves cellulose walls enzymatically"],
+        options: ["Acts as molecular glue that completes the Aux/IAA degron pocket", "Directly phosphorylates ARF transcription factors in the nucleus", "Cleaves cellulose in the wall enzymatically"],
         correctIndex: 0,
         explanation: "Auxin fits into a hydrophobic pocket on the TIR1 F-box protein, creating the interaction surface that recruits Aux/IAA repressors for ubiquitination!"
       }
@@ -2037,7 +2037,7 @@ const CHECKPOINT_BANK = {
     'animal-1-neuro': [
       {
         prompt: "Which hydrophobic amino acid sequence on the intracellular loop of Na\u1d65 channels acts as the inactivation ball?",
-        options: ["IFMT (Isoleucine - Phenylalanine - Methionine - Threonine)", "KDEL", "RGD"],
+        options: ["IFMT (Ile-Phe-Met-Thr) ball", "KDEL (Lys-Asp-Glu-Leu) ER signal", "RGD (Arg-Gly-Asp) integrin motif"],
         correctIndex: 0,
         explanation: "The IFMT motif forms the hydrophobic hinged lid that swings into the inner channel mouth within 1 ms of depolarization (h-gate inactivation)!"
       }
@@ -2045,7 +2045,7 @@ const CHECKPOINT_BANK = {
     'animal-2-cardio': [
       {
         prompt: "In the cardiac cycle Wiggers diagram, what event marks the start of Isovolumetric Ventricular Contraction and generates the S\u2081 heart sound?",
-        options: ["Closure of the atrioventricular (Mitral and Tricuspid) valves", "Closure of the Aortic valve", "Opening of the Aortic valve"],
+        options: ["Closure of the mitral and tricuspid valves", "Closure of the aortic and pulmonary valves", "Opening of the aortic and pulmonary valves"],
         correctIndex: 0,
         explanation: "As ventricular pressure exceeds atrial pressure, the mitral and tricuspid valves snap shut, producing the S\u2081 sound at constant End-Diastolic Volume!"
       }
@@ -2053,7 +2053,7 @@ const CHECKPOINT_BANK = {
     'animal-3-renal': [
       {
         prompt: "What cotransporter in the thick ascending limb of Henle creates the lumen-positive potential (+8 mV)?",
-        options: ["NKCC2 (1 Na\u207a : 1 K\u207a : 2 Cl\u207b)", "SGLT2", "NCX"],
+        options: ["NKCC2 (1 Na\u207a : 1 K\u207a : 2 Cl\u207b)", "SGLT2 (1 Na\u207a : 1 glucose)", "NCX (3 Na\u207a : 1 Ca\u00b2\u207a)"],
         correctIndex: 0,
         explanation: "NKCC2 reabsorbs Na\u207a, K\u207a, and 2 Cl\u207b, while K\u207a back-leaks through apical ROMK channels, generating the +8 mV lumen-positive driving force!"
       }
@@ -2061,7 +2061,7 @@ const CHECKPOINT_BANK = {
     'genetics-1-mapping': [
       {
         prompt: "If 10 double crossovers are observed out of 20 expected in a three-point testcross, what is the genetic interference (I)?",
-        options: ["I = 0.50 (Positive Interference)", "I = 0.20", "I = -0.50"],
+        options: ["I = 0.50 (positive interference)", "I = 0.20 (no interference)", "I = -0.50 (negative interference)"],
         correctIndex: 0,
         explanation: "COC = Observed DCO / Expected DCO = 10 / 20 = 0.50. Interference I = 1 - COC = 1 - 0.50 = 0.50!"
       }
@@ -2077,7 +2077,7 @@ const CHECKPOINT_BANK = {
     'eco-1-dynamics': [
       {
         prompt: "Under Lotka-Volterra competition, what condition guarantees stable species coexistence?",
-        options: ["\u03b1\u2081\u2082 < K\u2081/K\u2082 and \u03b1\u2082\u2081 < K\u2082/K\u2081 (Intraspecific > interspecific competition)", "\u03b1\u2081\u2082 > K\u2081/K\u2082", "K\u2081 = K\u2082 always"],
+        options: ["\u03b1\u2081\u2082 < K\u2081/K\u2082 and \u03b1\u2082\u2081 < K\u2082/K\u2081 for both species", "\u03b1\u2081\u2082 > K\u2081/K\u2082 and \u03b1\u2082\u2081 > K\u2082/K\u2081 for both species", "K\u2081 = K\u2082 and \u03b1\u2081\u2082 = \u03b1\u2082\u2081 = 1 for both species"],
         correctIndex: 0,
         explanation: "Stable coexistence requires each species to inhibit its own growth more strongly than it inhibits the competitor!"
       }
@@ -2093,7 +2093,7 @@ const CHECKPOINT_BANK = {
     'systematics-1-cladistics': [
       {
         prompt: "What is the definition of a paraphyletic group?",
-        options: ["A group that includes an ancestor and SOME but not all descendants", "A group with an ancestor and all descendants", "A group of convergent taxa"],
+        options: ["Ancestor plus only some of its descendants", "Ancestor plus all of its descendants", "Unrelated taxa grouped by convergent traits"],
         correctIndex: 0,
         explanation: "A paraphyletic group (e.g. traditional 'Reptilia' excluding birds) omits one or more descendant lineages!"
       }
@@ -2101,13 +2101,13 @@ const CHECKPOINT_BANK = {
     'cell-6-molecular-genetics': [
       {
         prompt: "Which mechanism removes Okazaki RNA primers and which enzyme seals the nick?",
-        options: ["DNA Pol \u03b4 displaces primer into a 5' flap cleaved by FEN1; DNA Ligase I seals nick", "Telomerase removes primers; Helicase seals nick", "Topoisomerase II cleaves primer directly"],
+        options: ["Pol \u03b4 displaces it; FEN1 cuts and Ligase I seals", "Telomerase removes primers; helicase seals the nick", "Topoisomerase II cuts the primer and ligates it"],
         correctIndex: 0,
         explanation: "DNA Pol \u03b4 displaces the RNA primer into a flap cleaved by FEN1, followed by DNA Ligase I sealing the backbone!"
       },
       {
         prompt: "What phosphorylation on RNA Pol II CTD triggers promoter clearance and mRNA 5' capping?",
-        options: ["Ser5 phosphorylation by TFIIH kinase (CDK7)", "Lys9 acetylation by HATs", "Dephosphorylation by Cdc25"],
+        options: ["Ser5 phosphorylation by the TFIIH kinase CDK7", "Lys9 acetylation by histone acetyltransferases", "Dephosphorylation by the phosphatase Cdc25"],
         correctIndex: 0,
         explanation: "TFIIH CDK7 phosphorylates Ser5 of the CTD, releasing Pol II and recruiting capping enzymes!"
       }
@@ -2121,7 +2121,7 @@ const CHECKPOINT_BANK = {
       },
       {
         prompt: "What maintains the dormant lysogenic state in bacteriophage \u03bb?",
-        options: ["cI repressor dimers bound cooperatively to O_R1 and O_R2", "RecA protease activation", "Cro binding to O_R3"],
+        options: ["cI dimers bound cooperatively at O_R1 and O_R2", "RecA-mediated cleavage of the cI repressor", "Cro binding at O_R3 to block cI synthesis"],
         correctIndex: 0,
         explanation: "cI repressor binds O_R1/O_R2, repressing Cro while activating its own promoter to sustain lysogeny!"
       }
@@ -2135,7 +2135,7 @@ const CHECKPOINT_BANK = {
       },
       {
         prompt: "Why is Taq polymerase used in PCR instead of standard DNA Pol I?",
-        options: ["Taq survives 95\u00b0C denaturation without losing activity", "Taq has 3'\u21925' proofreading", "Taq doesn't need primers"],
+        options: ["Taq survives 95\u00b0C without losing activity", "Taq has 3'\u21925' proofreading that Pol I lacks", "Taq needs no primers or template to start"],
         correctIndex: 0,
         explanation: "From Thermus aquaticus, Taq withstands repeated 95\u00b0C cycles!"
       }
@@ -2143,7 +2143,7 @@ const CHECKPOINT_BANK = {
     'plant-5-anatomy': [
       {
         prompt: "By Hagen-Poiseuille (Q \u221d r\u2074), if a vessel has 4x the radius of a tracheid, how much greater is flow?",
-        options: ["256-fold (4\u2074 = 256)", "16-fold", "64-fold"],
+        options: ["256-fold (4\u2074)", "16-fold (4\u00b2)", "64-fold (4\u00b3)"],
         correctIndex: 0,
         explanation: "Hydraulic conductance scales with r\u2074. 4x radius = 256x flow!"
       },
@@ -2157,13 +2157,13 @@ const CHECKPOINT_BANK = {
     'plant-6-reproduction': [
       {
         prompt: "In double fertilization, what ploidy is the endosperm?",
-        options: ["Triploid (3n: 1n sperm + 2n polar nuclei)", "Diploid (2n)", "Haploid (1n)"],
+        options: ["Triploid (1n + 2n = 3n)", "Diploid (1n + 1n = 2n)", "Haploid (1n, unfertilised)"],
         correctIndex: 0,
         explanation: "One sperm + egg = 2n zygote; second sperm + 2 polar nuclei = 3n endosperm!"
       },
       {
         prompt: "What peptides guide the pollen tube to the micropyle?",
-        options: ["LURE peptides from synergids", "Auxin (IAA)", "Defensins"],
+        options: ["LURE peptides (synergids)", "Auxin (IAA) from the stigma", "Defensins from style cells"],
         correctIndex: 0,
         explanation: "Synergid LURE peptides bind pollen tube tip receptor kinases for species-specific guidance!"
       }
@@ -2171,13 +2171,13 @@ const CHECKPOINT_BANK = {
     'animal-4-digestion': [
       {
         prompt: "How does the parietal cell maintain pH during massive H\u207a pumping?",
-        options: ["Basolateral AE2 exports HCO\u2083\u207b for Cl\u207b (Alkaline Tide)", "Direct NH\u2084\u207a diffusion", "Passive H\u207a leakage"],
+        options: ["Basolateral AE2 exports HCO\u2083\u207b for Cl\u207b", "Apical NH\u2084\u207a diffusion out of the cell", "Passive H\u207a leakage back into the cell"],
         correctIndex: 0,
         explanation: "Carbonic anhydrase yields H\u207a (pumped apically) and HCO\u2083\u207b (exported via AE2, creating alkaline tide)!"
       },
       {
         prompt: "Why do chylomicrons bypass the hepatic portal?",
-        options: ["Too large for capillaries; enter lacteals to thoracic duct", "Degraded in portal blood", "Enter bile duct directly"],
+        options: ["Too large for capillaries, so they enter lacteals", "Degraded by portal blood before reaching tissue", "Secreted directly into the bile duct"],
         correctIndex: 0,
         explanation: "Chylomicrons (75-1200 nm) enter blind-ended lacteals, draining into thoracic duct!"
       }
@@ -2185,13 +2185,13 @@ const CHECKPOINT_BANK = {
     'animal-5-respiration': [
       {
         prompt: "Which shifts stabilize the T-state of hemoglobin (Bohr Effect)?",
-        options: ["Acidosis, hypercapnia, elevated temp, increased 2,3-BPG", "Alkalosis, hypothermia, decreased 2,3-BPG", "Fetal hemoglobin (HbF)"],
+        options: ["Acidosis, hypercapnia, warmth, high 2,3-BPG", "Alkalosis, hypothermia, low 2,3-BPG", "Fetal hemoglobin (HbF) instead of adult Hb"],
         correctIndex: 0,
         explanation: "CADET shifts right: CO\u2082, Acid, 2,3-DPG/BPG, Exercise, Temperature!"
       },
       {
         prompt: "What enzyme and transporter mediate the chloride shift?",
-        options: ["Carbonic Anhydrase II; Band 3 (AE1)", "Cytochrome oxidase; SGLT1", "SOD; CFTR"],
+        options: ["Carbonic anhydrase II and Band 3", "Cytochrome oxidase and SGLT1", "Superoxide dismutase and CFTR"],
         correctIndex: 0,
         explanation: "CA II hydrates CO\u2082; Band 3 exports HCO\u2083\u207b for Cl\u207b (Hamburger phenomenon)!"
       }
@@ -2199,13 +2199,13 @@ const CHECKPOINT_BANK = {
     'animal-6-immunity': [
       {
         prompt: "What initiates V(D)J recombination by recognizing RSS?",
-        options: ["RAG1 and RAG2 recombinases", "AID", "DNA Pol \u03b3"],
+        options: ["RAG1 and RAG2 recombinases", "Activation-induced cytidine deaminase", "DNA polymerase \u03b3"],
         correctIndex: 0,
         explanation: "RAG1/2 bind 12/23 RSS spacers to create coding joint hairpins for BCR/TCR diversity!"
       },
       {
         prompt: "Which cells express MHC Class II for CD4\u207a T cell activation?",
-        options: ["Professional APCs: DCs, Macrophages, B cells", "All nucleated cells", "Neutrophils and CTLs only"],
+        options: ["Dendritic cells, macrophages and B cells", "All nucleated cells of the body", "Neutrophils and cytotoxic T cells only"],
         correctIndex: 0,
         explanation: "MHC II is restricted to professional APCs presenting exogenous antigens to CD4\u207a T cells!"
       }
@@ -2213,13 +2213,13 @@ const CHECKPOINT_BANK = {
     'animal-7-reproduction-development': [
       {
         prompt: "What does the Spemann-Mangold organizer secrete to induce neural plate?",
-        options: ["Chordin, Noggin, Follistatin (BMP4 antagonists)", "Direct keratin activation", "High-dose BMP4"],
+        options: ["Chordin, Noggin and Follistatin (BMP antagonists)", "Direct activation of keratin genes in ectoderm", "High-dose BMP4 signalling across the ectoderm"],
         correctIndex: 0,
         explanation: "Default ectoderm fate is neural! Organizer blocks BMP4 to allow neural tube formation!"
       },
       {
         prompt: "What ion flux triggers the cortical reaction (slow polyspermy block)?",
-        options: ["IP\u2083-mediated Ca\u00b2\u207a wave causing cortical granule exocytosis", "K\u207a efflux", "ATP injection"],
+        options: ["Ca\u00b2\u207a wave from IP\u2083, granule exocytosis", "K\u207a efflux that hyperpolarises the egg", "Injection of ATP into the egg cytoplasm"],
         correctIndex: 0,
         explanation: "PLC-\u03b6 triggers IP\u2083/Ca\u00b2\u207a wave; cortical granules cleave ZP receptors!"
       }
@@ -2227,13 +2227,13 @@ const CHECKPOINT_BANK = {
     'animal-8-endocrine': [
       {
         prompt: "What does ACE cleave on pulmonary capillary endothelium in RAAS?",
-        options: ["Angiotensin I \u2192 Angiotensin II (remove C-terminal dipeptide)", "Angiotensinogen \u2192 Angiotensin I", "Aldosterone \u2192 Cortisol"],
+        options: ["ACE cleaves angiotensin I to angiotensin II", "Renin converts angiotensinogen to angiotensin I", "Aldosterone is converted to cortisol in the cortex"],
         correctIndex: 0,
         explanation: "ACE cleaves the dipeptide from Ang I to produce the vasoconstrictor Ang II!"
       },
       {
         prompt: "How does PTH elevate blood calcium across bone, kidney, intestine?",
-        options: ["RANKL on osteoblasts, distal Ca\u00b2\u207a reabsorption, 1\u03b1-hydroxylase for calcitriol", "Stimulates calcitonin", "Blocks all phosphate excretion"],
+        options: ["RANKL on osteoblasts, distal Ca\u00b2\u207a reabsorption", "Stimulation of calcitonin release from the thyroid", "Blocking phosphate excretion at the proximal tubule"],
         correctIndex: 0,
         explanation: "PTH: RANKL \u2192 osteoclasts, renal Ca\u00b2\u207a reabsorption, CYP27B1 \u2192 1,25-(OH)\u2082D\u2083!"
       }
@@ -2241,7 +2241,7 @@ const CHECKPOINT_BANK = {
     'genetics-3-mendelian-extensions': [
       {
         prompt: "In recessive epistasis (9:3:4), why does aabb share phenotype with A_bb?",
-        options: ["bb blocks an upstream precursor, masking gene A", "A and B are physically linked", "Both genes on Y chromosome"],
+        options: ["bb blocks an upstream precursor, masking gene A", "Genes A and B are physically linked on one chromosome", "Both genes sit on the Y chromosome, so they co-segregate"],
         correctIndex: 0,
         explanation: "Recessive epistasis: absence of enzyme B blocks precursor, masking A phenotype!"
       },
@@ -2255,13 +2255,13 @@ const CHECKPOINT_BANK = {
     'genetics-4-gene-regulation': [
       {
         prompt: "When does the lac operon achieve maximum transcription?",
-        options: ["Low Glucose (cAMP-CAP active) AND Lactose present (LacI removed)", "High Glucose AND Lactose", "Low Glucose AND No Lactose"],
+        options: ["Low glucose + lactose (CAP active)", "High glucose + lactose (CAP inactive)", "Low glucose, no lactose (repressor on)"],
         correctIndex: 0,
         explanation: "Full induction requires BOTH cAMP-CAP activation AND allolactose relief of LacI!"
       },
       {
         prompt: "Which modification relaxes chromatin for transcription?",
-        options: ["Histone acetylation by HATs (H3K9ac, H3K14ac)", "Histone methylation by HMTs", "CpG DNA methylation"],
+        options: ["Histone acetylation by HATs (H3K9ac)", "Histone methylation by HMTs at H3K9", "CpG methylation of the promoter DNA"],
         correctIndex: 0,
         explanation: "HATs neutralize lysine positive charge, weakening histone-DNA interaction = euchromatin!"
       }
@@ -2269,7 +2269,7 @@ const CHECKPOINT_BANK = {
     'eco-2-ecosystems': [
       {
         prompt: "Why can pelagic marine ecosystems have inverted biomass pyramids?",
-        options: ["Phytoplankton have extremely high turnover (P/B ratio)", "Zooplankton do chemosynthesis", "Phytoplankton don't need sunlight"],
+        options: ["Phytoplankton have very high turnover (P/B ratio)", "Zooplankton make their own food by chemosynthesis", "Phytoplankton do not need sunlight to grow"],
         correctIndex: 0,
         explanation: "Rapid phytoplankton division (high P/B) means low standing crop but massive annual production!"
       },
@@ -2283,13 +2283,13 @@ const CHECKPOINT_BANK = {
     'eco-3-predation-biodiversity': [
       {
         prompt: "What is the predator-prey phase relationship in Lotka-Volterra?",
-        options: ["Predator peaks \u00bc cycle (\u03c0/2) behind prey", "Perfectly synchronized", "Prey peaks \u00bd cycle behind predator"],
+        options: ["Predator peaks \u00bc cycle after prey", "Both peak at exactly the same time", "Prey peaks \u00bd cycle after the predator"],
         correctIndex: 0,
         explanation: "Predator reproduction lags prey abundance; peak ~90\u00b0 (quarter-cycle) behind!"
       },
       {
         prompt: "Which island type has highest equilibrium species richness (MacArthur-Wilson)?",
-        options: ["Large island Near mainland (high immigration + low extinction)", "Small Far island", "Small Near island"],
+        options: ["Large island near the mainland", "Small island far from the mainland", "Small island near the mainland"],
         correctIndex: 0,
         explanation: "Large = low extinction; Near = high immigration \u2192 maximum equilibrium S\u0302!"
       }
@@ -2297,13 +2297,13 @@ const CHECKPOINT_BANK = {
     'ethology-2-classical-behavior': [
       {
         prompt: "In the waggle dance, what does 'straight up' on the comb represent?",
-        options: ["Current sun azimuth direction", "Magnetic North", "Hive entrance"],
+        options: ["Sun's azimuth direction", "Magnetic north direction", "Hive entrance direction"],
         correctIndex: 0,
         explanation: "Bees translate solar azimuth to gravitational vertical: up = toward sun!"
       },
       {
         prompt: "What drives the mammalian circadian clock in the SCN?",
-        options: ["CLOCK-BMAL1 transcribe PER/CRY; PER/CRY inhibit CLOCK-BMAL1", "Epinephrine oscillations", "Cardiac pacemaker cycling"],
+        options: ["CLOCK-BMAL1 drive PER/CRY, which inhibit CLOCK-BMAL1", "Epinephrine oscillations from the adrenal medulla", "A cardiac pacemaker cycling in the sinoatrial node"],
         correctIndex: 0,
         explanation: "Transcription-translation negative feedback: PER/CRY accumulate, inhibit CLOCK-BMAL1 until proteasomal degradation resets the cycle!"
       }
@@ -2312,11 +2312,7 @@ const CHECKPOINT_BANK = {
     'cell-9-biomolecules': [
       {
         prompt: "Water has a relative permittivity of about 80 at 25 degrees C, while a protein core is about 4. What does that difference explain?",
-        options: [
-          "A salt bridge between two buried charged residues is far stronger than the same pair in bulk solvent",
-          "Hydrogen bonds cannot form inside a protein core, so only hydrophobic contacts remain",
-          "The hydrophobic effect disappears inside a protein because water is excluded"
-        ],
+        options: ["A buried salt bridge is far stronger than in water", "Hydrogen bonds cannot form in a protein core", "The hydrophobic effect vanishes once water is gone"],
         correctIndex: 0,
         explanation: "Coulomb's law carries a 1/epsilon factor, so separating an ion pair costs about 80-fold more in bulk water than in a hydrocarbon-like core. The same electrostatic contacts that are weak and transient on a protein surface become strong and fixed once buried, which is also why a charged residue placed in a lipid bilayer is destabilising. Hydrogen bonds do still form in a dry core, and the hydrophobic effect is the reason the core exists, so both other options invert the logic."
       },
@@ -2328,7 +2324,7 @@ const CHECKPOINT_BANK = {
       },
       {
         prompt: "Which force makes the dominant contribution to a globular protein's tertiary structure?",
-        options: ["Hydrophobic collapse of nonpolar side chains away from water", "Main-chain hydrogen bonding between backbone amides", "Disulfide bonds between cysteine residues"],
+        options: ["Hydrophobic collapse of nonpolar side chains", "Main-chain hydrogen bonding between amides", "Disulfide bonds between cysteine residues"],
         correctIndex: 0,
         explanation: "The hydrophobic effect drives burial of nonpolar residues and is the dominant folding force in aqueous solution; backbone hydrogen bonds define secondary structure and disulfides only stabilise the folded state once formed."
       },
@@ -2346,11 +2342,7 @@ const CHECKPOINT_BANK = {
     'cell-10-membranes-transport': [
       {
         prompt: "A neuron at 37 degrees C has [K+] inside = 140 mM and [K+] outside = 5 mM. What is the K+ equilibrium potential, and what sets it?",
-        options: [
-          "About -89 mV inside-negative, because K+ is concentrated inside and that gradient holds a negative potential inside",
-          "About +89 mV inside-positive, because K+ is the permeant ion",
-          "About -61 mV, because the concentration ratio is only 28-fold"
-        ],
+        options: ["About -89 mV: K\u207a is high inside and leaks out", "About +89 mV: K\u207a is the only permeant ion", "About -61 mV: the gradient is only 28-fold"],
         correctIndex: 0,
         explanation: "E_K = (RT/zF) ln([K+]out/[K+]in) = 61.5 mV x log10(5/140) = -89 mV at 37 degrees C. K+ is concentrated inside, so the equilibrium potential is negative inside; the resting potential sits close to but not at E_K because the membrane is slightly permeable to Na+ and Cl-, which is why the Goldman equation weights all permeant ions rather than using K+ alone."
       },
@@ -2376,13 +2368,13 @@ const CHECKPOINT_BANK = {
       },
       {
         prompt: "What is the microtubule arrangement of a eukaryotic ciliary or flagellar axoneme?",
-        options: ["9 + 2 doublets plus central pair", "9 + 0 doublets", "9 triplets forming a ring"],
+        options: ["9 + 2 doublets with central pair", "9 + 0 doublets, lacking a central pair", "9 triplets forming a ring"],
         correctIndex: 0,
         explanation: "The axoneme is nine outer doublets plus two central singlets; dynein arms slide doublets and nexin links convert sliding into bending, and loss of dynein arms causes primary ciliary dyskinesia."
       },
       {
         prompt: "Microtubules display dynamic instability. What determines whether a growing end continues to grow?",
-        options: ["The presence of a GTP cap on beta-tubulin", "Phosphorylation of actin monomers", "The presence of a myosin II collar"],
+        options: ["A GTP cap on beta-tubulin at the growing end", "Phosphorylation of actin monomers in the filament", "A myosin II collar contracting behind the end"],
         correctIndex: 0,
         explanation: "GTP-bound tubulin at the plus end forms a stabilising cap; hydrolysis behind the tip permits catastrophe, and rescue can restart growth, enabling search-and-capture of the spindle."
       }
@@ -2402,7 +2394,7 @@ const CHECKPOINT_BANK = {
       },
       {
         prompt: "Which enzyme is the committed, allosterically regulated step of glycolysis?",
-        options: ["Phosphofructokinase-1, inhibited by ATP and citrate", "Hexokinase, inhibited by glucose-6-phosphate", "Pyruvate kinase, activated by ATP"],
+        options: ["Phosphofructokinase-1, inhibited by ATP", "Hexokinase, inhibited by glucose-6-phosphate", "Pyruvate kinase, activated by ATP and citrate"],
         correctIndex: 0,
         explanation: "PFK-1 sets the flux through glycolysis: ATP and citrate inhibit it while AMP/ADP and fructose-2,6-bisphosphate activate it, coupling glycolysis to the cell's energy charge."
       }
@@ -2410,19 +2402,19 @@ const CHECKPOINT_BANK = {
     'cell-13-bioinformatics': [
       {
         prompt: "A BLAST search returns an E-value of 1e-40. What does this mean?",
-        options: ["About 1e-40 alignments of this score would be expected by chance in a database of this size", "The sequences are 40% identical", "The alignment is 40 base pairs long"],
+        options: ["About 1e-40 alignments expected by chance", "The sequences are 40% identical to each other", "The alignment is 40 base pairs long"],
         correctIndex: 0,
         explanation: "The E-value is the expected number of chance alignments with that score, so 1e-40 is overwhelming evidence of homology; identity percentage and alignment length are separate statistics."
       },
       {
         prompt: "A protein-coding gene shows dN/dS = 2.3 across codons of the antigen-binding region. What does this indicate?",
-        options: ["Positive (diversifying) selection on those codons", "Strong purifying selection", "Neutral evolution with no selection"],
+        options: ["Positive (diversifying) selection", "Strong purifying selection on those codons", "Neutral evolution with no selection at all"],
         correctIndex: 0,
         explanation: "When nonsynonymous substitutions accumulate faster than synonymous ones (dN/dS > 1), selection is favouring amino acid change - typical of host-pathogen arms races and immune genes."
       },
       {
         prompt: "How many reading frames must be checked when searching a double-stranded DNA sequence for an open reading frame?",
-        options: ["Six: three on the forward strand and three on the reverse complement", "Three, one per codon position on the forward strand", "Two, one per strand"],
+        options: ["Six: three on each strand of the duplex", "Three, one per codon position on the forward strand", "Two, one per strand of the duplex"],
         correctIndex: 0,
         explanation: "Each strand has three possible frames, so a gene can lie in any of six frames; tools such as ORFfinder translate all six and report the longest ORF between a start and in-frame stop codon."
       }
@@ -2430,19 +2422,19 @@ const CHECKPOINT_BANK = {
     'cell-14-methods-biostatistics': [
       {
         prompt: "A nucleic acid sample has A260/A280 = 1.8. What does this suggest?",
-        options: ["Relatively pure DNA, with little protein contamination", "Relatively pure RNA", "Heavy protein contamination"],
+        options: ["Pure DNA, little protein contamination", "Relatively pure RNA, no DNA contamination", "Heavy protein or phenol contamination"],
         correctIndex: 0,
         explanation: "Pure DNA gives about 1.8 and pure RNA about 2.0; ratios below roughly 1.6 indicate protein or phenol contamination, which absorbs strongly at 280 nm."
       },
       {
         prompt: "A dihybrid cross yields 315:108:101:32 instead of 9:3:3:1. Which test decides whether the deviation is significant?",
-        options: ["Chi-square goodness of fit, with 3 degrees of freedom", "A two-sample t-test, with 3 degrees of freedom", "Linear regression of phenotype on genotype"],
+        options: ["Chi-square goodness of fit (df = 3)", "A two-sample t-test, 3 degrees of freedom", "Linear regression of phenotype on genotype"],
         correctIndex: 0,
         explanation: "Chi-square compares observed counts with the expected Mendelian proportions; degrees of freedom = categories - 1 = 3, and the ratio 9:3:3:1 is retained if the statistic falls below the critical value."
       },
       {
         prompt: "An experiment reports a mean with a standard error bar. Which statement about the standard error is correct?",
-        options: ["It is the standard deviation divided by the square root of n, so it shrinks as sample size grows", "It measures the spread of the raw observations", "It is unaffected by sample size"],
+        options: ["Standard deviation divided by \u221an, shrinking as n grows", "The spread of individual observations around their mean", "A quantity that is unaffected by sample size"],
         correctIndex: 0,
         explanation: "SE = s/sqrt(n) estimates the precision of the mean rather than the variability of individuals, so error bars can look small even when individual variation is large - always check the legend."
       }
@@ -2450,23 +2442,19 @@ const CHECKPOINT_BANK = {
     'plant-7-mineral-nutrition': [
       {
         prompt: "A nutrient deficiency appears first in the OLDEST leaves. Which element is most likely limiting?",
-        options: ["Nitrogen, a mobile element that is retranslocated to young tissue", "Calcium, an immobile element", "Iron, an immobile element needed for chlorophyll"],
+        options: ["Nitrogen, mobile and retranslocated to young tissue", "Calcium, an immobile element locked in old tissue", "Iron, an immobile element needed for chlorophyll"],
         correctIndex: 0,
         explanation: "Mobile nutrients (N, P, K, Mg) are withdrawn from older tissue to supply growing points, so deficiency shows up there first; immobile elements such as Ca, Fe and B fail first in young leaves and meristems."
       },
       {
         prompt: "What is the approximate ATP cost of biological nitrogen fixation per N2 reduced?",
-        options: ["16 ATP, with the reaction also releasing H2", "2 ATP", "1 GTP"],
+        options: ["16 ATP per N\u2082, plus release of H\u2082", "2 ATP per N\u2082, with no H\u2082 released", "1 GTP per N\u2082, with no H\u2082 released"],
         correctIndex: 0,
         explanation: "Nitrogenase uses about 16 ATP per N2 (8 electrons at 2 ATP each) and inevitably produces H2, which is why nodules need leghemoglobin to supply oxygen for respiration while protecting the enzyme from O2 inactivation."
       },
       {
         prompt: "Grasses acquire iron from alkaline soil by a different strategy from a tomato plant. Which statement is correct?",
-        options: [
-          "Grasses secrete phytosiderophores that chelate Fe3+ and take it up intact, whereas tomato reduces Fe3+ at the membrane and imports Fe2+ through IRT1",
-          "Both groups rely only on rhizosphere acidification, so iron deficiency is impossible above pH 7",
-          "Grasses import Fe2+ through IRT1 while dicots secrete siderophores"
-        ],
+        options: ["Grasses take up Fe\u00b3\u207a-phytosiderophore; tomato reduces Fe\u00b3\u207a and imports Fe\u00b2\u207a", "Both groups rely on rhizosphere acidification, so Fe is never limiting", "Grasses import Fe\u00b2\u207a through IRT1 while dicots secrete siderophores instead"],
         correctIndex: 0,
         explanation: "Strategy II (grasses) releases mugineic-acid family phytosiderophores that chelate Fe3+ for uptake by YS/YSL transporters; strategy I (dicots and other non-grasses) extrudes protons, reduces Fe3+ with a plasma-membrane ferric chelate reductase and imports Fe2+ through IRT1. Neither strategy works well at very high pH, which is why lime-induced chlorosis is common and why grasses dominate calcareous soils."
       }
@@ -2474,7 +2462,7 @@ const CHECKPOINT_BANK = {
     'plant-8-growth-development': [
       {
         prompt: "Red light at 660 nm converts phytochrome Pr to Pfr. What happens when far-red light (730 nm) follows immediately?",
-        options: ["Pfr reverts to Pr, reversing the response", "Pfr accumulates further", "Phytochrome is permanently degraded"],
+        options: ["Pfr reverts to Pr, reversing the response", "Pfr accumulates further in the tissue", "Phytochrome is permanently degraded after far-red"],
         correctIndex: 0,
         explanation: "Phytochrome is a reversible switch, so a red then far-red pulse cancels the response - the classic red/far-red reversibility experiment in lettuce seed germination."
       },
@@ -2486,7 +2474,7 @@ const CHECKPOINT_BANK = {
       },
       {
         prompt: "What actually determines whether a short-day plant flowers?",
-        options: ["The length of the uninterrupted dark period, not the day length", "The total irradiance in the light period", "The number of leaves on the plant"],
+        options: ["The length of the uninterrupted dark period", "The total irradiance during the light period", "The number of expanded leaves on the plant"],
         correctIndex: 0,
         explanation: "Night length is measured: a brief red light break in the middle of a long night prevents flowering in short-day plants, and far-red reverses that effect."
       }
@@ -2494,19 +2482,19 @@ const CHECKPOINT_BANK = {
     'animal-9-muscle-locomotion': [
       {
         prompt: "During muscle contraction, which band of the sarcomere stays constant in length?",
-        options: ["The A band, because it spans the thick filaments", "The I band, because it is thin-filament-only", "The H zone, which narrows sharply"],
+        options: ["The A band, because it spans the thick filaments", "The I band, because it is thin-filament-only", "The H zone, which narrows sharply during contraction"],
         correctIndex: 0,
         explanation: "Sliding filaments shorten the I band and H zone while the A band is unchanged - the observation that disproved filament shortening models."
       },
       {
         prompt: "What does calcium bind to in skeletal muscle to permit crossbridge formation?",
-        options: ["Troponin C, which moves tropomyosin off the myosin-binding sites", "Calmodulin, which activates myosin light-chain kinase", "The ryanodine receptor itself"],
+        options: ["Troponin C, which moves tropomyosin off the sites", "Calmodulin, which activates myosin light-chain kinase", "The ryanodine receptor, which releases Ca\u00b2\u207a"],
         correctIndex: 0,
         explanation: "Skeletal muscle calcium binds troponin C, shifting tropomyosin and exposing actin; smooth muscle uses calmodulin and myosin light-chain kinase instead."
       },
       {
         prompt: "Why does rigor mortis occur after death?",
-        options: ["ATP depletion prevents myosin heads from detaching from actin", "Calcium is pumped back into the sarcoplasmic reticulum", "Tropomyosin permanently blocks the binding sites"],
+        options: ["ATP depletion leaves myosin heads attached to actin", "Calcium is pumped back into the sarcoplasmic reticulum", "Tropomyosin permanently blocks the myosin sites"],
         correctIndex: 0,
         explanation: "ATP binding, not hydrolysis, releases the crossbridge; once ATP is exhausted the heads stay attached and the muscle becomes stiff until proteolysis breaks the fibres down."
       }
@@ -2514,13 +2502,13 @@ const CHECKPOINT_BANK = {
     'animal-10-sensory-systems': [
       {
         prompt: "Why do vertebrate rod cells hyperpolarise in response to light?",
-        options: ["Light-activated phosphodiesterase hydrolyses cGMP, closing cGMP-gated Na+ channels", "Light opens voltage-gated Na+ channels", "Light directly depolarises the inner segment"],
+        options: ["PDE hydrolyses cGMP, closing cGMP-gated Na\u207a channels", "Light opens voltage-gated Na\u207a channels in the outer segment", "Light directly depolarises the inner segment of the cell"],
         correctIndex: 0,
         explanation: "The phototransduction cascade (rhodopsin to transducin to PDE) lowers cGMP, the dark current stops, and the cell hyperpolarises, reducing glutamate release."
       },
       {
         prompt: "Which middle-ear structure provides impedance matching between air and cochlear fluid?",
-        options: ["The ossicles, which amplify pressure about 22-fold", "The eustachian tube", "The round window alone"],
+        options: ["The ossicles, which amplify pressure about 22-fold", "The eustachian tube, which equalises middle-ear pressure", "The round window, which flexes to relieve pressure"],
         correctIndex: 0,
         explanation: "The malleus, incus and stapes form a lever system and a small-area-to-large-area piston that overcomes the roughly 99.9% reflection of sound at an air-fluid interface."
       },
@@ -2540,19 +2528,19 @@ const CHECKPOINT_BANK = {
       },
       {
         prompt: "How does a marine teleost fish cope with living in seawater?",
-        options: ["Drinks seawater, absorbs ions in the gut and excretes excess salt through gill chloride cells", "Produces copious dilute urine and never drinks", "Matches its body osmolarity to seawater like an osmoconformer"],
+        options: ["Drinks seawater, absorbs ions, excretes salt at the gills", "Produces copious dilute urine and never drinks seawater", "Matches its body osmolarity to seawater as an osmoconformer"],
         correctIndex: 0,
         explanation: "Marine teleosts are osmoregulators that lose water to the hypertonic sea, so they drink, absorb ions, excrete salt across the gills and produce little urine - the mirror image of freshwater fish."
       },
       {
         prompt: "What is the main selective advantage of excreting uric acid rather than urea or ammonia?",
-        options: ["It is nearly insoluble, so it can be excreted as a paste with minimal water loss", "It costs no ATP to synthesise", "It is the least toxic and most soluble form"],
+        options: ["Nearly insoluble, so it is excreted with minimal water", "Costs no ATP to synthesise, unlike urea and ammonia", "Is the least toxic and most soluble of the three forms"],
         correctIndex: 0,
         explanation: "Uric acid is energetically expensive but nearly insoluble, allowing birds, reptiles and insects to conserve water; ammonia is cheapest and most toxic, urea is intermediate."
       },
       {
         prompt: "What is the role of countercurrent heat exchange in a rete mirabile?",
-        options: ["Warm arterial blood transfers heat to cold venous blood, reducing heat loss from extremities", "It concentrates oxygen for the swim bladder only", "It increases the rate of evaporative cooling"],
+        options: ["Warm arterial blood heats cold venous blood, cutting heat loss", "It concentrates oxygen for the swim bladder only", "It increases the rate of evaporative cooling at the surface"],
         correctIndex: 0,
         explanation: "Opposite flow of artery and vein keeps the core warm (arctic birds, dolphin fins) and can also concentrate gases - the same geometry serves both thermoregulation and the fish gas gland."
       }
@@ -2560,19 +2548,19 @@ const CHECKPOINT_BANK = {
     'genetics-5-meiosis-mutation': [
       {
         prompt: "Why do homologous chromosomes separate in anaphase I while sister chromatids stay together?",
-        options: ["Centromeric cohesin is protected by shugoshin, so only arm cohesin is cleaved", "Sister chromatids are not held together after S phase", "Separase is inactive until meiosis II"],
+        options: ["Shugoshin protects centromeric cohesin; only arm cohesin is cut", "Sister chromatids are no longer held together after S phase", "Separase stays completely inactive until meiosis II begins"],
         correctIndex: 0,
         explanation: "Separase cleaves arm cohesin at anaphase I, but shugoshin protects centromeric cohesin so that the reductional division separates homologues and the equational division separates sisters."
       },
       {
         prompt: "How many chromosome combinations can independent assortment generate in human gametes before recombination?",
-        options: ["2^23, about 8.4 million", "23", "4^23"],
+        options: ["2\u00b2\u00b3, about 8.4 million", "23, one per chromosome", "4\u00b2\u00b3, about 7 \u00d7 10\u00b9\u00b3"],
         correctIndex: 0,
         explanation: "Each of 23 homologous pairs orients independently, giving 2^23 combinations; crossing over multiplies the diversity far beyond that number."
       },
       {
         prompt: "Which repair pathway removes UV-induced cyclobutane pyrimidine dimers in humans?",
-        options: ["Nucleotide excision repair, defective in xeroderma pigmentosum", "Photolyase-mediated direct reversal", "Mismatch repair, defective in Lynch syndrome"],
+        options: ["Nucleotide excision repair, defective in XP", "Photolyase-mediated direct reversal of the dimer", "Mismatch repair, defective in Lynch syndrome"],
         correctIndex: 0,
         explanation: "NER excises the bulky dimer as part of an oligonucleotide patch; humans lack photolyase, and NER loss causes extreme UV sensitivity and skin cancer."
       }
@@ -2600,19 +2588,19 @@ const CHECKPOINT_BANK = {
     'eco-4-community-succession': [
       {
         prompt: "What defines a keystone species?",
-        options: ["Its influence on community structure is disproportionate to its abundance", "It is the most abundant species in the community", "It is the first species to colonise bare rock"],
+        options: ["Its influence is disproportionate to its abundance", "It is the most abundant species in the community", "It is the first species to colonise bare rock"],
         correctIndex: 0,
         explanation: "Paine's starfish removal experiment defined the term: removing a keystone predator collapsed mussel-bed diversity even though the predator was not dominant by biomass."
       },
       {
         prompt: "What distinguishes primary from secondary succession?",
-        options: ["Primary starts on substrate without soil; secondary starts where soil and seeds remain", "Primary involves only animals; secondary only plants", "Secondary succession always ends in a different climax community"],
+        options: ["Primary starts on bare substrate; secondary starts on soil", "Primary involves only animals; secondary involves only plants", "Secondary always ends in a different climax community"],
         correctIndex: 0,
         explanation: "Because secondary succession inherits soil structure, nutrients and a seed bank, it proceeds much faster than primary succession on lava or glacial till."
       },
       {
         prompt: "The intermediate disturbance hypothesis predicts maximum diversity under which regime?",
-        options: ["Intermediate frequency and intensity of disturbance", "Complete absence of disturbance", "Very frequent, severe disturbance"],
+        options: ["Intermediate disturbance frequency/intensity", "Complete absence of any disturbance at all", "Very frequent, very severe disturbance"],
         correctIndex: 0,
         explanation: "Low disturbance lets competitive exclusion reduce richness, while high disturbance eliminates slow colonisers; intermediate regimes keep both colonisers and competitors present."
       }
@@ -2620,19 +2608,19 @@ const CHECKPOINT_BANK = {
     'eco-5-biomes-conservation': [
       {
         prompt: "Why do the major subtropical deserts lie near 30 degrees latitude?",
-        options: ["Descending air in the Hadley cell creates high pressure and low rainfall", "They are always in continental interiors far from oceans", "Cold ocean currents generate rainfall that evaporates immediately"],
+        options: ["Hadley cell descent creates high pressure and little rain", "They sit in continental interiors far from any ocean", "Cold ocean currents generate rain that evaporates at once"],
         correctIndex: 0,
         explanation: "Air rises and rains at the equator, then descends dry at about 30 degrees, producing the Sahara, Arabian, Kalahari and Australian deserts."
       },
       {
         prompt: "A fishery is managed for maximum sustainable yield. At which population size is MSY harvested?",
-        options: ["About half the carrying capacity", "At the carrying capacity", "At 5% of the carrying capacity"],
+        options: ["About half of carrying capacity", "At the carrying capacity", "At 5% of the carrying capacity"],
         correctIndex: 0,
         explanation: "The logistic growth curve is steepest at K/2, giving MSY = rK/4; real fisheries overshoot this because abundance is hard to measure and subsidies distort incentives."
       },
       {
         prompt: "Which factor is currently the largest driver of biodiversity loss worldwide?",
-        options: ["Habitat loss and fragmentation", "Invasive species", "Pollution"],
+        options: ["Habitat loss and fragmentation", "Invasive species and disease spread", "Pollution of air and water"],
         correctIndex: 0,
         explanation: "The HIPPO ranking places habitat loss first, followed by invasives, pollution, human population growth and overexploitation; climate change compounds all of them."
       }
@@ -2640,13 +2628,13 @@ const CHECKPOINT_BANK = {
     'ethology-3-foraging-mating': [
       {
         prompt: "According to the marginal value theorem, when should a forager leave a patch?",
-        options: ["When the patch's intake rate falls to the average rate for the habitat, including travel time", "When the patch is completely empty", "Immediately after finding the first item"],
+        options: ["When intake rate hits the habitat average, travel included", "When the patch has been completely emptied of all its food", "Immediately after finding the first food item in the patch"],
         correctIndex: 0,
         explanation: "The optimal giving-up time equalises marginal and average returns; longer travel between patches means larger average rates foregone, so the forager should stay longer in each patch."
       },
       {
         prompt: "Trivers' parental investment theory predicts which sex will be choosier in a species where one sex invests more in offspring?",
-        options: ["The sex investing more, because its reproductive success is limited by investment", "The sex investing less, because it competes for mates", "Neither sex is ever choosy"],
+        options: ["The sex investing more, limited by its investment", "The sex investing less, which competes for access to mates", "Neither sex, since choosiness evolves only in birds"],
         correctIndex: 0,
         explanation: "The higher-investing sex becomes the limiting resource, so the lower-investing sex competes and the higher-investing sex is selected to discriminate among mates."
       },
@@ -2660,7 +2648,7 @@ const CHECKPOINT_BANK = {
     'systematics-2-taxonomy-diversity': [
       {
         prompt: "Which phylum is a deuterostome with a water vascular system and tube feet?",
-        options: ["Echinodermata", "Mollusca", "Annelida"],
+        options: ["Echinodermata (tube feet)", "Mollusca (radula and mantle)", "Annelida (metameric segments)"],
         correctIndex: 0,
         explanation: "Echinoderms are deuterostomes with pentaradial adults and bilateral larvae, a calcareous endoskeleton and a water vascular system - a favourite trick given their protostome-like appearance."
       },
@@ -2672,7 +2660,7 @@ const CHECKPOINT_BANK = {
       },
       {
         prompt: "Which character distinguishes Archaea from Bacteria?",
-        options: ["Ether-linked membrane lipids and pseudopeptidoglycan instead of peptidoglycan", "The presence of a nucleus", "Circular rather than linear chromosomes"],
+        options: ["Ether-linked membrane lipids and pseudopeptidoglycan", "A membrane-bound nucleus and linear chromosomes", "Circular chromosomes, 70S ribosomes and peptidoglycan"],
         correctIndex: 0,
         explanation: "Archaea have ether-linked branched lipids and no peptidoglycan, and their RNA polymerase and histones are more eukaryotic; both groups lack a nucleus and have circular chromosomes."
       }

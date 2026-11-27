@@ -153,11 +153,11 @@ Oxygen evolution is observed to peak on Flash 3, and then on Flash 7, 11, and 15
         type: "single_choice",
         prompt: `A 65-year-old male with calcific aortic stenosis undergoes left heart catheterization. Which of the following alterations in the left ventricular Pressure-Volume (PV) loop would be observed compared to a normal healthy adult?`,
         options: [
-          "A widened PV loop with increased Stroke Volume and decreased peak systolic pressure.",
-          "A taller and narrower PV loop with marked elevation in peak left ventricular systolic pressure, increased End-Systolic Volume (ESV), and decreased Stroke Volume.",
-          "A rightward shift of the loop with increased End-Diastolic Volume (EDV) and decreased End-Systolic Volume (ESV).",
-          "A downward shift of the End-Systolic Pressure-Volume Relationship (ESPVR) with unaltered peak aortic pressure.",
-          "Immediate elevation of left ventricular pressure throughout diastole without change in afterload."
+          "A widened PV loop with increased stroke volume and decreased peak systolic pressure.",
+          "A taller, narrower loop with higher peak systolic pressure and lower stroke volume.",
+          "A rightward shift with higher end-diastolic volume and lower end-systolic volume.",
+          "A downward shift of the ESPVR with unchanged peak aortic pressure.",
+          "Elevated left ventricular pressure throughout diastole with unchanged afterload."
         ],
         correctIndex: 1,
         explanation: `**Hemodynamic Analysis of Aortic Stenosis:**
